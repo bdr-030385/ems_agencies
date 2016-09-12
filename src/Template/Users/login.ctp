@@ -4,7 +4,7 @@
 <div id="login">    
     <div class="login-form">
         <center class="login-head">
-            <?= $this->Html->image('/images/logo-icon.png') ?>            
+            <!--<?= $this->Html->image('/images/logo-icon.png') ?>-->
             <h2 id="page-title">Sign In</h2>
             <p id="page-desc">Enter your username and password.</p>
         </center>
