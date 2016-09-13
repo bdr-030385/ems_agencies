@@ -8,8 +8,10 @@
     <?php
             echo $this->Html->meta('icon');
             echo $this->Html->css('bootstrap.min'); 
-            echo $this->Html->css('font-awesome.min');             
-            echo $this->Html->css('style');             
+            echo $this->Html->css('font-awesome.min');   
+            echo $this->Html->css('dist/css/AdminLTE.min.css');      
+            echo $this->Html->css('plugins/iCheck/square/blue.css');         
+         
             echo $this->fetch('meta');
             echo $this->fetch('css');
             echo $this->fetch('script');
@@ -22,5 +24,4 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->  
 </head>
-<body>
-    <div id="wrapper">
+<body class="hold-transition login-page">

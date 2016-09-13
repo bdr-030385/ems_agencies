@@ -22,13 +22,13 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> <!-- <?= CURRENT_VERSION; ?> -->
     </div>
-    <strong>Copyright &copy; 2016 <a href="#">Intellident</a>.</strong> All rights
+    <strong>Copyright &copy; 2016 <a href="#">EMS</a>.</strong> All rights
     reserved.
   </footer>
 
 <?php   
   echo $this->Html->script('plugins/jQuery/jquery-2.2.3.min.js');
-  echo $this->Html->script('intellident/jquery.min.js'); 
+  echo $this->Html->script('app/jquery.min.js'); 
 ?>
 <script>
   $.widget.bridge('uibutton', $.ui.button);
@@ -36,7 +36,7 @@
 
 <?php 
   echo $this->Html->script('bootstrap/js/bootstrap.min.js');
-  echo $this->Html->script('intellident/raphael.min.js'); 
+  echo $this->Html->script('app/raphael.min.js'); 
   echo $this->Html->script('plugins/morris/morris.min.js');
   echo $this->Html->script('plugins/sparkline/jquery.sparkline.min.js');
 
@@ -50,19 +50,11 @@
   echo $this->Html->script('plugins/input-mask/jquery.inputmask.date.extensions.js');
   echo $this->Html->script('plugins/input-mask/jquery.inputmask.extensions.js');
   echo $this->Html->script('plugins/iCheck/icheck.min.js');
-  echo $this->Html->script('intellident/star-rating.js'); 
+  echo $this->Html->script('app/star-rating.js'); 
 
   if(!empty($load_css_script)) {
-    if( $load_css_script == "appointment" ){
-      echo $this->Html->script('full-calendar/lib/moment.min');
-      echo $this->Html->script('full-calendar/fullcalendar.min'); 
-      echo $this->Html->script('plugins/timepicker/bootstrap-timepicker.min.js');  
-      echo $this->Html->script('intellident/appointment.js');  
-    }else if( $load_css_script == "patient" ) {
-      echo $this->Html->script('intellident/patient.js'); 
-      
-    }else if( $load_css_script == "payment_summary" ) {
-      echo $this->Html->script('intellident/payment_summary.js'); 
+    if( $load_css_script == "users" ){
+      echo $this->Html->script('app/users.js');  
     }
   }
   

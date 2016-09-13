@@ -1,4 +1,4 @@
-    </div><!-- #wrapper -->
+
     <div class="modal fade" id="messageNotifierModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel">
         <div class="modal-dialog " role="document">
             <div class="modal-content">
@@ -20,6 +20,7 @@
   //echo $this->Html->script('jquery.min.js');
   echo $this->Html->script('plugins/jQuery/jquery-2.2.3.min.js');
   echo $this->Html->script('intellident/jquery.min.js'); 
+  echo $this->Html->script('plugins/iCheck/icheck.min.js'); 
 ?>
 <?php echo $this->Html->script('bootstrap.min'); ?>
 </body>
@@ -28,6 +29,13 @@
 <script type="text/javascript">
 
   $(function(){
+
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+
     $('#btn-forgot-password').click(function(){
       $('#login-container').hide(500);
       $('#forgot-password-container').show(500);

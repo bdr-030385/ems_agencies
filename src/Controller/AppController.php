@@ -41,8 +41,6 @@ class AppController extends Controller
 
     public $cid;
 
-  
-
     /**
      * Initialization hook method.
      * ID : CA-01
@@ -64,7 +62,7 @@ class AppController extends Controller
                 'action' => 'login'
             ],
             'loginRedirect' => [
-                'controller' => 'Appointment',
+                'controller' => 'Users',
                 'action' => 'index'
             ],
             'logoutRedirect' => [

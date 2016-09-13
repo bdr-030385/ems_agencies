@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="<?= $base_url; ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><?= $this->Html->image('/images/ic_logo.png',['class' => 'logo']) ?></span>
+        <span class="logo-mini"><b>EMS</b></span>
       <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><?= $this->Html->image('/images/logo.png',['class' => 'logo']) ?></span>  
+        <span class="logo-lg"><b>EMS</b>Agencies</span>  
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -20,16 +20,16 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!--<?= $this->Html->image('/images/user2-160x160.jpg',['class' => 'user-image']) ?> -->
-              <span class="hidden-xs">Dr. <?php echo "Name"; ?></span>
+              <span class="hidden-xs"><?php echo "Name"; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <?= $this->Html->image('/images/ic_logo.png',['class' => 'img-circle']) ?>
+                <!--<?= $this->Html->image('/images/ic_logo.png',['class' => 'img-circle']) ?> -->
 
                 <p>
-                  <?php echo "test" ; ?><br>
-                  Dr. <?php echo "Name"; ?>
+                  <?php //echo "test" ; ?><br>
+                  <?php echo "Name"; ?>
                   <small><?php echo "mail@mail.com"; ?></small>
 
                 </p>
@@ -60,9 +60,9 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <!-- <li>
+          <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li> -->
+          </li>
         </ul>
       </div>
     </nav>

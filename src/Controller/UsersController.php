@@ -36,10 +36,12 @@ class UsersController extends AppController
         }       
         $this->set('nav_selected', $nav_selected);
 
+        $this->set(['load_css_script' => 'users']);
+
         $this->Users = TableRegistry::get('Users');
         $users = $this->Users->find('all');
         if($users->count() == 0) {
-            $this->redirect(['controller' => 'customer', 'action' => 'register']);
+            //$this->redirect(['controller' => 'customer', 'action' => 'register']);
         }
 
         $this->Auth->allow();
@@ -61,7 +63,6 @@ class UsersController extends AppController
      */
     public function index()
     {
-        return custom_redirect($this,['controller' => 'Appointment', 'action' => 'index']);
         $user = $this->Users->find('all', [
             'contain' => ['Groups']
         ]);
@@ -77,7 +78,6 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        return custom_redirect($this,['controller' => 'Appointment', 'action' => 'index']);
         $user = $this->Users->get($id, [
             'contain' => ["Groups"]
         ]);
@@ -91,7 +91,6 @@ class UsersController extends AppController
      */
     public function add()
     {      
-        return custom_redirect($this,['controller' => 'Appointment', 'action' => 'index']);
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -162,16 +161,13 @@ class UsersController extends AppController
      * login module then redirect to dashboard
      */
     public function login()
-    {
-        // PUSH UN-SYNC DATA FROM CLOUD DB TO LOCAL DB
-        $this->Customer = TableRegistry::get('Customer');
-        
+    {       
         // Change layout
         $this->viewBuilder()->layout("Users/login");        
         
         //if already logged-in, redirect
         if($this->Auth->user()){
-            custom_redirect($this,array('controller' => 'appointment', 'action' => 'index'));      
+            //custom_redirect($this,array('controller' => 'appointment', 'action' => 'index'));      
         }
 
         if ($this->request->is('post')) {  
@@ -181,25 +177,26 @@ class UsersController extends AppController
  
                 $this->Auth->setUser($user);
 
-                $user_id  = $this->Auth->user('id');              
+                $user_id  = $this->Auth->user('id');  
+                /*$this->Customer = TableRegistry::get('Customer');            
                 $customer = $this->Customer->find()            
                     ->where(['Customer.user_id' => $user_id])
                     ->first()
-                ;        
+                ;     */   
                 $session  = $this->request->session();
-                if( $customer ){                         
-                    $session->write('Customer.data', $customer);
+                /*if( $customer ){                         
+                    $session->write('User.data', $customer);
                 }else{
    
-                }       
+                }   */    
 
                 $_SESSION['KCEDITOR']['disabled'] = false;
                 $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
 
                 
                 //return $this->redirect(['controller' => 'appointment', 'action' => 'index']);
-                //return $this->redirect($this->Auth->redirectUrl());
-                return custom_redirect($this,array('controller' => 'appointment', 'action' => 'index'));  
+                return $this->redirect($this->Auth->redirectUrl());
+                //return custom_redirect($this,array('controller' => 'users', 'action' => 'index'));  
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }
@@ -299,14 +296,14 @@ class UsersController extends AppController
 
                 //$to = "rossel.barasharig160101@gmail.com";
                 $to = $user->username;
-                $email_sales = new Email('default');
+                /*$email_sales = new Email('default');
                 $email_sales->from(['sender@intellidentph.com' => 'IntelliDent'])
                  ->template('forgot_password')
                  ->emailFormat('html')
                  ->to($to)                                                                                                     
                  ->subject('IntelliDent : Reset Password Successfully')
                  ->viewVars(['result' => $result])
-                 ->send();
+                 ->send();*/
             } else {
                 echo "Unable to process request.";
             }

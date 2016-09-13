@@ -37,13 +37,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li id="calendar_appointment_nav" title="Calendar Appointment" class="<?= $nav_selected["appointments"] ?>">
-            <?= $this->Html->link('<i class="fa fa-calendar"></i><span>' . __("Calendar of Appointment") . "</span>",["controller" => get_customer_directory()."/appointment", "action" => "index"],["escape" => false]) ?>
+        <li id="users_nav" title="Users" class="<?= $nav_selected["users"] ?>">
+            <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/users", "action" => "index"],["escape" => false]) ?>
         </li>
-        <li id="patient_nav" title="Patient's Record" class="<?= $nav_selected["patients"] ?>"><?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Patient's Record") . "</span>",["controller" => get_customer_directory()."/patient", "action" => "index"],["escape" => false]) ?></li>
-
-        <li id="payment_history_nav" title="Payment History" class="<?= $nav_selected["payment_histories"] ?>"><?= $this->Html->link('<i class="fa fa-credit-card"></i><span>' . __("Payment History") . "</span> ",["controller" => get_customer_directory()."/payment_summary", "action" => "index"],["escape" => false]) ?></li>
-        <li class="treeview <?= $nav_selected["settings"] ?>">
+        <!-- <li class="treeview <?= $nav_selected["settings"] ?>">
           <a href="#" class="<?= $nav_selected["settings"] ?>">
             <i class="fa fa-cog"></i> <span>Settings</span>
             <span class="pull-right-container">
@@ -73,7 +70,7 @@
                 <a href="http://sprintdesignsph.com/intellident/support"><?php echo __("<i class='fa fa-circle-o'> </i> Feedback and Bug Report "); ?></a>
             </li>  
           </ul>
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- /.sidebar -->
