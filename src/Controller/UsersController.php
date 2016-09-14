@@ -54,7 +54,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['logout', 'login', 'request_forgot_password', 'forgot_password']);
+        $this->Auth->allow(['logout', 'login', 'request_forgot_password', 'forgot_password', 'update']);
     }
 
     /**
@@ -66,6 +66,8 @@ class UsersController extends AppController
         $user = $this->Users->find('all', [
             'contain' => ['Groups']
         ]);
+        $groups = $this->Users->Groups->find('list', ['limit' => 200]);
+        $this->set(['groups' => $groups]);
         $this->set('users', $this->paginate($user));
         $this->set('_serialize', ['users']);
     }
@@ -95,7 +97,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('User has been saved.'));
                 return custom_redirect($this,['action' => 'index']);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
@@ -104,6 +106,29 @@ class UsersController extends AppController
         $groups = $this->Users->Groups->find('list', ['limit' => 200]);
         $this->set(compact('user', 'groups'));
         $this->set('_serialize', ['user']);
+    }
+
+    public function update()
+    {
+        $id = $this->request->data['id'];
+        $users = $this->Users->get($id);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data['username'] = $this->request->data['username'];
+            $data['group_id'] = $this->request->data['group_id'];
+            if($this->request->data['password'] != "******") {
+                $data['password'] = $this->request->data['password'];
+            }
+
+            $users = $this->Users->patchEntity($users, $data);
+            if ( $result = $this->Users->save($users)) {
+                
+                $this->Flash->success(__('User has been updated.'));
+                
+            } else {
+                $this->Flash->error(__('The treatment could not be saved. Please, try again.'));
+            }
+        }
+        return custom_redirect($this,['controller' => 'users', 'action' => 'index']);
     }
 
     /**
