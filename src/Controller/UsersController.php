@@ -341,4 +341,14 @@ class UsersController extends AppController
 
         exit;
     }
+
+    /**
+     * Member Dashboard method
+     * ID : CA-11
+     * @return void
+     */
+    public function test_form()
+    {
+        
+    }
 }
