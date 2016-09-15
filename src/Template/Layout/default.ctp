@@ -19,7 +19,7 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!--<?= $this->Html->image('/images/user2-160x160.jpg',['class' => 'user-image']) ?> -->
+              <?= $this->Html->image('/images/user2-160x160.jpg',['class' => 'user-image']) ?>
               <span class="hidden-xs"><?php echo "Name"; ?></span>
             </a>
             <ul class="dropdown-menu">

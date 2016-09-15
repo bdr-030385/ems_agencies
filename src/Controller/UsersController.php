@@ -65,7 +65,8 @@ class UsersController extends AppController
     {
         $user = $this->Users->find('all', [
             'contain' => ['Groups']
-        ]);
+        ])->where(['Users.is_archive' => 0]);
+
         $groups = $this->Users->Groups->find('list', ['limit' => 200]);
         $this->set(['groups' => $groups]);
         $this->set('users', $this->paginate($user));
@@ -125,7 +126,7 @@ class UsersController extends AppController
                 $this->Flash->success(__('User has been updated.'));
                 
             } else {
-                $this->Flash->error(__('The treatment could not be saved. Please, try again.'));
+                $this->Flash->error(__('User could not be saved. Please, try again.'));
             }
         }
         return custom_redirect($this,['controller' => 'users', 'action' => 'index']);
@@ -164,21 +165,15 @@ class UsersController extends AppController
          $this->set('groups', $this->Users->Groups->find('list', array('fields' => array('name','id') ) ) );
     }
 
-    /**
-     * delete method    
-     * @return void
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
-        /*if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
-        }*/
-        $this->Flash->error(__('Deleting of user is currently disabled.'));
-        return custom_redirect($this,['action' => 'index']);
+        $user->is_archive = 1;
+        $this->Users->save($user);
+
+        $this->Flash->success(__('User has been deleted.'));        
+        return custom_redirect($this,['controller' => 'users', 'action' => 'index']);
     }
 
     /**
@@ -262,7 +257,7 @@ class UsersController extends AppController
                 //debug($result); exit;
 
                 //$to = "rossel.barasharig160101@gmail.com";
-                $to = $user->username;
+                /*$to = $user->username;
                 $email_sales = new Email('default');
                 $email_sales->from(['sender@intellidentph.com' => 'IntelliDent'])
                  ->template('request_forgot_password')
@@ -270,7 +265,7 @@ class UsersController extends AppController
                  ->to($to)                                                                                                     
                  ->subject('IntelliDent : Forgot Password Assistance')
                  ->viewVars(['result' => $result])
-                 ->send();
+                 ->send();*/
 
                 $json['message'] = "An email has been sent to your e-mail address for confirmation.";
                 $json['is_success'] = true;

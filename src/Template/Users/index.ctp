@@ -46,6 +46,30 @@ var BASE_URL = "<?php echo $base_url; ?>";
                                     <td style="text-align:center;">
                                         <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editUserModal-<?= $u->id; ?>">Edit</button>
                                         <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteUserModal-<?= $u->id; ?>">Delete</button>
+
+                                        <div style="text-align:left !important;" class="modal fade" id="deleteUserModal-<?= $u->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                            <div class="modal-dialog " role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="exampleModalLabel">Delete User</h4>
+                                                  </div>
+
+                                                  <div class="modal-body">
+                                                    <p>Are you sure you want to delete selected entry?</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <?= $this->Form->postLink(
+                                                            'Yes',
+                                                            ['action' => 'delete', $u->id],
+                                                            ['class' => 'btn btn-danger', 'escape' => false]
+                                                        )
+                                                    ?>                                    
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php } ?>

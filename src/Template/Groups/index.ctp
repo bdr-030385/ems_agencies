@@ -1,80 +1,83 @@
-<section class="content-header">
-    <h1><?= __('Groups') ?></h1>
-</section>
+<script>
+var BASE_URL = "<?php echo $base_url; ?>";
+</script>
 
-<div class="dropdown pull-right" style="margin:-50px 14px 0 0">
-    <button class="btn btn-default dropdown-toggle" type="button" id="drpdwn" data-toggle="dropdown" aria-expanded="true">
-        Action <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="drpdwn">
-        <li role="presentation"><?= $this->Html->link('<i class="fa fa-plus"></i> ' . __('Add Group'),['action' => 'add'], ['escape' => false]) ?></li>
-        <li role="presentation"><?= $this->Html->link('<i class="fa fa-list-alt"></i> ' . __('List Users'),['controller' => 'users', 'action' => 'index'], ['escape' => false]) ?></li>
-    </ul>
-</div>
+<section class="content-header">
+    <h1>
+        <?= __("Groups") ?>
+        <!-- <small>Control panel</small> -->
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Groups</li>
+    </ol>
+</section>
 
 <section class="content">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= __('Groups List') ?></h3>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th><?= $this->Paginator->sort('id') ?></th>
-                        <th><?= $this->Paginator->sort('name') ?></th>
-                        <th><?= $this->Paginator->sort('created') ?></th>
-                        <th><?= $this->Paginator->sort('modified') ?></th>
-                        <th class="actions"><?= __('Actions') ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($groups as $group): ?>
-                    <tr>
-                        <td><?= $this->Number->format($group->id) ?></td>
-                        <td><?= h($group->name) ?></td>                        
-                        <td><?= date("Y-m-d H:i:s",strtotime($group->created)) ?></td>
-                        <td><?= date("Y-m-d H:i:s",strtotime($group->modified)) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $group->id],['class' => 'btn btn-info','escape' => false]) ?>
-                            <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $group->id],['class' => 'btn btn-success', 'escape' => false]) ?>
-                            <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$group->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
-                            <!-- Delete Modal -->
-                            <div id="modal-<?=$group->id?>" class="modal fade" tabindex="-1" data-width="660" style="display: none; max-height:175px;">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="modal-title">Delete Confirmation</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure you want to <b>delete</b> <?=$group->username?>?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
-                                    <?= $this->Form->postLink(
-                                            'Yes',
-                                            ['action' => 'delete', $group->id],
-                                            ['class' => 'btn btn-primary', 'escape' => false]
-                                        )
-                                    ?>
-                                </div>
-                            </div>
-                        </td>
+    <!-- Main Row -->
+    <div class="row">
+        <section class="col-lg-12 ">
+            <div class="box " >
+                <div class="box-header">
 
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>            
-        </div>    
-        <div class="paginator" style="text-align:center;">
-            <ul class="pagination">
-                <?= $this->Paginator->prev('«') ?>
-                <?= $this->Paginator->numbers() ?>
-                <?= $this->Paginator->next('»') ?>
-            </ul>
-            <p class="hidden"><?= $this->Paginator->counter() ?></p>
-        </div>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addGroupModal" title="Add New Group" ><i class="fa fa-plus"></i> Add New Group</button>
+
+                    <h3 class="box-title text-black" ></h3>
+                </div>
+                <div class="box-body">
+                    <table id="dt-group-list" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date Created</th>
+                                <th>Date Modified</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($groups as $g) { ?>
+                                <?php include("edit.ctp"); ?>
+                                <tr>
+                                    <td><?= $g->name; ?></td>
+                                    <td><?= date("M d, Y", strtotime($g->created)); ?></td>
+                                    <td><?= date("M d, Y", strtotime($g->modified)); ?></td>
+                                    <td style="text-align:center;">
+                                        <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#editGroupModal-<?= $g->id; ?>">Edit</button>
+                                        <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteGroupModal-<?= $g->id; ?>">Delete</button>
+
+                                        <div style="text-align:left !important;" class="modal fade" id="deleteGroupModal-<?= $g->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                            <div class="modal-dialog " role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="exampleModalLabel">Delete Group</h4>
+                                                  </div>
+
+                                                  <div class="modal-body">
+                                                    <p>Are you sure you want to delete selected entry?</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <?= $this->Form->postLink(
+                                                            'Yes',
+                                                            ['action' => 'delete', $g->id],
+                                                            ['class' => 'btn btn-danger', 'escape' => false]
+                                                        )
+                                                    ?>                                    
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
 </section>
 
-
+<?php include("add.ctp"); ?>
 

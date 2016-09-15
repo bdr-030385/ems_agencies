@@ -40,6 +40,9 @@
         <li id="users_nav" title="Users" class="<?= $nav_selected["users"] ?>">
             <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/users", "action" => "index"],["escape" => false]) ?>
         </li>
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["groups"] ?>">
+            <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
+        </li>
         <!-- <li class="treeview <?= $nav_selected["settings"] ?>">
           <a href="#" class="<?= $nav_selected["settings"] ?>">
             <i class="fa fa-cog"></i> <span>Settings</span>

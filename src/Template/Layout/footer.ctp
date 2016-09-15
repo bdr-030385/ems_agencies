@@ -55,6 +55,8 @@
   if(!empty($load_css_script)) {
     if( $load_css_script == "users" ){
       echo $this->Html->script('app/users.js');  
+    }elseif( $load_css_script == "groups" ){
+      echo $this->Html->script('app/groups.js');  
     }
   }
   

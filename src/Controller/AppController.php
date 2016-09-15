@@ -72,7 +72,7 @@ class AppController extends Controller
             ],
             'unauthorizedRedirect' => [
                 'controller' => 'Users',
-                'action' => 'login',
+                'action' => 'index',
                 'prefix' => false
             ]
         ]);

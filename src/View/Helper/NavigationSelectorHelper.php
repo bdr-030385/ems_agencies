@@ -31,7 +31,7 @@ class NavigationSelectorHelper extends Helper
      */
     public function selectedMainNavigation($selected) {
         $navigation = array(
-            "dashboard"         => "",
+            "groups"         => "",
             "users"   => "",
             "payment_histories"   => "",
             "appointments" => "",

@@ -26,9 +26,10 @@ class GroupsController extends AppController
             $nav_selected = ["groups"];
         }
         $this->set('nav_selected', $nav_selected);
+        $this->set(['load_css_script' => 'groups']);
 
         // Allow full access to this controller
-        //$this->Auth->allow();
+        $this->Auth->allow(['index','add','update']);
     }
 
     /**
@@ -39,7 +40,8 @@ class GroupsController extends AppController
      */
     public function index()
     {
-        $this->set('groups', $this->paginate($this->Groups));
+        $groups = $this->Groups->find('all')->where(['Groups.is_archive' => 0]);
+        $this->set('groups', $groups);
         $this->set('_serialize', ['groups']);
     }
 
@@ -72,7 +74,7 @@ class GroupsController extends AppController
         if ($this->request->is('post')) {
             $group = $this->Groups->patchEntity($group, $this->request->data);
             if ($this->Groups->save($group)) {
-                $this->Flash->success(__('The group has been saved.'));
+                $this->Flash->success(__('Group has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The group could not be saved. Please, try again.'));
@@ -108,6 +110,24 @@ class GroupsController extends AppController
         $this->set('_serialize', ['group']);
     }
 
+    public function update()
+    {
+        $id = $this->request->data['id'];
+        $group = $this->Groups->get($id);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            $group = $this->Groups->patchEntity($group, $data);
+            if ( $result = $this->Groups->save($group)) {
+                
+                $this->Flash->success(__('Group has been updated.'));
+                
+            } else {
+                $this->Flash->error(__('Group could not be saved. Please, try again.'));
+            }
+        }
+        return custom_redirect($this,['controller' => 'groups', 'action' => 'index']);
+    }
+
     /**
      * Delete method
      * ID : CA-06
@@ -120,11 +140,10 @@ class GroupsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $group = $this->Groups->get($id);
-        if ($this->Groups->delete($group)) {
-            $this->Flash->success(__('The group has been deleted.'));
-        } else {
-            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
+        $group->is_archive = 1;
+        $this->Groups->save($group);
+
+        $this->Flash->success(__('Group has been deleted.'));        
+        return custom_redirect($this,['controller' => 'groups', 'action' => 'index']);
     }
 }
