@@ -19,8 +19,7 @@ var BASE_URL = "<?php echo $base_url; ?>";
         <section class="col-lg-12 ">
             <div class="box " >
                 <div class="box-header">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPatientModal" title="Add New Patient" ><i class="fa fa-plus"></i> Add New User</button>
-
+                    <?= $this->Html->link(__('Add New User'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
