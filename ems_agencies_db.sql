@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.0.10.8
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2016 at 05:43 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 5.5.33
+-- Generation Time: Sep 16, 2016 at 08:42 AM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ems_agencies_db`
@@ -23,13 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `account_types`
+--
+
+DROP TABLE IF EXISTS `account_types`;
+CREATE TABLE IF NOT EXISTS `account_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `acl_phinxlog`
 --
 
-CREATE TABLE `acl_phinxlog` (
+DROP TABLE IF EXISTS `acl_phinxlog`;
+CREATE TABLE IF NOT EXISTS `acl_phinxlog` (
   `version` bigint(20) NOT NULL,
   `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -45,15 +62,19 @@ INSERT INTO `acl_phinxlog` (`version`, `start_time`, `end_time`) VALUES
 -- Table structure for table `acos`
 --
 
-CREATE TABLE `acos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `acos`;
+CREATE TABLE IF NOT EXISTS `acos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
   `model` varchar(255) DEFAULT NULL,
   `foreign_key` int(11) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
   `lft` int(11) DEFAULT NULL,
-  `rght` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `rght` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lft` (`lft`,`rght`),
+  KEY `alias` (`alias`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=364 ;
 
 --
 -- Dumping data for table `acos`
@@ -117,18 +138,42 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `agencies`
+--
+
+DROP TABLE IF EXISTS `agencies`;
+CREATE TABLE IF NOT EXISTS `agencies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_type_id` int(11) NOT NULL,
+  `member_type_id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `emt_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `start_date` date NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `aros`
 --
 
-CREATE TABLE `aros` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `aros`;
+CREATE TABLE IF NOT EXISTS `aros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
   `model` varchar(255) DEFAULT NULL,
   `foreign_key` int(11) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
   `lft` int(11) DEFAULT NULL,
-  `rght` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `rght` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lft` (`lft`,`rght`),
+  KEY `alias` (`alias`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `aros`
@@ -170,15 +215,19 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 -- Table structure for table `aros_acos`
 --
 
-CREATE TABLE `aros_acos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `aros_acos`;
+CREATE TABLE IF NOT EXISTS `aros_acos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `aro_id` int(11) NOT NULL,
   `aco_id` int(11) NOT NULL,
   `_create` varchar(2) NOT NULL DEFAULT '0',
   `_read` varchar(2) NOT NULL DEFAULT '0',
   `_update` varchar(2) NOT NULL DEFAULT '0',
-  `_delete` varchar(2) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `_delete` varchar(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `aro_id` (`aro_id`,`aco_id`),
+  KEY `aco_id` (`aco_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `aros_acos`
@@ -193,12 +242,14 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 -- Table structure for table `groups`
 --
 
-CREATE TABLE `groups` (
-  `id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(180) CHARACTER SET latin1 NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `groups`
@@ -206,7 +257,23 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 (1, 'Administrator', '2016-01-08 03:01:24', '2016-01-08 03:01:24'),
-(2, 'User', '2016-01-08 03:01:33', '2016-01-08 03:01:33');
+(2, 'User', '2016-01-08 03:01:33', '2016-01-08 03:01:33'),
+(3, 'Agency', '2016-01-08 03:01:33', '2016-01-08 03:01:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_types`
+--
+
+DROP TABLE IF EXISTS `member_types`;
+CREATE TABLE IF NOT EXISTS `member_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -214,97 +281,120 @@ INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET latin1 NOT NULL,
   `password` varchar(255) CHARACTER SET latin1 NOT NULL,
   `group_id` int(11) NOT NULL,
+  `is_archive` int(2) DEFAULT '0',
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`) VALUES
-(1, 'admin@admin.com', '$2y$10$SnGf4uD70id/KBff8zktpuwkLT6YNLQMYVPS4cntg0kBnGSxhOPyO', 1, '2016-09-12 03:01:56', '2016-09-12 10:33:25');
+INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `is_archive`, `created`, `modified`) VALUES
+(1, 'admin@admin.com', '$2y$10$SnGf4uD70id/KBff8zktpuwkLT6YNLQMYVPS4cntg0kBnGSxhOPyO', 1, 0, '2016-09-12 03:01:56', '2016-09-12 10:33:25');
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Table structure for table `user_custom_fields`
 --
 
---
--- Indexes for table `acl_phinxlog`
---
-ALTER TABLE `acl_phinxlog`
-  ADD PRIMARY KEY (`version`);
+DROP TABLE IF EXISTS `user_custom_fields`;
+CREATE TABLE IF NOT EXISTS `user_custom_fields` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_entity_id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Indexes for table `acos`
---
-ALTER TABLE `acos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `lft` (`lft`,`rght`),
-  ADD KEY `alias` (`alias`);
-
---
--- Indexes for table `aros`
---
-ALTER TABLE `aros`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `lft` (`lft`,`rght`),
-  ADD KEY `alias` (`alias`);
-
---
--- Indexes for table `aros_acos`
---
-ALTER TABLE `aros_acos`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `aro_id` (`aro_id`,`aco_id`),
-  ADD KEY `aco_id` (`aco_id`);
-
---
--- Indexes for table `groups`
---
-ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Table structure for table `user_entities`
 --
 
+DROP TABLE IF EXISTS `user_entities`;
+CREATE TABLE IF NOT EXISTS `user_entities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agency_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `firstname` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `mi` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `member_id` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `gender` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `birthdate` date NOT NULL,
+  `ssn` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `state` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `zip` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `home` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `work_phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cell_phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cell_phone_carrier` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emergency_contact_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emergency_email` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
 --
--- AUTO_INCREMENT for table `acos`
+-- Table structure for table `vehicles`
 --
-ALTER TABLE `acos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
+
+DROP TABLE IF EXISTS `vehicles`;
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number_vehicle` int(11) NOT NULL,
+  `vehicle_year` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `make` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `model` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `color` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `vin` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `part_vehicle_inspection` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `registration_card` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `insurance_card` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `expiration_date` date NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
 --
--- AUTO_INCREMENT for table `aros`
+-- Table structure for table `vehicle_docs`
 --
-ALTER TABLE `aros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT for table `aros_acos`
---
-ALTER TABLE `aros_acos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `groups`
---
-ALTER TABLE `groups`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+DROP TABLE IF EXISTS `vehicle_docs`;
+CREATE TABLE IF NOT EXISTS `vehicle_docs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int(11) NOT NULL,
+  `filename` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
+  `location` text COLLATE utf8_unicode_ci NOT NULL,
+  `is_approved` smallint(2) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modfied` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
