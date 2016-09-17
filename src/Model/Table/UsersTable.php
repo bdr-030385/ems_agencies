@@ -31,6 +31,9 @@ class UsersTable extends Table
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id',
         ]);
+        $this->hasMany('UserEntities', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**

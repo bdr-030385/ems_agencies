@@ -27,7 +27,12 @@ $compact = ["'" . $singularName . "'"];
             $<%= $singularName %> = $this-><%= $currentModelName %>->patchEntity($<%= $singularName %>, $this->request->data);
             if ($this-><%= $currentModelName; %>->save($<%= $singularName %>)) {
                 $this->Flash->success(__('The <%= strtolower($singularHumanName) %> has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $action = $this->request->data['save'];
+                if( $action == 'save' ){
+                    return $this->redirect(['action' => 'index']);
+                }else{
+                    return $this->redirect(['action' => 'add']);
+                }                    
             } else {
                 $this->Flash->error(__('The <%= strtolower($singularHumanName) %> could not be saved. Please, try again.'));
             }

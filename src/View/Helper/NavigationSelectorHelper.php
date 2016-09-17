@@ -35,7 +35,11 @@ class NavigationSelectorHelper extends Helper
             "users"   => "",
             "payment_histories"   => "",
             "appointments" => "",
-            "settings" => ""                        
+            "settings" => "",
+            "agencies" => "",
+            "vehicles" => "",
+            "member_types" => "",
+            "account_types" => ""                    
         );
         $navigation[$selected] = "active";
 

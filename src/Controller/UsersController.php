@@ -190,33 +190,30 @@ class UsersController extends AppController
             //custom_redirect($this,array('controller' => 'appointment', 'action' => 'index'));      
         }
 
-        if ($this->request->is('post')) {  
-                  
+        if ($this->request->is('post')) {                    
             $user = $this->Auth->identify();                   
             if ($user) {       
- 
-                $this->Auth->setUser($user);
-
-                $user_id  = $this->Auth->user('id');  
-                /*$this->Customer = TableRegistry::get('Customer');            
-                $customer = $this->Customer->find()            
-                    ->where(['Customer.user_id' => $user_id])
+                $user_data = $this->Users->UserEntities->find()   
+                    ->contain(['Users'])             
+                    ->where(['UserEntities.user_id' => $user['id']])
                     ->first()
-                ;     */   
-                $session  = $this->request->session();
-                /*if( $customer ){                         
-                    $session->write('User.data', $customer);
+                ;                             
+                if( $user_data->user->is_archive == 0 ){
+                    $this->Auth->setUser($user);
+                    $user_id  = $this->Auth->user('id');                      
+                    $session  = $this->request->session();  
+                    $session->write('User.data', $user_data);     
+                    
+                    $_SESSION['KCEDITOR']['disabled'] = false;
+                    $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
+                    if( $user_data->user->group_id == 1){                        
+                        return $this->redirect($this->Auth->redirectUrl());
+                    }else{                        
+                        return $this->redirect(['action' => 'user_dashboard']);
+                    } 
                 }else{
-   
-                }   */    
-
-                $_SESSION['KCEDITOR']['disabled'] = false;
-                $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
-
-                
-                //return $this->redirect(['controller' => 'appointment', 'action' => 'index']);
-                return $this->redirect($this->Auth->redirectUrl());
-                //return custom_redirect($this,array('controller' => 'users', 'action' => 'index'));  
+                    //Redirect to error page
+                }                
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }

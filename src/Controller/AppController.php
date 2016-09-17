@@ -62,7 +62,7 @@ class AppController extends Controller
                 'action' => 'login'
             ],
             'loginRedirect' => [
-                'controller' => 'Users',
+                'controller' => 'users',
                 'action' => 'index'
             ],
             'logoutRedirect' => [
@@ -71,30 +71,23 @@ class AppController extends Controller
                 
             ],
             'unauthorizedRedirect' => [
-                'controller' => 'Users',
+                'controller' => 'Main',
                 'action' => 'index',
                 'prefix' => false
+            ],
+            'authError' => 'You must be logged in to view this page.',
+            'flash' => [
+                'element' => 'error'
             ]
         ]);
-        
 
-        $user_data = array();
-        if( $this->Auth->user('id') > 0 ){
-            
-
-            /*$session    = $this->request->session();
-            $user_data  = $session->read('Customer.data');
-
-            $this->set([
-                
-            ]);*/
-
-            
-        }
-
-        $base_url = Router::url('/',true);        
-        $this->set(['base_url' => $base_url]);
-
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');        
+        $base_url  = Router::url('/',true);  
+        $this->set([
+            'base_url' => $base_url,
+            'hdr_user_data' => $user_data
+        ]);
     }
 
     /**
