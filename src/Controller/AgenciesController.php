@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Agencies Controller
@@ -70,7 +71,26 @@ class AgenciesController extends AppController
         $agency = $this->Agencies->newEntity();
         if ($this->request->is('post')) {
             $agency = $this->Agencies->patchEntity($agency, $this->request->data);
-            if ($this->Agencies->save($agency)) {
+            if ($result_agency = $this->Agencies->save($agency)) {
+                $user_data['username'] = $this->request->data['email_address'];
+                $user_data['password'] = $this->request->data['password'];
+                $user_data['group_id'] = 1; // Agency
+
+                $this->Users = TableRegistry::get("Users");
+                $user = $this->Users->newEntity();
+                $user = $this->Users->patchEntity($user, $user_data);
+                $result_user = $this->Users->save($user);
+
+                $user_entities_data['agency_id']    = $result_agency->id;
+                $user_entities_data['user_id']      = $result_user->id;
+                $user_entities_data['firstname']    = $this->request->data['name'];
+                $user_entities_data['email']        = $this->request->data['email_address'];
+
+                $this->UserEntities = TableRegistry::get("UserEntities");
+                $user_entities = $this->UserEntities->newEntity();
+                $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
+                $result_user_entities = $this->UserEntities->save($user_entities);
+
                 $this->Flash->success(__('The agency has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){

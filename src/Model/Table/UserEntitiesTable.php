@@ -73,53 +73,41 @@ class UserEntitiesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('firstname', 'create')
             ->notEmpty('firstname');
 
         $validator
-            ->requirePresence('lastname', 'create')
-            ->notEmpty('lastname');
+            ->allowEmpty('lastname');
 
         $validator
             ->allowEmpty('mi');
 
         $validator
-            ->requirePresence('gender', 'create')
-            ->notEmpty('gender');
+            ->allowEmpty('gender');
 
         $validator
-            ->date('birthdate')
-            ->requirePresence('birthdate', 'create')
-            ->notEmpty('birthdate');
+            ->allowEmpty('birthdate');
 
         $validator
-            ->requirePresence('ssn', 'create')
-            ->notEmpty('ssn');
+            ->allowEmpty('ssn');
 
         $validator
-            ->requirePresence('address', 'create')
-            ->notEmpty('address');
+            ->allowEmpty('address');
 
         $validator
-            ->requirePresence('city', 'create')
-            ->notEmpty('city');
+            ->allowEmpty('city');
 
         $validator
-            ->requirePresence('state', 'create')
-            ->notEmpty('state');
+            ->allowEmpty('state');
 
         $validator
-            ->requirePresence('zip', 'create')
-            ->notEmpty('zip');
+            ->allowEmpty('zip');
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmpty('email');
+            ->allowEmpty('email');
 
         $validator
-            ->requirePresence('phone', 'create')
-            ->notEmpty('phone');
+            ->allowEmpty('phone');
 
         $validator
             ->allowEmpty('home');
@@ -151,10 +139,10 @@ class UserEntitiesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+        //$rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['agency_id'], 'Agencies'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['member_id'], 'Members'));
+        //$rules->add($rules->existsIn(['member_id'], 'Members'));
 
         return $rules;
     }
