@@ -2,7 +2,7 @@
     <h1><?= __('Edit Vehicle') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __('Vehicles'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-car'></i>" . __('Vehicles'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
         <li class="active"><?= __('Edit') ?></li>
     </ol>
 </section>
@@ -16,9 +16,27 @@
 
                 </div>
                 <div class="box-body">
-                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
+                    <?= $this->Form->create($vehicle,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
+                                        <div class='col-sm-6'>";
+                                         echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
+                                    echo " </div></div>";    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='vehicle_type_id' class='col-sm-2 control-label'>" . __('Vehicle Type Id') . "</label>
+                                        <div class='col-sm-6'>";
+                                         echo $this->Form->input('vehicle_type_id', ['class' => 'form-control', 'id' => 'vehicle_type_id', 'label' => false, 'options' => $vehicleTypes]);                 
+                                    echo " </div></div>";    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='color_id' class='col-sm-2 control-label'>" . __('Color Id') . "</label>
+                                        <div class='col-sm-6'>";
+                                         echo $this->Form->input('color_id', ['class' => 'form-control', 'id' => 'color_id', 'label' => false, 'options' => $colors]);                 
+                                    echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
                                         <label for='number_vehicle' class='col-sm-2 control-label'>" . __('Number Vehicle') . "</label>
@@ -45,20 +63,6 @@
                                         <label for='model' class='col-sm-2 control-label'>" . __('Model') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('model', ['class' => 'form-control', 'id' => 'model', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='color' class='col-sm-2 control-label'>" . __('Color') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('color', ['class' => 'form-control', 'id' => 'color', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='type' class='col-sm-2 control-label'>" . __('Type') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('type', ['class' => 'form-control', 'id' => 'type', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
@@ -93,7 +97,7 @@
                                     <div class='form-group'>
                                         <label for='expiration_date' class='col-sm-2 control-label'>" . __('Expiration Date') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('expiration_date', ['class' => 'form-control', 'id' => 'expiration_date', 'label' => false]);                
+                                        echo $this->Form->input('expiration_date', ['type' => 'text', 'value' => $vehicle->expiration_date->format("Y-m-d"), 'class' => 'form-control default-datepicker', 'id' => 'expiration_date', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                 ?>

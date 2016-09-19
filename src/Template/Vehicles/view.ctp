@@ -7,6 +7,18 @@
     <table class="table table-striped table-bordered table-hover">
     <tbody>
         <tr>
+            <th><?= __('Agency') ?></th>
+            <td><?= $vehicle->has('agency') ? $this->Html->link($vehicle->agency->name, ['controller' => 'Agencies', 'action' => 'view', $vehicle->agency->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Vehicle Type') ?></th>
+            <td><?= $vehicle->has('vehicle_type') ? $this->Html->link($vehicle->vehicle_type->name, ['controller' => 'VehicleTypes', 'action' => 'view', $vehicle->vehicle_type->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Color') ?></th>
+            <td><?= $vehicle->has('color') ? $this->Html->link($vehicle->color->name, ['controller' => 'Colors', 'action' => 'view', $vehicle->color->id]) : '' ?></td>
+        </tr>
+        <tr>
             <th><?= __('Vehicle Year') ?></th>
             <td><?= h($vehicle->vehicle_year) ?></td>
         </tr>
@@ -17,14 +29,6 @@
         <tr>
             <th><?= __('Model') ?></th>
             <td><?= h($vehicle->model) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Color') ?></th>
-            <td><?= h($vehicle->color) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Type') ?></th>
-            <td><?= h($vehicle->type) ?></td>
         </tr>
         <tr>
             <th><?= __('Vin') ?></th>
@@ -75,10 +79,10 @@
     <div class="related">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?= __('Related Vehicle Docs') ?></h3>
+                <h3 class="panel-title"><?= __('Related Vehicle Files') ?></h3>
             </div>
         </div>        
-        <?php if (!empty($vehicle->vehicle_docs)): ?>
+        <?php if (!empty($vehicle->vehicle_files)): ?>
         <table class="table table-striped table-bordered table-hover">
             <tbody>
             <tr>
@@ -91,21 +95,21 @@
                 <th><?= __('Modfied') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($vehicle->vehicle_docs as $vehicleDocs): ?>
+            <?php foreach ($vehicle->vehicle_files as $vehicleFiles): ?>
             <tr>
-                <td><?= h($vehicleDocs->id) ?></td>
-                <td><?= h($vehicleDocs->vehicle_id) ?></td>
-                <td><?= h($vehicleDocs->filename) ?></td>
-                <td><?= h($vehicleDocs->location) ?></td>
-                <td><?= h($vehicleDocs->is_approved) ?></td>
-                <td><?= h($vehicleDocs->created) ?></td>
-                <td><?= h($vehicleDocs->modfied) ?></td>
+                <td><?= h($vehicleFiles->id) ?></td>
+                <td><?= h($vehicleFiles->vehicle_id) ?></td>
+                <td><?= h($vehicleFiles->filename) ?></td>
+                <td><?= h($vehicleFiles->location) ?></td>
+                <td><?= h($vehicleFiles->is_approved) ?></td>
+                <td><?= h($vehicleFiles->created) ?></td>
+                <td><?= h($vehicleFiles->modfied) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['controller' => 'VehicleDocs', 'action' => 'view', $vehicleDocs->id], ['class' => 'btn btn-info', 'escape' => false]) ?>
+                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['controller' => 'VehicleFiles', 'action' => 'view', $vehicleFiles->id], ['class' => 'btn btn-info', 'escape' => false]) ?>
 
-                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['controller' => 'VehicleDocs', 'action' => 'edit', $vehicleDocs->id], ['class' => 'btn btn-success', 'escape' => false]) ?>
+                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['controller' => 'VehicleFiles', 'action' => 'edit', $vehicleFiles->id], ['class' => 'btn btn-success', 'escape' => false]) ?>
 
-                    <?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['controller' => 'VehicleDocs', 'action' => 'delete', $vehicleDocs->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Are you sure you want to delete # {0}?', $vehicleDocs->id)]) ?>
+                    <?= $this->Form->postLink('<i class="fa fa-trash"></i>', ['controller' => 'VehicleFiles', 'action' => 'delete', $vehicleFiles->id], ['class' => 'btn btn-danger', 'escape' => false], ['confirm' => __('Are you sure you want to delete # {0}?', $vehicleFiles->id)]) ?>
 
                 </td>
             </tr>

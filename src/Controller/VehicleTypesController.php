@@ -4,11 +4,11 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Vehicles Controller
+ * VehicleTypes Controller
  *
- * @property \App\Model\Table\VehiclesTable $Vehicles
+ * @property \App\Model\Table\VehicleTypesTable $VehicleTypes
  */
-class VehiclesController extends AppController
+class VehicleTypesController extends AppController
 {
 
     /**
@@ -23,7 +23,7 @@ class VehiclesController extends AppController
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["vehicles"];
+            $nav_selected = ["vehicle_types"];
         }       
 
         $this->set('nav_selected', $nav_selected);
@@ -37,27 +37,24 @@ class VehiclesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Agencies', 'VehicleTypes', 'Colors']
-        ];
-        $this->set('vehicles', $this->paginate($this->Vehicles));
-        $this->set('_serialize', ['vehicles']);
+        $this->set('vehicleTypes', $this->paginate($this->VehicleTypes));
+        $this->set('_serialize', ['vehicleTypes']);
     }
 
     /**
      * View method
      *
-     * @param string|null $id Vehicle id.
+     * @param string|null $id Vehicle Type id.
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $vehicle = $this->Vehicles->get($id, [
-            'contain' => ['Agencies', 'VehicleTypes', 'Colors', 'VehicleFiles']
+        $vehicleType = $this->VehicleTypes->get($id, [
+            'contain' => ['Vehicles']
         ]);
-        $this->set('vehicle', $vehicle);
-        $this->set('_serialize', ['vehicle']);
+        $this->set('vehicleType', $vehicleType);
+        $this->set('_serialize', ['vehicleType']);
     }
 
     /**
@@ -67,11 +64,11 @@ class VehiclesController extends AppController
      */
     public function add()
     {
-        $vehicle = $this->Vehicles->newEntity();
+        $vehicleType = $this->VehicleTypes->newEntity();
         if ($this->request->is('post')) {
-            $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data);
-            if ($this->Vehicles->save($vehicle)) {
-                $this->Flash->success(__('The vehicle has been saved.'));
+            $vehicleType = $this->VehicleTypes->patchEntity($vehicleType, $this->request->data);
+            if ($this->VehicleTypes->save($vehicleType)) {
+                $this->Flash->success(__('The vehicle type has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'index']);
@@ -79,32 +76,29 @@ class VehiclesController extends AppController
                     return $this->redirect(['action' => 'add']);
                 }                    
             } else {
-                $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
+                $this->Flash->error(__('The vehicle type could not be saved. Please, try again.'));
             }
         }
-        $agencies = $this->Vehicles->Agencies->find('list', ['limit' => 200]);
-        $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
-        $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'agencies', 'vehicleTypes', 'colors'));
-        $this->set('_serialize', ['vehicle']);
+        $this->set(compact('vehicleType'));
+        $this->set('_serialize', ['vehicleType']);
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Vehicle id.
+     * @param string|null $id Vehicle Type id.
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $vehicle = $this->Vehicles->get($id, [
+        $vehicleType = $this->VehicleTypes->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data);
-            if ($this->Vehicles->save($vehicle)) {
-                $this->Flash->success(__('The vehicle has been saved.'));
+            $vehicleType = $this->VehicleTypes->patchEntity($vehicleType, $this->request->data);
+            if ($this->VehicleTypes->save($vehicleType)) {
+                $this->Flash->success(__('The vehicle type has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'index']);
@@ -112,31 +106,28 @@ class VehiclesController extends AppController
                     return $this->redirect(['action' => 'edit', $id]);
                 }         
             } else {
-                $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
+                $this->Flash->error(__('The vehicle type could not be saved. Please, try again.'));
             }
         }
-        $agencies = $this->Vehicles->Agencies->find('list', ['limit' => 200]);
-        $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
-        $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'agencies', 'vehicleTypes', 'colors'));
-        $this->set('_serialize', ['vehicle']);
+        $this->set(compact('vehicleType'));
+        $this->set('_serialize', ['vehicleType']);
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Vehicle id.
+     * @param string|null $id Vehicle Type id.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $vehicle = $this->Vehicles->get($id);
-        if ($this->Vehicles->delete($vehicle)) {
-            $this->Flash->success(__('The vehicle has been deleted.'));
+        $vehicleType = $this->VehicleTypes->get($id);
+        if ($this->VehicleTypes->delete($vehicleType)) {
+            $this->Flash->success(__('The vehicle type has been deleted.'));
         } else {
-            $this->Flash->error(__('The vehicle could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The vehicle type could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
     }

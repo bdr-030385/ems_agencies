@@ -7,12 +7,13 @@ use Cake\ORM\Entity;
  * Vehicle Entity
  *
  * @property int $id
+ * @property int $agency_id
+ * @property int $vehicle_type_id
+ * @property int $color_id
  * @property int $number_vehicle
  * @property string $vehicle_year
  * @property string $make
  * @property string $model
- * @property string $color
- * @property string $type
  * @property string $vin
  * @property string $part_vehicle_inspection
  * @property string $registration_card
@@ -21,7 +22,10 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\VehicleDoc[] $vehicle_docs
+ * @property \App\Model\Entity\Agency $agency
+ * @property \App\Model\Entity\VehicleType $vehicle_type
+ * @property \App\Model\Entity\Color $color
+ * @property \App\Model\Entity\VehicleFile[] $vehicle_files
  */
 class Vehicle extends Entity
 {

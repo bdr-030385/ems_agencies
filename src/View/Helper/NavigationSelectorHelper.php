@@ -40,7 +40,8 @@ class NavigationSelectorHelper extends Helper
             "vehicles" => "",
             "member_types" => "",
             "account_types" => "",
-            "dashboard" => ""                    
+            "dashboard" => "",
+            "vehicle_types" => ""                    
         );
         $navigation[$selected] = "active";
 

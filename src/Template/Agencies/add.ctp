@@ -57,7 +57,7 @@
                             <div class='form-group'>
                                 <label for='start_date' class='col-sm-2 control-label'>" . __('Start Date') . "</label>
                                 <div class='col-sm-6'>";
-                                echo $this->Form->input('start_date', ['class' => 'form-control', 'id' => 'default-datepicker', 'label' => false]);                
+                                echo $this->Form->input('start_date', ['class' => 'form-control default-datepicker', 'id' => 'start_date', 'label' => false]);                
                             echo " </div></div>";                                
                         ?>
                     </fieldset>

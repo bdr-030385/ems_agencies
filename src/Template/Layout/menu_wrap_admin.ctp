@@ -29,10 +29,13 @@
             <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
         </li>
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["member_types"] ?>">
-            <?= $this->Html->link('<i class="fa fa-reorder"></i><span>' . __("Member Types") . "</span>",["controller" => "member_types", "action" => "index"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Member Types") . "</span>",["controller" => "member_types", "action" => "index"],["escape" => false]) ?>
+        </li>
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["vehicle_types"] ?>">
+            <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Vehicle Types") . "</span>",["controller" => "vehicle_types", "action" => "index"],["escape" => false]) ?>
         </li>
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["account_types"] ?>">
-            <?= $this->Html->link('<i class="fa fa-reorder"></i><span>' . __("Account Types") . "</span>",["controller" => "account_types", "action" => "index"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Account Types") . "</span>",["controller" => "account_types", "action" => "index"],["escape" => false]) ?>
         </li>        
       </ul>
     </section>    

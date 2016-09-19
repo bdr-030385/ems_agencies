@@ -1,9 +1,9 @@
 
 <section class="content-header">
-    <h1><?= __('Vehicles') ?></h1>
+    <h1><?= __('Colors') ?></h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('Vehicles') ?></li>
+        <li class="active"><?= __('Colors') ?></li>
     </ol>
 </section>
 
@@ -13,7 +13,7 @@
         <section class="col-lg-12 ">
             <div class="box " >
                 <div class="box-header">
-                    <?= $this->Html->link(__('Add New Vehicle'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
+                    <?= $this->Html->link(__('Add New Color'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
@@ -21,30 +21,24 @@
                         <thead>
                             <tr>
                                                 <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('agency_id') ?></th>
-                                                <th><?= $this->Paginator->sort('vehicle_type_id') ?></th>
-                                                <th><?= $this->Paginator->sort('color_id') ?></th>
-                                                <th><?= $this->Paginator->sort('number_vehicle') ?></th>
-                                                <th><?= $this->Paginator->sort('vehicle_year') ?></th>
-                                                <th><?= $this->Paginator->sort('make') ?></th>
+                                                <th><?= $this->Paginator->sort('name') ?></th>
+                                                <th><?= $this->Paginator->sort('created') ?></th>
+                                                <th><?= $this->Paginator->sort('modified') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($vehicles as $vehicle): ?>
+                            <?php foreach ($colors as $color): ?>
                             <tr>
-                                                <td><?= $this->Number->format($vehicle->id) ?></td>
-                                                <td><?= $vehicle->has('agency') ? $this->Html->link($vehicle->agency->name, ['controller' => 'Agencies', 'action' => 'view', $vehicle->agency->id]) : '' ?></td>
-                                                <td><?= $vehicle->has('vehicle_type') ? $this->Html->link($vehicle->vehicle_type->name, ['controller' => 'VehicleTypes', 'action' => 'view', $vehicle->vehicle_type->id]) : '' ?></td>
-                                                <td><?= $vehicle->has('color') ? $this->Html->link($vehicle->color->name, ['controller' => 'Colors', 'action' => 'view', $vehicle->color->id]) : '' ?></td>
-                                                <td><?= $vehicle->number_vehicle ?></td>
-                                                <td><?= h($vehicle->vehicle_year) ?></td>
-                                                <td><?= h($vehicle->make) ?></td>
+                                                <td><?= $this->Number->format($color->id) ?></td>
+                                                <td><?= h($color->name) ?></td>
+                                                <td><?= h($color->created) ?></td>
+                                                <td><?= h($color->modified) ?></td>
                                                 <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vehicle->id],['class' => 'btn btn-info','title' => 'View', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vehicle->id],['class' => 'btn btn-success', 'title' => 'Edit', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vehicle->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'title' => 'Delete', 'escape' => false]) ?>
-                                    <div id="modal-<?=$vehicle->id?>" class="modal fade">
+                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $color->id],['class' => 'btn btn-info','escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $color->id],['class' => 'btn btn-success', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$color->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
+                                    <div id="modal-<?=$color->id?>" class="modal fade">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -58,7 +52,7 @@
                                                 <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
                                                 <?= $this->Form->postLink(
                                                         'Yes',
-                                                        ['action' => 'delete', $vehicle->id],
+                                                        ['action' => 'delete', $color->id],
                                                         ['class' => 'btn btn-danger', 'escape' => false]
                                                     )
                                                 ?>

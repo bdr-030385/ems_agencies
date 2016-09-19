@@ -9,7 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Vehicles Model
  *
- * @property \Cake\ORM\Association\HasMany $VehicleDocs
+ * @property \Cake\ORM\Association\BelongsTo $Agencies
+ * @property \Cake\ORM\Association\BelongsTo $VehicleTypes
+ * @property \Cake\ORM\Association\BelongsTo $Colors
+ * @property \Cake\ORM\Association\HasMany $VehicleFiles
  *
  * @method \App\Model\Entity\Vehicle get($primaryKey, $options = [])
  * @method \App\Model\Entity\Vehicle newEntity($data = null, array $options = [])
@@ -40,7 +43,19 @@ class VehiclesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('VehicleDocs', [
+        $this->belongsTo('Agencies', [
+            'foreignKey' => 'agency_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('VehicleTypes', [
+            'foreignKey' => 'vehicle_type_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Colors', [
+            'foreignKey' => 'color_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('VehicleFiles', [
             'foreignKey' => 'vehicle_id'
         ]);
     }
@@ -75,14 +90,6 @@ class VehiclesTable extends Table
             ->notEmpty('model');
 
         $validator
-            ->requirePresence('color', 'create')
-            ->notEmpty('color');
-
-        $validator
-            ->requirePresence('type', 'create')
-            ->notEmpty('type');
-
-        $validator
             ->requirePresence('vin', 'create')
             ->notEmpty('vin');
 
@@ -104,5 +111,21 @@ class VehiclesTable extends Table
             ->notEmpty('expiration_date');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['agency_id'], 'Agencies'));
+        $rules->add($rules->existsIn(['vehicle_type_id'], 'VehicleTypes'));
+        $rules->add($rules->existsIn(['color_id'], 'Colors'));
+
+        return $rules;
     }
 }

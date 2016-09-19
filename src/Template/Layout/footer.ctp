@@ -68,7 +68,7 @@
 var base_url = "<?= $base_url; ?>";
 $(function(){
   //Date picker       
-  $('#default-datepicker').datepicker({
+  $('.default-datepicker').datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true
   });
