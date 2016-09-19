@@ -41,26 +41,31 @@
                                                 <td><?= h($agency->status) ?></td>
                                                 <td><?= h($agency->start_date) ?></td>
                                                 <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $agency->id],['class' => 'btn btn-info','escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$agency->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
-                                    <div id="modal-<?=$agency->id?>" class="modal fade" tabindex="-1" data-width="660" style="display: none; max-height:175px;">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title">Delete Confirmation</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><?= __('Are you sure you want to delete selected entry?') ?></p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" data-dismiss="modal" class="btn btn-default"><?= __('No') ?></button>
-                                            <?= $this->Form->postLink(
-                                                    'Yes',
-                                                    ['action' => 'delete', $agency->id],
-                                                    ['class' => 'btn btn-primary', 'escape' => false]
-                                                )
-                                            ?>
-                                        </div>
+                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $agency->id],['class' => 'btn btn-info', 'title' => 'View', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'title' => 'Edit', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-users"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'title' => 'Add Users', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$agency->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'title' => 'Delete', 'escape' => false]) ?>
+                                    <div id="modal-<?=$agency->id?>" class="modal fade">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title">Delete Confirmation</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><?= __('Are you sure you want to delete selected entry?') ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
+                                                <?= $this->Form->postLink(
+                                                        'Yes',
+                                                        ['action' => 'delete', $agency->id],
+                                                        ['class' => 'btn btn-danger', 'escape' => false]
+                                                    )
+                                                ?>
+                                            </div>
+                                          </div>
+                                        </div>                              
                                     </div>
                                 </td>
                             </tr>

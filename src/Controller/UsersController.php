@@ -72,6 +72,15 @@ class UsersController extends AppController
         $this->set('users', $this->paginate($user));
         $this->set('_serialize', ['users']);
     }
+
+    /**
+     * Dashboard method     
+     * @return void
+     */
+    public function dashboard()
+    {
+        
+    }
     
     /**
      * View method     

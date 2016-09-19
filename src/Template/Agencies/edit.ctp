@@ -2,7 +2,7 @@
     <h1><?= __('Edit Agency') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __('Agencies'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-suitcase'></i>" . __('Agencies'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
         <li class="active"><?= __('Edit') ?></li>
     </ol>
 </section>
@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="box-body">
-                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
+                    <?= $this->Form->create($agency,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
                                                             echo "
@@ -56,16 +56,15 @@
                                     <div class='form-group'>
                                         <label for='start_date' class='col-sm-2 control-label'>" . __('Start Date') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('start_date', ['class' => 'form-control', 'id' => 'start_date', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                ?>
+                                        echo $this->Form->input('start_date', ['type' => 'text', 'value' => $agency->start_date->format("Y-m-d"), 'class' => 'form-control', 'id' => 'default-datepicker', 'label' => false]);                
+                                    echo " </div></div>";                                     
+                        ?>
                     </fieldset>
                     <div class="form-group" style="margin-top: 80px;">
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="action-fixed-bottom">
                                 <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
                                 <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
                             </div>
                         </div>

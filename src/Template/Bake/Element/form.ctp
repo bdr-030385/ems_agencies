@@ -43,7 +43,7 @@ if (isset($modelObject) && $modelObject->behaviors()->has('Tree')) {
 
                 </div>
                 <div class="box-body">
-                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
+                    <?= $this->Form->create($<%= $singularVar %>,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
                         <%

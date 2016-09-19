@@ -2,6 +2,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <?php
         echo $this->Html->script('bootstrap.min.js');
+        echo $this->Html->script('plugins/datepicker/bootstrap-datepicker.js');
         echo $this->Html->script('bootstrap-modalmanager.js');
         echo $this->Html->script('bootstrap-modal.js');
         echo $this->Html->script('backend-application.js');
@@ -47,6 +48,12 @@
 			            $("#message-container").html(o.message);
 			    },"json");
 	    	});
+
+	    	//Date picker
+	    	alert(2);
+		    $('#default-datepicker').datepicker({
+		      autoclose: true
+		    });
 
 	    	$('.btn-cover-image-update').click(function(){
 	    		$(".btn-cover-image").children().removeClass('fa-check');

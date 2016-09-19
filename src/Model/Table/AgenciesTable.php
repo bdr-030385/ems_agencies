@@ -84,6 +84,9 @@ class AgenciesTable extends Table
             ->requirePresence('start_date', 'create')
             ->notEmpty('start_date');
 
+        $validator
+            ->allowEmpty('logo');
+
         return $validator;
     }
 

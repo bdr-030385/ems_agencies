@@ -24,6 +24,7 @@ class AgenciesFixture extends TestFixture
         'emt_number' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'status' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'start_date' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'logo' => ['type' => 'text', 'length' => null, 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -49,9 +50,10 @@ class AgenciesFixture extends TestFixture
             'name' => 'Lorem ipsum dolor sit amet',
             'emt_number' => 'Lorem ipsum dolor sit amet',
             'status' => 'Lorem ipsum dolor sit amet',
-            'start_date' => '2016-09-17',
-            'created' => '2016-09-17 09:44:49',
-            'modified' => '2016-09-17 09:44:49'
+            'start_date' => '2016-09-19',
+            'logo' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+            'created' => '2016-09-19 13:18:07',
+            'modified' => '2016-09-19 13:18:07'
         ],
     ];
 }

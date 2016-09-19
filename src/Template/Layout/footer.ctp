@@ -39,6 +39,7 @@
   echo $this->Html->script('app/raphael.min.js'); 
   echo $this->Html->script('plugins/morris/morris.min.js');
   echo $this->Html->script('plugins/sparkline/jquery.sparkline.min.js');
+  echo $this->Html->script('plugins/datepicker/bootstrap-datepicker.js');
 
   echo $this->Html->script('plugins/slimScroll/jquery.slimscroll.min.js');
   echo $this->Html->script('plugins/fastclick/fastclick.js');
@@ -66,7 +67,11 @@
 <script type="text/javascript">  
 var base_url = "<?= $base_url; ?>";
 $(function(){
-
+  //Date picker       
+  $('#default-datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    autoclose: true
+  });
 });
 </script>
 

@@ -30,6 +30,10 @@
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($agency->id) ?></td>
         </tr>
+    <tr>
+        <th><?= __('Logo') ?></th>
+        <td><?= $this->Text->autoParagraph(h($agency->logo)); ?></td>        
+    </tr>
         <tr>
             <th><?= __('Start Date') ?></th>
             <td><?= h($agency->start_date) ?></td>
@@ -68,7 +72,7 @@
                 <th><?= __('Firstname') ?></th>
                 <th><?= __('Lastname') ?></th>
                 <th><?= __('Mi') ?></th>
-                <th><?= __('Member Id') ?></th>
+                <th><?= __('Mid') ?></th>
                 <th><?= __('Gender') ?></th>
                 <th><?= __('Birthdate') ?></th>
                 <th><?= __('Ssn') ?></th>
@@ -96,7 +100,7 @@
                 <td><?= h($userEntities->firstname) ?></td>
                 <td><?= h($userEntities->lastname) ?></td>
                 <td><?= h($userEntities->mi) ?></td>
-                <td><?= h($userEntities->member_id) ?></td>
+                <td><?= h($userEntities->mid) ?></td>
                 <td><?= h($userEntities->gender) ?></td>
                 <td><?= h($userEntities->birthdate) ?></td>
                 <td><?= h($userEntities->ssn) ?></td>

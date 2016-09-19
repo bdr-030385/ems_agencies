@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property string $emt_number
  * @property string $status
  * @property \Cake\I18n\Time $start_date
+ * @property string $logo
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
