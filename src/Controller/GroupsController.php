@@ -29,7 +29,7 @@ class GroupsController extends AppController
         $this->set(['load_css_script' => 'groups']);
 
         // Allow full access to this controller
-        $this->Auth->allow(['index','add','update']);
+        //$this->Auth->allow(['add','update']);
     }
 
     /**

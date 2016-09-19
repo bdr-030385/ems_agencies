@@ -24,11 +24,10 @@
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
-              <li class="user-header">
+              <li class="user-header" style="height:100px;">
                 <!--<?= $this->Html->image('/images/ic_logo.png',['class' => 'img-circle']) ?> -->
 
                 <p>
-                  <?php //echo "test" ; ?><br>
                   <?php echo $hdr_user_data->firstname . " " . $hdr_user_data->lastname; ?>
                   <small><?php echo $hdr_user_data->email; ?></small>
 
