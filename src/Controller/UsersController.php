@@ -79,9 +79,23 @@ class UsersController extends AppController
      */
     public function dashboard()
     {
-        
+        if( $this->global_user_data->user->group_id == 1 ){
+            //$this->viewBuilder()->layout("Users\dashboard"); 
+        }else{
+            $this->user_dashboard();
+        }
     }
-    
+
+    /**
+     * Dashboard method     
+     * @return void
+     */
+    public function user_dashboard()
+    {
+        echo 1;
+    }
+
+
     /**
      * View method     
      * @param string|null $id User id.
@@ -218,7 +232,7 @@ class UsersController extends AppController
                     if( $user_data->user->group_id == 1){                        
                         return $this->redirect($this->Auth->redirectUrl());
                     }else{                        
-                        return $this->redirect(['action' => 'user_dashboard']);
+                        return $this->redirect(['action' => 'dashboard']);
                     } 
                 }else{
                     //Redirect to error page

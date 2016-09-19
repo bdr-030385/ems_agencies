@@ -122,6 +122,60 @@ class AgenciesController extends AppController
     }
 
     /**
+     * Add User method
+     *
+     * @param string|null $id Agency id.
+     * @return void Redirects on successful add users, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function add_users($id = null)
+    {
+        $agency = $this->Agencies->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+
+            $user_data['username'] = $this->request->data['email_address'];
+            $user_data['password'] = $this->request->data['password'];
+            $user_data['group_id'] = 2;
+
+            $this->Users = TableRegistry::get("Users");
+            $user = $this->Users->newEntity();
+            $user = $this->Users->patchEntity($user, $user_data);
+            $result_user = $this->Users->save($user);
+            if ($result_user = $this->Users->save($user)) {
+                $user_entities_data = $this->request->data;
+                $user_entities_data['user_id'] = $result_user->id;
+
+                $this->UserEntities = TableRegistry::get("UserEntities");
+                $user_entities = $this->UserEntities->newEntity();
+                $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
+
+                if($result_user_entities = $this->UserEntities->save($user_entities)) {
+                    $this->Flash->success(__('User has been saved.'));
+                    $action = $this->request->data['save'];
+                    if( $action == 'save' ){
+                        return $this->redirect(['action' => 'index']);
+                    }else{
+                        return $this->redirect(['action' => 'edit', $id]);
+                    }    
+                }else {
+                    $this->Flash->error(__('The user(2) could not be saved. Please, try again.'));
+                }
+
+                     
+            } else {
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            }
+        }
+
+        $gender = array("Male", "Female");
+        $this->set(['gender' => $gender]);
+        $this->set(compact('agency'));
+        $this->set('_serialize', ['agency']);
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id Agency id.

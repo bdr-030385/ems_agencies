@@ -43,7 +43,7 @@
                                                 <td class="actions">
                                     <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $agency->id],['class' => 'btn btn-info', 'title' => 'View', 'escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'title' => 'Edit', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-users"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'title' => 'Add Users', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-users"></i>', ['action' => 'add_users', $agency->id],['class' => 'btn btn-success', 'title' => 'Add Users', 'escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$agency->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'title' => 'Delete', 'escape' => false]) ?>
                                     <div id="modal-<?=$agency->id?>" class="modal fade">
                                         <div class="modal-dialog">

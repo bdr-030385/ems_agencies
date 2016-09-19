@@ -2,7 +2,7 @@
     <h1><?= __('Add Agency') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-suitcase'></i>" . __('Agencies'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-suitcase'></i>" . __('Agencies'), ['controller' => 'agencies', 'action' => 'index'],['escape' => false]) ?></li>
         <li class="active"><?= __('Add') ?></li>
     </ol>
 </section>

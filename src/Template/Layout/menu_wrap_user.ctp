@@ -13,12 +13,13 @@
     <section class="sidebar">      
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+            <?= $this->Html->link('<i class="fa fa-dashboard "></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
+        </li> 
         <li id="users_nav" title="Users" class="<?= $nav_selected["users"] ?>">
             <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/users", "action" => "index"],["escape" => false]) ?>
         </li>
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["groups"] ?>">
-            <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
-        </li>        
+       
       </ul>
     </section>    
 </aside>

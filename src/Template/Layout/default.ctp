@@ -72,7 +72,7 @@
     if( $hdr_user_data->user->group_id == 1 ){
       include("menu_wrap_admin.ctp");   
     }elseif( $hdr_user_data->user->group_id == 2 ){
-      include("menu_wrap_agency.ctp");   
+      include("menu_wrap_user.ctp");   
     }else{
       include("menu_wrap_user.ctp");   
     }

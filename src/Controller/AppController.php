@@ -39,7 +39,7 @@ class AppController extends Controller
         ]
     ];
 
-    public $cid;
+    public $global_user_data;
 
     /**
      * Initialization hook method.
@@ -82,7 +82,8 @@ class AppController extends Controller
         ]);
 
         $session = $this->request->session();    
-        $user_data = $session->read('User.data');           
+        $user_data = $session->read('User.data');   
+        $this->global_user_data = $user_data;        
         $base_url  = Router::url('/',true);  
         $this->set([
             'base_url' => $base_url,
