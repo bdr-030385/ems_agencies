@@ -20,7 +20,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <?= $this->Html->image('/images/user2-160x160.jpg',['class' => 'user-image']) ?>
-              <span class="hidden-xs"><?php echo "Name"; ?></span>
+              <span class="hidden-xs"><?php echo $hdr_user_data->firstname . " " . $hdr_user_data->lastname; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -29,8 +29,8 @@
 
                 <p>
                   <?php //echo "test" ; ?><br>
-                  <?php echo "Name"; ?>
-                  <small><?php echo "mail@mail.com"; ?></small>
+                  <?php echo $hdr_user_data->firstname . " " . $hdr_user_data->lastname; ?>
+                  <small><?php echo $hdr_user_data->email; ?></small>
 
                 </p>
               </li>

@@ -54,9 +54,9 @@
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='member_id' class='col-sm-2 control-label'>" . __('Member Id') . "</label>
+                                        <label for='mid' class='col-sm-2 control-label'>" . __('Mid') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('member_id', ['class' => 'form-control', 'id' => 'member_id', 'label' => false]);                
+                                        echo $this->Form->input('mid', ['class' => 'form-control', 'id' => 'mid', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "

@@ -33,7 +33,6 @@ class UserEntitiesTableTest extends TestCase
         'app.acos',
         'app.permissions',
         'app.groups',
-        'app.members',
         'app.user_custom_fields'
     ];
 

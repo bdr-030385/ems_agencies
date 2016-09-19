@@ -27,8 +27,8 @@
             <td><?= h($userEntity->mi) ?></td>
         </tr>
         <tr>
-            <th><?= __('Member Id') ?></th>
-            <td><?= h($userEntity->member_id) ?></td>
+            <th><?= __('Mid') ?></th>
+            <td><?= h($userEntity->mid) ?></td>
         </tr>
         <tr>
             <th><?= __('Gender') ?></th>

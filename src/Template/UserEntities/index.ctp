@@ -26,7 +26,7 @@
                                                 <th><?= $this->Paginator->sort('firstname') ?></th>
                                                 <th><?= $this->Paginator->sort('lastname') ?></th>
                                                 <th><?= $this->Paginator->sort('mi') ?></th>
-                                                <th><?= $this->Paginator->sort('member_id') ?></th>
+                                                <th><?= $this->Paginator->sort('mid') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                                                 <td><?= h($userEntity->firstname) ?></td>
                                                 <td><?= h($userEntity->lastname) ?></td>
                                                 <td><?= h($userEntity->mi) ?></td>
-                                                <td><?= h($userEntity->member_id) ?></td>
+                                                <td><?= h($userEntity->mid) ?></td>
                                                 <td class="actions">
                                     <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $userEntity->id],['class' => 'btn btn-info','escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $userEntity->id],['class' => 'btn btn-success', 'escape' => false]) ?>

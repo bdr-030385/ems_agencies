@@ -19,7 +19,7 @@ class UserEntitiesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Agencies', 'Users', 'Members']
+            'contain' => ['Agencies', 'Users']
         ];
         $this->set('userEntities', $this->paginate($this->UserEntities));
         $this->set('_serialize', ['userEntities']);
@@ -35,7 +35,7 @@ class UserEntitiesController extends AppController
     public function view($id = null)
     {
         $userEntity = $this->UserEntities->get($id, [
-            'contain' => ['Agencies', 'Users', 'Members', 'UserCustomFields']
+            'contain' => ['Agencies', 'Users', 'UserCustomFields']
         ]);
         $this->set('userEntity', $userEntity);
         $this->set('_serialize', ['userEntity']);
@@ -53,15 +53,19 @@ class UserEntitiesController extends AppController
             $userEntity = $this->UserEntities->patchEntity($userEntity, $this->request->data);
             if ($this->UserEntities->save($userEntity)) {
                 $this->Flash->success(__('The user entity has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $action = $this->request->data['save'];
+                if( $action == 'save' ){
+                    return $this->redirect(['action' => 'index']);
+                }else{
+                    return $this->redirect(['action' => 'add']);
+                }                    
             } else {
                 $this->Flash->error(__('The user entity could not be saved. Please, try again.'));
             }
         }
         $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]);
         $users = $this->UserEntities->Users->find('list', ['limit' => 200]);
-        $members = $this->UserEntities->Members->find('list', ['limit' => 200]);
-        $this->set(compact('userEntity', 'agencies', 'users', 'members'));
+        $this->set(compact('userEntity', 'agencies', 'users'));
         $this->set('_serialize', ['userEntity']);
     }
 
@@ -81,15 +85,19 @@ class UserEntitiesController extends AppController
             $userEntity = $this->UserEntities->patchEntity($userEntity, $this->request->data);
             if ($this->UserEntities->save($userEntity)) {
                 $this->Flash->success(__('The user entity has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $action = $this->request->data['save'];
+                if( $action == 'save' ){
+                    return $this->redirect(['action' => 'index']);
+                }else{
+                    return $this->redirect(['action' => 'edit', $id]);
+                }         
             } else {
                 $this->Flash->error(__('The user entity could not be saved. Please, try again.'));
             }
         }
         $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]);
         $users = $this->UserEntities->Users->find('list', ['limit' => 200]);
-        $members = $this->UserEntities->Members->find('list', ['limit' => 200]);
-        $this->set(compact('userEntity', 'agencies', 'users', 'members'));
+        $this->set(compact('userEntity', 'agencies', 'users'));
         $this->set('_serialize', ['userEntity']);
     }
 

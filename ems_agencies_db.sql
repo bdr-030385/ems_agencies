@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2016 at 03:49 AM
+-- Generation Time: Sep 19, 2016 at 06:54 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.24
 
@@ -33,7 +33,15 @@ CREATE TABLE IF NOT EXISTS `account_types` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `account_types`
+--
+
+INSERT INTO `account_types` (`id`, `name`, `created`, `modified`) VALUES
+(1, 'Sample Account A', '2016-09-19 12:28:08', '2016-09-19 12:28:08'),
+(2, 'Sample Account B', '2016-09-19 12:28:18', '2016-09-19 12:28:18');
 
 -- --------------------------------------------------------
 
@@ -188,6 +196,7 @@ CREATE TABLE IF NOT EXISTS `agencies` (
   `emt_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `start_date` date NOT NULL,
+  `logo` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -312,7 +321,15 @@ CREATE TABLE IF NOT EXISTS `member_types` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `member_types`
+--
+
+INSERT INTO `member_types` (`id`, `name`, `created`, `modified`) VALUES
+(1, 'Membership Type A', '2016-09-19 12:28:36', '2016-09-19 12:28:36'),
+(2, 'Membership Type B', '2016-09-19 12:28:43', '2016-09-19 12:28:43');
 
 -- --------------------------------------------------------
 
@@ -370,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `user_entities` (
   `firstname` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `mi` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `member_id` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `birthdate` date NOT NULL,
   `ssn` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -395,8 +412,8 @@ CREATE TABLE IF NOT EXISTS `user_entities` (
 -- Dumping data for table `user_entities`
 --
 
-INSERT INTO `user_entities` (`id`, `agency_id`, `user_id`, `firstname`, `lastname`, `mi`, `member_id`, `gender`, `birthdate`, `ssn`, `address`, `city`, `state`, `zip`, `email`, `phone`, `home`, `work_phone`, `cell_phone`, `cell_phone_carrier`, `emergency_contact_name`, `emergency_email`, `created`, `modified`) VALUES
-(1, 1, 1, 'Admin', 'Admin', 'Ad', '123456', 'Male', '2016-09-16', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, '2016-09-30 18:37:47', '2016-09-30 18:37:47');
+INSERT INTO `user_entities` (`id`, `agency_id`, `user_id`, `firstname`, `lastname`, `mi`, `mid`, `gender`, `birthdate`, `ssn`, `address`, `city`, `state`, `zip`, `email`, `phone`, `home`, `work_phone`, `cell_phone`, `cell_phone_carrier`, `emergency_contact_name`, `emergency_email`, `created`, `modified`) VALUES
+(1, 1, 1, 'Admin', 'Admin', 'Ad', '123456', 'Male', '2016-09-16', '', '', '', '', '', 'admin@admin.com', '', NULL, NULL, NULL, NULL, NULL, NULL, '2016-09-30 18:37:47', '2016-09-30 18:37:47');
 
 -- --------------------------------------------------------
 

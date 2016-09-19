@@ -23,7 +23,7 @@ class UserEntitiesFixture extends TestFixture
         'firstname' => ['type' => 'string', 'length' => 80, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'lastname' => ['type' => 'string', 'length' => 80, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'mi' => ['type' => 'string', 'length' => 2, 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'member_id' => ['type' => 'string', 'length' => 80, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'mid' => ['type' => 'string', 'length' => 80, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'gender' => ['type' => 'string', 'length' => 8, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'birthdate' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'ssn' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -64,9 +64,9 @@ class UserEntitiesFixture extends TestFixture
             'firstname' => 'Lorem ipsum dolor sit amet',
             'lastname' => 'Lorem ipsum dolor sit amet',
             'mi' => '',
-            'member_id' => 'Lorem ipsum dolor sit amet',
+            'mid' => 'Lorem ipsum dolor sit amet',
             'gender' => 'Lorem ',
-            'birthdate' => '2016-09-17',
+            'birthdate' => '2016-09-19',
             'ssn' => 'Lorem ipsum dolor sit amet',
             'address' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
             'city' => 'Lorem ipsum dolor sit amet',
@@ -80,8 +80,8 @@ class UserEntitiesFixture extends TestFixture
             'cell_phone_carrier' => 'Lorem ipsum dolor sit amet',
             'emergency_contact_name' => 'Lorem ipsum dolor sit amet',
             'emergency_email' => 'Lorem ipsum dolor sit amet',
-            'created' => '2016-09-17 09:34:54',
-            'modified' => '2016-09-17 09:34:54'
+            'created' => '2016-09-19 12:51:29',
+            'modified' => '2016-09-19 12:51:29'
         ],
     ];
 }

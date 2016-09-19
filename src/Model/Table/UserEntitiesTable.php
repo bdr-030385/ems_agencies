@@ -11,7 +11,6 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Agencies
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $Members
  * @property \Cake\ORM\Association\HasMany $UserCustomFields
  *
  * @method \App\Model\Entity\UserEntity get($primaryKey, $options = [])
@@ -51,10 +50,6 @@ class UserEntitiesTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Members', [
-            'foreignKey' => 'member_id',
-            'joinType' => 'INNER'
-        ]);
         $this->hasMany('UserCustomFields', [
             'foreignKey' => 'user_entity_id'
         ]);
@@ -73,41 +68,57 @@ class UserEntitiesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->requirePresence('firstname', 'create')
             ->notEmpty('firstname');
 
         $validator
-            ->allowEmpty('lastname');
+            ->requirePresence('lastname', 'create')
+            ->notEmpty('lastname');
 
         $validator
             ->allowEmpty('mi');
 
         $validator
-            ->allowEmpty('gender');
+            ->requirePresence('mid', 'create')
+            ->notEmpty('mid');
 
         $validator
-            ->allowEmpty('birthdate');
+            ->requirePresence('gender', 'create')
+            ->notEmpty('gender');
 
         $validator
-            ->allowEmpty('ssn');
+            ->date('birthdate')
+            ->requirePresence('birthdate', 'create')
+            ->notEmpty('birthdate');
 
         $validator
-            ->allowEmpty('address');
+            ->requirePresence('ssn', 'create')
+            ->notEmpty('ssn');
 
         $validator
-            ->allowEmpty('city');
+            ->requirePresence('address', 'create')
+            ->notEmpty('address');
 
         $validator
-            ->allowEmpty('state');
+            ->requirePresence('city', 'create')
+            ->notEmpty('city');
 
         $validator
-            ->allowEmpty('zip');
+            ->requirePresence('state', 'create')
+            ->notEmpty('state');
+
+        $validator
+            ->requirePresence('zip', 'create')
+            ->notEmpty('zip');
 
         $validator
             ->email('email')
-            ->allowEmpty('email');
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
 
         $validator
-            ->allowEmpty('phone');
+            ->requirePresence('phone', 'create')
+            ->notEmpty('phone');
 
         $validator
             ->allowEmpty('home');
@@ -139,10 +150,9 @@ class UserEntitiesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        //$rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['agency_id'], 'Agencies'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        //$rules->add($rules->existsIn(['member_id'], 'Members'));
 
         return $rules;
     }

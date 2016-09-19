@@ -25,7 +25,6 @@ class UserEntitiesControllerTest extends IntegrationTestCase
         'app.acos',
         'app.permissions',
         'app.groups',
-        'app.members',
         'app.user_custom_fields'
     ];
 

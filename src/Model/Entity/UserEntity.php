@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property string $firstname
  * @property string $lastname
  * @property string $mi
- * @property string $member_id
+ * @property string $mid
  * @property string $gender
  * @property \Cake\I18n\Time $birthdate
  * @property string $ssn
@@ -33,7 +33,6 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Agency $agency
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Member $member
  * @property \App\Model\Entity\UserCustomField[] $user_custom_fields
  */
 class UserEntity extends Entity

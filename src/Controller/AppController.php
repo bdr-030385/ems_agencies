@@ -82,7 +82,7 @@ class AppController extends Controller
         ]);
 
         $session = $this->request->session();    
-        $user_data = $session->read('User.data');        
+        $user_data = $session->read('User.data');           
         $base_url  = Router::url('/',true);  
         $this->set([
             'base_url' => $base_url,
