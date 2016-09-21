@@ -130,6 +130,8 @@ class AgenciesController extends AppController
      */
     public function add_users($id = null)
     {
+        $this->UserEntities = TableRegistry::get("UserEntities");
+
         $agency = $this->Agencies->get($id, [
             'contain' => []
         ]);
@@ -137,7 +139,7 @@ class AgenciesController extends AppController
 
             $user_data['username'] = $this->request->data['email_address'];
             $user_data['password'] = $this->request->data['password'];
-            $user_data['group_id'] = 2;
+            $user_data['group_id'] = $this->request->data['group_id'];
 
             $this->Users = TableRegistry::get("Users");
             $user = $this->Users->newEntity();
@@ -146,8 +148,8 @@ class AgenciesController extends AppController
             if ($result_user = $this->Users->save($user)) {
                 $user_entities_data = $this->request->data;
                 $user_entities_data['user_id'] = $result_user->id;
-
-                $this->UserEntities = TableRegistry::get("UserEntities");
+                $user_entities_data['email']   = $this->request->data['email_address'];
+                
                 $user_entities = $this->UserEntities->newEntity();
                 $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
 
@@ -157,10 +159,10 @@ class AgenciesController extends AppController
                     if( $action == 'save' ){
                         return $this->redirect(['action' => 'index']);
                     }else{
-                        return $this->redirect(['action' => 'edit', $id]);
+                        return $this->redirect(['action' => 'add']);
                     }    
                 }else {
-                    $this->Flash->error(__('The user(2) could not be saved. Please, try again.'));
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
                 }
 
                      
@@ -169,9 +171,10 @@ class AgenciesController extends AppController
             }
         }
 
+        $groups   = $this->UserEntities->Users->Groups->find('list');
         $gender = array("Male", "Female");
         $this->set(['gender' => $gender]);
-        $this->set(compact('agency'));
+        $this->set(compact('agency','groups'));
         $this->set('_serialize', ['agency']);
     }
 

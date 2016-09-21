@@ -73,9 +73,31 @@ $(function(){
     autoclose: true
   });
 
+
   $('.has-ck-finder').click(function(){
     openKCFinder_textbox($(this));
   });
+
+  //Sidebar widget settings
+  $("#side-widget-push-notification").click(function(){
+    if( $(this).is(':checked') ){
+      var enable_push_notification = 1;
+    }else{
+      var enable_push_notification = 0;
+    }
+      $.ajax({
+             type: "POST",                  
+             url: base_url + 'user_settings/ajax_update_member_push_notification',      
+             data: {enable_push_notification:enable_push_notification},    
+             dataType: "JSON",                                         
+             success: function(o)
+             {
+                                                          
+             }
+      });
+  });
+
+
 });
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2016 at 08:09 AM
+-- Generation Time: Sep 22, 2016 at 04:44 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.24
 
@@ -82,14 +82,14 @@ CREATE TABLE IF NOT EXISTS `acos` (
   PRIMARY KEY (`id`),
   KEY `lft` (`lft`,`rght`),
   KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=431 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=433 ;
 
 --
 -- Dumping data for table `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, NULL, NULL, 'controllers', 1, 240),
+(1, NULL, NULL, NULL, 'controllers', 1, 244),
 (2, 1, NULL, NULL, 'Groups', 2, 17),
 (3, 2, NULL, NULL, 'index', 3, 4),
 (4, 2, NULL, NULL, 'view', 5, 6),
@@ -97,7 +97,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (6, 2, NULL, NULL, 'edit', 9, 10),
 (7, 2, NULL, NULL, 'delete', 11, 12),
 (8, 2, NULL, NULL, 'isAuthorized', 13, 14),
-(14, 1, NULL, NULL, 'Users', 18, 45),
+(14, 1, NULL, NULL, 'Users', 18, 47),
 (15, 14, NULL, NULL, 'index', 19, 20),
 (17, 14, NULL, NULL, 'view', 21, 22),
 (18, 14, NULL, NULL, 'add', 23, 24),
@@ -106,109 +106,111 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (21, 14, NULL, NULL, 'login', 29, 30),
 (22, 14, NULL, NULL, 'logout', 31, 32),
 (23, 14, NULL, NULL, 'isAuthorized', 33, 34),
-(24, 1, NULL, NULL, 'Acl', 46, 47),
-(25, 1, NULL, NULL, 'Bake', 48, 49),
-(26, 1, NULL, NULL, 'DebugKit', 50, 65),
-(27, 26, NULL, NULL, 'Panels', 51, 56),
-(28, 27, NULL, NULL, 'index', 52, 53),
-(29, 27, NULL, NULL, 'view', 54, 55),
-(30, 26, NULL, NULL, 'Requests', 57, 60),
-(31, 30, NULL, NULL, 'view', 58, 59),
-(32, 26, NULL, NULL, 'Toolbar', 61, 64),
-(33, 32, NULL, NULL, 'clearCache', 62, 63),
-(34, 1, NULL, NULL, 'Migrations', 66, 67),
-(100, 1, NULL, NULL, 'ToothStatus', 68, 83),
-(101, 100, NULL, NULL, 'index', 69, 70),
-(102, 100, NULL, NULL, 'view', 71, 72),
-(103, 100, NULL, NULL, 'add', 73, 74),
-(105, 100, NULL, NULL, 'delete', 75, 76),
-(106, 100, NULL, NULL, 'isAuthorized', 77, 78),
-(114, 1, NULL, NULL, 'Appointment', 84, 107),
-(115, 114, NULL, NULL, 'index', 85, 86),
-(116, 114, NULL, NULL, 'view', 87, 88),
-(117, 114, NULL, NULL, 'add', 89, 90),
-(118, 114, NULL, NULL, 'edit', 91, 92),
-(119, 114, NULL, NULL, 'delete', 93, 94),
-(120, 114, NULL, NULL, 'isAuthorized', 95, 96),
-(147, 100, NULL, NULL, 'update', 79, 80),
-(149, 114, NULL, NULL, 'ajax_load_appointments_by_date', 97, 98),
-(150, 114, NULL, NULL, 'json_load_events', 99, 100),
-(151, 114, NULL, NULL, 'search', 101, 102),
-(197, 114, NULL, NULL, 'updateSyncStatus', 103, 104),
-(198, 114, NULL, NULL, 'archiveData', 105, 106),
-(218, 100, NULL, NULL, 'archiveData', 81, 82),
-(228, 1, NULL, NULL, 'Debug', 108, 113),
-(229, 228, NULL, NULL, 'debugFtpGet', 109, 110),
-(230, 228, NULL, NULL, 'isAuthorized', 111, 112),
+(24, 1, NULL, NULL, 'Acl', 48, 49),
+(25, 1, NULL, NULL, 'Bake', 50, 51),
+(26, 1, NULL, NULL, 'DebugKit', 52, 67),
+(27, 26, NULL, NULL, 'Panels', 53, 58),
+(28, 27, NULL, NULL, 'index', 54, 55),
+(29, 27, NULL, NULL, 'view', 56, 57),
+(30, 26, NULL, NULL, 'Requests', 59, 62),
+(31, 30, NULL, NULL, 'view', 60, 61),
+(32, 26, NULL, NULL, 'Toolbar', 63, 66),
+(33, 32, NULL, NULL, 'clearCache', 64, 65),
+(34, 1, NULL, NULL, 'Migrations', 68, 69),
+(100, 1, NULL, NULL, 'ToothStatus', 70, 85),
+(101, 100, NULL, NULL, 'index', 71, 72),
+(102, 100, NULL, NULL, 'view', 73, 74),
+(103, 100, NULL, NULL, 'add', 75, 76),
+(105, 100, NULL, NULL, 'delete', 77, 78),
+(106, 100, NULL, NULL, 'isAuthorized', 79, 80),
+(114, 1, NULL, NULL, 'Appointment', 86, 109),
+(115, 114, NULL, NULL, 'index', 87, 88),
+(116, 114, NULL, NULL, 'view', 89, 90),
+(117, 114, NULL, NULL, 'add', 91, 92),
+(118, 114, NULL, NULL, 'edit', 93, 94),
+(119, 114, NULL, NULL, 'delete', 95, 96),
+(120, 114, NULL, NULL, 'isAuthorized', 97, 98),
+(147, 100, NULL, NULL, 'update', 81, 82),
+(149, 114, NULL, NULL, 'ajax_load_appointments_by_date', 99, 100),
+(150, 114, NULL, NULL, 'json_load_events', 101, 102),
+(151, 114, NULL, NULL, 'search', 103, 104),
+(197, 114, NULL, NULL, 'updateSyncStatus', 105, 106),
+(198, 114, NULL, NULL, 'archiveData', 107, 108),
+(218, 100, NULL, NULL, 'archiveData', 83, 84),
+(228, 1, NULL, NULL, 'Debug', 110, 115),
+(229, 228, NULL, NULL, 'debugFtpGet', 111, 112),
+(230, 228, NULL, NULL, 'isAuthorized', 113, 114),
 (362, 14, NULL, NULL, 'request_forgot_password', 35, 36),
 (363, 14, NULL, NULL, 'forgot_password', 37, 38),
-(364, 1, NULL, NULL, 'Agencies', 114, 127),
-(365, 364, NULL, NULL, 'index', 115, 116),
-(366, 364, NULL, NULL, 'view', 117, 118),
-(367, 364, NULL, NULL, 'add', 119, 120),
-(368, 364, NULL, NULL, 'edit', 121, 122),
-(369, 364, NULL, NULL, 'delete', 123, 124),
-(370, 364, NULL, NULL, 'isAuthorized', 125, 126),
+(364, 1, NULL, NULL, 'Agencies', 116, 131),
+(365, 364, NULL, NULL, 'index', 117, 118),
+(366, 364, NULL, NULL, 'view', 119, 120),
+(367, 364, NULL, NULL, 'add', 121, 122),
+(368, 364, NULL, NULL, 'edit', 123, 124),
+(369, 364, NULL, NULL, 'delete', 125, 126),
+(370, 364, NULL, NULL, 'isAuthorized', 127, 128),
 (371, 2, NULL, NULL, 'update', 15, 16),
 (372, 14, NULL, NULL, 'update', 39, 40),
 (373, 14, NULL, NULL, 'test_form', 41, 42),
-(374, 1, NULL, NULL, 'AccountTypes', 128, 141),
-(375, 374, NULL, NULL, 'index', 129, 130),
-(376, 374, NULL, NULL, 'view', 131, 132),
-(377, 374, NULL, NULL, 'add', 133, 134),
-(378, 374, NULL, NULL, 'edit', 135, 136),
-(379, 374, NULL, NULL, 'delete', 137, 138),
-(380, 374, NULL, NULL, 'isAuthorized', 139, 140),
-(381, 1, NULL, NULL, 'MemberTypes', 142, 155),
-(382, 381, NULL, NULL, 'index', 143, 144),
-(383, 381, NULL, NULL, 'view', 145, 146),
-(384, 381, NULL, NULL, 'add', 147, 148),
-(385, 381, NULL, NULL, 'edit', 149, 150),
-(386, 381, NULL, NULL, 'delete', 151, 152),
-(387, 381, NULL, NULL, 'isAuthorized', 153, 154),
-(388, 1, NULL, NULL, 'UserEntities', 156, 169),
-(389, 388, NULL, NULL, 'index', 157, 158),
-(390, 388, NULL, NULL, 'view', 159, 160),
-(391, 388, NULL, NULL, 'add', 161, 162),
-(392, 388, NULL, NULL, 'edit', 163, 164),
-(393, 388, NULL, NULL, 'delete', 165, 166),
-(394, 388, NULL, NULL, 'isAuthorized', 167, 168),
-(395, 1, NULL, NULL, 'Vehicles', 170, 183),
-(396, 395, NULL, NULL, 'index', 171, 172),
-(397, 395, NULL, NULL, 'view', 173, 174),
-(398, 395, NULL, NULL, 'add', 175, 176),
-(399, 395, NULL, NULL, 'edit', 177, 178),
-(400, 395, NULL, NULL, 'delete', 179, 180),
-(401, 395, NULL, NULL, 'isAuthorized', 181, 182),
-(402, 1, NULL, NULL, 'Colors', 184, 197),
-(403, 402, NULL, NULL, 'index', 185, 186),
-(404, 402, NULL, NULL, 'view', 187, 188),
-(405, 402, NULL, NULL, 'add', 189, 190),
-(406, 402, NULL, NULL, 'edit', 191, 192),
-(407, 402, NULL, NULL, 'delete', 193, 194),
-(408, 402, NULL, NULL, 'isAuthorized', 195, 196),
-(409, 1, NULL, NULL, 'UserCustomFields', 198, 211),
-(410, 409, NULL, NULL, 'index', 199, 200),
-(411, 409, NULL, NULL, 'view', 201, 202),
-(412, 409, NULL, NULL, 'add', 203, 204),
-(413, 409, NULL, NULL, 'edit', 205, 206),
-(414, 409, NULL, NULL, 'delete', 207, 208),
-(415, 409, NULL, NULL, 'isAuthorized', 209, 210),
+(374, 1, NULL, NULL, 'AccountTypes', 132, 145),
+(375, 374, NULL, NULL, 'index', 133, 134),
+(376, 374, NULL, NULL, 'view', 135, 136),
+(377, 374, NULL, NULL, 'add', 137, 138),
+(378, 374, NULL, NULL, 'edit', 139, 140),
+(379, 374, NULL, NULL, 'delete', 141, 142),
+(380, 374, NULL, NULL, 'isAuthorized', 143, 144),
+(381, 1, NULL, NULL, 'MemberTypes', 146, 159),
+(382, 381, NULL, NULL, 'index', 147, 148),
+(383, 381, NULL, NULL, 'view', 149, 150),
+(384, 381, NULL, NULL, 'add', 151, 152),
+(385, 381, NULL, NULL, 'edit', 153, 154),
+(386, 381, NULL, NULL, 'delete', 155, 156),
+(387, 381, NULL, NULL, 'isAuthorized', 157, 158),
+(388, 1, NULL, NULL, 'UserEntities', 160, 173),
+(389, 388, NULL, NULL, 'index', 161, 162),
+(390, 388, NULL, NULL, 'view', 163, 164),
+(391, 388, NULL, NULL, 'add', 165, 166),
+(392, 388, NULL, NULL, 'edit', 167, 168),
+(393, 388, NULL, NULL, 'delete', 169, 170),
+(394, 388, NULL, NULL, 'isAuthorized', 171, 172),
+(395, 1, NULL, NULL, 'Vehicles', 174, 187),
+(396, 395, NULL, NULL, 'index', 175, 176),
+(397, 395, NULL, NULL, 'view', 177, 178),
+(398, 395, NULL, NULL, 'add', 179, 180),
+(399, 395, NULL, NULL, 'edit', 181, 182),
+(400, 395, NULL, NULL, 'delete', 183, 184),
+(401, 395, NULL, NULL, 'isAuthorized', 185, 186),
+(402, 1, NULL, NULL, 'Colors', 188, 201),
+(403, 402, NULL, NULL, 'index', 189, 190),
+(404, 402, NULL, NULL, 'view', 191, 192),
+(405, 402, NULL, NULL, 'add', 193, 194),
+(406, 402, NULL, NULL, 'edit', 195, 196),
+(407, 402, NULL, NULL, 'delete', 197, 198),
+(408, 402, NULL, NULL, 'isAuthorized', 199, 200),
+(409, 1, NULL, NULL, 'UserCustomFields', 202, 215),
+(410, 409, NULL, NULL, 'index', 203, 204),
+(411, 409, NULL, NULL, 'view', 205, 206),
+(412, 409, NULL, NULL, 'add', 207, 208),
+(413, 409, NULL, NULL, 'edit', 209, 210),
+(414, 409, NULL, NULL, 'delete', 211, 212),
+(415, 409, NULL, NULL, 'isAuthorized', 213, 214),
 (416, 14, NULL, NULL, 'dashboard', 43, 44),
-(417, 1, NULL, NULL, 'VehicleFiles', 212, 225),
-(418, 417, NULL, NULL, 'index', 213, 214),
-(419, 417, NULL, NULL, 'view', 215, 216),
-(420, 417, NULL, NULL, 'add', 217, 218),
-(421, 417, NULL, NULL, 'edit', 219, 220),
-(422, 417, NULL, NULL, 'delete', 221, 222),
-(423, 417, NULL, NULL, 'isAuthorized', 223, 224),
-(424, 1, NULL, NULL, 'VehicleTypes', 226, 239),
-(425, 424, NULL, NULL, 'index', 227, 228),
-(426, 424, NULL, NULL, 'view', 229, 230),
-(427, 424, NULL, NULL, 'add', 231, 232),
-(428, 424, NULL, NULL, 'edit', 233, 234),
-(429, 424, NULL, NULL, 'delete', 235, 236),
-(430, 424, NULL, NULL, 'isAuthorized', 237, 238);
+(417, 1, NULL, NULL, 'VehicleFiles', 216, 229),
+(418, 417, NULL, NULL, 'index', 217, 218),
+(419, 417, NULL, NULL, 'view', 219, 220),
+(420, 417, NULL, NULL, 'add', 221, 222),
+(421, 417, NULL, NULL, 'edit', 223, 224),
+(422, 417, NULL, NULL, 'delete', 225, 226),
+(423, 417, NULL, NULL, 'isAuthorized', 227, 228),
+(424, 1, NULL, NULL, 'VehicleTypes', 230, 243),
+(425, 424, NULL, NULL, 'index', 231, 232),
+(426, 424, NULL, NULL, 'view', 233, 234),
+(427, 424, NULL, NULL, 'add', 235, 236),
+(428, 424, NULL, NULL, 'edit', 237, 238),
+(429, 424, NULL, NULL, 'delete', 239, 240),
+(430, 424, NULL, NULL, 'isAuthorized', 241, 242),
+(431, 364, NULL, NULL, 'add_users', 129, 130),
+(432, 14, NULL, NULL, 'user_dashboard', 45, 46);
 
 -- --------------------------------------------------------
 
@@ -257,17 +259,17 @@ CREATE TABLE IF NOT EXISTS `aros` (
   PRIMARY KEY (`id`),
   KEY `lft` (`lft`,`rght`),
   KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `aros`
 --
 
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, 'Groups', 1, NULL, 1, 52),
-(2, NULL, 'Groups', 2, NULL, 53, 54),
+(1, NULL, 'Groups', 1, NULL, 1, 56),
+(2, NULL, 'Groups', 2, NULL, 57, 58),
 (3, 1, 'Users', 1, NULL, 2, 3),
-(4, NULL, 'Users', 1, NULL, 55, 56),
+(4, 1, 'Users', 1, NULL, 54, 55),
 (5, 1, 'Users', 2, NULL, 4, 5),
 (6, 1, 'Users', 1, NULL, 6, 7),
 (7, 1, 'Users', 2, NULL, 8, 9),
@@ -291,7 +293,8 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (25, 1, 'Users', 7, NULL, 44, 45),
 (26, 1, 'Users', 8, NULL, 48, 49),
 (27, 1, 'Users', 9, NULL, 46, 47),
-(28, 1, 'Users', 10, NULL, 50, 51);
+(28, 1, 'Users', 10, NULL, 50, 51),
+(29, 1, 'Users', 3, NULL, 52, 53);
 
 -- --------------------------------------------------------
 
@@ -366,9 +369,9 @@ CREATE TABLE IF NOT EXISTS `groups` (
 --
 
 INSERT INTO `groups` (`id`, `name`, `is_archive`, `created`, `modified`) VALUES
-(1, 'Administrator', 0, '2016-01-08 03:01:24', '2016-01-08 03:01:24'),
-(2, 'User', 0, '2016-01-08 03:01:33', '2016-01-08 03:01:33'),
-(3, 'Agency', 0, '2016-01-08 03:01:33', '2016-01-08 03:01:33');
+(1, 'Super Admin', 0, '2016-01-08 03:01:24', '2016-01-08 03:01:24'),
+(2, 'Administrator', 0, '2016-01-08 03:01:33', '2016-01-08 03:01:33'),
+(3, 'Member', 0, '2016-01-08 03:01:33', '2016-01-08 03:01:33');
 
 -- --------------------------------------------------------
 
@@ -409,14 +412,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `is_archive`, `created`, `modified`) VALUES
-(1, 'admin@admin.com', '$2y$10$y2XwX1i41eja5Im/.x9Z9OImbZCQNGSEqlr/DR/CQNFq6/dXPAicC', 1, 0, '2016-09-12 03:01:56', '2016-09-12 10:33:25');
+(1, 'admin@admin.com', '$2y$10$y2XwX1i41eja5Im/.x9Z9OImbZCQNGSEqlr/DR/CQNFq6/dXPAicC', 1, 0, '2016-09-12 03:01:56', '2016-09-22 06:53:30'),
+(3, 'sample_member_a@gmail.com', '$2y$10$rcaVA7hRWw30StGwPxnxeuzGg04VVS4GBQsU.2nCLqfY5hegYPmU2', 1, 0, '2016-09-22 02:08:44', '2016-09-22 02:08:44');
 
 -- --------------------------------------------------------
 
@@ -465,17 +469,20 @@ CREATE TABLE IF NOT EXISTS `user_entities` (
   `cell_phone_carrier` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `emergency_contact_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `emergency_email` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8_unicode_ci,
+  `enable_push_notification` smallint(2) DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user_entities`
 --
 
-INSERT INTO `user_entities` (`id`, `agency_id`, `user_id`, `firstname`, `lastname`, `mi`, `mid`, `gender`, `birthdate`, `ssn`, `address`, `city`, `state`, `zip`, `email`, `phone`, `home`, `work_phone`, `cell_phone`, `cell_phone_carrier`, `emergency_contact_name`, `emergency_email`, `created`, `modified`) VALUES
-(1, 1, 1, 'Admin', 'Admin', 'Ad', '123456', 'Male', '2016-09-16', '', '', '', '', '', 'admin@admin.com', '', NULL, NULL, NULL, NULL, NULL, NULL, '2016-09-30 18:37:47', '2016-09-30 18:37:47');
+INSERT INTO `user_entities` (`id`, `agency_id`, `user_id`, `firstname`, `lastname`, `mi`, `mid`, `gender`, `birthdate`, `ssn`, `address`, `city`, `state`, `zip`, `email`, `phone`, `home`, `work_phone`, `cell_phone`, `cell_phone_carrier`, `emergency_contact_name`, `emergency_email`, `photo`, `enable_push_notification`, `created`, `modified`) VALUES
+(1, 1, 1, 'Admin', 'Admin', 'Ad', '123456', '0', '2016-09-16', '34234', 'test', 'test', 'test', '23423', 'admin@admin.com', '3243', '234', '234', '234', '234', '234', '234', NULL, 0, '2016-09-30 18:37:47', '2016-09-22 07:33:08'),
+(2, 2, 3, 'Sample User B', 'Sample User B', 'Sa', 'Sample User B', '0', '2016-09-21', 'Sample User B', 'Sample User B', 'Sample User B', 'Sample User B', 'Sample User B', 'sample_member_a@gmail.com', '31223', '3123', '31231', '3131', '3123', '312', 'Sample User B', NULL, 0, '2016-09-22 02:08:44', '2016-09-22 02:08:44');
 
 -- --------------------------------------------------------
 

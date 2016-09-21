@@ -2,6 +2,14 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Routing\Router;
+use App\Controller\SyncServiceController;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\Mailer\Email;
 
 /**
  * UserEntities Controller
@@ -10,6 +18,33 @@ use App\Controller\AppController;
  */
 class UserEntitiesController extends AppController
 {
+
+    /**
+     * initialize method    
+     * 
+     */
+    public function initialize()
+    {
+        parent::initialize();
+        // Add the selected sidebar-menu 'active' class
+        // Valid value can be found in NavigationSelectorHelper       
+        if ($this->request->action == "dashboard") {
+            $nav_selected = ["dashboard"];
+        } else {
+            $nav_selected = ["users"];
+        }       
+        $this->set('nav_selected', $nav_selected);
+
+        $this->set(['load_css_script' => 'users']);
+
+        $this->Users = TableRegistry::get('Users');
+        $users = $this->Users->find('all');
+        if($users->count() == 0) {
+            //$this->redirect(['controller' => 'customer', 'action' => 'register']);
+        }
+
+        //$this->Auth->allow();
+    }
 
     /**
      * Index method
@@ -48,24 +83,49 @@ class UserEntitiesController extends AppController
      */
     public function add()
     {
+        $this->Users = TableRegistry::get("Users");
+        $this->UserEntities = TableRegistry::get("UserEntities");
+
         $userEntity = $this->UserEntities->newEntity();
         if ($this->request->is('post')) {
-            $userEntity = $this->UserEntities->patchEntity($userEntity, $this->request->data);
-            if ($this->UserEntities->save($userEntity)) {
-                $this->Flash->success(__('The user entity has been saved.'));
-                $action = $this->request->data['save'];
-                if( $action == 'save' ){
-                    return $this->redirect(['action' => 'index']);
-                }else{
-                    return $this->redirect(['action' => 'add']);
-                }                    
+            $user_data['username'] = $this->request->data['email_address'];
+            $user_data['password'] = $this->request->data['password'];
+            $user_data['group_id'] = $this->request->data['group_id'];
+            
+            $user = $this->Users->newEntity();
+            $user = $this->Users->patchEntity($user, $user_data);
+            $result_user = $this->Users->save($user);
+            if ($result_user = $this->Users->save($user)) {
+                $user_entities_data = $this->request->data;
+                $user_entities_data['user_id'] = $result_user->id;
+                $user_entities_data['email']   = $this->request->data['email_address'];
+                
+                $user_entities = $this->UserEntities->newEntity();
+                $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
+
+                if($result_user_entities = $this->UserEntities->save($user_entities)) {
+                    $this->Flash->success(__('User has been saved.'));
+                    $action = $this->request->data['save'];
+                    if( $action == 'save' ){
+                        return $this->redirect(['action' => 'index']);
+                    }else{
+                        return $this->redirect(['action' => 'add']);
+                    }    
+                }else {
+                    $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                }
+
+                     
             } else {
-                $this->Flash->error(__('The user entity could not be saved. Please, try again.'));
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]);
-        $users = $this->UserEntities->Users->find('list', ['limit' => 200]);
-        $this->set(compact('userEntity', 'agencies', 'users'));
+
+        $groups   = $this->UserEntities->Users->Groups->find('list');
+        $agencies = $this->UserEntities->Agencies->find('list');
+        $users    = $this->UserEntities->Users->find('list');
+        $gender   = array("Male", "Female");
+        $this->set(compact('userEntity', 'agencies', 'users','gender','groups'));
         $this->set('_serialize', ['userEntity']);
     }
 
@@ -79,9 +139,16 @@ class UserEntitiesController extends AppController
     public function edit($id = null)
     {
         $userEntity = $this->UserEntities->get($id, [
-            'contain' => []
+            'contain' => ['Users' => ['Groups'], 'Agencies']
         ]);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
+            //Update user data            
+            $user = $this->UserEntities->Users->get($userEntity->user->id);
+            $user->agency_id = $this->request->data['agency_id'];
+            $user->group_id  = $this->request->data['group_id'];
+            $this->UserEntities->Users->save($user);
+            //Update user entity data
             $userEntity = $this->UserEntities->patchEntity($userEntity, $this->request->data);
             if ($this->UserEntities->save($userEntity)) {
                 $this->Flash->success(__('The user entity has been saved.'));
@@ -95,9 +162,10 @@ class UserEntitiesController extends AppController
                 $this->Flash->error(__('The user entity could not be saved. Please, try again.'));
             }
         }
-        $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]);
-        $users = $this->UserEntities->Users->find('list', ['limit' => 200]);
-        $this->set(compact('userEntity', 'agencies', 'users'));
+        $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]); 
+        $groups   = $this->UserEntities->Users->Groups->find('list');       
+        $gender   = array("Male", "Female");
+        $this->set(compact('userEntity', 'agencies', 'groups', 'gender'));
         $this->set('_serialize', ['userEntity']);
     }
 
