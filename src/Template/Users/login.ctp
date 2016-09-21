@@ -8,7 +8,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p id="page-title" class="login-box-msg">Sign in to start your session</p>
 
     <?= $this->Flash->render() ?>
     <?= $this->Flash->render('auth') ?>

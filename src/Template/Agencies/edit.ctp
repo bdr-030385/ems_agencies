@@ -57,6 +57,13 @@
                                         <label for='start_date' class='col-sm-2 control-label'>" . __('Start Date') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('start_date', ['type' => 'text', 'value' => $agency->start_date->format("Y-m-d"), 'class' => 'form-control default-datepicker', 'id' => 'start_date', 'label' => false]);                
+                                    echo " </div></div>";   
+
+                                    echo "
+                                    <div class='form-group'>
+                                        <label for='logo' class='col-sm-2 control-label'>" . __('Logo') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('logo', ['class' => 'form-control has-ck-finder', 'id' => 'logo', 'label' => false]);                
                                     echo " </div></div>";                                     
                         ?>
                     </fieldset>

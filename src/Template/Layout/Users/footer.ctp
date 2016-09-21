@@ -46,7 +46,7 @@
     $('#btn-return-login').click(function(){
       $('#forgot-password-container').hide(500);
       $('#login-container').show(500);
-      $('#page-title').html("Sign In");
+      $('#page-title').html("Sign in to start your session");
       $('#page-desc').html("Enter your username and password.");
     });
 

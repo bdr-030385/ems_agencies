@@ -72,7 +72,41 @@ $(function(){
     format: 'yyyy-mm-dd',
     autoclose: true
   });
+
+  $('.has-ck-finder').click(function(){
+    openKCFinder_textbox($(this));
+  });
 });
+
+
+CKEDITOR.replace( 'ckeditor', {
+      width: '600'
+    });
+
+function openKCFinder_textbox(field) {    
+
+  window.KCFinder = {
+      callBack: function(url) {
+        var filename= url.split('/').pop()
+        var clean_filename = filename.replace(new RegExp("%20", 'g')," ");
+
+        var extension = clean_filename.split('.').pop().toUpperCase();
+        /*if (extension == "PNG" || extension == "JPG" || extension == "JPEG" || extension == "BMP"){
+          $(".img-attachment").attr("src",url);
+        }else{
+          $(".img-attachment").attr("src",DEFAULT_IMG);
+        }*/
+
+        $("#logo").val(clean_filename);            
+        field.val(url);
+      }
+  };
+  window.open(base_url+'js/kcfinder/browse.php?dir=files', 'kcfinder_textbox',
+      'status=0, toolbar=0, location=0, menubar=0, directories=0, ' +
+      'resizable=1, scrollbars=0, width=800, height=600'
+  );
+}
+
 </script>
 
 </body>

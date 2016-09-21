@@ -228,7 +228,7 @@ class UsersController extends AppController
                     $session->write('User.data', $user_data);     
                     
                     $_SESSION['KCEDITOR']['disabled'] = false;
-                    $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
+                    $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload/".$user_data->agency_id;
                     if( $user_data->user->group_id == 1){                        
                         return $this->redirect($this->Auth->redirectUrl());
                     }else{                        
