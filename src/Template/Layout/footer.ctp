@@ -67,6 +67,9 @@
 <script type="text/javascript">  
 var base_url = "<?= $base_url; ?>";
 $(function(){
+
+  $('.global-datatable').DataTable({"responsive" : true});
+
   //Date picker       
   $('.default-datepicker').datepicker({
     format: 'yyyy-mm-dd',
