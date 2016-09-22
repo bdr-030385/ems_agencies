@@ -140,6 +140,7 @@ class AgenciesController extends AppController
             $user_data['username'] = $this->request->data['email_address'];
             $user_data['password'] = $this->request->data['password'];
             $user_data['group_id'] = $this->request->data['group_id'];
+            $custom_fields = $this->request->data['custom_field'];
 
             $this->Users = TableRegistry::get("Users");
             $user = $this->Users->newEntity();
@@ -154,6 +155,19 @@ class AgenciesController extends AppController
                 $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
 
                 if($result_user_entities = $this->UserEntities->save($user_entities)) {
+
+                    foreach( $custom_fields as $cs ){
+                        $custom_data = [
+                            'user_entity_id' => $result_user_entities->id,
+                            'name' => $cs['name'],
+                            'value' => $cs['value']
+                        ];
+
+                        $customFields = $this->UserEntities->UserCustomFields->newEntity();
+                        $customFields = $this->UserEntities->UserCustomFields->patchEntity($customFields, $custom_data);
+                        $this->UserEntities->UserCustomFields->save($customFields);
+                    }
+
                     $this->Flash->success(__('User has been saved.'));
                     $action = $this->request->data['save'];
                     if( $action == 'save' ){

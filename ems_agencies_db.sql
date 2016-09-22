@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2016 at 04:44 AM
+-- Generation Time: Sep 22, 2016 at 11:17 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.24
 
@@ -82,14 +82,14 @@ CREATE TABLE IF NOT EXISTS `acos` (
   PRIMARY KEY (`id`),
   KEY `lft` (`lft`,`rght`),
   KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=433 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=450 ;
 
 --
 -- Dumping data for table `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, NULL, NULL, 'controllers', 1, 244),
+(1, NULL, NULL, NULL, 'controllers', 1, 278),
 (2, 1, NULL, NULL, 'Groups', 2, 17),
 (3, 2, NULL, NULL, 'index', 3, 4),
 (4, 2, NULL, NULL, 'view', 5, 6),
@@ -210,7 +210,24 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (429, 424, NULL, NULL, 'delete', 239, 240),
 (430, 424, NULL, NULL, 'isAuthorized', 241, 242),
 (431, 364, NULL, NULL, 'add_users', 129, 130),
-(432, 14, NULL, NULL, 'user_dashboard', 45, 46);
+(432, 14, NULL, NULL, 'user_dashboard', 45, 46),
+(433, 1, NULL, NULL, 'Announcements', 244, 257),
+(434, 433, NULL, NULL, 'index', 245, 246),
+(435, 433, NULL, NULL, 'view', 247, 248),
+(436, 433, NULL, NULL, 'add', 249, 250),
+(437, 433, NULL, NULL, 'edit', 251, 252),
+(438, 433, NULL, NULL, 'delete', 253, 254),
+(439, 433, NULL, NULL, 'isAuthorized', 255, 256),
+(440, 1, NULL, NULL, 'UserSettings', 258, 263),
+(441, 440, NULL, NULL, 'ajax_update_member_push_notification', 259, 260),
+(442, 440, NULL, NULL, 'isAuthorized', 261, 262),
+(443, 1, NULL, NULL, 'Vendors', 264, 277),
+(444, 443, NULL, NULL, 'index', 265, 266),
+(445, 443, NULL, NULL, 'view', 267, 268),
+(446, 443, NULL, NULL, 'add', 269, 270),
+(447, 443, NULL, NULL, 'edit', 271, 272),
+(448, 443, NULL, NULL, 'delete', 273, 274),
+(449, 443, NULL, NULL, 'isAuthorized', 275, 276);
 
 -- --------------------------------------------------------
 
@@ -244,6 +261,23 @@ INSERT INTO `agencies` (`id`, `account_type_id`, `member_type_id`, `name`, `emt_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `announcements`
+--
+
+DROP TABLE IF EXISTS `announcements`;
+CREATE TABLE IF NOT EXISTS `announcements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_entity_id` int(11) NOT NULL,
+  `title` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `aros`
 --
 
@@ -259,15 +293,15 @@ CREATE TABLE IF NOT EXISTS `aros` (
   PRIMARY KEY (`id`),
   KEY `lft` (`lft`,`rght`),
   KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `aros`
 --
 
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, 'Groups', 1, NULL, 1, 56),
-(2, NULL, 'Groups', 2, NULL, 57, 58),
+(1, NULL, 'Groups', 1, NULL, 1, 58),
+(2, NULL, 'Groups', 2, NULL, 59, 60),
 (3, 1, 'Users', 1, NULL, 2, 3),
 (4, 1, 'Users', 1, NULL, 54, 55),
 (5, 1, 'Users', 2, NULL, 4, 5),
@@ -294,7 +328,8 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (26, 1, 'Users', 8, NULL, 48, 49),
 (27, 1, 'Users', 9, NULL, 46, 47),
 (28, 1, 'Users', 10, NULL, 50, 51),
-(29, 1, 'Users', 3, NULL, 52, 53);
+(29, 1, 'Users', 3, NULL, 52, 53),
+(30, 1, 'Users', 4, NULL, 56, 57);
 
 -- --------------------------------------------------------
 
@@ -412,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
@@ -420,7 +455,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `is_archive`, `created`, `modified`) VALUES
 (1, 'admin@admin.com', '$2y$10$y2XwX1i41eja5Im/.x9Z9OImbZCQNGSEqlr/DR/CQNFq6/dXPAicC', 1, 0, '2016-09-12 03:01:56', '2016-09-22 06:53:30'),
-(3, 'sample_member_a@gmail.com', '$2y$10$rcaVA7hRWw30StGwPxnxeuzGg04VVS4GBQsU.2nCLqfY5hegYPmU2', 1, 0, '2016-09-22 02:08:44', '2016-09-22 02:08:44');
+(3, 'sample_member_a@gmail.com', '$2y$10$rcaVA7hRWw30StGwPxnxeuzGg04VVS4GBQsU.2nCLqfY5hegYPmU2', 1, 0, '2016-09-22 02:08:44', '2016-09-22 02:08:44'),
+(4, 'test@test.com', '$2y$10$y2XwX1i41eja5Im/.x9Z9OImbZCQNGSEqlr/DR/CQNFq6/dXPAicC', 2, 0, '2016-09-23 04:37:31', '2016-09-23 04:53:31');
 
 -- --------------------------------------------------------
 
@@ -437,7 +473,14 @@ CREATE TABLE IF NOT EXISTS `user_custom_fields` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `user_custom_fields`
+--
+
+INSERT INTO `user_custom_fields` (`id`, `user_entity_id`, `name`, `value`, `created`, `modified`) VALUES
+(16, 3, 'Custom Field CDA', 'Custom Value CDA', '2016-09-23 04:53:31', '2016-09-23 04:53:31');
 
 -- --------------------------------------------------------
 
@@ -474,7 +517,7 @@ CREATE TABLE IF NOT EXISTS `user_entities` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `user_entities`
@@ -482,7 +525,8 @@ CREATE TABLE IF NOT EXISTS `user_entities` (
 
 INSERT INTO `user_entities` (`id`, `agency_id`, `user_id`, `firstname`, `lastname`, `mi`, `mid`, `gender`, `birthdate`, `ssn`, `address`, `city`, `state`, `zip`, `email`, `phone`, `home`, `work_phone`, `cell_phone`, `cell_phone_carrier`, `emergency_contact_name`, `emergency_email`, `photo`, `enable_push_notification`, `created`, `modified`) VALUES
 (1, 1, 1, 'Admin', 'Admin', 'Ad', '123456', '0', '2016-09-16', '34234', 'test', 'test', 'test', '23423', 'admin@admin.com', '3243', '234', '234', '234', '234', '234', '234', NULL, 0, '2016-09-30 18:37:47', '2016-09-22 07:33:08'),
-(2, 2, 3, 'Sample User B', 'Sample User B', 'Sa', 'Sample User B', '0', '2016-09-21', 'Sample User B', 'Sample User B', 'Sample User B', 'Sample User B', 'Sample User B', 'sample_member_a@gmail.com', '31223', '3123', '31231', '3131', '3123', '312', 'Sample User B', NULL, 0, '2016-09-22 02:08:44', '2016-09-22 02:08:44');
+(2, 2, 3, 'Sample User B', 'Sample User B', 'Sa', 'Sample User B', '0', '2016-09-21', 'Sample User B', 'Sample User B', 'Sample User B', 'Sample User B', 'Sample User B', 'sample_member_a@gmail.com', '31223', '3123', '31231', '3131', '3123', '312', 'Sample User B', NULL, 0, '2016-09-22 02:08:44', '2016-09-22 02:08:44'),
+(3, 1, 4, 'test', 'test', 'te', '2423423', '0', '2016-08-31', '34234', 'Test', 'test', 'test', '32423', 'test@test.com', '424234', 'test', '34234', '34234', '4234', '342', '423', NULL, 0, '2016-09-23 04:37:31', '2016-09-23 04:53:31');
 
 -- --------------------------------------------------------
 
@@ -557,6 +601,33 @@ CREATE TABLE IF NOT EXISTS `vehicle_types` (
 INSERT INTO `vehicle_types` (`id`, `name`, `created`, `modified`) VALUES
 (1, 'Ambulance', '2016-09-20 22:51:57', '2016-09-20 22:51:57'),
 (2, 'EASV', '2016-09-20 22:51:57', '2016-09-20 22:51:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendors`
+--
+
+DROP TABLE IF EXISTS `vendors`;
+CREATE TABLE IF NOT EXISTS `vendors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agency_id` int(11) NOT NULL,
+  `vendor_name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `contact_number` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `vendors`
+--
+
+INSERT INTO `vendors` (`id`, `agency_id`, `vendor_name`, `email`, `contact_number`, `address`, `created`, `modified`) VALUES
+(1, 2, 'Sample Vendor A', 'samplevendor@gmail.com', '12345', 'Sample Address', '2016-09-23 05:08:26', '2016-09-23 05:08:26'),
+(2, 1, 'Sample Vendor B', 'samplevendorb@gmail.com', '345345', 'Test a', '2016-09-23 05:08:50', '2016-09-23 05:08:50');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

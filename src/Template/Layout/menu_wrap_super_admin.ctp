@@ -25,6 +25,9 @@
         <li id="users_nav" title="Users" class="<?= $nav_selected["users"] ?>">
             <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/user_entities", "action" => "index"],["escape" => false]) ?>
         </li>
+        <li id="users_nav" title="Users" class="<?= $nav_selected["vendors"] ?>">
+            <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "index"],["escape" => false]) ?>
+        </li>        
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["groups"] ?>">
             <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
         </li>

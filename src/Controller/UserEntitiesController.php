@@ -87,11 +87,13 @@ class UserEntitiesController extends AppController
         $this->UserEntities = TableRegistry::get("UserEntities");
 
         $userEntity = $this->UserEntities->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post')) {            
             $user_data['username'] = $this->request->data['email_address'];
             $user_data['password'] = $this->request->data['password'];
             $user_data['group_id'] = $this->request->data['group_id'];
-            
+                
+            $custom_fields = $this->request->data['custom_field'];
+
             $user = $this->Users->newEntity();
             $user = $this->Users->patchEntity($user, $user_data);
             $result_user = $this->Users->save($user);
@@ -104,6 +106,19 @@ class UserEntitiesController extends AppController
                 $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
 
                 if($result_user_entities = $this->UserEntities->save($user_entities)) {
+
+                    foreach( $custom_fields as $cs ){
+                        $custom_data = [
+                            'user_entity_id' => $result_user_entities->id,
+                            'name' => $cs['name'],
+                            'value' => $cs['value']
+                        ];
+
+                        $customFields = $this->UserEntities->UserCustomFields->newEntity();
+                        $customFields = $this->UserEntities->UserCustomFields->patchEntity($customFields, $custom_data);
+                        $this->UserEntities->UserCustomFields->save($customFields);
+                    }
+
                     $this->Flash->success(__('User has been saved.'));
                     $action = $this->request->data['save'];
                     if( $action == 'save' ){
@@ -147,10 +162,27 @@ class UserEntitiesController extends AppController
             $user = $this->UserEntities->Users->get($userEntity->user->id);
             $user->agency_id = $this->request->data['agency_id'];
             $user->group_id  = $this->request->data['group_id'];
+            $custom_fields   = $this->request->data['custom_field'];
+
             $this->UserEntities->Users->save($user);
             //Update user entity data
             $userEntity = $this->UserEntities->patchEntity($userEntity, $this->request->data);
             if ($this->UserEntities->save($userEntity)) {
+
+                //Custom Fields
+                $this->UserEntities->UserCustomFields->deleteAll(['UserCustomFields.user_entity_id' => $userEntity->id]); //Delete all entries, will create new data
+                foreach( $custom_fields as $cs ){
+                    $custom_data = [
+                        'user_entity_id' => $userEntity->id,
+                        'name' => $cs['name'],
+                        'value' => $cs['value']
+                    ];
+
+                    $customFields = $this->UserEntities->UserCustomFields->newEntity();
+                    $customFields = $this->UserEntities->UserCustomFields->patchEntity($customFields, $custom_data);
+                    $this->UserEntities->UserCustomFields->save($customFields);
+                }
+
                 $this->Flash->success(__('The user entity has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
@@ -162,10 +194,19 @@ class UserEntitiesController extends AppController
                 $this->Flash->error(__('The user entity could not be saved. Please, try again.'));
             }
         }
+
+        $customFields = $this->UserEntities->UserCustomFields->find('all')
+            ->where(['UserCustomFields.user_entity_id' => $userEntity->id])
+        ;        
+        $dataCustomFields = array();
+        foreach( $customFields as $cs ){
+            $dataCustomFields[] = ['name' => $cs->name, 'value' => $cs->value];            
+        }
+
         $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]); 
         $groups   = $this->UserEntities->Users->Groups->find('list');       
         $gender   = array("Male", "Female");
-        $this->set(compact('userEntity', 'agencies', 'groups', 'gender'));
+        $this->set(compact('userEntity', 'agencies', 'groups', 'gender', 'dataCustomFields'));
         $this->set('_serialize', ['userEntity']);
     }
 

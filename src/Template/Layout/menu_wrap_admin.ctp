@@ -16,8 +16,14 @@
         <li id="users_nav" title="Users" class="<?= $nav_selected["users"] ?>">
             <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/users", "action" => "index"],["escape" => false]) ?>
         </li>
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["groups"] ?>">
-            <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
+        <li id="users_nav" title="Users" class="<?= $nav_selected["vendors"] ?>">
+            <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "index"],["escape" => false]) ?>
+        </li>        
+        <li id="users_nav" title="Users" class="<?= $nav_selected["vehicles"] ?>">
+            <?= $this->Html->link('<i class="fa fa-car"></i><span>' . __("Vehicles") . "</span>",["controller" => "vehicles", "action" => "index"],["escape" => false]) ?>
+        </li>        
+        <li id="users_nav" title="Users" class="<?= $nav_selected["announcements"] ?>">
+            <?= $this->Html->link('<i class="fa fa-bullhorn"></i><span>' . __("Announcements") . "</span>",["controller" => "announcements", "action" => "index"],["escape" => false]) ?>
         </li>        
       </ul>
     </section>    

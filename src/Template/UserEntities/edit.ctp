@@ -181,6 +181,30 @@
                                     echo " </div></div>";    
                                     
                                                 ?>
+
+                            <div class="callout callout-info">
+                                <h4 style="margin-left:20px;">Other Information</h4> 
+                            </div>
+                            <?php 
+                                for( $x = 0; $x <= 5; $x++ ){ 
+                                    $custom_name  = '';
+                                    $custom_value = '';
+                                    if( isset($dataCustomFields[$x]) ){
+                                        $custom_name  = $dataCustomFields[$x]['name'];
+                                        $custom_value = $dataCustomFields[$x]['value'];
+                                    }  
+                                    echo "
+                                    <div class='form-group'>
+                                        <label for='custom-field" . $x . "' class='col-sm-2 control-label'></label>
+                                        <div class='col-sm-3'>";                 
+                                            echo "<input name='custom_field[" . $x . "][name]' placeholder='Field Name' value ='" . $custom_name . "' class='form-control' />";                                                           
+                                        echo "</div>";
+                                    echo "<div class='col-sm-3'>";                                    
+                                            echo "<input name='custom_field[" . $x . "][value]' placeholder='Value' class='form-control' value ='" . $custom_value . "' class='form-control' />";                                                                                                   
+                                        echo "</div>";
+                                    echo "</div>";
+                                }
+                            ?>
                     </fieldset>
                     <div class="form-group" style="margin-top: 80px;">
                         <div class="col-sm-offset-2 col-sm-10">
