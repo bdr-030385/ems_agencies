@@ -69,9 +69,9 @@
   <!-- Left side column. contains the logo and sidebar -->
   <?php 
     if( $hdr_user_data->user->group_id == 1 ){
-      include("menu_wrap_admin.ctp");   
+      include("menu_wrap_super_admin.ctp");   
     }elseif( $hdr_user_data->user->group_id == 2 ){
-      include("menu_wrap_user.ctp");   
+      include("menu_wrap_admin.ctp");   
     }else{
       include("menu_wrap_user.ctp");   
     }
@@ -209,17 +209,23 @@
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
+              Enable Push Notification
+              <?php 
+                $is_checked = "";
+                if( $hdr_user_data->enable_push_notification == 1 ){
+                  $is_checked = "checked";
+                }
+              ?>
+              <input type="checkbox" id="side-widget-push-notification" class="pull-right" <?php echo $is_checked; ?>>
             </label>
 
             <p>
-              Some information about this general settings option
+              Allow to receive email
             </p>
           </div>
           <!-- /.form-group -->
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="control-sidebar-subheading">
               Allow mail redirect
               <input type="checkbox" class="pull-right" checked>
@@ -228,10 +234,10 @@
             <p>
               Other sets of options are available
             </p>
-          </div>
+          </div> -->
           <!-- /.form-group -->
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="control-sidebar-subheading">
               Expose author name in posts
               <input type="checkbox" class="pull-right" checked>
@@ -240,33 +246,33 @@
             <p>
               Allow the user to show his name in blog posts
             </p>
-          </div>
+          </div> -->
           <!-- /.form-group -->
 
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
+          <!-- <h3 class="control-sidebar-heading">Chat Settings</h3>
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Show me as online
               <input type="checkbox" class="pull-right" checked>
             </label>
-          </div>
+          </div> -->
           <!-- /.form-group -->
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="control-sidebar-subheading">
               Turn off notifications
               <input type="checkbox" class="pull-right">
             </label>
-          </div>
+          </div> -->
           <!-- /.form-group -->
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="control-sidebar-subheading">
               Delete chat history
               <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
             </label>
-          </div>
+          </div> -->
           <!-- /.form-group -->
         </form>
       </div>

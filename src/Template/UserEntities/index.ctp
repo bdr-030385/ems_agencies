@@ -1,9 +1,9 @@
 
 <section class="content-header">
-    <h1><?= __('User Entities') ?></h1>
+    <h1><?= __('Users') ?></h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('User Entities') ?></li>
+        <li class="active"><?= __('Users') ?></li>
     </ol>
 </section>
 
@@ -13,34 +13,30 @@
         <section class="col-lg-12 ">
             <div class="box " >
                 <div class="box-header">
-                    <?= $this->Html->link(__('Add New User Entity'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
+                    <?= $this->Html->link(__('Add New User'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
                     <table id="dt-users-list" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                                <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('agency_id') ?></th>
-                                                <th><?= $this->Paginator->sort('user_id') ?></th>
-                                                <th><?= $this->Paginator->sort('firstname') ?></th>
-                                                <th><?= $this->Paginator->sort('lastname') ?></th>
-                                                <th><?= $this->Paginator->sort('mi') ?></th>
-                                                <th><?= $this->Paginator->sort('mid') ?></th>
-                                                <th class="actions"><?= __('Actions') ?></th>
+                                <th><?= $this->Paginator->sort('id') ?></th>
+                                <th><?= $this->Paginator->sort('agency_id') ?></th>                                                
+                                <th><?= $this->Paginator->sort('firstname') ?></th>
+                                <th><?= $this->Paginator->sort('lastname') ?></th>                                                
+                                <th><?= $this->Paginator->sort('mid',__('Member ID')) ?></th>
+                                <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($userEntities as $userEntity): ?>
                             <tr>
-                                                <td><?= $this->Number->format($userEntity->id) ?></td>
-                                                <td><?= $userEntity->has('agency') ? $this->Html->link($userEntity->agency->name, ['controller' => 'Agencies', 'action' => 'view', $userEntity->agency->id]) : '' ?></td>
-                                                <td><?= $userEntity->has('user') ? $this->Html->link($userEntity->user->id, ['controller' => 'Users', 'action' => 'view', $userEntity->user->id]) : '' ?></td>
-                                                <td><?= h($userEntity->firstname) ?></td>
-                                                <td><?= h($userEntity->lastname) ?></td>
-                                                <td><?= h($userEntity->mi) ?></td>
-                                                <td><?= h($userEntity->mid) ?></td>
-                                                <td class="actions">
+                                <td><?= $this->Number->format($userEntity->id) ?></td>
+                                <td><?= $userEntity->has('agency') ? $this->Html->link($userEntity->agency->name, ['controller' => 'Agencies', 'action' => 'view', $userEntity->agency->id]) : '' ?></td>                                
+                                <td><?= h($userEntity->firstname) ?></td>
+                                <td><?= h($userEntity->lastname) ?></td>                                
+                                <td><?= h($userEntity->mid) ?></td>
+                                <td class="actions">
                                     <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $userEntity->id],['class' => 'btn btn-info','escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $userEntity->id],['class' => 'btn btn-success', 'escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$userEntity->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>

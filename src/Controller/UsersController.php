@@ -230,7 +230,7 @@ class UsersController extends AppController
                     $_SESSION['KCEDITOR']['disabled'] = false;
                     $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload";
                     if( $user_data->user->group_id == 1){                        
-                        return $this->redirect($this->Auth->redirectUrl());
+                        return $this->redirect(['action' => 'dashboard']);
                     }else{                        
                         return $this->redirect(['action' => 'dashboard']);
                     } 

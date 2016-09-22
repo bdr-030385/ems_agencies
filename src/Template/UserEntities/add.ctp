@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1><?= __('Add User Entity') ?></h1>
+    <h1><?= __('Add User') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __('User Entities'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Add') ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-users'></i>" . __('Users'), ['controller' => 'agencies', 'action' => 'index'],['escape' => false]) ?></li>
+        <li class="active"><?= __('Add User') ?></li>
     </ol>
 </section>
 
@@ -16,45 +16,69 @@
 
                 </div>
                 <div class="box-body">
-                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
-                    <fieldset>        
+                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>                    
+                    <fieldset> 
+                    	<div class="callout callout-info">
+                        	<h4 style="margin-left:20px;">Account Details</h4>       
+                        </div>
                         <?php
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
-                                        <div class='col-sm-6'>";
-                                         echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
-                                    echo " </div></div>";    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='user_id' class='col-sm-2 control-label'>" . __('User Id') . "</label>
-                                        <div class='col-sm-6'>";
-                                         echo $this->Form->input('user_id', ['class' => 'form-control', 'id' => 'user_id', 'label' => false, 'options' => $users]);                 
-                                    echo " </div></div>";    
+                            echo "
+                                <div class='form-group'>
+                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Agency') . "</label>
+                                    <div class='col-sm-6'>";
+                                    echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_name', 'options' => $agencies, 'label' => false]);                
+                                echo " </div></div>"; 
+
+                            echo "
+                                <div class='form-group'>
+                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Group') . "</label>
+                                    <div class='col-sm-6'>";
+                                    echo $this->Form->input('group_id', ['class' => 'form-control', 'id' => 'agency_name', 'options' => $groups, 'label' => false]);                
+                                echo " </div></div>";
+
+                            echo "
+                                <div class='form-group'>
+                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Email Address') . "</label>
+                                    <div class='col-sm-6'>";
+                                    echo $this->Form->input('email_address', ['class' => 'form-control', 'id' => 'email_address', 'required' => 'required', 'type' => 'email', 'label' => false]);                
+                                echo " </div></div>"; 
+
+                            echo "
+                                <div class='form-group'>
+                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Password') . "</label>
+                                    <div class='col-sm-6'>";
+                                    echo $this->Form->input('password', ['class' => 'form-control', 'id' => 'password', 'required' => 'required', 'type' => 'password', 'label' => false]);                
+                                echo " </div></div>";                                 
+                        ?>
+                        <div class="callout callout-info">
+                        	<h4 style="margin-left:20px;">User Information</h4> 
+                        </div>
+                        <?php
+                                                           
                                                             echo "
                                     <div class='form-group'>
                                         <label for='firstname' class='col-sm-2 control-label'>" . __('Firstname') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('firstname', ['class' => 'form-control', 'id' => 'firstname', 'label' => false]);                
+                                        echo $this->Form->input('firstname', ['class' => 'form-control', 'id' => 'firstname', 'required' => 'required', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
                                         <label for='lastname' class='col-sm-2 control-label'>" . __('Lastname') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('lastname', ['class' => 'form-control', 'id' => 'lastname', 'label' => false]);                
+                                        echo $this->Form->input('lastname', ['class' => 'form-control', 'id' => 'lastname', 'required' => 'required', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='mi' class='col-sm-2 control-label'>" . __('Mi') . "</label>
+                                        <label for='mi' class='col-sm-2 control-label'>" . __('Middle Initial') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('mi', ['class' => 'form-control', 'id' => 'mi', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='mid' class='col-sm-2 control-label'>" . __('Mid') . "</label>
+                                        <label for='mid' class='col-sm-2 control-label'>" . __('Member ID') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('mid', ['class' => 'form-control', 'id' => 'mid', 'label' => false]);                
                                     echo " </div></div>";    
@@ -63,19 +87,19 @@
                                     <div class='form-group'>
                                         <label for='gender' class='col-sm-2 control-label'>" . __('Gender') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('gender', ['class' => 'form-control', 'id' => 'gender', 'label' => false]);                
+                                        echo $this->Form->input('gender', ['options' => $gender, 'class' => 'form-control', 'id' => 'gender', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
                                         <label for='birthdate' class='col-sm-2 control-label'>" . __('Birthdate') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('birthdate', ['class' => 'form-control', 'id' => 'birthdate', 'label' => false]);                
+                                        echo $this->Form->input('birthdate', ['class' => 'form-control default-datepicker', 'id' => 'birthdate', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='ssn' class='col-sm-2 control-label'>" . __('Ssn') . "</label>
+                                        <label for='ssn' class='col-sm-2 control-label'>" . __('SSN') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('ssn', ['class' => 'form-control', 'id' => 'ssn', 'label' => false]);                
                                     echo " </div></div>";    
@@ -107,13 +131,12 @@
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('zip', ['class' => 'form-control', 'id' => 'zip', 'label' => false]);                
                                     echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='email' class='col-sm-2 control-label'>" . __('Email') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('email', ['class' => 'form-control', 'id' => 'email', 'label' => false]);                
-                                    echo " </div></div>";    
+
+                        ?>
+                        		<div class="callout callout-info">
+                        			<h4 style="margin-left:20px;">Contact Information</h4> 
+                        		</div>
+                        <?php 
                                     
                                                             echo "
                                     <div class='form-group'>
@@ -170,7 +193,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="action-fixed-bottom">
                                 <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
                                 <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
                             </div>
                         </div>
