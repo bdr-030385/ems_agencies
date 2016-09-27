@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1><?= __('Edit Vendor Item') ?></h1>
+    <h1><?= __('Add Item') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __('Vendor Items'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Edit') ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __('Items'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
+        <li class="active"><?= __('Add') ?></li>
     </ol>
 </section>
 
@@ -16,9 +16,63 @@
 
                 </div>
                 <div class="box-body">
-                    <?= $this->Form->create($vendorItem,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
+                    <?= $this->Form->create($item,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
+                                        <div class='col-sm-6'>";
+                                         echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
+                                    echo " </div></div>";    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='name' class='col-sm-2 control-label'>" . __('Name') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('name', ['class' => 'form-control', 'id' => 'name', 'label' => false]);                
+                                    echo " </div></div>";    
+                                    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='item_category_id' class='col-sm-2 control-label'>" . __('Item Category Id') . "</label>
+                                        <div class='col-sm-6'>";
+                                         echo $this->Form->input('item_category_id', ['class' => 'form-control', 'id' => 'item_category_id', 'label' => false, 'options' => $itemCategories]);                 
+                                    echo " </div></div>";    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='quantity' class='col-sm-2 control-label'>" . __('Quantity') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('quantity', ['class' => 'form-control', 'id' => 'quantity', 'label' => false]);                
+                                    echo " </div></div>";    
+                                    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='reordering_point' class='col-sm-2 control-label'>" . __('Reordering Point') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('reordering_point', ['class' => 'form-control', 'id' => 'reordering_point', 'label' => false]);                
+                                    echo " </div></div>";    
+                                    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='reordering_point_category' class='col-sm-2 control-label'>" . __('Reordering Point Category') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('reordering_point_category', ['class' => 'form-control', 'id' => 'reordering_point_category', 'label' => false]);                
+                                    echo " </div></div>";    
+                                    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='reordering_amount' class='col-sm-2 control-label'>" . __('Reordering Amount') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('reordering_amount', ['class' => 'form-control', 'id' => 'reordering_amount', 'label' => false]);                
+                                    echo " </div></div>";    
+                                    
+                                                            echo "
+                                    <div class='form-group'>
+                                        <label for='reordering_amount_category' class='col-sm-2 control-label'>" . __('Reordering Amount Category') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('reordering_amount_category', ['class' => 'form-control', 'id' => 'reordering_amount_category', 'label' => false]);                
+                                    echo " </div></div>";    
+                                    
                                                             echo "
                                     <div class='form-group'>
                                         <label for='vendor_id' class='col-sm-2 control-label'>" . __('Vendor Id') . "</label>
@@ -27,86 +81,44 @@
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='item_id' class='col-sm-2 control-label'>" . __('Item Id') . "</label>
+                                        <label for='expiration_date' class='col-sm-2 control-label'>" . __('Expiration Date') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('item_id', ['class' => 'form-control', 'id' => 'item_id', 'label' => false]);                
+                                        echo $this->Form->input('expiration_date', ['class' => 'form-control', 'id' => 'expiration_date', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='item_name' class='col-sm-2 control-label'>" . __('Item Name') . "</label>
+                                        <label for='part_800' class='col-sm-2 control-label'>" . __('Part 800') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('item_name', ['class' => 'form-control', 'id' => 'item_name', 'label' => false]);                
+                                        echo $this->Form->input('part_800', ['class' => 'form-control', 'id' => 'part_800', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='item_number' class='col-sm-2 control-label'>" . __('Item Number') . "</label>
+                                        <label for='front_stockroom' class='col-sm-2 control-label'>" . __('Front Stockroom') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('item_number', ['class' => 'form-control', 'id' => 'item_number', 'label' => false]);                
+                                        echo $this->Form->input('front_stockroom', ['class' => 'form-control', 'id' => 'front_stockroom', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='barcode_number' class='col-sm-2 control-label'>" . __('Barcode Number') . "</label>
+                                        <label for='back_stockroom' class='col-sm-2 control-label'>" . __('Back Stockroom') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('barcode_number', ['class' => 'form-control', 'id' => 'barcode_number', 'label' => false]);                
+                                        echo $this->Form->input('back_stockroom', ['class' => 'form-control', 'id' => 'back_stockroom', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='website_link' class='col-sm-2 control-label'>" . __('Website Link') . "</label>
+                                        <label for='rig' class='col-sm-2 control-label'>" . __('Rig') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('website_link', ['class' => 'form-control', 'id' => 'website_link', 'label' => false]);                
+                                        echo $this->Form->input('rig', ['class' => 'form-control', 'id' => 'rig', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='pack_price' class='col-sm-2 control-label'>" . __('Pack Price') . "</label>
+                                        <label for='easv' class='col-sm-2 control-label'>" . __('Easv') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('pack_price', ['class' => 'form-control', 'id' => 'pack_price', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='pack_price_uom' class='col-sm-2 control-label'>" . __('Pack Price Uom') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('pack_price_uom', ['class' => 'form-control', 'id' => 'pack_price_uom', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='pack_quantity' class='col-sm-2 control-label'>" . __('Pack Quantity') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('pack_quantity', ['class' => 'form-control', 'id' => 'pack_quantity', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='pack_quantity_uom' class='col-sm-2 control-label'>" . __('Pack Quantity Uom') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('pack_quantity_uom', ['class' => 'form-control', 'id' => 'pack_quantity_uom', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='sub_pack_quantity' class='col-sm-2 control-label'>" . __('Sub Pack Quantity') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('sub_pack_quantity', ['class' => 'form-control', 'id' => 'sub_pack_quantity', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='sub_pack_quantity_uom' class='col-sm-2 control-label'>" . __('Sub Pack Quantity Uom') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('sub_pack_quantity_uom', ['class' => 'form-control', 'id' => 'sub_pack_quantity_uom', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='is_preferd_vendor' class='col-sm-2 control-label'>" . __('Is Preferd Vendor') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('is_preferd_vendor', ['class' => 'form-control', 'id' => 'is_preferd_vendor', 'label' => false]);                
+                                        echo $this->Form->input('easv', ['class' => 'form-control', 'id' => 'easv', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "

@@ -27,6 +27,9 @@
         </li>
         <li id="users_nav" title="Users" class="<?= $nav_selected["vendors"] ?>">
             <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "index"],["escape" => false]) ?>
+        </li>
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["items"] ?>">
+            <?= $this->Html->link('<i class="fa fa-newspaper-o"></i><span>' . __("Items") . "</span>",["controller" => "items", "action" => "index"],["escape" => false]) ?>
         </li>        
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["groups"] ?>">
             <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
@@ -37,6 +40,9 @@
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["vehicle_types"] ?>">
             <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Vehicle Types") . "</span>",["controller" => "vehicle_types", "action" => "index"],["escape" => false]) ?>
         </li>
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["item_categories"] ?>">
+            <?= $this->Html->link('<i class="fa fa-list-alt"></i><span>' . __("Item Categories") . "</span>",["controller" => "item_categories", "action" => "index"],["escape" => false]) ?>
+        </li>        
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["account_types"] ?>">
             <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Account Types") . "</span>",["controller" => "account_types", "action" => "index"],["escape" => false]) ?>
         </li>        

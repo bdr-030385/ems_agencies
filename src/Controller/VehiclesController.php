@@ -2,6 +2,14 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Routing\Router;
+use App\Controller\SyncServiceController;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\Mailer\Email;
 
 /**
  * Vehicles Controller

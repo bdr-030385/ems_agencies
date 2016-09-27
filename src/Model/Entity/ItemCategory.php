@@ -4,30 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * VendorItem Entity
+ * ItemCategory Entity
  *
  * @property int $id
- * @property int $vendor_id
- * @property int $item_id
- * @property string $item_name
- * @property string $item_number
- * @property string $barcode_number
- * @property string $website_link
- * @property float $pack_price
- * @property string $pack_price_uom
- * @property int $pack_quantity
- * @property string $pack_quantity_uom
- * @property int $sub_pack_quantity
- * @property string $sub_pack_quantity_uom
- * @property int $is_preferd_vendor
- * @property string $note
+ * @property int $agency_id
+ * @property string $name
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\Vendor $vendor
- * @property \App\Model\Entity\Item $item
+ * @property \App\Model\Entity\Agency $agency
+ * @property \App\Model\Entity\Item[] $items
  */
-class VendorItem extends Entity
+class ItemCategory extends Entity
 {
 
     /**

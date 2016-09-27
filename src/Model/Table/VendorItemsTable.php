@@ -63,6 +63,57 @@ class VendorItemsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
+        $validator
+            ->requirePresence('item_name', 'create')
+            ->notEmpty('item_name');
+
+        $validator
+            ->requirePresence('item_number', 'create')
+            ->notEmpty('item_number');
+
+        $validator
+            ->requirePresence('barcode_number', 'create')
+            ->notEmpty('barcode_number');
+
+        $validator
+            ->requirePresence('website_link', 'create')
+            ->notEmpty('website_link');
+
+        $validator
+            ->numeric('pack_price')
+            ->requirePresence('pack_price', 'create')
+            ->notEmpty('pack_price');
+
+        $validator
+            ->requirePresence('pack_price_uom', 'create')
+            ->notEmpty('pack_price_uom');
+
+        $validator
+            ->integer('pack_quantity')
+            ->requirePresence('pack_quantity', 'create')
+            ->notEmpty('pack_quantity');
+
+        $validator
+            ->requirePresence('pack_quantity_uom', 'create')
+            ->notEmpty('pack_quantity_uom');
+
+        $validator
+            ->integer('sub_pack_quantity')
+            ->requirePresence('sub_pack_quantity', 'create')
+            ->notEmpty('sub_pack_quantity');
+
+        $validator
+            ->requirePresence('sub_pack_quantity_uom', 'create')
+            ->notEmpty('sub_pack_quantity_uom');
+
+        $validator
+            ->integer('is_preferd_vendor')
+            ->requirePresence('is_preferd_vendor', 'create')
+            ->notEmpty('is_preferd_vendor');
+
+        $validator
+            ->allowEmpty('note');
+
         return $validator;
     }
 

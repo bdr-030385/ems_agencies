@@ -1,9 +1,9 @@
 
 <section class="content-header">
-    <h1><?= __('Vendor Items') ?></h1>
+    <h1><?= __('Vehicle Compartments') ?></h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('Vendor Items') ?></li>
+        <li class="active"><?= __('Vehicle Compartments') ?></li>
     </ol>
 </section>
 
@@ -13,7 +13,7 @@
         <section class="col-lg-12 ">
             <div class="box " >
                 <div class="box-header">
-                    <?= $this->Html->link(__('Add New Vendor Item'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
+                    <?= $this->Html->link(__('Add New Vehicle Compartment'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
@@ -21,30 +21,30 @@
                         <thead>
                             <tr>
                                                 <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('vendor_id') ?></th>
-                                                <th><?= $this->Paginator->sort('item_id') ?></th>
-                                                <th><?= $this->Paginator->sort('item_name') ?></th>
-                                                <th><?= $this->Paginator->sort('pack_price') ?></th>
-                                                <th><?= $this->Paginator->sort('pack_price_uom') ?></th>
-                                                <th><?= $this->Paginator->sort('pack_quantity') ?></th>
+                                                <th><?= $this->Paginator->sort('parent_id') ?></th>
+                                                <th><?= $this->Paginator->sort('vehicle_id') ?></th>
+                                                <th><?= $this->Paginator->sort('name') ?></th>
+                                                <th><?= $this->Paginator->sort('allow_seal') ?></th>
+                                                <th><?= $this->Paginator->sort('sort') ?></th>
+                                                <th><?= $this->Paginator->sort('created') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($vendorItems as $vendorItem): ?>
+                            <?php foreach ($vehicleCompartments as $vehicleCompartment): ?>
                             <tr>
-                                                <td><?= $this->Number->format($vendorItem->id) ?></td>
-                                                <td><?= $vendorItem->has('vendor') ? $this->Html->link($vendorItem->vendor->id, ['controller' => 'Vendors', 'action' => 'view', $vendorItem->vendor->id]) : '' ?></td>
-                                                <td><?= $this->Number->format($vendorItem->item_id) ?></td>
-                                                <td><?= h($vendorItem->item_name) ?></td>
-                                                <td><?= $this->Number->format($vendorItem->pack_price) ?></td>
-                                                <td><?= h($vendorItem->pack_price_uom) ?></td>
-                                                <td><?= $this->Number->format($vendorItem->pack_quantity) ?></td>
+                                                <td><?= $this->Number->format($vehicleCompartment->id) ?></td>
+                                                <td><?= $vehicleCompartment->has('parent_vehicle_compartment') ? $this->Html->link($vehicleCompartment->parent_vehicle_compartment->name, ['controller' => 'VehicleCompartments', 'action' => 'view', $vehicleCompartment->parent_vehicle_compartment->id]) : '' ?></td>
+                                                <td><?= $vehicleCompartment->has('vehicle') ? $this->Html->link($vehicleCompartment->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $vehicleCompartment->vehicle->id]) : '' ?></td>
+                                                <td><?= h($vehicleCompartment->name) ?></td>
+                                                <td><?= $this->Number->format($vehicleCompartment->allow_seal) ?></td>
+                                                <td><?= $this->Number->format($vehicleCompartment->sort) ?></td>
+                                                <td><?= h($vehicleCompartment->created) ?></td>
                                                 <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vendorItem->id],['class' => 'btn btn-info','escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vendorItem->id],['class' => 'btn btn-success', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vendorItem->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
-                                    <div id="modal-<?=$vendorItem->id?>" class="modal fade">
+                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vehicleCompartment->id],['class' => 'btn btn-info','escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vehicleCompartment->id],['class' => 'btn btn-success', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vehicleCompartment->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
+                                    <div id="modal-<?=$vehicleCompartment->id?>" class="modal fade">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -58,7 +58,7 @@
                                                 <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
                                                 <?= $this->Form->postLink(
                                                         'Yes',
-                                                        ['action' => 'delete', $vendorItem->id],
+                                                        ['action' => 'delete', $vehicleCompartment->id],
                                                         ['class' => 'btn btn-danger', 'escape' => false]
                                                     )
                                                 ?>

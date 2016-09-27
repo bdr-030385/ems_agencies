@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller;
 
-namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
@@ -14,12 +12,13 @@ use Cake\Filesystem\File;
 use Cake\Mailer\Email;
 
 /**
- * VendorItems Controller
+ * Items Controller
  *
- * @property \App\Model\Table\VendorItemsTable $VendorItems
+ * @property \App\Model\Table\ItemsTable $Items
  */
-class VendorItemsController extends AppController
+class ItemsController extends AppController
 {
+
     /**
      * initialize method    
      * 
@@ -32,7 +31,7 @@ class VendorItemsController extends AppController
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["vendors"];
+            $nav_selected = ["items"];
         }       
         $this->set('nav_selected', $nav_selected);
 
@@ -55,26 +54,26 @@ class VendorItemsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Vendors', 'Items']
+            'contain' => ['Agencies', 'ItemCategories', 'Vendors']
         ];
-        $this->set('vendorItems', $this->paginate($this->VendorItems));
-        $this->set('_serialize', ['vendorItems']);
+        $this->set('items', $this->paginate($this->Items));
+        $this->set('_serialize', ['items']);
     }
 
     /**
      * View method
      *
-     * @param string|null $id Vendor Item id.
+     * @param string|null $id Item id.
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $vendorItem = $this->VendorItems->get($id, [
-            'contain' => ['Vendors', 'Items']
+        $item = $this->Items->get($id, [
+            'contain' => ['Agencies', 'ItemCategories', 'Vendors', 'ItemExpirations', 'VendorItems']
         ]);
-        $this->set('vendorItem', $vendorItem);
-        $this->set('_serialize', ['vendorItem']);
+        $this->set('item', $item);
+        $this->set('_serialize', ['item']);
     }
 
     /**
@@ -84,11 +83,11 @@ class VendorItemsController extends AppController
      */
     public function add()
     {
-        $vendorItem = $this->VendorItems->newEntity();
+        $item = $this->Items->newEntity();
         if ($this->request->is('post')) {
-            $vendorItem = $this->VendorItems->patchEntity($vendorItem, $this->request->data);
-            if ($this->VendorItems->save($vendorItem)) {
-                $this->Flash->success(__('The vendor item has been saved.'));
+            $item = $this->Items->patchEntity($item, $this->request->data);
+            if ($this->Items->save($item)) {
+                $this->Flash->success(__('The item has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'index']);
@@ -96,31 +95,32 @@ class VendorItemsController extends AppController
                     return $this->redirect(['action' => 'add']);
                 }                    
             } else {
-                $this->Flash->error(__('The vendor item could not be saved. Please, try again.'));
+                $this->Flash->error(__('The item could not be saved. Please, try again.'));
             }
         }
-        $vendors = $this->VendorItems->Vendors->find('list', ['limit' => 200]);
-        $items = $this->VendorItems->Items->find('list', ['limit' => 200]);
-        $this->set(compact('vendorItem', 'vendors', 'items'));
-        $this->set('_serialize', ['vendorItem']);
+        $agencies = $this->Items->Agencies->find('list', ['limit' => 200]);
+        $itemCategories = $this->Items->ItemCategories->find('list', ['limit' => 200]);
+        $vendors = $this->Items->Vendors->find('list', ['limit' => 200]);
+        $this->set(compact('item', 'agencies', 'itemCategories', 'vendors'));
+        $this->set('_serialize', ['item']);
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Vendor Item id.
+     * @param string|null $id Item id.
      * @return void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $vendorItem = $this->VendorItems->get($id, [
+        $item = $this->Items->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $vendorItem = $this->VendorItems->patchEntity($vendorItem, $this->request->data);
-            if ($this->VendorItems->save($vendorItem)) {
-                $this->Flash->success(__('The vendor item has been saved.'));
+            $item = $this->Items->patchEntity($item, $this->request->data);
+            if ($this->Items->save($item)) {
+                $this->Flash->success(__('The item has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'index']);
@@ -128,30 +128,31 @@ class VendorItemsController extends AppController
                     return $this->redirect(['action' => 'edit', $id]);
                 }         
             } else {
-                $this->Flash->error(__('The vendor item could not be saved. Please, try again.'));
+                $this->Flash->error(__('The item could not be saved. Please, try again.'));
             }
         }
-        $vendors = $this->VendorItems->Vendors->find('list', ['limit' => 200]);
-        $items = $this->VendorItems->Items->find('list', ['limit' => 200]);
-        $this->set(compact('vendorItem', 'vendors', 'items'));
-        $this->set('_serialize', ['vendorItem']);
+        $agencies = $this->Items->Agencies->find('list', ['limit' => 200]);
+        $itemCategories = $this->Items->ItemCategories->find('list', ['limit' => 200]);
+        $vendors = $this->Items->Vendors->find('list', ['limit' => 200]);
+        $this->set(compact('item', 'agencies', 'itemCategories', 'vendors'));
+        $this->set('_serialize', ['item']);
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Vendor Item id.
+     * @param string|null $id Item id.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $vendorItem = $this->VendorItems->get($id);
-        if ($this->VendorItems->delete($vendorItem)) {
-            $this->Flash->success(__('The vendor item has been deleted.'));
+        $item = $this->Items->get($id);
+        if ($this->Items->delete($item)) {
+            $this->Flash->success(__('The item has been deleted.'));
         } else {
-            $this->Flash->error(__('The vendor item could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The item could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
     }

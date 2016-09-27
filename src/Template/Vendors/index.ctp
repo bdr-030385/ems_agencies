@@ -43,6 +43,7 @@
                                                 <td class="actions">
                                     <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vendor->id],['class' => 'btn btn-info','escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vendor->id],['class' => 'btn btn-success', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-medkit"></i>', ['controller' => 'vendor_items', 'action' => 'index', $vendor->id],['class' => 'btn btn-success', 'escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vendor->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
                                     <div id="modal-<?=$vendor->id?>" class="modal fade">
                                         <div class="modal-dialog">
