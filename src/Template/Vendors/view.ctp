@@ -15,20 +15,56 @@
             <td><?= h($vendor->vendor_name) ?></td>
         </tr>
         <tr>
+            <th><?= __('Phone Number') ?></th>
+            <td><?= h($vendor->phone_number) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Address') ?></th>
+            <td><?= h($vendor->address) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('State') ?></th>
+            <td><?= h($vendor->state) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Zip') ?></th>
+            <td><?= h($vendor->zip) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Email') ?></th>
             <td><?= h($vendor->email) ?></td>
         </tr>
         <tr>
-            <th><?= __('Contact Number') ?></th>
-            <td><?= h($vendor->contact_number) ?></td>
+            <th><?= __('Contact Person') ?></th>
+            <td><?= h($vendor->contact_person) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Contact Person Phone') ?></th>
+            <td><?= h($vendor->contact_person_phone) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Contact Person Email') ?></th>
+            <td><?= h($vendor->contact_person_email) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Tearms') ?></th>
+            <td><?= h($vendor->tearms) ?></td>
         </tr>
         <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($vendor->id) ?></td>
         </tr>
     <tr>
-        <th><?= __('Address') ?></th>
-        <td><?= $this->Text->autoParagraph(h($vendor->address)); ?></td>        
+        <th><?= __('City') ?></th>
+        <td><?= $this->Text->autoParagraph(h($vendor->city)); ?></td>        
+    </tr>
+    <tr>
+        <th><?= __('Website') ?></th>
+        <td><?= $this->Text->autoParagraph(h($vendor->website)); ?></td>        
+    </tr>
+    <tr>
+        <th><?= __('Note') ?></th>
+        <td><?= $this->Text->autoParagraph(h($vendor->note)); ?></td>        
     </tr>
         <tr>
             <th><?= __('Created') ?></th>

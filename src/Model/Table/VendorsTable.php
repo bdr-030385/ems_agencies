@@ -63,17 +63,48 @@ class VendorsTable extends Table
             ->notEmpty('vendor_name');
 
         $validator
+            ->requirePresence('phone_number', 'create')
+            ->notEmpty('phone_number');
+
+        $validator
+            ->requirePresence('address', 'create')
+            ->notEmpty('address');
+
+        $validator
+            ->requirePresence('city', 'create')
+            ->notEmpty('city');
+
+        $validator
+            ->requirePresence('state', 'create')
+            ->notEmpty('state');
+
+        $validator
+            ->requirePresence('zip', 'create')
+            ->notEmpty('zip');
+
+        $validator
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmpty('email');
 
         $validator
-            ->requirePresence('contact_number', 'create')
-            ->notEmpty('contact_number');
+            ->requirePresence('website', 'create')
+            ->notEmpty('website');
 
         $validator
-            ->requirePresence('address', 'create')
-            ->notEmpty('address');
+            ->allowEmpty('contact_person');
+
+        $validator
+            ->allowEmpty('contact_person_phone');
+
+        $validator
+            ->allowEmpty('contact_person_email');
+
+        $validator
+            ->allowEmpty('tearms');
+
+        $validator
+            ->allowEmpty('note');
 
         return $validator;
     }

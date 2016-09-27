@@ -1,9 +1,9 @@
 
 <section class="content-header">
-    <h1><?= __('Vendors') ?></h1>
+    <h1><?= __('Vendor Items') ?></h1>
     <ol class="breadcrumb">
         <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('Vendors') ?></li>
+        <li class="active"><?= __('Vendor Items') ?></li>
     </ol>
 </section>
 
@@ -13,7 +13,7 @@
         <section class="col-lg-12 ">
             <div class="box " >
                 <div class="box-header">
-                    <?= $this->Html->link(__('Add New Vendor'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
+                    <?= $this->Html->link(__('Add New Vendor Item'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
                     <h3 class="box-title text-black" ></h3>
                 </div>
                 <div class="box-body">
@@ -21,30 +21,26 @@
                         <thead>
                             <tr>
                                                 <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('agency_id') ?></th>
-                                                <th><?= $this->Paginator->sort('vendor_name') ?></th>
-                                                <th><?= $this->Paginator->sort('phone_number') ?></th>
-                                                <th><?= $this->Paginator->sort('address') ?></th>
-                                                <th><?= $this->Paginator->sort('state') ?></th>
-                                                <th><?= $this->Paginator->sort('zip') ?></th>
+                                                <th><?= $this->Paginator->sort('vendor_id') ?></th>
+                                                <th><?= $this->Paginator->sort('item_id') ?></th>
+                                                <th><?= $this->Paginator->sort('created') ?></th>
+                                                <th><?= $this->Paginator->sort('modified') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($vendors as $vendor): ?>
+                            <?php foreach ($vendorItems as $vendorItem): ?>
                             <tr>
-                                                <td><?= $this->Number->format($vendor->id) ?></td>
-                                                <td><?= $vendor->has('agency') ? $this->Html->link($vendor->agency->name, ['controller' => 'Agencies', 'action' => 'view', $vendor->agency->id]) : '' ?></td>
-                                                <td><?= h($vendor->vendor_name) ?></td>
-                                                <td><?= h($vendor->phone_number) ?></td>
-                                                <td><?= h($vendor->address) ?></td>
-                                                <td><?= h($vendor->state) ?></td>
-                                                <td><?= h($vendor->zip) ?></td>
+                                                <td><?= $this->Number->format($vendorItem->id) ?></td>
+                                                <td><?= $vendorItem->has('vendor') ? $this->Html->link($vendorItem->vendor->id, ['controller' => 'Vendors', 'action' => 'view', $vendorItem->vendor->id]) : '' ?></td>
+                                                <td><?= $this->Number->format($vendorItem->item_id) ?></td>
+                                                <td><?= h($vendorItem->created) ?></td>
+                                                <td><?= h($vendorItem->modified) ?></td>
                                                 <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vendor->id],['class' => 'btn btn-info','escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vendor->id],['class' => 'btn btn-success', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vendor->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
-                                    <div id="modal-<?=$vendor->id?>" class="modal fade">
+                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vendorItem->id],['class' => 'btn btn-info','escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vendorItem->id],['class' => 'btn btn-success', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vendorItem->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
+                                    <div id="modal-<?=$vendorItem->id?>" class="modal fade">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -58,7 +54,7 @@
                                                 <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
                                                 <?= $this->Form->postLink(
                                                         'Yes',
-                                                        ['action' => 'delete', $vendor->id],
+                                                        ['action' => 'delete', $vendorItem->id],
                                                         ['class' => 'btn btn-danger', 'escape' => false]
                                                     )
                                                 ?>

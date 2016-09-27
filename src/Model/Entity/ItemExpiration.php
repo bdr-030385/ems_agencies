@@ -4,29 +4,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Vendor Entity
+ * ItemExpiration Entity
  *
  * @property int $id
- * @property int $agency_id
- * @property string $vendor_name
- * @property string $phone_number
- * @property string $address
- * @property string $city
- * @property string $state
- * @property string $zip
- * @property string $email
- * @property string $website
- * @property string $contact_person
- * @property string $contact_person_phone
- * @property string $contact_person_email
- * @property string $tearms
- * @property string $note
+ * @property int $item_id
+ * @property \Cake\I18n\Time $expiration_date
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\Agency $agency
+ * @property \App\Model\Entity\Item $item
  */
-class Vendor extends Entity
+class ItemExpiration extends Entity
 {
 
     /**

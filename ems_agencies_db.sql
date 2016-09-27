@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2016 at 11:17 PM
+-- Generation Time: Sep 27, 2016 at 08:29 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.24
 
@@ -613,9 +613,18 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `agency_id` int(11) NOT NULL,
   `vendor_name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `phone_number` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `city` text COLLATE utf8_unicode_ci NOT NULL,
+  `state` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `zip` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
-  `contact_number` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
-  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `website` text COLLATE utf8_unicode_ci NOT NULL,
+  `contact_person` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact_person_phone` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact_person_email` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tearms` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -625,9 +634,25 @@ CREATE TABLE IF NOT EXISTS `vendors` (
 -- Dumping data for table `vendors`
 --
 
-INSERT INTO `vendors` (`id`, `agency_id`, `vendor_name`, `email`, `contact_number`, `address`, `created`, `modified`) VALUES
-(1, 2, 'Sample Vendor A', 'samplevendor@gmail.com', '12345', 'Sample Address', '2016-09-23 05:08:26', '2016-09-23 05:08:26'),
-(2, 1, 'Sample Vendor B', 'samplevendorb@gmail.com', '345345', 'Test a', '2016-09-23 05:08:50', '2016-09-23 05:08:50');
+INSERT INTO `vendors` (`id`, `agency_id`, `vendor_name`, `phone_number`, `address`, `city`, `state`, `zip`, `email`, `website`, `contact_person`, `contact_person_phone`, `contact_person_email`, `tearms`, `note`, `created`, `modified`) VALUES
+(1, 2, 'Sample Vendor A', 'samplevendor@gmail.com', '12345', 'Sample Address', '', '', '', '', NULL, NULL, NULL, NULL, NULL, '2016-09-23 05:08:26', '2016-09-23 05:08:26'),
+(2, 1, 'Sample Vendor B', 'samplevendorb@gmail.com', '345345', 'Test a', '', '', '', '', NULL, NULL, NULL, NULL, NULL, '2016-09-23 05:08:50', '2016-09-23 05:08:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor_items`
+--
+
+DROP TABLE IF EXISTS `vendor_items`;
+CREATE TABLE IF NOT EXISTS `vendor_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vendor_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
