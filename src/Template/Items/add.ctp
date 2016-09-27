@@ -1,3 +1,6 @@
+<script>
+var BASE_URL = '<?= $base_url; ?>';
+</script>
 <section class="content-header">
     <h1><?= __('Add Item') ?></h1>
     <ol class="breadcrumb">
@@ -35,7 +38,7 @@
                                                             echo "
                                     <div class='form-group'>
                                         <label for='item_category_id' class='col-sm-2 control-label'>" . __('Item Category Id') . "</label>
-                                        <div class='col-sm-6'>";
+                                        <div class='col-sm-6 item-categories-container'>";
                                          echo $this->Form->input('item_category_id', ['class' => 'form-control', 'id' => 'item_category_id', 'label' => false, 'options' => $itemCategories]);                 
                                     echo " </div></div>";    
                                                             echo "
@@ -56,7 +59,7 @@
                                     <div class='form-group'>
                                         <label for='reordering_point_category' class='col-sm-2 control-label'>" . __('Reordering Point Category') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('reordering_point_category', ['class' => 'form-control', 'id' => 'reordering_point_category', 'label' => false]);                
+                                        echo $this->Form->input('reordering_point_category', ['class' => 'form-control', 'id' => 'reordering_point_category', 'label' => false, 'options' => $reorder_category]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
@@ -70,7 +73,7 @@
                                     <div class='form-group'>
                                         <label for='reordering_amount_category' class='col-sm-2 control-label'>" . __('Reordering Amount Category') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('reordering_amount_category', ['class' => 'form-control', 'id' => 'reordering_amount_category', 'label' => false]);                
+                                        echo $this->Form->input('reordering_amount_category', ['class' => 'form-control', 'id' => 'reordering_amount_category', 'label' => false, 'options' => $reorder_category]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
@@ -82,8 +85,10 @@
                                                             echo "
                                     <div class='form-group'>
                                         <label for='expiration_date' class='col-sm-2 control-label'>" . __('Expiration Date') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('expiration_date', ['class' => 'form-control', 'id' => 'expiration_date', 'label' => false]);                
+                                        <div class='col-sm-6' style='margin-top:5px;'> 
+                                            <input type='checkbox' name='cb_expiration_date' class='chkbx-expiration-date' >
+                                            &nbsp; &nbsp; &nbsp;<input type='text' name='expiration_date' id='expiration_date' disabled='disabled' class='default-datepicker' value='".date("Y-m-d")."' >
+                                        ";               
                                     echo " </div></div>";    
                                     
                                                             echo "

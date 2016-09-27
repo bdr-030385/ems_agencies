@@ -307,9 +307,7 @@ function custom_redirect($object, $data) {
         $object->redirect(['controller' => get_customer_directory()."/".$data['controller'], 'action' => $data['action'], $data[0], $data[1], $data[2] ]);
     }else{
         $object->redirect(['controller' => get_customer_directory()."/".$data['controller'], 'action' => $data['action'] ]);
-    }
-
-      
+    }   
 }
 
 use Cake\Network\Session;
@@ -326,7 +324,9 @@ function get_customer_directory() {
      
 }
 
-
+function get_reorder_category() {
+    return array("Case"  => "Case", "Pack" => "Pack", "Piece" => "Piece");
+}
 
 
 

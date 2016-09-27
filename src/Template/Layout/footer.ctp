@@ -58,6 +58,8 @@
       echo $this->Html->script('app/users.js');  
     }elseif( $load_css_script == "groups" ){
       echo $this->Html->script('app/groups.js');  
+    }elseif( $load_css_script == "items" ){
+      echo $this->Html->script('app/items.js');  
     }
   }
   

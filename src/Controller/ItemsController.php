@@ -35,7 +35,7 @@ class ItemsController extends AppController
         }       
         $this->set('nav_selected', $nav_selected);
 
-        $this->set(['load_css_script' => 'users']);
+        $this->set(['load_css_script' => 'items']);
 
         $this->Users = TableRegistry::get('Users');
         $users = $this->Users->find('all');
@@ -101,7 +101,8 @@ class ItemsController extends AppController
         $agencies = $this->Items->Agencies->find('list', ['limit' => 200]);
         $itemCategories = $this->Items->ItemCategories->find('list', ['limit' => 200]);
         $vendors = $this->Items->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('item', 'agencies', 'itemCategories', 'vendors'));
+        $reorder_category = get_reorder_category();
+        $this->set(compact('item', 'agencies', 'itemCategories', 'vendors', 'reorder_category'));
         $this->set('_serialize', ['item']);
     }
 
@@ -134,7 +135,8 @@ class ItemsController extends AppController
         $agencies = $this->Items->Agencies->find('list', ['limit' => 200]);
         $itemCategories = $this->Items->ItemCategories->find('list', ['limit' => 200]);
         $vendors = $this->Items->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('item', 'agencies', 'itemCategories', 'vendors'));
+        $reorder_category = get_reorder_category();
+        $this->set(compact('item', 'agencies', 'itemCategories', 'vendors', 'reorder_category'));
         $this->set('_serialize', ['item']);
     }
 

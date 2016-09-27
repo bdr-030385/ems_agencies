@@ -43,7 +43,7 @@ class ItemCategoriesController extends AppController
             //$this->redirect(['controller' => 'customer', 'action' => 'register']);
         }
 
-        //$this->Auth->allow();
+        $this->Auth->allow(['load_item_category_by_agency_id']);
     }
 
     /**
@@ -151,5 +151,12 @@ class ItemCategoriesController extends AppController
             $this->Flash->error(__('The item category could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function load_item_category_by_agency_id()
+    {
+        $this->request->allowMethod(['post']);
+        $itemCategories = $this->ItemCategories->find('list', ['limit' => 200])->where(['ItemCategories.agency_id' => $this->request->data['agency_id'] ]);
+        $this->set(compact('itemCategories'));
     }
 }

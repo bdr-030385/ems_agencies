@@ -41,9 +41,11 @@
                                                 <td><?= $this->Number->format($item->reordering_point) ?></td>
                                                 <td><?= h($item->reordering_point_category) ?></td>
                                                 <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $item->id],['class' => 'btn btn-info','escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $item->id],['class' => 'btn btn-success', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$item->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>
+                                    <?= $this->Html->link('<i class="fa fa-sitemap"></i>', '#addVendorItemModal-'.$item->id,['data-toggle' => 'modal', 'class' => 'btn btn-info', 'escape' => false, 'title' => 'Add Vendor to Item']) ?>
+                                    <?php include('add_vendor_items.ctp'); ?>
+
+                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $item->id],['class' => 'btn btn-success', 'escape' => false, 'title' => 'Edit Item']) ?>
+                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$item->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false, 'title' => 'Delete Item']) ?>
                                     <div id="modal-<?=$item->id?>" class="modal fade">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
