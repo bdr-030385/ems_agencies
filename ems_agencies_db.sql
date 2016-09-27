@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2016 at 08:29 AM
+-- Generation Time: Sep 28, 2016 at 12:57 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.24
 
@@ -82,14 +82,14 @@ CREATE TABLE IF NOT EXISTS `acos` (
   PRIMARY KEY (`id`),
   KEY `lft` (`lft`,`rght`),
   KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=450 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
 
 --
 -- Dumping data for table `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, NULL, NULL, 'controllers', 1, 278),
+(1, NULL, NULL, NULL, 'controllers', 1, 348),
 (2, 1, NULL, NULL, 'Groups', 2, 17),
 (3, 2, NULL, NULL, 'index', 3, 4),
 (4, 2, NULL, NULL, 'view', 5, 6),
@@ -227,7 +227,42 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (446, 443, NULL, NULL, 'add', 269, 270),
 (447, 443, NULL, NULL, 'edit', 271, 272),
 (448, 443, NULL, NULL, 'delete', 273, 274),
-(449, 443, NULL, NULL, 'isAuthorized', 275, 276);
+(449, 443, NULL, NULL, 'isAuthorized', 275, 276),
+(450, 1, NULL, NULL, 'ItemExpirations', 278, 291),
+(451, 450, NULL, NULL, 'index', 279, 280),
+(452, 450, NULL, NULL, 'view', 281, 282),
+(453, 450, NULL, NULL, 'add', 283, 284),
+(454, 450, NULL, NULL, 'edit', 285, 286),
+(455, 450, NULL, NULL, 'delete', 287, 288),
+(456, 450, NULL, NULL, 'isAuthorized', 289, 290),
+(457, 1, NULL, NULL, 'VehicleCompartments', 292, 305),
+(458, 457, NULL, NULL, 'index', 293, 294),
+(459, 457, NULL, NULL, 'view', 295, 296),
+(460, 457, NULL, NULL, 'add', 297, 298),
+(461, 457, NULL, NULL, 'edit', 299, 300),
+(462, 457, NULL, NULL, 'delete', 301, 302),
+(463, 457, NULL, NULL, 'isAuthorized', 303, 304),
+(464, 1, NULL, NULL, 'VendorItems', 306, 319),
+(465, 464, NULL, NULL, 'index', 307, 308),
+(466, 464, NULL, NULL, 'view', 309, 310),
+(467, 464, NULL, NULL, 'add', 311, 312),
+(468, 464, NULL, NULL, 'edit', 313, 314),
+(469, 464, NULL, NULL, 'delete', 315, 316),
+(470, 464, NULL, NULL, 'isAuthorized', 317, 318),
+(471, 1, NULL, NULL, 'ItemCategories', 320, 333),
+(472, 471, NULL, NULL, 'index', 321, 322),
+(473, 471, NULL, NULL, 'view', 323, 324),
+(474, 471, NULL, NULL, 'add', 325, 326),
+(475, 471, NULL, NULL, 'edit', 327, 328),
+(476, 471, NULL, NULL, 'delete', 329, 330),
+(477, 471, NULL, NULL, 'isAuthorized', 331, 332),
+(478, 1, NULL, NULL, 'Items', 334, 347),
+(479, 478, NULL, NULL, 'index', 335, 336),
+(480, 478, NULL, NULL, 'view', 337, 338),
+(481, 478, NULL, NULL, 'add', 339, 340),
+(482, 478, NULL, NULL, 'edit', 341, 342),
+(483, 478, NULL, NULL, 'delete', 343, 344),
+(484, 478, NULL, NULL, 'isAuthorized', 345, 346);
 
 -- --------------------------------------------------------
 
@@ -411,6 +446,68 @@ INSERT INTO `groups` (`id`, `name`, `is_archive`, `created`, `modified`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agency_id` int(11) NOT NULL,
+  `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `item_category_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `reordering_point` int(11) NOT NULL,
+  `reordering_point_category` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `reordering_amount` float NOT NULL,
+  `reordering_amount_category` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `expiration_date` date NOT NULL,
+  `part_800` int(11) NOT NULL,
+  `front_stockroom` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `back_stockroom` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `rig` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `easv` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `note` text COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_categories`
+--
+
+DROP TABLE IF EXISTS `item_categories`;
+CREATE TABLE IF NOT EXISTS `item_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agency_id` int(11) NOT NULL,
+  `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_expirations`
+--
+
+DROP TABLE IF EXISTS `item_expirations`;
+CREATE TABLE IF NOT EXISTS `item_expirations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `expiration_date` date NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `member_types`
 --
 
@@ -564,6 +661,26 @@ INSERT INTO `vehicles` (`id`, `agency_id`, `vehicle_type_id`, `color_id`, `numbe
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `vehicle_compartments`
+--
+
+DROP TABLE IF EXISTS `vehicle_compartments`;
+CREATE TABLE IF NOT EXISTS `vehicle_compartments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
+  `name` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `allow_seal` smallint(2) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vehicle_files`
 --
 
@@ -649,6 +766,18 @@ CREATE TABLE IF NOT EXISTS `vendor_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `vendor_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
+  `item_name` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
+  `item_number` text COLLATE utf8_unicode_ci NOT NULL,
+  `barcode_number` text COLLATE utf8_unicode_ci NOT NULL,
+  `website_link` text COLLATE utf8_unicode_ci NOT NULL,
+  `pack_price` float(11,2) NOT NULL,
+  `pack_price_uom` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `pack_quantity` int(11) NOT NULL,
+  `pack_quantity_uom` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `sub_pack_quantity` int(11) NOT NULL,
+  `sub_pack_quantity_uom` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `is_preferd_vendor` smallint(2) NOT NULL,
+  `note` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
