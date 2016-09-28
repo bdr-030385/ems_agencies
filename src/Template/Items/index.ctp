@@ -1,4 +1,6 @@
-
+<script>
+var BASE_URL = '<?= $base_url; ?>';
+</script>
 <section class="content-header">
     <h1><?= __('Items') ?></h1>
     <ol class="breadcrumb">
@@ -41,7 +43,7 @@
                                                 <td><?= $this->Number->format($item->reordering_point) ?></td>
                                                 <td><?= h($item->reordering_point_category) ?></td>
                                                 <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-sitemap"></i>', '#addVendorItemModal-'.$item->id,['data-toggle' => 'modal', 'class' => 'btn btn-info', 'escape' => false, 'title' => 'Add Vendor to Item']) ?>
+                                    <?= $this->Html->link('<i class="fa fa-sitemap"></i>', '#addVendorItemModal-'.$item->id,['data-toggle' => 'modal', 'class' => 'btn btn-info btn-load-vendor', 'data-agency-id' => $item->agency_id, 'escape' => false, 'title' => 'Add Vendor to Item']) ?>
                                     <?php include('add_vendor_items.ctp'); ?>
 
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $item->id],['class' => 'btn btn-success', 'escape' => false, 'title' => 'Edit Item']) ?>

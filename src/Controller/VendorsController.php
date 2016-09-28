@@ -43,7 +43,7 @@ class VendorsController extends AppController
             //$this->redirect(['controller' => 'customer', 'action' => 'register']);
         }
 
-        //$this->Auth->allow();
+        $this->Auth->allow(['load_vendor_by_agency_id']);
     }
 
     /**
@@ -151,5 +151,21 @@ class VendorsController extends AppController
             $this->Flash->error(__('The vendor could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function load_vendor_by_agency_id()
+    {
+        $this->request->allowMethod(['post']);
+        $vendors = $this->Vendors->find('all', ['limit' => 200])->where(['Vendors.agency_id' => $this->request->data['agency_id'] ]);
+        $vendors = $vendors->toArray();
+        $data = array();
+        foreach($vendors as $value) {
+            $data[$value['id']] = $value['vendor_name'];
+            
+        }
+
+        $vendors = $data;
+
+        $this->set(compact('vendors'));
     }
 }

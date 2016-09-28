@@ -43,7 +43,7 @@ class ItemsController extends AppController
             //$this->redirect(['controller' => 'customer', 'action' => 'register']);
         }
 
-        //$this->Auth->allow();
+        $this->Auth->allow(['add_vendor_item']);
     }
 
     /**
@@ -100,7 +100,15 @@ class ItemsController extends AppController
         }
         $agencies = $this->Items->Agencies->find('list', ['limit' => 200]);
         $itemCategories = $this->Items->ItemCategories->find('list', ['limit' => 200]);
-        $vendors = $this->Items->Vendors->find('list', ['limit' => 200]);
+        $vendors = $this->Items->Vendors->find('all', ['limit' => 200]);
+        $vendors = $vendors->toArray();
+        $data = array();
+        foreach($vendors as $value) {
+            $data[$value['id']] = $value['vendor_name'];
+            
+        }
+
+        $vendors = $data;
         $reorder_category = get_reorder_category();
         $this->set(compact('item', 'agencies', 'itemCategories', 'vendors', 'reorder_category'));
         $this->set('_serialize', ['item']);
@@ -134,7 +142,15 @@ class ItemsController extends AppController
         }
         $agencies = $this->Items->Agencies->find('list', ['limit' => 200]);
         $itemCategories = $this->Items->ItemCategories->find('list', ['limit' => 200]);
-        $vendors = $this->Items->Vendors->find('list', ['limit' => 200]);
+        $vendors = $this->Items->Vendors->find('all', ['limit' => 200]);
+        $vendors = $vendors->toArray();
+        $data = array();
+        foreach($vendors as $value) {
+            $data[$value['id']] = $value['vendor_name'];
+            
+        }
+
+        $vendors = $data;
         $reorder_category = get_reorder_category();
         $this->set(compact('item', 'agencies', 'itemCategories', 'vendors', 'reorder_category'));
         $this->set('_serialize', ['item']);
@@ -157,5 +173,22 @@ class ItemsController extends AppController
             $this->Flash->error(__('The item could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function add_vendor_item()
+    {
+        $this->VendorItems = TableRegistry::get('VendorItems');
+        $vendorItem = $this->VendorItems->newEntity();
+        if ($this->request->is('post')) {
+            $vendorItem = $this->VendorItems->patchEntity($vendorItem, $this->request->data);
+            if ($this->VendorItems->save($vendorItem)) {
+                $this->Flash->success(__('The vendor item has been saved.'));
+                $action = $this->request->data['save'];
+                return $this->redirect(['action' => 'index']);                   
+            } else {
+                $this->Flash->error(__('The vendor item could not be saved. Please, try again.'));
+            }
+        }
+
     }
 }

@@ -21,7 +21,20 @@ $(function(){
 
 	loadItemCategoryByAgencyId($('#agency_id').val());
 
-})
+	$('.btn-load-vendor').click(function(){
+		var agency_id = $(this).attr("data-agency-id");
+		loadVendorByAgencyId(agency_id)
+	});
+
+});
+
+function loadVendorByAgencyId(agency_id)
+{
+	$('.vendor-list-container').html('<div style="margin-top:6px"><i class="fa fa-spin fa-spinner"></i> Loading...</div>');
+	$.post(BASE_URL + "vendors/load_vendor_by_agency_id",{agency_id:agency_id},function(o){
+		$('.vendor-list-container').html(o);
+	});
+}
 
 function loadItemCategoryByAgencyId(agency_id)
 {
