@@ -86,17 +86,18 @@ var BASE_URL = '<?= $base_url; ?>';
                                     <div class='form-group'>
                                         <label for='expiration_date' class='col-sm-2 control-label'>" . __('Expiration Date') . "</label>
                                         <div class='col-sm-6' style='margin-top:5px;'> 
-                                            <input type='checkbox' ".($item->expiration_date != '' ? 'checked="checked"' : '')." name='cb_expiration_date' class='chkbx-expiration-date' >
-                                            &nbsp; &nbsp; &nbsp;<input type='text' name='expiration_date' id='expiration_date' disabled='disabled' class='default-datepicker' value='".date("Y-m-d")."' >
-                                        ";                   
+                                            <input ".($item->has_expiration == 1 ? 'checked="checked"' : '' )." type='checkbox' name='has_expiration' value='1' class='chkbx-expiration-date' >
+                                        ";               
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='part_800' class='col-sm-2 control-label'>" . __('Part 800') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('part_800', ['class' => 'form-control', 'id' => 'part_800', 'label' => false]);                
-                                    echo " </div></div>";    
+                                        <label for='part_800' class='col-sm-2 control-label'>" . __('Legally Required') . "</label>
+                                        <div class='col-sm-6' style='margin-top:5px;'> 
+                                            <input ".($item->is_part_800 == 1 ? 'checked="checked"' : '' )." type='checkbox' name='is_part_800' value='1' class='chkbx-part-800' >
+                                            &nbsp; &nbsp; &nbsp;<input type='number' min='0' name='part_800' id='part_800' disabled='disabled' class='' value='".$item->part_800."' >
+                                        ";                   
+                                    echo " </div></div>"; 
                                     
                                                             echo "
                                     <div class='form-group'>

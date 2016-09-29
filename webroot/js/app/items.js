@@ -5,18 +5,18 @@ $(function(){
 		loadItemCategoryByAgencyId(agency_id);
 	});
 
-	$('.chkbx-expiration-date').change(function(){
+	$('.chkbx-part-800').change(function(){
 		if($(this).is(":checked")){
-			$('#expiration_date').removeAttr('disabled');
+			$('#part_800').removeAttr('disabled');
 		}else{
-			$('#expiration_date').attr('disabled','disabled');
+			$('#part_800').attr('disabled','disabled');
 		}
 	});
 
-	if($('.chkbx-expiration-date').is(":checked")){
-		$('#expiration_date').removeAttr('disabled');
+	if($('.chkbx-part-800').is(":checked")){
+		$('#part_800').removeAttr('disabled');
 	}else{
-		$('#expiration_date').attr('disabled','disabled');
+		$('#part_800').attr('disabled','disabled');
 	}
 
 	loadItemCategoryByAgencyId($('#agency_id').val());

@@ -86,16 +86,17 @@ var BASE_URL = '<?= $base_url; ?>';
                                     <div class='form-group'>
                                         <label for='expiration_date' class='col-sm-2 control-label'>" . __('Expiration Date') . "</label>
                                         <div class='col-sm-6' style='margin-top:5px;'> 
-                                            <input type='checkbox' name='cb_expiration_date' class='chkbx-expiration-date' >
-                                            &nbsp; &nbsp; &nbsp;<input type='text' name='expiration_date' id='expiration_date' disabled='disabled' class='default-datepicker' value='".date("Y-m-d")."' >
+                                            <input type='checkbox' name='has_expiration' value='1' class='chkbx-expiration-date' >
                                         ";               
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='part_800' class='col-sm-2 control-label'>" . __('Part 800') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('part_800', ['class' => 'form-control', 'id' => 'part_800', 'label' => false]);                
+                                        <label for='part_800' class='col-sm-2 control-label'>" . __('Legally Required') . "</label>
+                                        <div class='col-sm-6' style='margin-top:5px;'> 
+                                            <input type='checkbox' name='is_part_800' value='1' class='chkbx-part-800' >
+                                            &nbsp; &nbsp; &nbsp;<input type='number' min='0' name='part_800' id='part_800' disabled='disabled' class='' value='0' >
+                                        ";                   
                                     echo " </div></div>";    
                                     
                                                             echo "

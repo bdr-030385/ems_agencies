@@ -85,7 +85,9 @@ class ItemsController extends AppController
     {
         $item = $this->Items->newEntity();
         if ($this->request->is('post')) {
+            $this->request->data['expiration_date'] = '2100-01-01';
             $item = $this->Items->patchEntity($item, $this->request->data);
+            debug($item);
             if ($this->Items->save($item)) {
                 $this->Flash->success(__('The item has been saved.'));
                 $action = $this->request->data['save'];

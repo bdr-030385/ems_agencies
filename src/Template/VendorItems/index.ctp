@@ -22,7 +22,6 @@
                             <tr>
                                                 <th><?= $this->Paginator->sort('id') ?></th>
                                                 <th><?= $this->Paginator->sort('vendor_id') ?></th>
-                                                <th><?= $this->Paginator->sort('item_id') ?></th>
                                                 <th><?= $this->Paginator->sort('item_name') ?></th>
                                                 <th><?= $this->Paginator->sort('pack_price') ?></th>
                                                 <th><?= $this->Paginator->sort('pack_price_uom') ?></th>
@@ -34,8 +33,7 @@
                             <?php foreach ($vendorItems as $vendorItem): ?>
                             <tr>
                                                 <td><?= $this->Number->format($vendorItem->id) ?></td>
-                                                <td><?= $vendorItem->has('vendor') ? $this->Html->link($vendorItem->vendor->id, ['controller' => 'Vendors', 'action' => 'view', $vendorItem->vendor->id]) : '' ?></td>
-                                                <td><?= $this->Number->format($vendorItem->item_id) ?></td>
+                                                <td><?= $vendorItem->has('vendor') ? $this->Html->link($vendorItem->vendor->vendor_name, ['controller' => 'Vendors', 'action' => 'view', $vendorItem->vendor->id]) : '' ?></td>
                                                 <td><?= h($vendorItem->item_name) ?></td>
                                                 <td><?= $this->Number->format($vendorItem->pack_price) ?></td>
                                                 <td><?= h($vendorItem->pack_price_uom) ?></td>

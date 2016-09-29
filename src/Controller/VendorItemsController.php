@@ -99,8 +99,16 @@ class VendorItemsController extends AppController
                 $this->Flash->error(__('The vendor item could not be saved. Please, try again.'));
             }
         }
-        $vendors = $this->VendorItems->Vendors->find('list', ['limit' => 200]);
+        $vendors = $this->VendorItems->Vendors->find('all', ['limit' => 200]);
         $items = $this->VendorItems->Items->find('list', ['limit' => 200]);
+        $vendors = $vendors->toArray();
+
+        $data = array();
+        foreach($vendors as $value) {
+            $data[$value['id']] = $value['vendor_name'];
+        }
+
+        $vendors = $data;
         $this->set(compact('vendorItem', 'vendors', 'items'));
         $this->set('_serialize', ['vendorItem']);
     }
@@ -131,7 +139,15 @@ class VendorItemsController extends AppController
                 $this->Flash->error(__('The vendor item could not be saved. Please, try again.'));
             }
         }
-        $vendors = $this->VendorItems->Vendors->find('list', ['limit' => 200]);
+        $vendors = $this->VendorItems->Vendors->find('all', ['limit' => 200]);
+        $vendors = $vendors->toArray();
+
+        $data = array();
+        foreach($vendors as $value) {
+            $data[$value['id']] = $value['vendor_name'];
+        }
+
+        $vendors = $data;
         $items = $this->VendorItems->Items->find('list', ['limit' => 200]);
         $this->set(compact('vendorItem', 'vendors', 'items'));
         $this->set('_serialize', ['vendorItem']);
