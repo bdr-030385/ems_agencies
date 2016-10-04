@@ -22,6 +22,9 @@
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["vehicles"] ?>">
             <?= $this->Html->link('<i class="fa fa-car"></i><span>' . __("Vehicles") . "</span>",["controller" => "vehicles", "action" => "index"],["escape" => false]) ?>
         </li>
+        <li id="groups_nav" title="Groups" class="<?= $nav_selected["vehicle_compartments"] ?>">
+            <?= $this->Html->link('<i class="fa fa-user-md"></i><span>' . __("Vehicle Compartments") . "</span>",["controller" => "vehicle_compartments", "action" => "index"],["escape" => false]) ?>
+        </li>
         <li id="users_nav" title="Users" class="<?= $nav_selected["users"] ?>">
             <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/user_entities", "action" => "index"],["escape" => false]) ?>
         </li>

@@ -49,7 +49,7 @@
                                     <div class='form-group'>
                                         <label for='allow_seal' class='col-sm-2 control-label'>" . __('Allow Seal') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('allow_seal', ['class' => 'form-control', 'id' => 'allow_seal', 'label' => false]);                
+                                        echo $this->Form->select('allow_seal',["1" => "Yes", "0" => "No"],['class' => 'form-control', 'id' => 'allow_seal', 'label' => false]);
                                     echo " </div></div>";    
                                     
                                                             echo "

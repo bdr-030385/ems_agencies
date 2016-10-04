@@ -23,7 +23,7 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class VehicleCompartmentsTable extends Table
+class ParentVehicleCompartments extends Table
 {
 
     /**
@@ -50,10 +50,10 @@ class VehicleCompartmentsTable extends Table
             'foreignKey' => 'vehicle_id',
             'joinType' => 'INNER'
         ]);
-        /*$this->hasMany('ChildVehicleCompartments', [
+        $this->hasMany('ChildVehicleCompartments', [
             'className' => 'VehicleCompartments',
             'foreignKey' => 'parent_id'
-        ]);*/
+        ]);
     }
 
     /**
@@ -64,7 +64,7 @@ class VehicleCompartmentsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
+        /*$validator
             ->integer('id')
             ->allowEmpty('id', 'create');
 
@@ -82,7 +82,7 @@ class VehicleCompartmentsTable extends Table
 
         $validator
             ->integer('sort')
-            ->allowEmpty('sort');
+            ->allowEmpty('sort');*/
 
         return $validator;
     }
@@ -96,19 +96,9 @@ class VehicleCompartmentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        //$rules->add($rules->existsIn(['parent_id'], 'ParentVehicleCompartments'));
-        $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
+        /*$rules->add($rules->existsIn(['parent_id'], 'ParentVehicleCompartments'));
+        $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));*/
 
         return $rules;
-    }
-
-    public function findLastInsertedDataByVehicleId( Query $query, array $options ){
-        if( $options['vehicle_id'] > 0 ){
-            $query->select(['VehicleCompartments.sort'])            
-            ->where(['VehicleCompartments.vehicle_id' => $options['vehicle_id']])
-            ->order(['VehicleCompartments.sort' => 'DESC'])            
-            ;        
-        }        
-        return $query;
     }
 }

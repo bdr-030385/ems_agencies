@@ -38,7 +38,7 @@ class VehiclesTable extends Table
         parent::initialize($config);
 
         $this->table('vehicles');
-        $this->displayField('id');
+        $this->displayField('number_vehicle');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
