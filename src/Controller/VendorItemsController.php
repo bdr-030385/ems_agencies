@@ -100,8 +100,9 @@ class VendorItemsController extends AppController
             }
         }
         $vendors = $this->VendorItems->Vendors->find('all', ['limit' => 200]);
-        $items = $this->VendorItems->Items->find('list', ['limit' => 200]);
+        $items   = $this->VendorItems->Items->find('list', ['limit' => 200]);
         $vendors = $vendors->toArray();
+        $optionsUom = ['Case' => 'Case', 'Pack' => 'Pack', 'Piece' => 'Piece'];
 
         $data = array();
         foreach($vendors as $value) {
@@ -109,7 +110,7 @@ class VendorItemsController extends AppController
         }
 
         $vendors = $data;
-        $this->set(compact('vendorItem', 'vendors', 'items'));
+        $this->set(compact('vendorItem', 'vendors', 'items', 'optionsUom'));
         $this->set('_serialize', ['vendorItem']);
     }
 
@@ -141,6 +142,7 @@ class VendorItemsController extends AppController
         }
         $vendors = $this->VendorItems->Vendors->find('all', ['limit' => 200]);
         $vendors = $vendors->toArray();
+        $optionsUom = ['Case' => 'Case', 'Pack' => 'Pack', 'Piece' => 'Piece'];
 
         $data = array();
         foreach($vendors as $value) {
@@ -149,7 +151,7 @@ class VendorItemsController extends AppController
 
         $vendors = $data;
         $items = $this->VendorItems->Items->find('list', ['limit' => 200]);
-        $this->set(compact('vendorItem', 'vendors', 'items'));
+        $this->set(compact('vendorItem', 'vendors', 'items', 'optionsUom'));
         $this->set('_serialize', ['vendorItem']);
     }
 

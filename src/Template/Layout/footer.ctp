@@ -83,6 +83,15 @@ $(function(){
     openKCFinder_textbox($(this));
   });
 
+  $("#is_part_800").change(function(){
+    var selected = $(this).val();    
+    if( selected == 1 ){
+      $(".part-800-group").removeClass("hidden");      
+    }else{
+      $(".part-800-group").addClass("hidden");      
+    }
+  });
+
   //Sidebar widget settings
   $("#side-widget-push-notification").click(function(){
     if( $(this).is(':checked') ){

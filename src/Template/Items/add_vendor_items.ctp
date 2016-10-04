@@ -29,84 +29,84 @@
                             <div class='form-group' style='width:100%;'>
                                 <label for='item_name' class='col-sm-12 '>" . __('Item Name (vendor)') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('item_name', ['class' => 'form-control', 'id' => 'item_name', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('item_name', ['class' => 'form-control', 'id' => 'item_name', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='item_number' class='col-sm-12 '>" . __('Item Number') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('item_number', ['class' => 'form-control', 'id' => 'item_number', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('item_number', ['class' => 'form-control', 'id' => 'item_number', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='barcode_number' class='col-sm-12 '>" . __('Barcode Number') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('barcode_number', ['class' => 'form-control', 'id' => 'barcode_number', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('barcode_number', ['class' => 'form-control', 'id' => 'barcode_number', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='website_link' class='col-sm-12 '>" . __('Website Link') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('website_link', ['class' => 'form-control', 'id' => 'website_link', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('website_link', ['class' => 'form-control', 'id' => 'website_link', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='pack_price' class='col-sm-12 '>" . __('Pack Price') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('pack_price', ['class' => 'form-control', 'id' => 'pack_price', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('pack_price', ['class' => 'form-control', 'id' => 'pack_price', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='pack_price_uom' class='col-sm-12 '>" . __('Pack Price Uom') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('pack_price_uom', ['class' => 'form-control', 'id' => 'pack_price_uom', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('pack_price_uom', ['class' => 'form-control', 'id' => 'pack_price_uom', 'options' => $optionsUom, 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='pack_quantity' class='col-sm-12 '>" . __('Pack Quantity') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('pack_quantity', ['class' => 'form-control', 'id' => 'pack_quantity', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('pack_quantity', ['class' => 'form-control', 'id' => 'pack_quantity', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='pack_quantity_uom' class='col-sm-12 '>" . __('Pack Quantity Uom') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('pack_quantity_uom', ['class' => 'form-control', 'id' => 'pack_quantity_uom', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('pack_quantity_uom', ['class' => 'form-control', 'id' => 'pack_quantity_uom', 'options' => $optionsUom, 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='sub_pack_quantity' class='col-sm-12 '>" . __('Sub Pack Quantity') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('sub_pack_quantity', ['class' => 'form-control', 'id' => 'sub_pack_quantity', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('sub_pack_quantity', ['class' => 'form-control', 'id' => 'sub_pack_quantity', 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='sub_pack_quantity_uom' class='col-sm-12 '>" . __('Sub Pack Quantity Uom') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('sub_pack_quantity_uom', ['class' => 'form-control', 'id' => 'sub_pack_quantity_uom', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('sub_pack_quantity_uom', ['class' => 'form-control', 'id' => 'sub_pack_quantity_uom', 'options' => $optionsUom, 'label' => false, "required" => "required", 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='is_preferd_vendor' class='col-sm-12 '>" . __('Is Preferd Vendor') . "</label>
-                                <div class='col-sm-12'>";
-                                echo $this->Form->input('is_preferd_vendor', ['class' => 'form-control', 'id' => 'is_preferd_vendor', 'label' => false, 'style' => 'width:100%']);                
+                                <div class='col-sm-12'>";                                
+                                echo $this->Form->select('is_preferd_vendor',["1" => "Yes", "0" => "No"],['class' => 'form-control', 'id' => 'is_preferd_vendor', 'label' => false]);
                             echo " </div></div>";    
                             
                                                     echo "
                             <div class='form-group' style='width:100%;'>
                                 <label for='note' class='col-sm-12 '>" . __('Note') . "</label>
                                 <div class='col-sm-12'>";
-                                echo $this->Form->input('note', ['class' => 'form-control', 'id' => 'note', 'label' => false, 'style' => 'width:100%']);                
+                                echo $this->Form->input('note', ['type' => 'textarea', 'class' => 'form-control', 'id' => 'note', 'label' => false, 'style' => 'width:100%']);                
                             echo " </div></div>";    
                             
                                         ?>
@@ -115,7 +115,7 @@
         </div>
         
         <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
+            <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
             <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
         </div>
         <?= $this->Form->end() ?>

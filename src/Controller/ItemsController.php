@@ -56,7 +56,9 @@ class ItemsController extends AppController
         $this->paginate = [
             'contain' => ['Agencies', 'ItemCategories', 'Vendors']
         ];
+        $optionsUom = ['Case' => 'Case', 'Pack' => 'Pack', 'Piece' => 'Piece'];
         $this->set('items', $this->paginate($this->Items));
+        $this->set(['optionsUom' => $optionsUom]);
         $this->set('_serialize', ['items']);
     }
 
@@ -86,8 +88,10 @@ class ItemsController extends AppController
         $item = $this->Items->newEntity();
         if ($this->request->is('post')) {
             $this->request->data['expiration_date'] = '2100-01-01';
-            $item = $this->Items->patchEntity($item, $this->request->data);
-            debug($item);
+            if( $this->request->data['is_part_800'] == 0 ){
+                $this->request->data['part_800'] = "";
+            }             
+            $item = $this->Items->patchEntity($item, $this->request->data);            
             if ($this->Items->save($item)) {
                 $this->Flash->success(__('The item has been saved.'));
                 $action = $this->request->data['save'];
@@ -130,6 +134,9 @@ class ItemsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $item = $this->Items->patchEntity($item, $this->request->data);
+            if( $this->request->data['is_part_800'] == 0 ){
+                $this->request->data['part_800'] = "";
+            }
             if ($this->Items->save($item)) {
                 $this->Flash->success(__('The item has been saved.'));
                 $action = $this->request->data['save'];
@@ -184,13 +191,11 @@ class ItemsController extends AppController
         if ($this->request->is('post')) {
             $vendorItem = $this->VendorItems->patchEntity($vendorItem, $this->request->data);
             if ($this->VendorItems->save($vendorItem)) {
-                $this->Flash->success(__('The vendor item has been saved.'));
-                $action = $this->request->data['save'];
-                return $this->redirect(['action' => 'index']);                   
+                $this->Flash->success(__('The vendor item has been saved.'));                               
             } else {
                 $this->Flash->error(__('The vendor item could not be saved. Please, try again.'));
-            }
+            }            
         }
-
+        return $this->redirect(['action' => 'index']);    
     }
 }

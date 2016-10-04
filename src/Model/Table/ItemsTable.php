@@ -108,10 +108,10 @@ class ItemsTable extends Table
             ->requirePresence('expiration_date', 'create')
             ->notEmpty('expiration_date');
 
-        $validator
+        /*$validator
             ->integer('part_800')
             ->requirePresence('part_800', 'create')
-            ->notEmpty('part_800');
+            ->notEmpty('part_800');*/
 
         $validator
             ->requirePresence('front_stockroom', 'create')

@@ -125,6 +125,20 @@ var BASE_URL = '<?= $base_url; ?>';
                                         <label for='easv' class='col-sm-2 control-label'>" . __('Easv') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('easv', ['class' => 'form-control', 'id' => 'easv', 'label' => false]);                
+                                    echo " </div></div>";
+
+                                    echo "
+                                    <div class='form-group'>
+                                        <label for='easv' class='col-sm-2 control-label'>" . __('Is Part 800') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->select('is_part_800',["1" => "Yes", "0" => "No"],['class' => 'form-control', 'id' => 'is_part_800', 'label' => false]);
+                                    echo " </div></div>";
+
+                                    echo "
+                                    <div class='form-group part-800-group'>
+                                        <label for='easv' class='col-sm-2 control-label'>" . __('Part 800') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('part_800', ['class' => 'form-control', 'id' => 'part_800', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
@@ -140,7 +154,7 @@ var BASE_URL = '<?= $base_url; ?>';
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="action-fixed-bottom">
                                 <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
                                 <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
                             </div>
                         </div>
