@@ -111,13 +111,27 @@ $(function(){
       });
   });
 
+  $(".todo-list").sortable({
+    placeholder: "sort-highlight",
+    handle: ".handle",
+    forcePlaceholderSize: true,
+    zIndex: 999999
+  });
+
+  $('.btn-show-main-compartment').click(function(){
+    var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
+    $('#main-compartment-container').html("<div class='text-center' style='padding:20px'><i class='fa fa-spin fa-spinner'></i> Loading...</div>");
+    $.post(base_url+'vehicle_compartments/ajax_load_main_compartment',{vehicle_compartment_id:vehicle_compartment_id},function(o){
+      $('#main-compartment-container').html(o);
+    });
+  });
 
 });
 
 
-CKEDITOR.replace( 'ckeditor', {
+/*CKEDITOR.replace( 'ckeditor', {
       width: '600'
-    });
+    });*/
 
 function openKCFinder_textbox(field) {    
 

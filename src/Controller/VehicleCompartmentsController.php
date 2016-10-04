@@ -224,4 +224,36 @@ class VehicleCompartmentsController extends AppController
         $this->set(['vehicle' => $vehicle]);
         $this->set('_serialize', ['vehicleCompartments']);
     }
+
+    /**
+     * Ajax Load Vehicle Main Compartment method
+     *
+     *
+     * @return void
+     */
+    public function ajax_load_main_compartment()
+    {   
+        $this->viewBuilder()->layout(""); 
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $vehicle_compartment = $this->VehicleCompartments->get($data['vehicle_compartment_id'], []);
+            $vehicle             = $this->VehicleCompartments->Vehicles->get($vehicle_compartment->vehicle_id);
+
+            $this->Vehicles      = TableRegistry::get('Vehicles');
+            $copyable_vehicles   = $this->Vehicles->find('all')->where(['Vehicles.agency_id' => $vehicle->agency_id, 'Vehicles.id !=' => $vehicle->id]);
+
+            $this->ItemCategories      = TableRegistry::get('ItemCategories');
+            $item_categories           = $this->ItemCategories->find('all')->where(['ItemCategories.agency_id' => $vehicle->agency_id]);
+
+            $this->set([
+                'vehicle' => $vehicle, 
+                'vehicle_compartment' => $vehicle_compartment,
+                'copyable_vehicles' => $copyable_vehicles,
+                'item_categories' => $item_categories
+            ]);
+        }else{
+            echo 'No record found';
+        }
+    }
+
 }
