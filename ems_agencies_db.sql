@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.8
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2016 at 12:57 AM
--- Server version: 5.6.14
--- PHP Version: 5.5.24
+-- Generation Time: Oct 05, 2016 at 01:24 PM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 5.5.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ems_agencies_db`
@@ -27,13 +27,12 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `account_types`;
-CREATE TABLE IF NOT EXISTS `account_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `account_types` (
+  `id` int(11) NOT NULL,
   `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `account_types`
@@ -50,11 +49,10 @@ INSERT INTO `account_types` (`id`, `name`, `created`, `modified`) VALUES
 --
 
 DROP TABLE IF EXISTS `acl_phinxlog`;
-CREATE TABLE IF NOT EXISTS `acl_phinxlog` (
+CREATE TABLE `acl_phinxlog` (
   `version` bigint(20) NOT NULL,
   `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`version`)
+  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -71,25 +69,22 @@ INSERT INTO `acl_phinxlog` (`version`, `start_time`, `end_time`) VALUES
 --
 
 DROP TABLE IF EXISTS `acos`;
-CREATE TABLE IF NOT EXISTS `acos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `acos` (
+  `id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `model` varchar(255) DEFAULT NULL,
   `foreign_key` int(11) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
   `lft` int(11) DEFAULT NULL,
-  `rght` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `lft` (`lft`,`rght`),
-  KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
+  `rght` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, NULL, NULL, 'controllers', 1, 348),
+(1, NULL, NULL, NULL, 'controllers', 1, 364),
 (2, 1, NULL, NULL, 'Groups', 2, 17),
 (3, 2, NULL, NULL, 'index', 3, 4),
 (4, 2, NULL, NULL, 'view', 5, 6),
@@ -221,48 +216,56 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (440, 1, NULL, NULL, 'UserSettings', 258, 263),
 (441, 440, NULL, NULL, 'ajax_update_member_push_notification', 259, 260),
 (442, 440, NULL, NULL, 'isAuthorized', 261, 262),
-(443, 1, NULL, NULL, 'Vendors', 264, 277),
+(443, 1, NULL, NULL, 'Vendors', 264, 279),
 (444, 443, NULL, NULL, 'index', 265, 266),
 (445, 443, NULL, NULL, 'view', 267, 268),
 (446, 443, NULL, NULL, 'add', 269, 270),
 (447, 443, NULL, NULL, 'edit', 271, 272),
 (448, 443, NULL, NULL, 'delete', 273, 274),
 (449, 443, NULL, NULL, 'isAuthorized', 275, 276),
-(450, 1, NULL, NULL, 'ItemExpirations', 278, 291),
-(451, 450, NULL, NULL, 'index', 279, 280),
-(452, 450, NULL, NULL, 'view', 281, 282),
-(453, 450, NULL, NULL, 'add', 283, 284),
-(454, 450, NULL, NULL, 'edit', 285, 286),
-(455, 450, NULL, NULL, 'delete', 287, 288),
-(456, 450, NULL, NULL, 'isAuthorized', 289, 290),
-(457, 1, NULL, NULL, 'VehicleCompartments', 292, 305),
-(458, 457, NULL, NULL, 'index', 293, 294),
-(459, 457, NULL, NULL, 'view', 295, 296),
-(460, 457, NULL, NULL, 'add', 297, 298),
-(461, 457, NULL, NULL, 'edit', 299, 300),
-(462, 457, NULL, NULL, 'delete', 301, 302),
-(463, 457, NULL, NULL, 'isAuthorized', 303, 304),
-(464, 1, NULL, NULL, 'VendorItems', 306, 319),
-(465, 464, NULL, NULL, 'index', 307, 308),
-(466, 464, NULL, NULL, 'view', 309, 310),
-(467, 464, NULL, NULL, 'add', 311, 312),
-(468, 464, NULL, NULL, 'edit', 313, 314),
-(469, 464, NULL, NULL, 'delete', 315, 316),
-(470, 464, NULL, NULL, 'isAuthorized', 317, 318),
-(471, 1, NULL, NULL, 'ItemCategories', 320, 333),
-(472, 471, NULL, NULL, 'index', 321, 322),
-(473, 471, NULL, NULL, 'view', 323, 324),
-(474, 471, NULL, NULL, 'add', 325, 326),
-(475, 471, NULL, NULL, 'edit', 327, 328),
-(476, 471, NULL, NULL, 'delete', 329, 330),
-(477, 471, NULL, NULL, 'isAuthorized', 331, 332),
-(478, 1, NULL, NULL, 'Items', 334, 347),
-(479, 478, NULL, NULL, 'index', 335, 336),
-(480, 478, NULL, NULL, 'view', 337, 338),
-(481, 478, NULL, NULL, 'add', 339, 340),
-(482, 478, NULL, NULL, 'edit', 341, 342),
-(483, 478, NULL, NULL, 'delete', 343, 344),
-(484, 478, NULL, NULL, 'isAuthorized', 345, 346);
+(450, 1, NULL, NULL, 'ItemExpirations', 280, 293),
+(451, 450, NULL, NULL, 'index', 281, 282),
+(452, 450, NULL, NULL, 'view', 283, 284),
+(453, 450, NULL, NULL, 'add', 285, 286),
+(454, 450, NULL, NULL, 'edit', 287, 288),
+(455, 450, NULL, NULL, 'delete', 289, 290),
+(456, 450, NULL, NULL, 'isAuthorized', 291, 292),
+(457, 1, NULL, NULL, 'VehicleCompartments', 294, 317),
+(458, 457, NULL, NULL, 'index', 295, 296),
+(459, 457, NULL, NULL, 'view', 297, 298),
+(460, 457, NULL, NULL, 'add', 299, 300),
+(461, 457, NULL, NULL, 'edit', 301, 302),
+(462, 457, NULL, NULL, 'delete', 303, 304),
+(463, 457, NULL, NULL, 'isAuthorized', 305, 306),
+(464, 1, NULL, NULL, 'VendorItems', 318, 331),
+(465, 464, NULL, NULL, 'index', 319, 320),
+(466, 464, NULL, NULL, 'view', 321, 322),
+(467, 464, NULL, NULL, 'add', 323, 324),
+(468, 464, NULL, NULL, 'edit', 325, 326),
+(469, 464, NULL, NULL, 'delete', 327, 328),
+(470, 464, NULL, NULL, 'isAuthorized', 329, 330),
+(471, 1, NULL, NULL, 'ItemCategories', 332, 347),
+(472, 471, NULL, NULL, 'index', 333, 334),
+(473, 471, NULL, NULL, 'view', 335, 336),
+(474, 471, NULL, NULL, 'add', 337, 338),
+(475, 471, NULL, NULL, 'edit', 339, 340),
+(476, 471, NULL, NULL, 'delete', 341, 342),
+(477, 471, NULL, NULL, 'isAuthorized', 343, 344),
+(478, 1, NULL, NULL, 'Items', 348, 363),
+(479, 478, NULL, NULL, 'index', 349, 350),
+(480, 478, NULL, NULL, 'view', 351, 352),
+(481, 478, NULL, NULL, 'add', 353, 354),
+(482, 478, NULL, NULL, 'edit', 355, 356),
+(483, 478, NULL, NULL, 'delete', 357, 358),
+(484, 478, NULL, NULL, 'isAuthorized', 359, 360),
+(485, 471, NULL, NULL, 'load_item_category_by_agency_id', 345, 346),
+(486, 478, NULL, NULL, 'add_vendor_item', 361, 362),
+(488, 443, NULL, NULL, 'load_vendor_by_agency_id', 277, 278),
+(489, 457, NULL, NULL, 'vehicle', 307, 308),
+(490, 457, NULL, NULL, 'vehicle_add', 309, 310),
+(491, 457, NULL, NULL, 'subcompartments', 311, 312),
+(492, 457, NULL, NULL, 'ajax_load_main_compartment', 313, 314),
+(493, 457, NULL, NULL, 'ajax_load_items_by_category', 315, 316);
 
 -- --------------------------------------------------------
 
@@ -271,8 +274,8 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 --
 
 DROP TABLE IF EXISTS `agencies`;
-CREATE TABLE IF NOT EXISTS `agencies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `agencies` (
+  `id` int(11) NOT NULL,
   `account_type_id` int(11) NOT NULL,
   `member_type_id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -281,9 +284,8 @@ CREATE TABLE IF NOT EXISTS `agencies` (
   `start_date` date NOT NULL,
   `logo` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `agencies`
@@ -300,15 +302,14 @@ INSERT INTO `agencies` (`id`, `account_type_id`, `member_type_id`, `name`, `emt_
 --
 
 DROP TABLE IF EXISTS `announcements`;
-CREATE TABLE IF NOT EXISTS `announcements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `announcements` (
+  `id` int(11) NOT NULL,
   `user_entity_id` int(11) NOT NULL,
   `title` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -317,18 +318,15 @@ CREATE TABLE IF NOT EXISTS `announcements` (
 --
 
 DROP TABLE IF EXISTS `aros`;
-CREATE TABLE IF NOT EXISTS `aros` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `aros` (
+  `id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `model` varchar(255) DEFAULT NULL,
   `foreign_key` int(11) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
   `lft` int(11) DEFAULT NULL,
-  `rght` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `lft` (`lft`,`rght`),
-  KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+  `rght` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `aros`
@@ -373,18 +371,15 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 --
 
 DROP TABLE IF EXISTS `aros_acos`;
-CREATE TABLE IF NOT EXISTS `aros_acos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `aros_acos` (
+  `id` int(11) NOT NULL,
   `aro_id` int(11) NOT NULL,
   `aco_id` int(11) NOT NULL,
   `_create` varchar(2) NOT NULL DEFAULT '0',
   `_read` varchar(2) NOT NULL DEFAULT '0',
   `_update` varchar(2) NOT NULL DEFAULT '0',
-  `_delete` varchar(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `aro_id` (`aro_id`,`aco_id`),
-  KEY `aco_id` (`aco_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `_delete` varchar(2) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `aros_acos`
@@ -400,13 +395,12 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 --
 
 DROP TABLE IF EXISTS `colors`;
-CREATE TABLE IF NOT EXISTS `colors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `colors` (
+  `id` int(11) NOT NULL,
   `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `colors`
@@ -425,14 +419,13 @@ INSERT INTO `colors` (`id`, `name`, `created`, `modified`) VALUES
 --
 
 DROP TABLE IF EXISTS `groups`;
-CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `groups` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(180) CHARACTER SET latin1 NOT NULL,
   `is_archive` smallint(2) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `groups`
@@ -450,8 +443,8 @@ INSERT INTO `groups` (`id`, `name`, `is_archive`, `created`, `modified`) VALUES
 --
 
 DROP TABLE IF EXISTS `items`;
-CREATE TABLE IF NOT EXISTS `items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
   `agency_id` int(11) NOT NULL,
   `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `item_category_id` int(11) NOT NULL,
@@ -463,15 +456,26 @@ CREATE TABLE IF NOT EXISTS `items` (
   `vendor_id` int(11) NOT NULL,
   `expiration_date` date NOT NULL,
   `part_800` int(11) NOT NULL,
+  `is_part_800` int(2) NOT NULL,
+  `has_expiration` int(2) NOT NULL,
   `front_stockroom` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `back_stockroom` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `rig` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `easv` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `note` text COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `agency_id`, `name`, `item_category_id`, `quantity`, `reordering_point`, `reordering_point_category`, `reordering_amount`, `reordering_amount_category`, `vendor_id`, `expiration_date`, `part_800`, `is_part_800`, `has_expiration`, `front_stockroom`, `back_stockroom`, `rig`, `easv`, `note`, `created`, `modified`) VALUES
+(1, 1, 'Item1', 1, 1, 1, 'Case', 1, 'Case', 1, '2016-09-28', 1, 0, 0, '1', '1', '1', '1', '1', '2016-09-28 01:18:22', '2016-10-05 19:09:17'),
+(2, 1, 'Item2', 1, 123, 123, 'Case', 123, 'Case', 1, '1970-01-01', 55, 1, 1, '123', '123', '123', '123', '123', '2016-09-29 23:40:48', '2016-10-05 19:09:27'),
+(3, 1, 'Item3', 2, 1, 1, 'Case', 1, 'Case', 1, '2100-01-01', 0, 1, 0, '1', '1', '1', '1', '1', '2016-10-05 19:09:49', '2016-10-05 19:09:49'),
+(4, 1, 'Item4', 2, 1, 1, 'Case', 1, 'Case', 1, '2100-01-01', 1, 1, 0, '1', '1', '1', '1', '1', '2016-10-05 19:10:15', '2016-10-05 19:10:15');
 
 -- --------------------------------------------------------
 
@@ -480,14 +484,22 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 DROP TABLE IF EXISTS `item_categories`;
-CREATE TABLE IF NOT EXISTS `item_categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_categories` (
+  `id` int(11) NOT NULL,
   `agency_id` int(11) NOT NULL,
   `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `item_categories`
+--
+
+INSERT INTO `item_categories` (`id`, `agency_id`, `name`, `created`, `modified`) VALUES
+(1, 1, 'Item Category 1', '2016-09-27 22:39:05', '2016-10-05 19:08:31'),
+(2, 1, 'Item Category 2', '2016-10-05 19:08:44', '2016-10-05 19:08:44'),
+(3, 1, 'Item Category 3', '2016-10-05 19:08:56', '2016-10-05 19:08:56');
 
 -- --------------------------------------------------------
 
@@ -496,14 +508,13 @@ CREATE TABLE IF NOT EXISTS `item_categories` (
 --
 
 DROP TABLE IF EXISTS `item_expirations`;
-CREATE TABLE IF NOT EXISTS `item_expirations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item_expirations` (
+  `id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `expiration_date` date NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -512,13 +523,12 @@ CREATE TABLE IF NOT EXISTS `item_expirations` (
 --
 
 DROP TABLE IF EXISTS `member_types`;
-CREATE TABLE IF NOT EXISTS `member_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `member_types` (
+  `id` int(11) NOT NULL,
   `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `member_types`
@@ -535,16 +545,15 @@ INSERT INTO `member_types` (`id`, `name`, `created`, `modified`) VALUES
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
   `username` varchar(50) CHARACTER SET latin1 NOT NULL,
   `password` varchar(255) CHARACTER SET latin1 NOT NULL,
   `group_id` int(11) NOT NULL,
   `is_archive` int(2) DEFAULT '0',
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -562,15 +571,14 @@ INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `is_archive`, `cr
 --
 
 DROP TABLE IF EXISTS `user_custom_fields`;
-CREATE TABLE IF NOT EXISTS `user_custom_fields` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_custom_fields` (
+  `id` int(11) NOT NULL,
   `user_entity_id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user_custom_fields`
@@ -586,8 +594,8 @@ INSERT INTO `user_custom_fields` (`id`, `user_entity_id`, `name`, `value`, `crea
 --
 
 DROP TABLE IF EXISTS `user_entities`;
-CREATE TABLE IF NOT EXISTS `user_entities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_entities` (
+  `id` int(11) NOT NULL,
   `agency_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `firstname` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
@@ -612,9 +620,8 @@ CREATE TABLE IF NOT EXISTS `user_entities` (
   `photo` text COLLATE utf8_unicode_ci,
   `enable_push_notification` smallint(2) DEFAULT '0',
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user_entities`
@@ -632,8 +639,8 @@ INSERT INTO `user_entities` (`id`, `agency_id`, `user_id`, `firstname`, `lastnam
 --
 
 DROP TABLE IF EXISTS `vehicles`;
-CREATE TABLE IF NOT EXISTS `vehicles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vehicles` (
+  `id` int(11) NOT NULL,
   `agency_id` int(11) NOT NULL,
   `vehicle_type_id` int(11) NOT NULL,
   `color_id` int(11) NOT NULL,
@@ -647,16 +654,16 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   `insurance_card` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `expiration_date` date NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `vehicles`
 --
 
 INSERT INTO `vehicles` (`id`, `agency_id`, `vehicle_type_id`, `color_id`, `number_vehicle`, `vehicle_year`, `make`, `model`, `vin`, `part_vehicle_inspection`, `registration_card`, `insurance_card`, `expiration_date`, `created`, `modified`) VALUES
-(1, 1, 1, 1, 12345, '2016', 'Sample A', 'Sample Model', '12345', 'Sample A', 'Sample Registration Card', 'Sample Insurance Card', '2016-09-21', '2016-09-19 13:57:30', '2016-09-19 13:57:30');
+(1, 1, 1, 1, 12345, '2016', 'Sample A', 'Sample Model', '12345', 'Sample A', 'Sample Registration Card', 'Sample Insurance Card', '2016-09-21', '2016-09-19 13:57:30', '2016-09-19 13:57:30'),
+(2, 1, 1, 1, 555, '2000', 'Test Make', 'Test Model', 'test vin', 'test', 'test', 'test', '2016-10-11', '2016-10-05 00:57:43', '2016-10-05 00:57:43');
 
 -- --------------------------------------------------------
 
@@ -665,8 +672,8 @@ INSERT INTO `vehicles` (`id`, `agency_id`, `vehicle_type_id`, `color_id`, `numbe
 --
 
 DROP TABLE IF EXISTS `vehicle_compartments`;
-CREATE TABLE IF NOT EXISTS `vehicle_compartments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vehicle_compartments` (
+  `id` int(11) NOT NULL,
   `parent_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
   `name` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
@@ -674,9 +681,16 @@ CREATE TABLE IF NOT EXISTS `vehicle_compartments` (
   `allow_seal` smallint(2) DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `vehicle_compartments`
+--
+
+INSERT INTO `vehicle_compartments` (`id`, `parent_id`, `vehicle_id`, `name`, `description`, `allow_seal`, `sort`, `created`, `modified`) VALUES
+(1, 0, 1, 'Test', '123', 1, 1, '2016-10-04 22:38:45', '2016-10-04 22:38:45'),
+(2, 0, 1, 'Compartment 2', 'test 123', 1, 2, '2016-10-04 22:58:05', '2016-10-04 22:58:05');
 
 -- --------------------------------------------------------
 
@@ -685,16 +699,15 @@ CREATE TABLE IF NOT EXISTS `vehicle_compartments` (
 --
 
 DROP TABLE IF EXISTS `vehicle_files`;
-CREATE TABLE IF NOT EXISTS `vehicle_files` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vehicle_files` (
+  `id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
   `filename` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
   `location` text COLLATE utf8_unicode_ci NOT NULL,
   `is_approved` smallint(2) NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modfied` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modfied` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -703,13 +716,12 @@ CREATE TABLE IF NOT EXISTS `vehicle_files` (
 --
 
 DROP TABLE IF EXISTS `vehicle_types`;
-CREATE TABLE IF NOT EXISTS `vehicle_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vehicle_types` (
+  `id` int(11) NOT NULL,
   `name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `vehicle_types`
@@ -726,8 +738,8 @@ INSERT INTO `vehicle_types` (`id`, `name`, `created`, `modified`) VALUES
 --
 
 DROP TABLE IF EXISTS `vendors`;
-CREATE TABLE IF NOT EXISTS `vendors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vendors` (
+  `id` int(11) NOT NULL,
   `agency_id` int(11) NOT NULL,
   `vendor_name` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `phone_number` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
@@ -743,9 +755,8 @@ CREATE TABLE IF NOT EXISTS `vendors` (
   `tearms` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `note` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `vendors`
@@ -762,8 +773,8 @@ INSERT INTO `vendors` (`id`, `agency_id`, `vendor_name`, `phone_number`, `addres
 --
 
 DROP TABLE IF EXISTS `vendor_items`;
-CREATE TABLE IF NOT EXISTS `vendor_items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vendor_items` (
+  `id` int(11) NOT NULL,
   `vendor_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `item_name` varchar(110) COLLATE utf8_unicode_ci NOT NULL,
@@ -779,10 +790,267 @@ CREATE TABLE IF NOT EXISTS `vendor_items` (
   `is_preferd_vendor` smallint(2) NOT NULL,
   `note` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `vendor_items`
+--
+
+INSERT INTO `vendor_items` (`id`, `vendor_id`, `item_id`, `item_name`, `item_number`, `barcode_number`, `website_link`, `pack_price`, `pack_price_uom`, `pack_quantity`, `pack_quantity_uom`, `sub_pack_quantity`, `sub_pack_quantity_uom`, `is_preferd_vendor`, `note`, `created`, `modified`) VALUES
+(1, 2, 1, 'asdf', '123', '123', '123', 123.00, '123', 123, '123', 123, '123', 1, '123', '2016-09-29 01:23:38', '2016-09-29 01:23:38');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `account_types`
+--
+ALTER TABLE `account_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `acl_phinxlog`
+--
+ALTER TABLE `acl_phinxlog`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `acos`
+--
+ALTER TABLE `acos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lft` (`lft`,`rght`),
+  ADD KEY `alias` (`alias`);
+
+--
+-- Indexes for table `agencies`
+--
+ALTER TABLE `agencies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `aros`
+--
+ALTER TABLE `aros`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lft` (`lft`,`rght`),
+  ADD KEY `alias` (`alias`);
+
+--
+-- Indexes for table `aros_acos`
+--
+ALTER TABLE `aros_acos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `aro_id` (`aro_id`,`aco_id`),
+  ADD KEY `aco_id` (`aco_id`);
+
+--
+-- Indexes for table `colors`
+--
+ALTER TABLE `colors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item_categories`
+--
+ALTER TABLE `item_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item_expirations`
+--
+ALTER TABLE `item_expirations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `member_types`
+--
+ALTER TABLE `member_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_custom_fields`
+--
+ALTER TABLE `user_custom_fields`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_entities`
+--
+ALTER TABLE `user_entities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicle_compartments`
+--
+ALTER TABLE `vehicle_compartments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicle_files`
+--
+ALTER TABLE `vehicle_files`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicle_types`
+--
+ALTER TABLE `vehicle_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vendors`
+--
+ALTER TABLE `vendors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vendor_items`
+--
+ALTER TABLE `vendor_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `account_types`
+--
+ALTER TABLE `account_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `acos`
+--
+ALTER TABLE `acos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=494;
+--
+-- AUTO_INCREMENT for table `agencies`
+--
+ALTER TABLE `agencies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `aros`
+--
+ALTER TABLE `aros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `aros_acos`
+--
+ALTER TABLE `aros_acos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `colors`
+--
+ALTER TABLE `colors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `item_categories`
+--
+ALTER TABLE `item_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `item_expirations`
+--
+ALTER TABLE `item_expirations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `member_types`
+--
+ALTER TABLE `member_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `user_custom_fields`
+--
+ALTER TABLE `user_custom_fields`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `user_entities`
+--
+ALTER TABLE `user_entities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `vehicle_compartments`
+--
+ALTER TABLE `vehicle_compartments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `vehicle_files`
+--
+ALTER TABLE `vehicle_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `vehicle_types`
+--
+ALTER TABLE `vehicle_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `vendors`
+--
+ALTER TABLE `vendors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `vendor_items`
+--
+ALTER TABLE `vendor_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

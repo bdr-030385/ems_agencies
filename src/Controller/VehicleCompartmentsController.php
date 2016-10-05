@@ -256,4 +256,27 @@ class VehicleCompartmentsController extends AppController
         }
     }
 
+    /**
+     * Ajax Load Items by Category method
+     *
+     *
+     * @return void
+     */
+    public function ajax_load_items_by_category()
+    {   
+        $this->viewBuilder()->layout(""); 
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $this->Items      = TableRegistry::get('Items');
+            $items            = $this->Items->find('all')->where(['Items.item_category_id' => $data['item_category_id']]);
+
+            $this->set([
+                'items' => $items
+            ]);
+        }else{
+            echo 'No record found';
+        }
+    }
+
 }
