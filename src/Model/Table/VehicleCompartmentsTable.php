@@ -105,7 +105,7 @@ class VehicleCompartmentsTable extends Table
     public function findLastInsertedDataByVehicleId( Query $query, array $options ){
         if( $options['vehicle_id'] > 0 ){
             $query->select(['VehicleCompartments.sort'])            
-            ->where(['VehicleCompartments.vehicle_id' => $options['vehicle_id']])
+            ->where(['VehicleCompartments.vehicle_id' => $options['vehicle_id'], 'VehicleCompartments.sort !=' => 0 ])
             ->order(['VehicleCompartments.sort' => 'DESC'])            
             ;        
         }        

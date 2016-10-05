@@ -23,5 +23,11 @@ $(function(){
         "bFilter": true,
         "bInfo": false,
     });
+
+    $('.external-event').draggable({
+      zIndex: 1070,
+      revert: true, // will cause the event to go back to its
+      revertDuration: 0  //  original position after the drag
+    });
 });
 </script>

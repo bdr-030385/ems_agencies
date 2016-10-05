@@ -279,4 +279,53 @@ class VehicleCompartmentsController extends AppController
         }
     }
 
+    /**
+     * Ajax Load Vehicle Sub Compartment method
+     *
+     *
+     * @return void
+     */
+    public function ajax_load_vehicle_sub_compartment()
+    {   
+        $this->viewBuilder()->layout(""); 
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+
+            $vehicle_sub_compartment = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.parent_id' => $data['compartment_parent_id']]);
+
+            $this->set([
+                'vehicle_sub_compartment' => $vehicle_sub_compartment
+            ]);
+        }else{
+            echo 'No record found';
+        }
+    }
+
+    /**
+     * Ajax Add SubCompartment method
+     *
+     * @return json Array
+     */
+    public function ajax_add_sub_compartment()
+    {
+    	$this->viewBuilder()->layout(""); 
+        $vehicle = $this->VehicleCompartments->Vehicles->get($this->request->data['vehicle_id'], []);
+        $vehicleCompartment = $this->VehicleCompartments->newEntity();
+
+        $json['is_success'] = false;
+        $json['message'] = "Unable to add.";
+
+        if ($this->request->is('post')) { 
+        	$this->request->data['description'] = 'SubCompartment';
+            $vehicleCompartment = $this->VehicleCompartments->patchEntity($vehicleCompartment, $this->request->data);            
+            if ($this->VehicleCompartments->save($vehicleCompartment)) {
+                $json['is_success'] = true;
+        		$json['message'] = "Sub Compartment has been added.";           
+            } 
+        }
+        
+        echo json_encode($json);
+        exit;
+    }
+
 }
