@@ -8,7 +8,7 @@
     <tbody>
         <?php foreach($items as $i) { ?>
             <tr>
-                <td><div class="external-event bg-gray"><?= $i->name; ?></div></td>
+                <td><div data-item-id="<?= $i->id; ?>" class="draggable-item external-event bg-gray"><?= $i->name; ?></div></td>
             </tr>
         <?php } ?>
     </tbody>
@@ -24,7 +24,7 @@ $(function(){
         "bInfo": false,
     });
 
-    $('.external-event').draggable({
+    $('.draggable-item').draggable({
       zIndex: 1070,
       revert: true, // will cause the event to go back to its
       revertDuration: 0  //  original position after the drag

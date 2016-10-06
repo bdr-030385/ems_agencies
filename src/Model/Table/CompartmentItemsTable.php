@@ -41,10 +41,10 @@ class CompartmentItemsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Compartments', [
+        /*$this->belongsTo('Compartments', [
             'foreignKey' => 'compartment_id',
             'joinType' => 'INNER'
-        ]);
+        ]);*/
         $this->belongsTo('Items', [
             'foreignKey' => 'item_id',
             'joinType' => 'INNER'
@@ -79,7 +79,7 @@ class CompartmentItemsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['compartment_id'], 'Compartments'));
+        //$rules->add($rules->existsIn(['compartment_id'], 'Compartments'));
         $rules->add($rules->existsIn(['item_id'], 'Items'));
 
         return $rules;

@@ -8,7 +8,7 @@
     <tbody>
         <?php foreach($vehicle_sub_compartment as $vsc) { ?>
             <tr>
-                <td><div class="droppable"><?= $vsc->name; ?></div></td>
+                <td><div data-compartment-id="<?= $vsc->id; ?>" class="droppable"><?= $vsc->name; ?></div></td>
             </tr>
         <?php } ?>
     </tbody>
@@ -26,11 +26,17 @@ $(function(){
 
     $( ".droppable" ).droppable({
         drop: function( event, ui ) {
-            alert('dropped');
-        /*$( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" )
-            .html( "Dropped!" );*/
+            var target = $(this);
+            var item_id = ui.draggable.attr("data-item-id");
+            var compartment_id = target.attr("data-compartment-id");          
+
+            //save item 
+            $.post(base_url+'vehicle_compartments/ajax_add_item_compartment',{compartment_id:compartment_id,item_id:item_id},function(o){
+                if(o.is_success) {
+                    target.append(ui.draggable.clone().css("position","").css('cursor',"inherit"));
+                }
+            },"json");
+            
         }
     });
 

@@ -332,4 +332,36 @@ class VehicleCompartmentsController extends AppController
         exit;
     }
 
+    /**
+     * Ajax Add Item to SubCompartment method
+     *
+     * @return json Array
+     */
+    public function ajax_add_item_compartment()
+    {
+        $this->viewBuilder()->layout(""); 
+        $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
+        
+        $json['is_success'] = false;
+        $json['message'] = "Unable to add.";
+
+        if ($this->request->is('post')) { 
+            $is_exist = $this->CompartmentItems->find('all')
+                ->where(['CompartmentItems.compartment_id' => $this->request->data['compartment_id'], 'CompartmentItems.item_id' => $this->request->data['item_id'] ]);
+
+            if($is_exist->count() == 0) {
+                $compartment_items = $this->CompartmentItems->newEntity();
+
+                $compartment_items = $this->CompartmentItems->patchEntity($compartment_items, $this->request->data);            
+                if ($this->CompartmentItems->save($compartment_items)) {
+                    $json['is_success'] = true;
+                    $json['message'] = "Compartment Item has been added.";           
+                } 
+            }
+        }
+        
+        echo json_encode($json);
+        exit;
+    }
+
 }
