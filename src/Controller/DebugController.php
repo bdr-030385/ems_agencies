@@ -61,6 +61,28 @@ class DebugController extends AppController
         ftp_close($ftp_conn);                            
         exit;
     }
+
+    /**
+     * debugThreaded method     
+     * @return void
+     */
+    public function debugThreaded()
+    {   
+        $this->VehicleCompartments = TableRegistry::get('VehicleCompartments');
+        $data = $this->VehicleCompartments->find('all')
+            ->find('threaded')
+            ->toArray();
+        debug($data);
+        $tree = recursiveVehicleCompartments($data);
+        echo $tree;
+        exit;
+        //$data = $this->VehicleCompartments->find('treeList',['spacer' => ''])->toArray();
+        debug($data->toArray());exit;
+        foreach( $data as $d ){
+            debug($d);
+        }        
+        exit;
+    }
     
     
 }

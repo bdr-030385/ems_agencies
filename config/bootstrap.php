@@ -328,6 +328,26 @@ function get_reorder_category() {
     return array("Case"  => "Case", "Pack" => "Pack", "Piece" => "Piece");
 }
 
+function recursiveVehicleCompartments($array, $tree = '') {    
+    if (count($array)) {
+        foreach ($array as $vals) {
+           if (count($vals->children)) {
+            $add_icon = "<i class=\"fa fa-plus-circle\"></i>";
+           }else{
+            $add_icon = "";
+           }
+           echo "<li><a href=\"#\" class=\"compartment-tree-item\">". $add_icon . " " . $vals->name . "<span data- class=\"pull-right-container\"><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"compartment-add-items\"><i class=\"fa fa-medkit\"></i> Add Items</span></span></a>";
+            if (count($vals->children)) {
+                    echo "\n<ul class=\"treeview-menu\">\n";
+                    recursiveVehicleCompartments($vals->children, $tree);
+                    echo "</ul>";
+            }
+            echo "</li>";
+            
+        }        
+    }    
+}
+
 
 
 

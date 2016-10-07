@@ -35,50 +35,11 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <ul class="todo-list">
-                                <?php foreach ($vehicleCompartments as $vehicleCompartment) { ?>
-                                    <li>
-                                      <!-- drag handle -->
-                                          <span class="handle">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <i class="fa fa-ellipsis-v"></i>
-                                          </span>
-                                         <!-- todo text -->
-                                        <a href="javascript:void(0);" data-vehicle-compartment-id="<?= $vehicleCompartment->id; ?>" class="btn-show-main-compartment"><span class="text"><?= h($vehicleCompartment->name) ?></span></a>
-                                        <!-- Emphasis label -->
-                                        <!-- <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small> -->
-                                        <!-- General tools such as edit or delete-->
-                                        <div class="tools">
-                                            <?= $this->Html->link('<i class="fa fa-pencil"></i> Edit', ['action' => 'edit', $vehicleCompartment->id],['title' => 'Edit', 'class' => 'btn btn-xs btn-success', 'escape' => false]) ?>
-                                            <?= $this->Html->link('<i class="fa fa-trash-o"></i> Remove', '#modal-'.$vehicleCompartment->id,['data-toggle' => 'modal', 'class' => 'btn btn-xs btn-danger', 'escape' => false]) ?>
-                                                       
-                                        </div>
-                                        <div id="modal-<?=$vehicleCompartment->id?>" class="modal fade">
-                                            <div class="modal-dialog">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h4 class="modal-title">Delete Confirmation</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p><?= __('Are you sure you want to delete selected entry?') ?></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
-                                                    <?= $this->Form->postLink(
-                                                            'Yes',
-                                                            ['action' => 'delete', $vehicleCompartment->id],
-                                                            ['class' => 'btn btn-danger', 'escape' => false]
-                                                        )
-                                                    ?>
-                                                </div>
-                                              </div>
-                                            </div>                              
-                                        </div>          
-                                    </li>
-                                <?php } ?>
-                            
-                          </ul>
+                            <section class="sidebar">
+                            <ul class="sidebar-menu">                                    
+                                <?= recursiveVehicleCompartments($vehicleCompartments) ?>                                
+                            </ul>
+                            </section>
                         </div>
                         <!-- /.box-body -->
                         <!-- <div class="box-footer clearfix no-border">

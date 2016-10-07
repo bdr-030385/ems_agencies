@@ -557,7 +557,7 @@ a:focus {
   list-style: none;
   padding: 0;
   margin: 0;
-  padding-left: 5px;
+  padding-left: 23px;
 }
 .sidebar-menu .treeview-menu .treeview-menu {
   padding-left: 20px;
@@ -4927,3 +4927,33 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+/*Custom*/
+.box-body .treeview-menu li{
+  padding:10px 0 10px 0px;
+  height: 47px;
+
+}
+.box-body .sidebar-menu > li:hover > a, .box-body .sidebar-menu > li.active > a{
+  background-color:#3C8DBC !important;
+  border:none;
+
+}
+.box-body .sidebar-menu li{
+  
+}
+.compartment-tools{
+  position: absolute;  
+  left: 95%;
+  bottom: 38px;
+  width: 50%;
+  height: 0px;
+  color:#ffffff;
+}
+.sidebar-menu li > a > .pull-right-container {
+    margin-top: -7px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+/*End custom*/
+

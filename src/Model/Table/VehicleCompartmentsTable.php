@@ -22,6 +22,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\VehicleCompartment findOrCreate($search, callable $callback = null)
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Cake\ORM\Behavior\TreeBehavior
  */
 class VehicleCompartmentsTable extends Table
 {
@@ -36,11 +37,14 @@ class VehicleCompartmentsTable extends Table
     {
         parent::initialize($config);
 
+        $this->addBehavior('Tree');
+
         $this->table('vehicle_compartments');
         $this->displayField('name');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Tree');
 
         $this->belongsTo('ParentVehicleCompartments', [
             'className' => 'VehicleCompartments',
@@ -50,10 +54,10 @@ class VehicleCompartmentsTable extends Table
             'foreignKey' => 'vehicle_id',
             'joinType' => 'INNER'
         ]);
-        /*$this->hasMany('ChildVehicleCompartments', [
+        $this->hasMany('ChildVehicleCompartments', [
             'className' => 'VehicleCompartments',
             'foreignKey' => 'parent_id'
-        ]);*/
+        ]);
     }
 
     /**

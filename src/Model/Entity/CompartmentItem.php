@@ -4,25 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * VehicleCompartment Entity
+ * CompartmentItem Entity
  *
  * @property int $id
- * @property int $parent_id
- * @property int $lft
- * @property int $rght
- * @property int $vehicle_id
- * @property string $name
- * @property string $description
- * @property int $allow_seal
- * @property int $sort
+ * @property int $compartment_id
+ * @property int $item_id
  * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\Time $ modified
  *
- * @property \App\Model\Entity\VehicleCompartment $parent_vehicle_compartment
- * @property \App\Model\Entity\Vehicle $vehicle
- * @property \App\Model\Entity\VehicleCompartment[] $child_vehicle_compartments
+ * @property \App\Model\Entity\Compartment $compartment
+ * @property \App\Model\Entity\Item $item
  */
-class VehicleCompartment extends Entity
+class CompartmentItem extends Entity
 {
 
     /**

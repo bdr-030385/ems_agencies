@@ -156,12 +156,16 @@ class VehicleCompartmentsController extends AppController
     public function vehicle($id = null)
     {   
         $vehicle = $this->VehicleCompartments->Vehicles->get($id, []);        
-        $this->paginate = [
+        /*$this->paginate = [
             'contain' => ['ParentVehicleCompartments', 'Vehicles'],
             'conditions' => ['VehicleCompartments.vehicle_id' => $id, 'VehicleCompartments.parent_id' => 0],
             'order' => ['VehicleCompartments.sort' => 'DESC']
-        ];
-        $this->set('vehicleCompartments', $this->paginate($this->VehicleCompartments));
+        ];*/
+        $vehicleCompartments = $this->VehicleCompartments->find('all')
+            ->find('threaded')
+            ->toArray();
+        ;
+        $this->set('vehicleCompartments', $vehicleCompartments);
         $this->set(['vehicle' => $vehicle]);
         $this->set('_serialize', ['vehicleCompartments']);
     }
