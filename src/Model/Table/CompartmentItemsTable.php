@@ -63,10 +63,6 @@ class CompartmentItemsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->dateTime(' modified')
-            ->allowEmpty(' modified');
-
         return $validator;
     }
 

@@ -8,7 +8,20 @@
     <tbody>
         <?php foreach($vehicle_sub_compartment as $vsc) { ?>
             <tr>
-                <td><div data-compartment-id="<?= $vsc->id; ?>" class="droppable"><?= $vsc->name; ?></div></td>
+                <td>
+                    <div data-compartment-id="<?= $vsc->id; ?>" class="droppable" style="border:1px solid #ccc;">
+                        <div style="background:#ccc none repeat scroll 0 0; padding:10px;"><?= $vsc->name; ?></div>
+                        <?php if(!empty($compartment_items[$vsc->id])) { ?>
+                            <?php foreach($compartment_items[$vsc->id] as $item_id => $value) { ?>
+                                <div data-item-id="<?= $item_id; ?>" class="external-event-2" ><?= $value; ?></div>
+                            <?php } ?>
+                        <?php } ?>
+
+                        <!-- CHILD SUBCOMPARTMENTS -->
+                        <?php loadChildSubCompartmentsHtml($vsc->id,$child_subcompartments,$compartment_items, 1); ?>
+                        
+                    </div>
+                </td>
             </tr>
         <?php } ?>
     </tbody>
@@ -33,7 +46,12 @@ $(function(){
             //save item 
             $.post(base_url+'vehicle_compartments/ajax_add_item_compartment',{compartment_id:compartment_id,item_id:item_id},function(o){
                 if(o.is_success) {
-                    target.append(ui.draggable.clone().css("position","").css('cursor',"inherit"));
+                    target.append(ui.draggable.clone()
+                        .css("position","")
+                        .css('cursor',"inherit")
+                        .removeClass('bg-gray')
+                        .removeClass('external-event')
+                        .addClass('external-event-2'));
                 }
             },"json");
             

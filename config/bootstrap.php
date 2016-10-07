@@ -348,6 +348,24 @@ function recursiveVehicleCompartments($array, $tree = '') {
     }    
 }
 
+function loadChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartment_items, $level) {
+    $margin_left = $level * 10;
+    $level++;
+    if(!empty($child_subcompartments[$vc_id])) {
+        foreach($child_subcompartments[$vc_id] as $key => $values) {
+            echo '<div data-compartment-id="'.$values['id'].'" class="droppable" style="border:1px solid #ccc; margin-left:'. $margin_left .'px" >';
+                echo '<div style="background:#ccc none repeat scroll 0 0; padding:10px;">'.$values['name'].'</div>';
+                if(!empty($compartment_items[$values['id']])) {
+                    foreach($compartment_items[$values['id']] as $item_id => $value) {
+                        echo '<div data-item-id="'.$item_id.'" class="external-event-2" >'.$value.'</div>';
+                    }
+                }
+            echo '</div>';
+            loadChildSubCompartmentsHtml($values['id'],$child_subcompartments,$compartment_items, $level);
+        }
+    }
+}
+
 
 
 

@@ -297,12 +297,63 @@ class VehicleCompartmentsController extends AppController
 
             $vehicle_sub_compartment = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.parent_id' => $data['compartment_parent_id']]);
 
+            $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
+           	$compartment_items = array(); 
+            foreach($vehicle_sub_compartment as $vsc) {
+
+            	//COLLECT AND STORE TO ARRAY ALL SUBCOMPARTMENTS
+            	$this->lookForChildCompartment($vsc->id);
+
+            	//GET COMPARTMENT ITEMS
+            	$compartment_items_array = $this->CompartmentItems->find('all')
+            		->where(['CompartmentItems.compartment_id' => $vsc->id])
+            		->contain(['Items']);
+
+            	foreach($compartment_items_array as $ci) {
+            		$compartment_items[$vsc->id][$ci->item_id] = $ci->item->name;
+            	}
+            }
+
+            //GET COMPARTMENT ITEMS FROM CHILD SUBCOMPARTMENTS
+            if(!empty($this->global_sub_compartment)) {
+            	foreach($this->global_sub_compartment as $key => $values) {
+            		foreach($values as $value) {
+            			$compartment_items_array = $this->CompartmentItems->find('all')
+		            		->where(['CompartmentItems.compartment_id' => $value['id']])
+		            		->contain(['Items']);
+
+		            	foreach($compartment_items_array as $ci) {
+		            		$compartment_items[$value['id']][$ci->item_id] = $ci->item->name;
+		            	}
+            		}
+            	}
+            }
+
+            //debug($this->global_sub_compartment);
             $this->set([
-                'vehicle_sub_compartment' => $vehicle_sub_compartment
+                'vehicle_sub_compartment' => $vehicle_sub_compartment,
+                'compartment_items' => $compartment_items,
+                'child_subcompartments' => $this->global_sub_compartment
             ]);
         }else{
             echo 'No record found';
         }
+    }
+
+    private $global_sub_compartment = array();
+    public function lookForChildCompartment($parent_id) 
+    {
+    	$vehicle_sub_compartment = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.parent_id' => $parent_id]);
+    	if($vehicle_sub_compartment->count() > 0) {
+    		foreach($vehicle_sub_compartment as $vsc) {
+	    		$this->global_sub_compartment[$vsc->parent_id][] = array(
+	    			'parent_id' => $vsc->parent_id,
+	    			'id' => $vsc->id,
+	    			'name' => $vsc->name
+	    		);
+	    		$this->lookForChildCompartment($vsc->id);
+	    	}
+    	}
     }
 
     /**
