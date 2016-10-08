@@ -4955,5 +4955,22 @@ table.text-center th {
     right: 10px;
     top: 50%;
 }
+.sub-compartment-list{
+  background-color: #367FA9 !important;
+}
+.sub-compartment-list li{
+  padding:10px 0px 10px 10px;
+}
+.tree-icons{
+  margin-right:10px;
+}
+.sub-compartment-list li, .sub-compartment-list li a {
+    background: #367FA9 none repeat scroll 0 0 !important;
+    border-left-color: red !important;
+    color: #fff !important;
+}
+.sub-compartment-list{
+  padding:0 0 0 5px !important;
+}
 /*End custom*/
 

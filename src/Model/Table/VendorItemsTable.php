@@ -71,7 +71,7 @@ class VendorItemsTable extends Table
             ->requirePresence('item_number', 'create')
             ->notEmpty('item_number');
 
-        $validator
+        /*$validator
             ->requirePresence('barcode_number', 'create')
             ->notEmpty('barcode_number');
 
@@ -112,7 +112,7 @@ class VendorItemsTable extends Table
             ->notEmpty('is_preferd_vendor');
 
         $validator
-            ->allowEmpty('note');
+            ->allowEmpty('note');*/
 
         return $validator;
     }

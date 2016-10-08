@@ -16,7 +16,7 @@
                     <?= $this->Html->link(__('Add New Vehicle Compartment'), ['action' => 'vehicle_add', $vehicle->id], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
                     <h3 class="box-title text-black" ></h3>
                 </div>
-                <div class="box-body">
+                <div class="">
                     <div class="box box-primary">
                         <div class="box-header">
                             <i class="fa fa-clipboard"></i>
@@ -34,9 +34,9 @@
                             </div>
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body">
+                        <div class="">
                             <section class="sidebar">
-                            <ul class="sidebar-menu">                                    
+                            <ul class="sidebar-menu" style="margin:10px;">                                    
                                 <?= recursiveVehicleCompartments($vehicleCompartments) ?>                                
                             </ul>
                             </section>

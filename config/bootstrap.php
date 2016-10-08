@@ -336,9 +336,9 @@ function recursiveVehicleCompartments($array, $tree = '') {
            }else{
             $add_icon = "";
            }
-           echo "<li><a href=\"#\" class=\"compartment-tree-item\">". $add_icon . " " . $vals->name . "<span data- class=\"pull-right-container\"><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"compartment-add-items\"><i class=\"fa fa-medkit\"></i> Add Items</span></span></a>";
+           echo "<li><a href=\"#\" class=\"compartment-tree-item\">". $add_icon . " " . $vals->name . "<span data- class=\"pull-right-container\"><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-info compartment-add-items\"><i class=\"fa fa-medkit\"></i></span><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-info compartment-edit\"><i class=\"fa fa-pencil\"></i></span><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-danger compartment-delete\"><i class=\"fa fa-trash\"></i></span></span></a>";
             if (count($vals->children)) {
-                    echo "\n<ul class=\"treeview-menu\">\n";
+                    echo "\n<ul class=\"treeview-menu sub-compartment-list\">\n";
                     recursiveVehicleCompartments($vals->children, $tree);
                     echo "</ul>";
             }

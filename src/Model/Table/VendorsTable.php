@@ -62,7 +62,7 @@ class VendorsTable extends Table
             ->requirePresence('vendor_name', 'create')
             ->notEmpty('vendor_name');
 
-        $validator
+        /*$validator
             ->requirePresence('phone_number', 'create')
             ->notEmpty('phone_number');
 
@@ -104,7 +104,7 @@ class VendorsTable extends Table
             ->allowEmpty('tearms');
 
         $validator
-            ->allowEmpty('note');
+            ->allowEmpty('note');*/
 
         return $validator;
     }

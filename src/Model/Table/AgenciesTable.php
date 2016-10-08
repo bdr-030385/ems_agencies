@@ -71,7 +71,7 @@ class AgenciesTable extends Table
             ->requirePresence('name', 'create')
             ->notEmpty('name');
 
-        $validator
+        /*$validator
             ->requirePresence('emt_number', 'create')
             ->notEmpty('emt_number');
 
@@ -85,7 +85,7 @@ class AgenciesTable extends Table
             ->notEmpty('start_date');
 
         $validator
-            ->allowEmpty('logo');
+            ->allowEmpty('logo');*/
 
         return $validator;
     }

@@ -77,7 +77,7 @@ class VehiclesTable extends Table
             ->requirePresence('number_vehicle', 'create')
             ->notEmpty('number_vehicle');
 
-        $validator
+        /*$validator
             ->requirePresence('vehicle_year', 'create')
             ->notEmpty('vehicle_year');
 
@@ -108,7 +108,7 @@ class VehiclesTable extends Table
         $validator
             ->date('expiration_date')
             ->requirePresence('expiration_date', 'create')
-            ->notEmpty('expiration_date');
+            ->notEmpty('expiration_date');*/
 
         return $validator;
     }
