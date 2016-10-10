@@ -78,7 +78,7 @@ var BASE_URL = '<?= $base_url; ?>';
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='vendor_id' class='col-sm-2 control-label'>" . __('Vendor Id') . "</label>
+                                        <label for='vendor_id' class='col-sm-2 control-label'>" . __('Preferred Vendor') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('vendor_id', ['class' => 'form-control', 'id' => 'vendor_id', 'label' => false, 'options' => $vendors]);                 
                                     echo " </div></div>";    
@@ -126,26 +126,6 @@ var BASE_URL = '<?= $base_url; ?>';
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('easv', ['class' => 'form-control', 'id' => 'easv', 'label' => false]);                
                                     echo " </div></div>";    
-
-                                    echo "
-                                    <div class='form-group'>
-                                        <label for='easv' class='col-sm-2 control-label'>" . __('Is Part 800') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->select('is_part_800',["1" => "Yes", "0" => "No"],['class' => 'form-control', 'id' => 'is_part_800', 'label' => false]);
-                                    echo " </div></div>";
-
-                                    if( $item->is_part_800 == 0 ){
-                                        $add_class = "hidden";
-                                    }else{
-                                        $add_class = "";
-                                    }
-
-                                    echo "
-                                    <div class='form-group part-800-group " . $add_class . "'>
-                                        <label for='easv' class='col-sm-2 control-label'>" . __('Part 800') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('part_800', ['class' => 'form-control', 'id' => 'part_800', 'label' => false]);                
-                                    echo " </div></div>";
                                     
                                                             echo "
                                     <div class='form-group'>

@@ -105,7 +105,14 @@ $(function(){
                         .css('cursor',"inherit")
                         .removeClass('bg-gray')
                         .removeClass('external-event')
-                        .addClass('external-event-2'));
+                        .addClass('external-event-2')
+                        .append('<span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'+o.compartment_item_id+'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span>'));
+
+                    $(".btn-delete-compartment-item").click(function(){
+                        var vehicle_compartment_item_id = $(this).attr("data-item-id");
+                        $("#vehile_compartment_item_id").val(vehicle_compartment_item_id);
+                        $('#modal-delete-compartment-item').modal('show');
+                    });
                 }
             },"json");
             

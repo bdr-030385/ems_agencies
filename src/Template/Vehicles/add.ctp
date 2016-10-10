@@ -74,9 +74,9 @@
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='part_vehicle_inspection' class='col-sm-2 control-label'>" . __('Part Vehicle Inspection') . "</label>
+                                        <label for='part_vehicle_inspection' class='col-sm-2 control-label'>" . __('Vehicle Inspection') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('part_vehicle_inspection', ['class' => 'form-control', 'id' => 'part_vehicle_inspection', 'label' => false]);                
+                                        echo $this->Form->input('part_vehicle_inspection', ['options' => array('Yes' => 'Yes', 'No' => 'No'), 'class' => 'form-control', 'id' => 'part_vehicle_inspection', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "

@@ -348,13 +348,13 @@ class VehicleCompartmentsController extends AppController
 		            		->contain(['Items']);
 
 		            	foreach($compartment_items_array as $ci) {
-		            		$compartment_items[$value['id']][$ci->item_id] = $ci->item->name;
+		            		$compartment_items[$value['id']][$ci->item_id] = ['id' => $ci->id,'name' => $ci->item->name];
 		            	}
             		}
             	}
             }
 
-            //debug($this->global_sub_compartment);
+            //debug($compartment_items);
             $this->set([
                 'vehicle_sub_compartment' => $vehicle_sub_compartment,
                 'compartment_items' => $compartment_items,
@@ -434,9 +434,10 @@ class VehicleCompartmentsController extends AppController
                 ];
 
                 $compartment_items = $this->CompartmentItems->patchEntity($compartment_items, $data);            
-                if ($this->CompartmentItems->save($compartment_items)) {
+                if ($result = $this->CompartmentItems->save($compartment_items)) {
                     $json['is_success'] = true;
-                    $json['message'] = "Compartment Item has been added.";           
+                    $json['message'] = "Compartment Item has been added.";   
+                    $json['compartment_item_id'] = $result->id;        
                 } 
             }
         }
