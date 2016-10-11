@@ -72,8 +72,7 @@ class VehiclesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->integer('number_vehicle')
+        $validator            
             ->requirePresence('number_vehicle', 'create')
             ->notEmpty('number_vehicle');
 

@@ -7,12 +7,11 @@ use Cake\ORM\Entity;
  * CompartmentItem Entity
  *
  * @property int $id
- * @property int $compartment_id
+ * @property int $vehicle_compartment_id
  * @property int $item_id
  * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $ modified
+ * @property \Cake\I18n\Time $modified
  *
- * @property \App\Model\Entity\Compartment $compartment
  * @property \App\Model\Entity\Item $item
  */
 class CompartmentItem extends Entity

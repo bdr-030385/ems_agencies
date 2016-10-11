@@ -139,6 +139,12 @@ $(function(){
     window.location = base_url + 'vehicle_compartments/edit/' + vehicle_compartment_id;
   });
 
+  $(".compartment-delete").click(function(){
+    var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
+    $("#vehile_compartment_id").val(vehicle_compartment_id);
+    $('#modal-delete-compartment').modal('show');
+  });
+
 });
 
 

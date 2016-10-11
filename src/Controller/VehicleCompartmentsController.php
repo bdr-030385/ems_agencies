@@ -148,6 +148,31 @@ class VehicleCompartmentsController extends AppController
     }
 
     /**
+     * Delete Vehicle Compartment method
+     *     
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function delete_compartment()
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $data = $this->request->data;        
+        if( $data['vehile_compartment_id'] > 0 ){
+            $vehicleCompartment = $this->VehicleCompartments->get($data['vehile_compartment_id']);
+            $vehicle_id = $vehicleCompartment->vehicle_id;
+            if ($this->VehicleCompartments->delete($vehicleCompartment)) {
+                $this->Flash->success(__('The vehicle compartment has been deleted.'));
+            } else {
+                $this->Flash->error(__('The vehicle compartment could not be deleted. Please, try again.'));
+            }
+            return $this->redirect(['action' => 'vehicle', $vehicle_id]);
+        }else{
+            $this->Flash->error(__('The vehicle compartment could not be deleted. Please, try again.'));
+            return $this->redirect(['action' => 'index']);
+        }                
+    }
+
+    /**
      * Vehicle Compartments method
      *
      * @param id vehicle id
@@ -306,11 +331,11 @@ class VehicleCompartmentsController extends AppController
 
             	//GET COMPARTMENT ITEMS
             	$compartment_items_array = $this->CompartmentItems->find('all')
-            		->where(['CompartmentItems.compartment_id' => $vsc->id])
+            		->where(['CompartmentItems.vehicle_compartment_id' => $vsc->id])
             		->contain(['Items']);
 
             	foreach($compartment_items_array as $ci) {
-            		$compartment_items[$vsc->id][$ci->item_id] = $ci->item->name;
+            		$compartment_items[$vsc->id][$ci->item_id] = ['id' => $ci->id,'name' => $ci->item->name];
             	}
             }
 
@@ -319,7 +344,7 @@ class VehicleCompartmentsController extends AppController
             	foreach($this->global_sub_compartment as $key => $values) {
             		foreach($values as $value) {
             			$compartment_items_array = $this->CompartmentItems->find('all')
-		            		->where(['CompartmentItems.compartment_id' => $value['id']])
+		            		->where(['CompartmentItems.vehicle_compartment_id' => $value['id']])
 		            		->contain(['Items']);
 
 		            	foreach($compartment_items_array as $ci) {
@@ -398,17 +423,53 @@ class VehicleCompartmentsController extends AppController
 
         if ($this->request->is('post')) { 
             $is_exist = $this->CompartmentItems->find('all')
-                ->where(['CompartmentItems.compartment_id' => $this->request->data['compartment_id'], 'CompartmentItems.item_id' => $this->request->data['item_id'] ]);
+                ->where(['CompartmentItems.vehicle_compartment_id' => $this->request->data['compartment_id'], 'CompartmentItems.item_id' => $this->request->data['item_id'] ]);
 
             if($is_exist->count() == 0) {
                 $compartment_items = $this->CompartmentItems->newEntity();
+                
+                $data = [
+                    'vehicle_compartment_id' => $this->request->data['compartment_id'],
+                    'item_id' => $this->request->data['item_id']
+                ];
 
-                $compartment_items = $this->CompartmentItems->patchEntity($compartment_items, $this->request->data);            
+                $compartment_items = $this->CompartmentItems->patchEntity($compartment_items, $data);            
                 if ($this->CompartmentItems->save($compartment_items)) {
                     $json['is_success'] = true;
                     $json['message'] = "Compartment Item has been added.";           
                 } 
             }
+        }
+        
+        echo json_encode($json);
+        exit;
+    }
+
+    /**
+     * Ajax Add Item to SubCompartment method
+     *
+     * @return json Array
+     */
+    public function ajax_delete_compartment_id()
+    {
+        $this->viewBuilder()->layout(""); 
+        $this->CompartmentItems    = TableRegistry::get('CompartmentItems');     
+        $this->VehicleCompartments = TableRegistry::get('VehicleCompartments');   
+        
+        $json['is_success'] = false;
+        $json['message'] = "Unable to delete.";
+        $data = $this->request->data;
+
+        if ( $this->request->is('post') && $data['vehile_compartment_item_id'] > 0 ) { 
+            $compartmentItem = $this->CompartmentItems->get($data['vehile_compartment_item_id']);
+            $vehicle_compartment_id = $compartmentItem->vehicle_compartment_id;
+            $compartment = $this->VehicleCompartments->get($vehicle_compartment_id);
+
+            if ($this->CompartmentItems->delete($compartmentItem)) {
+                $json['is_success'] = true;
+                $json['message']    = "Item deleted.";
+            }
+            $json['vehicle_compartment_id'] = $compartment->parent_id;
         }
         
         echo json_encode($json);

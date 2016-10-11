@@ -21,25 +21,25 @@
                         <?php
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
+                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='vehicle_type_id' class='col-sm-2 control-label'>" . __('Vehicle Type Id') . "</label>
+                                        <label for='vehicle_type_id' class='col-sm-2 control-label'>" . __('Vehicle Type') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('vehicle_type_id', ['class' => 'form-control', 'id' => 'vehicle_type_id', 'label' => false, 'options' => $vehicleTypes]);                 
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='color_id' class='col-sm-2 control-label'>" . __('Color Id') . "</label>
+                                        <label for='color_id' class='col-sm-2 control-label'>" . __('Color') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('color_id', ['class' => 'form-control', 'id' => 'color_id', 'label' => false, 'options' => $colors]);                 
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='number_vehicle' class='col-sm-2 control-label'>" . __('Number Vehicle') . "</label>
+                                        <label for='number_vehicle' class='col-sm-2 control-label'>" . __('Vehicle Id') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('number_vehicle', ['class' => 'form-control', 'id' => 'number_vehicle', 'label' => false]);                
                                     echo " </div></div>";    
@@ -106,7 +106,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="action-fixed-bottom">
                                 <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
                                 <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
                             </div>
                         </div>

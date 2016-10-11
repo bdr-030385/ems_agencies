@@ -26,7 +26,7 @@ var BASE_URL = '<?= $base_url; ?>';
                                                 <th><?= $this->Paginator->sort('agency_id') ?></th>
                                                 <th><?= $this->Paginator->sort('name') ?></th>
                                                 <th><?= $this->Paginator->sort('item_category_id') ?></th>
-                                                <th><?= $this->Paginator->sort('quantity') ?></th>
+                                                <th><?= $this->Paginator->sort('quantity', __('Quantity on Hand')) ?></th>
                                                 <th><?= $this->Paginator->sort('reordering_point') ?></th>
                                                 <th><?= $this->Paginator->sort('reordering_point_category') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>

@@ -43,7 +43,7 @@ var BASE_URL = '<?= $base_url; ?>';
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='quantity' class='col-sm-2 control-label'>" . __('Quantity') . "</label>
+                                        <label for='quantity' class='col-sm-2 control-label'>" . __('Quantity on Hand') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('quantity', ['class' => 'form-control', 'id' => 'quantity', 'label' => false]);                
                                     echo " </div></div>";    

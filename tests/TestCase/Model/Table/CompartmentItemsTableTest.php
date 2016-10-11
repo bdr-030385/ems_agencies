@@ -25,7 +25,6 @@ class CompartmentItemsTableTest extends TestCase
      */
     public $fixtures = [
         'app.compartment_items',
-        'app.compartments',
         'app.items',
         'app.agencies',
         'app.account_types',

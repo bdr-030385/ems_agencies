@@ -39,7 +39,7 @@
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='number_vehicle' class='col-sm-2 control-label'>" . __('Number Vehicle') . "</label>
+                                        <label for='number_vehicle' class='col-sm-2 control-label'>" . __('Vehicle ID') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('number_vehicle', ['class' => 'form-control', 'id' => 'number_vehicle', 'label' => false]);                
                                     echo " </div></div>";    

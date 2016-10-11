@@ -24,7 +24,7 @@
                                                 <th><?= $this->Paginator->sort('agency_id') ?></th>
                                                 <th><?= $this->Paginator->sort('vehicle_type_id') ?></th>
                                                 <th><?= $this->Paginator->sort('color_id') ?></th>
-                                                <th><?= $this->Paginator->sort('number_vehicle') ?></th>
+                                                <th><?= $this->Paginator->sort('number_vehicle', __('Vehicle ID')) ?></th>
                                                 <th><?= $this->Paginator->sort('vehicle_year') ?></th>
                                                 <th><?= $this->Paginator->sort('make') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>

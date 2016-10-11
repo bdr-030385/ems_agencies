@@ -24,7 +24,7 @@ var BASE_URL = '<?= $base_url; ?>';
                         <?php
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
+                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
                                     echo " </div></div>";    
@@ -37,13 +37,13 @@ var BASE_URL = '<?= $base_url; ?>';
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='item_category_id' class='col-sm-2 control-label'>" . __('Item Category Id') . "</label>
+                                        <label for='item_category_id' class='col-sm-2 control-label'>" . __('Item Category') . "</label>
                                         <div class='col-sm-6 item-categories-container'>";
                                          echo $this->Form->input('item_category_id', ['class' => 'form-control', 'id' => 'item_category_id', 'label' => false, 'options' => $itemCategories]);                 
                                     echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='quantity' class='col-sm-2 control-label'>" . __('Quantity') . "</label>
+                                        <label for='quantity' class='col-sm-2 control-label'>" . __('Quantity on hand') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('quantity', ['class' => 'form-control', 'id' => 'quantity', 'label' => false]);                
                                     echo " </div></div>";    
@@ -160,7 +160,7 @@ var BASE_URL = '<?= $base_url; ?>';
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="action-fixed-bottom">
                                 <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
                                 <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
                             </div>
                         </div>
