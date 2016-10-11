@@ -13,7 +13,7 @@
                         <div style="background:#ccc none repeat scroll 0 0; padding:10px;"><?= $vsc->name; ?></div>
                         <?php if(!empty($compartment_items[$vsc->id])) { ?>
                             <?php foreach($compartment_items[$vsc->id] as $item_id => $value) { ?>
-                                <div data-item-id="<?= $item_id; ?>" class="external-event-2" ><?= $value['name']; ?> <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="<?= $value['id']; ?>" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>
+                                <div id="d-<?= $value['id']; ?>" data-item-id="<?= $item_id; ?>" class="external-event-2" ><?= $value['name']; ?> <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="<?= $value['id']; ?>" data-div-obj-id="d-<?= $value['id']; ?>" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>
                             <?php } ?>
                         <?php } ?>
 
@@ -42,7 +42,7 @@
                 echo $this->Form->create(null,['id' => 'frm-delete-vehicle-compartment-item']);
                 echo $this->Form->hidden('vehile_compartment_item_id',['id' => 'vehile_compartment_item_id', 'value' => ""]);
                 echo $this->Form->button(__('No'),['name' => 'cancel', 'value' => 'cancel', 'class' => 'btn btn-default', 'data-dismiss' => 'modal', 'escape' => false]);
-                echo $this->Form->button(__('Yes'),['name' => 'delete', 'value' => 'delete', 'class' => 'btn btn-danger', 'escape' => false]);
+                echo $this->Form->button(__('Yes'),['name' => 'delete', 'value' => 'delete', 'class' => 'btn btn-danger btn-delete-action', 'escape' => false]);
                 echo $this->Form->end();
             ?>                                                                                
         </div>
@@ -63,6 +63,7 @@ $(function(){
     $(".btn-delete-compartment-item").click(function(){
         var vehicle_compartment_item_id = $(this).attr("data-item-id");
         $("#vehile_compartment_item_id").val(vehicle_compartment_item_id);
+        $(".btn-delete-action").attr("data-obj-id",$(this).attr("data-div-obj-id"));
         $('#modal-delete-compartment-item').modal('show');
     });
 
@@ -79,10 +80,12 @@ $(function(){
             success: function(o)
              {
                 if( o.is_success ){
-                    var vehicle_compartment_id = o.vehicle_compartment_id;          
+                    /*var vehicle_compartment_id = o.vehicle_compartment_id;          
                     $.post(base_url+'vehicle_compartments/ajax_load_main_compartment',{vehicle_compartment_id:vehicle_compartment_id},function(o){
                       $('#main-compartment-container').html(o);
-                    });
+                    });*/
+                    var oid = $(".btn-delete-action").attr("data-obj-id");
+                    $("#"+oid).hide(500);
                 }    
 
                 $('#modal-delete-compartment-item').modal('hide');        
@@ -111,6 +114,7 @@ $(function(){
                     $(".btn-delete-compartment-item").click(function(){
                         var vehicle_compartment_item_id = $(this).attr("data-item-id");
                         $("#vehile_compartment_item_id").val(vehicle_compartment_item_id);
+                        $(".btn-delete-action").attr("data-obj-id",$(this).attr("data-div-obj-id"));
                         $('#modal-delete-compartment-item').modal('show');
                     });
                 }

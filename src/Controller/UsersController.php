@@ -81,6 +81,7 @@ class UsersController extends AppController
     {
         if( $this->global_user_data->user->group_id == 1 ){
             //$this->viewBuilder()->layout("Users\dashboard"); 
+            return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
         }else{
             $this->user_dashboard();
         }

@@ -357,7 +357,7 @@ function loadChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartme
                 echo '<div style="background:#ccc none repeat scroll 0 0; padding:10px;">'.$values['name'].' </div>';
                 if(!empty($compartment_items[$values['id']])) {
                     foreach($compartment_items[$values['id']] as $item_id => $value) {
-                        echo '<div data-item-id="'.$item_id.'" class="external-event-2" >'.$value['name'].' <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'.$value['id'].'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>';
+                        echo '<div id="'.$value['id'].'" data-item-id="'.$item_id.'" class="external-event-2" >'.$value['name'].' <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'.$value['id'].'" data-div-obj-id="'.$value['id'].'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>';
                     }
                 }
             echo '</div>';

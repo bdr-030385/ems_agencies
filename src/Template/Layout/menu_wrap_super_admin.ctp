@@ -13,9 +13,9 @@
     <section class="sidebar">      
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
+        <!-- <li id="groups_nav" title="Groups" class="<?= $nav_selected["dashboard"] ?>">
             <?= $this->Html->link('<i class="fa fa-dashboard "></i><span>' . __("Dashboard") . "</span>",["controller" => "users", "action" => "dashboard"],["escape" => false]) ?>
-        </li>        
+        </li>   -->      
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["agencies"] ?>">
             <?= $this->Html->link('<i class="fa fa-suitcase"></i><span>' . __("Agencies") . "</span>",["controller" => "agencies", "action" => "index"],["escape" => false]) ?>
         </li>

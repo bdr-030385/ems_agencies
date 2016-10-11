@@ -82,22 +82,29 @@
                                                             echo "
                                     <div class='form-group'>
                                         <label for='registration_card' class='col-sm-2 control-label'>" . __('Registration Card') . "</label>
+                                        <div class='col-sm-6 '><div class='input-group'><span class='input-group-addon'><i class='fa fa-picture-o'></i></span>";
+                                        echo $this->Form->input('registration_card', ['class' => 'form-control has-ck-finder', 'id' => 'registration_card', 'label' => false]);                
+                                    echo "</div> </div></div>";  
+
+                                    echo "
+                                    <div class='form-group'>
+                                        <label for='registration_card_expiration_date' class='col-sm-2 control-label'>" . __('Registration Card Expiration Date') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('registration_card', ['class' => 'form-control', 'id' => 'registration_card', 'label' => false]);                
-                                    echo " </div></div>";    
+                                        echo $this->Form->input('registration_card_expiration_date', ['type' => 'text', 'class' => 'form-control default-datepicker', 'id' => 'registration_card_expiration_date', 'label' => false]);                
+                                    echo " </div></div>";   
                                     
                                                             echo "
                                     <div class='form-group'>
                                         <label for='insurance_card' class='col-sm-2 control-label'>" . __('Insurance Card') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('insurance_card', ['class' => 'form-control', 'id' => 'insurance_card', 'label' => false]);                
-                                    echo " </div></div>";    
+                                        <div class='col-sm-6'><div class='input-group'><span class='input-group-addon'><i class='fa fa-picture-o'></i></span>";
+                                        echo $this->Form->input('insurance_card', ['class' => 'form-control has-ck-finder', 'id' => 'insurance_card', 'label' => false]);                
+                                    echo " </div></div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='expiration_date' class='col-sm-2 control-label'>" . __('Expiration Date') . "</label>
+                                        <label for='insurance_card_expiration_date' class='col-sm-2 control-label'>" . __('Insurance Card Expiration Date') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('expiration_date', ['type' => 'text', 'class' => 'form-control default-datepicker', 'id' => 'expiration_date', 'label' => false]);                
+                                        echo $this->Form->input('insurance_card_expiration_date', ['type' => 'text', 'class' => 'form-control default-datepicker', 'id' => 'insurance_card_expiration_date', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                 ?>
