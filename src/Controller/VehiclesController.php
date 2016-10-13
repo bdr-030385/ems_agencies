@@ -34,6 +34,20 @@ class VehiclesController extends AppController
             $nav_selected = ["vehicles"];
         }       
 
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');          
+        if( isset($user_data) ){
+            if( $user_data->user->group_id == 1 ){ //Super Admin
+                $this->Auth->allow();
+            }elseif( $user_data->user->group_id == 2 ){ //Administrator
+                $this->Auth->deny();
+                $this->Auth->allow(['agency_vehicles','agency_add','agency_edit', 'view']);
+            }elseif( $user_data->user->group_id == 3 ){ //Member                
+                $this->Auth->deny();
+                $this->Auth->allow(['agency_vehicles']);
+            }
+        }
+
         $this->set('nav_selected', $nav_selected);
         $this->set(['load_css_script' => 'users']);
     }
@@ -61,11 +75,15 @@ class VehiclesController extends AppController
      */
     public function view($id = null)
     {
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');
+        $group_id  = $user_data->group_id;
+
         $vehicle = $this->Vehicles->get($id, [
             'contain' => ['Agencies', 'VehicleTypes', 'Colors', 'VehicleFiles']
         ]);
         $this->set('vehicle', $vehicle);
-        $this->set('_serialize', ['vehicle']);
+        $this->set('_serialize', ['vehicle','group_id']);
     }
 
     /**
@@ -147,5 +165,87 @@ class VehiclesController extends AppController
             $this->Flash->error(__('The vehicle could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Agency vehicles method
+     *
+     * @return void
+     */
+    public function agency_vehicles()
+    {
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');
+
+        $this->paginate = [
+            'contain' => ['Agencies', 'VehicleTypes', 'Colors'],
+            'condition' => ['Vehicles.agency_id' => $user_data->agency_id]
+        ];
+        $this->set('vehicles', $this->paginate($this->Vehicles));
+        $this->set('_serialize', ['vehicles']);
+    }
+
+    /**
+     * Agency Add method
+     *
+     * @return void Redirects on successful add, renders view otherwise.
+     */
+    public function agency_add()
+    {
+        $vehicle = $this->Vehicles->newEntity();
+        if ($this->request->is('post')) {
+            $session = $this->request->session();    
+            $user_data = $session->read('User.data');
+            $this->request->data['agency_id'] = $user_data->agency_id;
+
+            $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data);
+            if ($this->Vehicles->save($vehicle)) {
+                $this->Flash->success(__('The vehicle has been saved.'));
+                $action = $this->request->data['save'];
+                if( $action == 'save' ){
+                    return $this->redirect(['action' => 'agency_vehicles']);
+                }else{
+                    return $this->redirect(['action' => 'agency_add']);
+                }                    
+            } else {
+                $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
+            }
+        }        
+        $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
+        $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
+        $this->set(compact('vehicle', 'vehicleTypes', 'colors'));
+        $this->set('_serialize', ['vehicle']);
+    }
+
+    /**
+     * Agency Edit method
+     *
+     * @param string|null $id Vehicle id.
+     * @return void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function agency_edit($id = null)
+    {
+        $vehicle = $this->Vehicles->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data);
+            if ($this->Vehicles->save($vehicle)) {
+                $this->Flash->success(__('The vehicle has been saved.'));
+                $action = $this->request->data['save'];
+                if( $action == 'save' ){
+                    return $this->redirect(['action' => 'agency_vehicles']);
+                }else{
+                    return $this->redirect(['action' => 'agency_edit', $id]);
+                }         
+            } else {
+                $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
+            }
+        }        
+        $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
+        $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
+        $this->set(compact('vehicle', 'vehicleTypes', 'colors'));
+        $this->set('_serialize', ['vehicle']);
     }
 }

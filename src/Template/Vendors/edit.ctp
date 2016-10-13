@@ -21,7 +21,7 @@
                         <?php
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
+                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
                                     echo " </div></div>";    

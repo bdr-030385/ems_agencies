@@ -17,11 +17,14 @@
                 </div>
                 <div class="box-body">
                     <?= $this->Form->create($vendor,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
-                    <fieldset>        
+                    <fieldset>   
+                        <div class="callout callout-info">
+                            <h4 style="margin-left:20px;">Vendor Details</h4> 
+                        </div>     
                         <?php
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency Id') . "</label>
+                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency') . "</label>
                                         <div class='col-sm-6'>";
                                          echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
                                     echo " </div></div>";    
@@ -81,27 +84,36 @@
                                         echo $this->Form->input('website', ['class' => 'form-control', 'id' => 'website', 'label' => false]);                
                                     echo " </div></div>";    
                                     
+                                    ?>
+                                    <div class="callout callout-info">
+                                        <h4 style="margin-left:20px;">Contact Person</h4> 
+                                    </div>
+                                    <?php
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='contact_person' class='col-sm-2 control-label'>" . __('Contact Person') . "</label>
+                                        <label for='contact_person' class='col-sm-2 control-label'>" . __('Name') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('contact_person', ['class' => 'form-control', 'id' => 'contact_person', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='contact_person_phone' class='col-sm-2 control-label'>" . __('Contact Person Phone') . "</label>
+                                        <label for='contact_person_phone' class='col-sm-2 control-label'>" . __('Phone') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('contact_person_phone', ['class' => 'form-control', 'id' => 'contact_person_phone', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "
                                     <div class='form-group'>
-                                        <label for='contact_person_email' class='col-sm-2 control-label'>" . __('Contact Person Email') . "</label>
+                                        <label for='contact_person_email' class='col-sm-2 control-label'>" . __('Email') . "</label>
                                         <div class='col-sm-6'>";
                                         echo $this->Form->input('contact_person_email', ['class' => 'form-control', 'id' => 'contact_person_email', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
+                                    echo " </div></div>";
+                                    ?>
+                                    <div class="callout callout-info">
+                                        <h4 style="margin-left:20px;">Other Info</h4> 
+                                    </div>
+                                    <?php 
                                                             echo "
                                     <div class='form-group'>
                                         <label for='tearms' class='col-sm-2 control-label'>" . __('Tearms') . "</label>

@@ -22,13 +22,13 @@
                         <?php
                             echo "
                             <div class='form-group'>
-                                <label for='account_type_id' class='col-sm-2 control-label'>" . __('Account Type Id') . "</label>
+                                <label for='account_type_id' class='col-sm-2 control-label'>" . __('Account Type') . "</label>
                                 <div class='col-sm-6'>";
                                  echo $this->Form->input('account_type_id', ['class' => 'form-control', 'required' => 'required', 'id' => 'account_type_id', 'label' => false, 'options' => $accountTypes]);                 
                             echo " </div></div>";    
                             echo "
                             <div class='form-group'>
-                                <label for='member_type_id' class='col-sm-2 control-label'>" . __('Member Type Id') . "</label>
+                                <label for='member_type_id' class='col-sm-2 control-label'>" . __('Member Type') . "</label>
                                 <div class='col-sm-6'>";
                                  echo $this->Form->input('member_type_id', ['class' => 'form-control', 'required' => 'required', 'id' => 'member_type_id', 'label' => false, 'options' => $memberTypes]);                 
                             echo " </div></div>";    
