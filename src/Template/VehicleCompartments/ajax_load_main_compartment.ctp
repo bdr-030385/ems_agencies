@@ -20,16 +20,39 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="callout callout-default">
-                <select class="form-control" style="width:20%; display:inline-flex">
-                    <option value="">- Select Vehicle -</option>
-                    <?php foreach($copyable_vehicles as $cv) { ?>
-                        <option value="<?= $cv->id ?>"><?= $cv->number_vehicle ?></option>
-                    <?php } ?>
-                </select>
-                <select class="form-control" style="width:20%; display:inline-flex">
-                    <option value="">- Select Compartment -</option>
-                </select>
-                <button type="button" class="btn" style="display:inline-flex; margin-bottom:5px">Copy Existing Compartment</button>
+                <form id="frm-copy-compartment" onsubmit="return false;" method="post">
+                    <input type="hidden" name="main_compartment_id" value="<?= $vehicle_compartment->id; ?>" >
+                    <input type="hidden" name="vehicle_id" value="<?= $vehicle_compartment->vehicle_id; ?>" >
+                    <select id="copyable-vehice-selector" class="form-control" style="width:20%; display:inline-flex">
+                        <option value="">- Select Vehicle -</option>
+                        <?php foreach($copyable_vehicles as $cv) { ?>
+                            <option value="<?= $cv->id ?>"><?= $cv->number_vehicle ?></option>
+                        <?php } ?>
+                    </select>
+                    <div id="copyable-vehicle-container" style="width:30%; display:inline-flex">
+                        <select id="selected_compartment" name="selected_compartment" class="form-control" style="width:100%; display:inline-flex">
+                            <option value="">- Select Compartment -</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn" href="#modal-copy-compartment" data-toggle="modal" style="display:inline-flex; margin-bottom:5px">Copy Existing Compartment</button>
+                    <div id="modal-copy-compartment" class="modal fade">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Copy Compartment</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to copy the selected compartment?</p>
+                            </div>
+                            <div class="modal-footer">                                        
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary btn-copy-compartment" >Yes</button>                                                                   
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <div class="row">
@@ -178,7 +201,38 @@ $(function(){
                 $('.btn-add-subcompartment').html("Add");
             },"json");
         }
-   });
+    });
+
+    $('#copyable-vehice-selector').change(function(){
+        var vehicle_id = $(this).val();
+        $.post(base_url+'vehicle_compartments/ajax_load_copyable_vehicle_compartment',{vehicle_id:vehicle_id},
+            function(o){
+                $('#copyable-vehicle-container').html(o);
+        });
+    });
+
+    $('#frm-copy-compartment').submit(function(evt) {
+        evt.preventDefault();
+
+        $('.btn-copy-compartment').html("<i class='fa fa-spin fa-spinner'></i> Saving...");
+        if( $('.btn-copy-compartment').hasClass("disabled") ) {
+            $('.btn-copy-compartment').html("Yes");
+        }else{
+            $('.btn-copy-compartment').attr("disabled","disabled");
+            $.post(base_url + "vehicle_compartments/ajax_save_copied_compartment",$('#frm-copy-compartment').serialize(),function(o) {
+                if(o.is_success) {
+                    loadVehicleSubCompartments($('#main_compartment_id').val());
+                }
+
+                $('#modal-copy-compartment').modal('toggle');
+                $('#msg-notifier-container').html(o.message);
+                $('#messageNotifierModal').modal("show");
+
+                $('.btn-copy-compartment').removeAttr("disabled");
+                $('.btn-copy-compartment').html("Yes");
+            },"json");
+        }
+    });
 
 });
 </script>

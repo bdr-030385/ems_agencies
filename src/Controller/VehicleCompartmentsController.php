@@ -187,6 +187,7 @@ class VehicleCompartmentsController extends AppController
             'order' => ['VehicleCompartments.sort' => 'DESC']
         ];*/
         $vehicleCompartments = $this->VehicleCompartments->find('all')
+            ->where(['VehicleCompartments.vehicle_id' => $id])
             ->find('threaded')
             ->toArray();
         ;
@@ -363,6 +364,63 @@ class VehicleCompartmentsController extends AppController
         }else{
             echo 'No record found';
         }
+    }
+
+    public function ajax_load_copyable_vehicle_compartment()
+    {
+        $this->viewBuilder()->layout(""); 
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $copyable_vehicle_compartments = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.vehicle_id' => $data['vehicle_id']]);
+
+            $this->set([
+                'copyable_vehicle_compartments' => $copyable_vehicle_compartments
+            ]);
+        }else{
+            echo 'No record found.';
+        }
+    }
+
+    public function ajax_save_copied_compartment()
+    {
+        $this->viewBuilder()->layout(""); 
+        $json['is_success'] = false;
+        $json['message'] = "Unable to copy.";        
+        
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            if($data['selected_compartment'] != "") {
+                $copied_compartment = $this->VehicleCompartments->get($data['selected_compartment']);
+                $copied_compartment = $copied_compartment->toArray();
+
+                $copied_compartment['parent_id'] = $data['main_compartment_id'];
+                $copied_compartment['vehicle_id'] = $data['vehicle_id'];
+
+                $vehicleCompartment = $this->VehicleCompartments->newEntity();
+                $vehicleCompartment = $this->VehicleCompartments->patchEntity($vehicleCompartment, $copied_compartment);            
+                if ($result = $this->VehicleCompartments->save($vehicleCompartment)) {
+
+                    $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
+                    $copied_items = $this->CompartmentItems->find('all')->where(['CompartmentItems.vehicle_compartment_id' => $data['selected_compartment'] ]);
+                    foreach($copied_items as $ci) {
+                        $compartment_items = $this->CompartmentItems->newEntity();
+                        $data = [
+                            'vehicle_compartment_id' => $result->id,
+                            'item_id' => $ci->item_id
+                        ];
+
+                        $compartment_items = $this->CompartmentItems->patchEntity($compartment_items, $data);            
+                        $this->CompartmentItems->save($compartment_items);
+                    }
+                    $json['is_success'] = true;
+                    $json['message'] = "Compartment has been successfully copied.";           
+                } 
+            }
+            
+        }
+
+        echo json_encode($json);
+        exit;
     }
 
     private $global_sub_compartment = array();
