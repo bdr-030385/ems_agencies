@@ -61,7 +61,7 @@
                                                 <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
                                                 <?= $this->Form->postLink(
                                                         'Yes',
-                                                        ['action' => 'delete', $vehicle->id],
+                                                        ['action' => 'agency_delete', $vehicle->id],
                                                         ['class' => 'btn btn-danger', 'escape' => false]
                                                     )
                                                 ?>

@@ -17,7 +17,7 @@
             <?= $this->Html->link('<i class="fa fa-users"></i><span>' . __("Users") . "</span>",["controller" => get_customer_directory()."/user_entities", "action" => "agency_users"],["escape" => false]) ?>
         </li>
         <li id="users_nav" title="Users" class="<?= $nav_selected["vendors"] ?>">
-            <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "index"],["escape" => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "agency_vendors"],["escape" => false]) ?>
         </li>        
         <li id="users_nav" title="Users" class="<?= $nav_selected["vehicles"] ?>">
             <?= $this->Html->link('<i class="fa fa-car"></i><span>' . __("Vehicles") . "</span>",["controller" => "vehicles", "action" => "agency_vehicles"],["escape" => false]) ?>

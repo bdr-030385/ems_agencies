@@ -41,7 +41,7 @@ class VehiclesController extends AppController
                 $this->Auth->allow();
             }elseif( $user_data->user->group_id == 2 ){ //Administrator
                 $this->Auth->deny();
-                $this->Auth->allow(['agency_vehicles','agency_add','agency_edit', 'view']);
+                $this->Auth->allow(['agency_vehicles','agency_add','agency_edit', 'view', 'agency_delete']);
             }elseif( $user_data->user->group_id == 3 ){ //Member                
                 $this->Auth->deny();
                 $this->Auth->allow(['agency_vehicles']);
@@ -247,5 +247,24 @@ class VehiclesController extends AppController
         $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
         $this->set(compact('vehicle', 'vehicleTypes', 'colors'));
         $this->set('_serialize', ['vehicle']);
+    }
+
+    /**
+     * Agency Delete method
+     *
+     * @param string|null $id Vehicle id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function agency_delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $vehicle = $this->Vehicles->get($id);
+        if ($this->Vehicles->delete($vehicle)) {
+            $this->Flash->success(__('The vehicle has been deleted.'));
+        } else {
+            $this->Flash->error(__('The vehicle could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'agency_vehicles']);
     }
 }

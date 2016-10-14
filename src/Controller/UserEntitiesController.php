@@ -41,7 +41,7 @@ class UserEntitiesController extends AppController
                 $this->Auth->allow();
             }elseif( $user_data->user->group_id == 2 ){ //Administrator
                 $this->Auth->deny();
-                $this->Auth->allow(['agency_users','agency_add']);
+                $this->Auth->allow(['agency_users','agency_add','agency_edit','agency_delete']);
             }elseif( $user_data->user->group_id == 3 ){ //Member                
                 $this->Auth->deny();
                 $this->Auth->allow(['agency_users']);
@@ -274,7 +274,7 @@ class UserEntitiesController extends AppController
         $userEntity = $this->UserEntities->newEntity();
         if ($this->request->is('post')) {            
             $session = $this->request->session();    
-            $user_data = $session->read('User.data');
+            $session_user_data = $session->read('User.data');
 
             $user_data['username'] = $this->request->data['email_address'];
             $user_data['password'] = $this->request->data['password'];
@@ -283,13 +283,14 @@ class UserEntitiesController extends AppController
             $custom_fields = $this->request->data['custom_field'];
 
             $user = $this->Users->newEntity();
-            $user = $this->Users->patchEntity($user, $user_data);
+            $user = $this->Users->patchEntity($user, $user_data);            
             $result_user = $this->Users->save($user);
+            
             if ($result_user = $this->Users->save($user)) {
                 $user_entities_data = $this->request->data;
                 $user_entities_data['user_id'] = $result_user->id;
                 $user_entities_data['email']   = $this->request->data['email_address'];
-                $user_entities_data['agency_id'] = $user_data->agency_id;
+                $user_entities_data['agency_id'] = $session_user_data->agency_id;
                 
                 $user_entities = $this->UserEntities->newEntity();
                 $user_entities = $this->UserEntities->patchEntity($user_entities, $user_entities_data);
@@ -330,5 +331,88 @@ class UserEntitiesController extends AppController
         $gender   = array("Male", "Female");
         $this->set(compact('userEntity','users','gender','groups'));
         $this->set('_serialize', ['userEntity']);
+    }
+
+    /**
+     * Agency Edit method
+     *
+     * @param string|null $id User Entity id.
+     * @return void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function agency_edit($id = null)
+    {
+        $userEntity = $this->UserEntities->get($id, [
+            'contain' => ['Users' => ['Groups'], 'Agencies']
+        ]);
+        
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            //Update user data            
+            $user = $this->UserEntities->Users->get($userEntity->user->id);            
+            $user->group_id  = $this->request->data['group_id'];
+            $custom_fields   = $this->request->data['custom_field'];
+
+            $this->UserEntities->Users->save($user);
+            //Update user entity data
+            $userEntity = $this->UserEntities->patchEntity($userEntity, $this->request->data);
+            if ($this->UserEntities->save($userEntity)) {
+
+                //Custom Fields
+                $this->UserEntities->UserCustomFields->deleteAll(['UserCustomFields.user_entity_id' => $userEntity->id]); //Delete all entries, will create new data
+                foreach( $custom_fields as $cs ){
+                    $custom_data = [
+                        'user_entity_id' => $userEntity->id,
+                        'name' => $cs['name'],
+                        'value' => $cs['value']
+                    ];
+
+                    $customFields = $this->UserEntities->UserCustomFields->newEntity();
+                    $customFields = $this->UserEntities->UserCustomFields->patchEntity($customFields, $custom_data);
+                    $this->UserEntities->UserCustomFields->save($customFields);
+                }
+
+                $this->Flash->success(__('The user entity has been saved.'));
+                $action = $this->request->data['save'];
+                if( $action == 'save' ){
+                    return $this->redirect(['action' => 'agency_users']);
+                }else{
+                    return $this->redirect(['action' => 'agency_edit', $id]);
+                }         
+            } else {
+                $this->Flash->error(__('The user entity could not be saved. Please, try again.'));
+            }
+        }
+
+        $customFields = $this->UserEntities->UserCustomFields->find('all')
+            ->where(['UserCustomFields.user_entity_id' => $userEntity->id])
+        ;        
+        $dataCustomFields = array();
+        foreach( $customFields as $cs ){
+            $dataCustomFields[] = ['name' => $cs->name, 'value' => $cs->value];            
+        }
+
+        $groups   = $this->UserEntities->Users->Groups->find('list');       
+        $gender   = array("Male", "Female");
+        $this->set(compact('userEntity', 'groups', 'gender', 'dataCustomFields'));
+        $this->set('_serialize', ['userEntity']);
+    }
+
+    /**
+     * Agency Delete method
+     *
+     * @param string|null $id User Entity id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function agency_delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $userEntity = $this->UserEntities->get($id);
+        if ($this->UserEntities->delete($userEntity)) {
+            $this->Flash->success(__('The user entity has been deleted.'));
+        } else {
+            $this->Flash->error(__('The user entity could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(['action' => 'agency_users']);
     }
 }

@@ -34,8 +34,22 @@ class UsersController extends AppController
         } else {
             $nav_selected = ["users"];
         }       
-        $this->set('nav_selected', $nav_selected);
 
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');          
+        if( isset($user_data) ){
+            if( $user_data->user->group_id == 1 ){ //Super Admin
+                $this->Auth->allow();
+            }elseif( $user_data->user->group_id == 2 ){ //Administrator
+                $this->Auth->deny();
+                $this->Auth->allow(['user_dashboard']);
+            }elseif( $user_data->user->group_id == 3 ){ //Member                
+                $this->Auth->deny();
+                $this->Auth->allow(['user_dashboard']);
+            }
+        }
+
+        $this->set('nav_selected', $nav_selected);
         $this->set(['load_css_script' => 'users']);
 
         $this->Users = TableRegistry::get('Users');
@@ -82,20 +96,8 @@ class UsersController extends AppController
         if( $this->global_user_data->user->group_id == 1 ){
             //$this->viewBuilder()->layout("Users\dashboard"); 
             return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
-        }else{
-            $this->user_dashboard();
         }
     }
-
-    /**
-     * Dashboard method     
-     * @return void
-     */
-    public function user_dashboard()
-    {
-        echo 1;
-    }
-
 
     /**
      * View method     
@@ -231,9 +233,9 @@ class UsersController extends AppController
                     $_SESSION['KCEDITOR']['disabled'] = false;
                     $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload/".$user_data->agency_id;
                     if( $user_data->user->group_id == 1){                        
-                        return $this->redirect(['action' => 'dashboard']);
+                        return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
                     }else{                        
-                        return $this->redirect(['action' => 'dashboard']);
+                        return $this->redirect(['controller' => 'user_entities', 'action' => 'agency_users']);
                     } 
                 }else{
                     //Redirect to error page
@@ -366,5 +368,14 @@ class UsersController extends AppController
     public function test_form()
     {
         
+    }
+
+    /**
+     * Dashboard method     
+     * @return void
+     */
+    public function user_dashboard()
+    {
+        $this->set('nav_selected', ['dashboard']);
     }
 }
