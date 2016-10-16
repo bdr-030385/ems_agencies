@@ -331,12 +331,13 @@ function get_reorder_category() {
 function recursiveVehicleCompartments($array, $tree = '') {    
     if (count($array)) {
         foreach ($array as $vals) {
-           if (count($vals->children)) {
-            $add_icon = "<i class=\"fa fa-plus-circle\"></i>";
+           /*if (count($vals->children)) {
+                $add_icon = "<i class=\"fa fa-plus-circle\"></i>";
            }else{
-            $add_icon = "";
-           }
-           echo "<li><a href=\"#\" class=\"compartment-tree-item\">". $add_icon . " " . $vals->name . "<span data- class=\"pull-right-container\"><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-info compartment-add-items\"><i class=\"fa fa-medkit\"></i></span><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-info compartment-edit\"><i class=\"fa fa-pencil\"></i></span><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-danger compartment-delete\"><i class=\"fa fa-trash\"></i></span></span></a>";
+                $add_icon = "<i class=\"fa fa-plus-circle\"></i>";
+           }*/
+           $add_icon = "<i class=\"fa fa-plus-circle c-icon\"></i>";
+           echo "<li><a href=\"#\" data-is-collapsed=\"false\" class=\"compartment-tree-item\">". $add_icon . " " . $vals->name . "<span data- class=\"pull-right-container\"><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-info compartment-add-items\"><i class=\"fa fa-medkit\"></i></span><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-info compartment-edit\"><i class=\"fa fa-pencil\"></i></span><span data-vehicle-compartment-id=\"" . $vals->id . "\" class=\"tree-icons btn-sm btn-small btn-danger compartment-delete\"><i class=\"fa fa-trash\"></i></span></span></a>";
             if (count($vals->children)) {
                     echo "\n<ul class=\"treeview-menu sub-compartment-list\">\n";
                     recursiveVehicleCompartments($vals->children, $tree);

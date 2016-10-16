@@ -190,6 +190,7 @@ $(function(){
             $('.btn-add-subcompartment').attr("disabled","disabled");
             $.post(base_url + "vehicle_compartments/ajax_add_sub_compartment",$('#frm-add-subcompartment').serialize(),function(o) {
                 if(o.is_success) {
+                    loadTopVehicleCompartmentsList('<?= $vehicle_compartment->vehicle_id; ?>');
                     loadVehicleSubCompartments($('#main_compartment_id').val());
                 }
 

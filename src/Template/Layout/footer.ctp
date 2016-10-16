@@ -84,14 +84,6 @@ $(function(){
     openKCFinder_textbox($(this));
   });
 
-  $(".compartment-add-items").click(function(){
-    var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
-    $('#main-compartment-container').html("<div class='text-center' style='padding:20px'><i class='fa fa-spin fa-spinner'></i> Loading...</div>");
-    $.post(base_url+'vehicle_compartments/ajax_load_main_compartment',{vehicle_compartment_id:vehicle_compartment_id},function(o){
-      $('#main-compartment-container').html(o);
-    });
-  });
-
   $("#is_part_800").change(function(){
     var selected = $(this).val();    
     if( selected == 1 ){
@@ -127,6 +119,10 @@ $(function(){
     zIndex: 999999
   });
 
+  <?php if(isset($load_top_vehicle_compartment_script)) { ?>
+      loadTopVehicleCompartmentsList('<?= $vehicle_id ?>');
+  <?php } ?>
+
   $(".btn-show-main-compartment").click(function(){
     var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
     global_selected_vehicle_compartment = vehicle_compartment_id;
@@ -134,17 +130,6 @@ $(function(){
     $.post(base_url+'vehicle_compartments/ajax_load_main_compartment',{vehicle_compartment_id:vehicle_compartment_id},function(o){
       $('#main-compartment-container').html(o);
     });
-  });
-
-  $(".compartment-edit").click(function(){
-    var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
-    window.location = base_url + 'vehicle_compartments/edit/' + vehicle_compartment_id;
-  });
-
-  $(".compartment-delete").click(function(){
-    var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
-    $("#vehile_compartment_id").val(vehicle_compartment_id);
-    $('#modal-delete-compartment').modal('show');
   });
 
 });
@@ -176,6 +161,13 @@ function openKCFinder_textbox(field) {
       'status=0, toolbar=0, location=0, menubar=0, directories=0, ' +
       'resizable=1, scrollbars=0, width=800, height=600'
   );
+}
+
+function loadTopVehicleCompartmentsList(vehicle_id) {
+  $('#top-compartment-list').html("<div class='text-center' style='padding:20px'><i class='fa fa-spin fa-spinner'></i> Loading...</div>");
+    $.post(base_url+'vehicle_compartments/ajax_load_top_vehicle_compartment_list',{vehicle_id:vehicle_id},function(o){
+      $('#top-compartment-list').html(o);
+  });
 }
 
 </script>

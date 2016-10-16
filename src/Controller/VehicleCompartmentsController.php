@@ -192,6 +192,26 @@ class VehicleCompartmentsController extends AppController
             ->toArray();
         ;
         $this->set('vehicleCompartments', $vehicleCompartments);
+        $this->set(['vehicle' => $vehicle, 'load_top_vehicle_compartment_script' => true, 'vehicle_id' => $id]);
+        $this->set('_serialize', ['vehicleCompartments']);
+    }
+
+    public function ajax_load_top_vehicle_compartment_list()
+    {   
+        $this->viewBuilder()->layout(""); 
+        $vehicle_id = $this->request->data['vehicle_id'];
+        $vehicle = $this->VehicleCompartments->Vehicles->get($vehicle_id, []);        
+        /*$this->paginate = [
+            'contain' => ['ParentVehicleCompartments', 'Vehicles'],
+            'conditions' => ['VehicleCompartments.vehicle_id' => $id, 'VehicleCompartments.parent_id' => 0],
+            'order' => ['VehicleCompartments.sort' => 'DESC']
+        ];*/
+        $vehicleCompartments = $this->VehicleCompartments->find('all')
+            ->where(['VehicleCompartments.vehicle_id' => $vehicle_id])
+            ->find('threaded')
+            ->toArray();
+        ;
+        $this->set('vehicleCompartments', $vehicleCompartments);
         $this->set(['vehicle' => $vehicle]);
         $this->set('_serialize', ['vehicleCompartments']);
     }
