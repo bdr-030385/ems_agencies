@@ -44,6 +44,7 @@ class NavigationSelectorHelper extends Helper
             "vehicle_types" => "",
             "announcements" => "",
             "vendors" => "",
+            "vendor_items" => "",
             "items" => "",
             "item_categories" => "",
             "vehicle_compartments" => ""

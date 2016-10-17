@@ -20,25 +20,25 @@
                     <table id="dt-users-list" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                                <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('vendor_id') ?></th>
-                                                <th><?= $this->Paginator->sort('item_name') ?></th>
-                                                <th><?= $this->Paginator->sort('pack_price') ?></th>
-                                                <th><?= $this->Paginator->sort('pack_price_uom') ?></th>
-                                                <th><?= $this->Paginator->sort('pack_quantity') ?></th>
-                                                <th class="actions"><?= __('Actions') ?></th>
+                                <th><?= $this->Paginator->sort('id') ?></th>
+                                <th><?= $this->Paginator->sort('vendor_id') ?></th>
+                                <th><?= $this->Paginator->sort('item_name') ?></th>
+                                <th><?= $this->Paginator->sort('pack_price') ?></th>
+                                <th><?= $this->Paginator->sort('pack_price_uom') ?></th>
+                                <th><?= $this->Paginator->sort('pack_quantity') ?></th>
+                                <th class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($vendorItems as $vendorItem): ?>
                             <tr>
-                                                <td><?= $this->Number->format($vendorItem->id) ?></td>
-                                                <td><?= $vendorItem->has('vendor') ? $this->Html->link($vendorItem->vendor->vendor_name, ['controller' => 'Vendors', 'action' => 'view', $vendorItem->vendor->id]) : '' ?></td>
-                                                <td><?= h($vendorItem->item_name) ?></td>
-                                                <td><?= $this->Number->format($vendorItem->pack_price) ?></td>
-                                                <td><?= h($vendorItem->pack_price_uom) ?></td>
-                                                <td><?= $this->Number->format($vendorItem->pack_quantity) ?></td>
-                                                <td class="actions">
+                                <td><?= $this->Number->format($vendorItem->id) ?></td>
+                                <td><?= $vendorItem->has('vendor') ? $this->Html->link($vendorItem->vendor->vendor_name, ['controller' => 'Vendors', 'action' => 'view', $vendorItem->vendor->id]) : '' ?></td>
+                                <td><?= h($vendorItem->item_name) ?></td>
+                                <td><?= $this->Number->format($vendorItem->pack_price) ?></td>
+                                <td><?= h($vendorItem->pack_price_uom) ?></td>
+                                <td><?= $this->Number->format($vendorItem->pack_quantity) ?></td>
+                                <td class="actions">
                                     <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vendorItem->id],['class' => 'btn btn-info','escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vendorItem->id],['class' => 'btn btn-success', 'escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vendorItem->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'escape' => false]) ?>

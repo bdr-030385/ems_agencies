@@ -18,7 +18,10 @@
         </li>
         <li id="users_nav" title="Users" class="<?= $nav_selected["vendors"] ?>">
             <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "agency_vendors"],["escape" => false]) ?>
-        </li>        
+        </li> 
+        <li id="users_nav" title="Users" class="<?= $nav_selected["vendor_items"] ?>">
+            <?= $this->Html->link('<i class="fa fa-medkit"></i><span>' . __("Vendor Items") . "</span>",["controller" => "vendor_items", "action" => "agency_index"],["escape" => false]) ?>
+        </li>          
         <li id="users_nav" title="Users" class="<?= $nav_selected["vehicles"] ?>">
             <?= $this->Html->link('<i class="fa fa-car"></i><span>' . __("Vehicles") . "</span>",["controller" => "vehicles", "action" => "agency_vehicles"],["escape" => false]) ?>
         </li>        

@@ -44,6 +44,10 @@ class VendorsTable extends Table
             'foreignKey' => 'agency_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->hasMany('VendorItems', [
+            'foreignKey' => 'vendor_id'
+        ]);
     }
 
     /**

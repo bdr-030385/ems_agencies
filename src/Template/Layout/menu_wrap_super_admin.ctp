@@ -31,6 +31,9 @@
         <li id="users_nav" title="Users" class="<?= $nav_selected["vendors"] ?>">
             <?= $this->Html->link('<i class="fa fa-truck"></i><span>' . __("Vendors") . "</span>",["controller" => "vendors", "action" => "index"],["escape" => false]) ?>
         </li>
+        <li id="users_nav" title="Users" class="<?= $nav_selected["vendor_items"] ?>">
+            <?= $this->Html->link('<i class="fa fa-medkit"></i><span>' . __("Vendor Items") . "</span>",["controller" => "vendor_items", "action" => "index"],["escape" => false]) ?>
+        </li>
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["items"] ?>">
             <?= $this->Html->link('<i class="fa fa-newspaper-o"></i><span>' . __("Items") . "</span>",["controller" => "items", "action" => "index"],["escape" => false]) ?>
         </li>        
