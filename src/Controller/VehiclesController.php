@@ -267,4 +267,11 @@ class VehiclesController extends AppController
         }
         return $this->redirect(['action' => 'agency_vehicles']);
     }
+
+    public function check($id = null)
+    {   
+        $vehicle = $this->Vehicles->get($id, []);        
+
+        $this->set(['vehicle' => $vehicle]);
+    }
 }
