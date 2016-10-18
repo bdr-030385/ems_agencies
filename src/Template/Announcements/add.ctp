@@ -2,7 +2,7 @@
     <h1><?= __('Add Announcement') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __('Announcements'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-bullhorn'></i>" . __('Announcements'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
         <li class="active"><?= __('Add') ?></li>
     </ol>
 </section>
@@ -19,12 +19,6 @@
                     <?= $this->Form->create($announcement,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
                     <fieldset>        
                         <?php
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='user_entity_id' class='col-sm-2 control-label'>" . __('User Entity Id') . "</label>
-                                        <div class='col-sm-6'>";
-                                         echo $this->Form->input('user_entity_id', ['class' => 'form-control', 'id' => 'user_entity_id', 'label' => false, 'options' => $userEntities]);                 
-                                    echo " </div></div>";    
                                                             echo "
                                     <div class='form-group'>
                                         <label for='title' class='col-sm-2 control-label'>" . __('Title') . "</label>
@@ -45,7 +39,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="action-fixed-bottom">
                                 <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
+                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
                                 <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
                             </div>
                         </div>

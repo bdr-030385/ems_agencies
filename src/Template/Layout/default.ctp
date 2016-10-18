@@ -53,6 +53,7 @@
                   <!-- <a href="#" class="btn btn-default btn-flat">Customer Profile</a> -->
                 </div>
                 <div class="pull-right">
+                  <a href="<?= $base_url ?>profile/index" class="btn btn-default btn-flat"><i class="fa fa-user"></i> My Profile</a>
                   <a href="<?= $base_url ?>users/logout" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
                 </div>
               </li>

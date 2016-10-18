@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                                 <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('user_entity_id') ?></th>
+                                                <th><?= $this->Paginator->sort('user_entity_id', __('User')) ?></th>
                                                 <th><?= $this->Paginator->sort('title') ?></th>
                                                 <th><?= $this->Paginator->sort('created') ?></th>
                                                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -32,7 +32,7 @@
                             <?php foreach ($announcements as $announcement): ?>
                             <tr>
                                                 <td><?= $this->Number->format($announcement->id) ?></td>
-                                                <td><?= $announcement->has('user_entity') ? $this->Html->link($announcement->user_entity->id, ['controller' => 'UserEntities', 'action' => 'view', $announcement->user_entity->id]) : '' ?></td>
+                                                <td><?= $announcement->user_entity->firstname . " " . $announcement->user_entity->lastname ?></td>
                                                 <td><?= h($announcement->title) ?></td>
                                                 <td><?= h($announcement->created) ?></td>
                                                 <td><?= h($announcement->modified) ?></td>

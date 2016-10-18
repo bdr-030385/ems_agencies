@@ -85,6 +85,9 @@ class AnnouncementsController extends AppController
     {
         $announcement = $this->Announcements->newEntity();
         if ($this->request->is('post')) {
+            $session = $this->request->session();    
+            $user_data = $session->read('User.data');
+            $this->request->data['user_entity_id'] = $user_data->id;
             $announcement = $this->Announcements->patchEntity($announcement, $this->request->data);
             if ($this->Announcements->save($announcement)) {
                 $this->Flash->success(__('The announcement has been saved.'));

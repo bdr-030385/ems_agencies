@@ -34,6 +34,20 @@ class VehicleCompartmentsController extends AppController
             $nav_selected = ["vehicle_compartments"];
         }       
 
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');          
+        if( isset($user_data) ){
+            if( $user_data->user->group_id == 1 ){ //Super Admin
+                $this->Auth->allow();
+            }elseif( $user_data->user->group_id == 2 ){ //Administrator
+                $this->Auth->deny();
+                $this->Auth->allow(['vehicle','ajax_load_top_vehicle_compartment_list']);
+            }elseif( $user_data->user->group_id == 3 ){ //Member                
+                $this->Auth->deny();
+                $this->Auth->allow(['vehicle','ajax_load_top_vehicle_compartment_list']);
+            }
+        }
+
         $this->set('nav_selected', $nav_selected);
         $this->set(['load_css_script' => 'users']);
     }
