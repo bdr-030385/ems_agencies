@@ -132,6 +132,11 @@ $(function(){
     });
   });
 
+  $(".btn-show-check-subcompartment").click(function(){
+    var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
+    $("#sub-compartment-"+vehicle_compartment_id).toggleClass("hidden","");
+  });
+
 });
 
 

@@ -271,7 +271,8 @@ class VehiclesController extends AppController
     public function check($id = null)
     {   
         $vehicle = $this->Vehicles->get($id, []);        
-
-        $this->set(['vehicle' => $vehicle]);
+        $this->VehicleCompartments = TableRegistry::get('VehicleCompartments');
+        $vehicle_compartments = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.vehicle_id' => $id, 'VehicleCompartments.parent_id' => 0]);
+        $this->set(['vehicle' => $vehicle, 'vehicle_compartments' => $vehicle_compartments]);
     }
 }
