@@ -108,7 +108,7 @@
                                     <div class='form-group'>
                                         <label for='address' class='col-sm-2 control-label'>" . __('Address') . "</label>
                                         <div class='col-sm-6'>";
-                                        echo $this->Form->input('address', ['class' => 'form-control', 'id' => 'address', 'label' => false]);                
+                                        echo $this->Form->input('address', ['type' => 'textarea', 'class' => 'form-control', 'id' => 'address', 'label' => false]);                
                                     echo " </div></div>";    
                                     
                                                             echo "

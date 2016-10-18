@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1><?= __('Add User') ?></h1>
+    <h1><?= __('Edit Profile') ?></h1>
     <ol class="breadcrumb">
         <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-users'></i>" . __('Users'), ['controller' => 'agencies', 'action' => 'index'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Add User') ?></li>
+        <li><?= $this->Html->link("<i class='fa fa-user'></i>" . __('Profile'), ['controller' => 'agencies', 'action' => 'index'],['escape' => false]) ?></li>
+        <li class="active"><?= __('Edit') ?></li>
     </ol>
 </section>
 
@@ -17,36 +17,17 @@
                 </div>
                 <div class="box-body">
                     <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>                    
-                    <fieldset> 
-                        <div class="callout callout-info">
-                            <h4 style="margin-left:20px;">Account Details</h4>       
-                        </div>
-                        <?php
-                            echo "
-                                <div class='form-group'>
-                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Agency') . "</label>
-                                    <div class='col-sm-6'>";
-                                    echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_name', 'default' => $userEntity->agency->id, 'options' => $agencies, 'label' => false]);                
-                                echo " </div></div>"; 
-
-                            echo "
-                                <div class='form-group'>
-                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Group') . "</label>
-                                    <div class='col-sm-6'>";
-                                    echo $this->Form->input('group_id', ['class' => 'form-control', 'id' => 'agency_name', 'default' => $userEntity->user->group->id, 'options' => $groups, 'label' => false]);                
-                                echo " </div></div>";
-
-                            echo "
-                                <div class='form-group'>
-                                    <label for='start_date' class='col-sm-2 control-label'>" . __('Email Address') . "</label>
-                                    <div class='col-sm-6'>";
-                                    echo $this->Form->input('email_address', ['value' => $userEntity->email, 'readonly' => 'readonly', 'disabled' => 'disabled', 'class' => 'form-control', 'id' => 'email_address', 'required' => 'required', 'type' => 'email', 'label' => false]);                
-                                echo " </div></div>"; 
-                        ?>
+                    <fieldset>                         
                         <div class="callout callout-info">
                             <h4 style="margin-left:20px;">User Information</h4> 
                         </div>
                         <?php
+                                    echo "
+                                    <div class='form-group'>
+                                        <label for='start_date' class='col-sm-2 control-label'>" . __('Email Address') . "</label>
+                                        <div class='col-sm-6'>";
+                                        echo $this->Form->input('email_address', ['value' => $userEntity->email, 'readonly' => 'readonly', 'disabled' => 'disabled', 'class' => 'form-control', 'id' => 'email_address', 'required' => 'required', 'type' => 'email', 'label' => false]);                
+                                    echo " </div></div>";
                                                            
                                                             echo "
                                     <div class='form-group'>

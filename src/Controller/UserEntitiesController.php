@@ -152,7 +152,7 @@ class UserEntitiesController extends AppController
         $groups   = $this->UserEntities->Users->Groups->find('list');
         $agencies = $this->UserEntities->Agencies->find('list');
         $users    = $this->UserEntities->Users->find('list');
-        $gender   = array("Male", "Female");
+        $gender   = array("Male" => "Male", "Female" => "Female");
         $this->set(compact('userEntity', 'agencies', 'users','gender','groups'));
         $this->set('_serialize', ['userEntity']);
     }
@@ -218,7 +218,7 @@ class UserEntitiesController extends AppController
 
         $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]); 
         $groups   = $this->UserEntities->Users->Groups->find('list');       
-        $gender   = array("Male", "Female");
+        $gender   = array("Male" => "Male", "Female" => "Female");
         $this->set(compact('userEntity', 'agencies', 'groups', 'gender', 'dataCustomFields'));
         $this->set('_serialize', ['userEntity']);
     }

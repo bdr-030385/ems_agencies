@@ -19,7 +19,14 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <?= $this->Html->image('/images/user2-160x160.jpg',['class' => 'user-image']) ?>
+              <?php 
+                if( $hdr_user_data->photo != '' ){
+                    $hdr_user_photo = $this->Url->build("/webroot/upload/users/" . $hdr_user_data->id . "/" . $hdr_user_data->photo);            
+                }else{
+                    $hdr_user_photo = $this->Url->build("/webroot/images/default_profile.jpg");
+                }
+              ?>
+              <img src="<?php echo $hdr_user_photo; ?>" alt="User Avatar" class="user-image">                              
               <span class="hidden-xs"><?php echo $hdr_user_data->firstname . " " . $hdr_user_data->lastname; ?></span>
             </a>
             <ul class="dropdown-menu">
