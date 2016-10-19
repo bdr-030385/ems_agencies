@@ -19,7 +19,7 @@ use Cake\Mailer\Email;
 class UsersController extends AppController
 {
     public $helpers = ['NavigationSelector'];
-
+    
     /**
      * initialize method    
      * 

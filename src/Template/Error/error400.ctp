@@ -34,29 +34,23 @@ endif;
     
 ?>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="margin-left:0px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        404 Error Pages
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="<?= Router::url('/',true); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-
-      </ol>
+      <h1>&nbsp;</h1>      
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="error-page">
-        <h2 class="headline text-yellow"> 404</h2>
+        <h2 class="headline text-yellow" style="margin-top:0px;"> 404</h2>
 
         <div class="error-content">
           <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
 
-          <p>
+          <p style="margin-top:28px;">
             We could not find the page you were looking for.
-            Meanwhile, you may <a href="<?= Router::url('/',true); ?>">return to dashboard</a>.
+            Meanwhile, you may <a href="<?= Router::url('/',true); ?>">return to home</a>.
           </p>
 
 

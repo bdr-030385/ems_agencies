@@ -1,4 +1,4 @@
-<?php include('header.ctp'); ?>
+<?php include('header_error.ctp'); ?>
 <!-- <div id="main-container">
     <div id="main-holder">        
         <div id="left-holder"><?php //include('menu_wrap.ctp'); ?>

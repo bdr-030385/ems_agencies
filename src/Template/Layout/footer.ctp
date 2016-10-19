@@ -20,7 +20,7 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> <!-- <?= CURRENT_VERSION; ?> -->
+      <!-- <b>Version</b> --> <!-- <?= CURRENT_VERSION; ?> -->
     </div>
     <strong>Copyright &copy; 2016 <a href="#">EMS</a>.</strong> All rights
     reserved.
