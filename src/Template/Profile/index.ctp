@@ -23,8 +23,9 @@
               ?>
               <img style="height:128px;width:128px;" src="<?php echo $user_photo; ?>" alt="User Avatar" class="profile-user-img img-responsive img-circle">                
               <br />
-              <a href="#modal-change-avatar" data-toggle="modal" class="btn btn-primary btn-block"><b>Change Avatar</b></a>
-              <a href="<?php echo $this->Url->build(['action' => 'edit']); ?>" class="btn btn-primary btn-block"><b>Edit Profile Details</b></a>
+              <a href="#modal-change-avatar" data-toggle="modal" class="btn btn-primary btn-block"><b><i class="fa fa-image"></i> Change Avatar</b></a>
+              <a href="<?php echo $this->Url->build(['action' => 'edit']); ?>" class="btn btn-primary btn-block"><b><i class="fa fa-pencil"></i> Edit Profile Details</b></a>
+              <a href="<?php echo $this->Url->build(['controller' => 'users', 'action' => 'change_password']); ?>" class="btn btn-primary btn-block"><b><i class="fa fa-lock"></i> Change Password</b></a>
             </div>
             <!-- /.box-body -->
           </div>

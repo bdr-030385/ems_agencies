@@ -31,7 +31,7 @@ class ItemCategoriesController extends AppController
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["item_categories"];
+            $nav_selected = ["settings"];
         }       
         $this->set('nav_selected', $nav_selected);
 

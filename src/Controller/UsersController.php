@@ -42,10 +42,10 @@ class UsersController extends AppController
                 $this->Auth->allow();
             }elseif( $user_data->user->group_id == 2 ){ //Administrator
                 $this->Auth->deny();
-                $this->Auth->allow(['user_dashboard']);
+                $this->Auth->allow(['user_dashboard','change_password']);
             }elseif( $user_data->user->group_id == 3 ){ //Member                
                 $this->Auth->deny();
-                $this->Auth->allow(['user_dashboard']);
+                $this->Auth->allow(['user_dashboard','change_password']);
             }
         }
 
@@ -259,43 +259,54 @@ class UsersController extends AppController
 
     public function request_forgot_password()
     {
-        $this->viewBuilder()->layout('');
-        $user = $this->Users->find('all')->where( ['Users.username' => $this->request->data['email_username'] ] );
-        if($user->count() > 0) {
-            if ($this->request->is(['patch', 'post', 'put'])) {
-                $data = $this->request->data;
+        $this->UserEntities = TableRegistry::get('UserEntities');
+        $this->viewBuilder()->layout('');        
+        
+        if ($this->request->is(['patch', 'post', 'put'])) {                
+            $data = $this->request->data;        
+            $user = $this->Users->find()
+                ->where(['Users.username' => $data['email_username']])
+                ->first()
+            ;
 
-                $user = $user->first();
-                $user_id = $user->id;
-
-                $this->Customer = TableRegistry::get('Customer');
-                $customer = $this->Customer->find()
-                    ->where(['Customer.user_id' => $user_id])
+            if($user) {
+                $userEntity = $this->UserEntities->find()
+                    ->where(['UserEntities.user_id' => $user->id])
                     ->first()
                 ;
-                $result = $customer->toArray();
-                $url = Router::url('/',true).'users/forgot_password?uid='.encrypt($user_id);
-                $result['link'] = "<a href='{$url}' target='_blank'>Reset Link</a>";
-                //echo decrypt(encrypt($user_id));
-                //debug($result); exit;
+                if( $userEntity ){
+                    $randChar   = rand() . $user->id;                
+                    $reset_code = md5(uniqid($randChar, true));  
 
-                //$to = "rossel.barasharig160101@gmail.com";
-                /*$to = $user->username;
-                $email_sales = new Email('default');
-                $email_sales->from(['sender@intellidentph.com' => 'IntelliDent'])
-                 ->template('request_forgot_password')
-                 ->emailFormat('html')
-                 ->to($to)                                                                                                     
-                 ->subject('IntelliDent : Forgot Password Assistance')
-                 ->viewVars(['result' => $result])
-                 ->send();*/
+                    //Save verification code
+                    $user->reset_code = $reset_code;
+                    $this->Users->save($user);
 
-                $json['message'] = "An email has been sent to your e-mail address for confirmation.";
-                $json['is_success'] = true;
-                
+                    //Send email notification to customer                
+                    $edata = [
+                        'user_name' => $userEntity->firstname,
+                        'reset_code' => $reset_code
+                    ];
+
+                    $recipient = $userEntity->email;                     
+                    $email_smtp = new Email('cake_smtp');
+                    $email_smtp->from(['websystem@emsuptodate.com' => 'WebSystem'])
+                        ->template('request_forgot_password')
+                        ->emailFormat('html')
+                        ->to($recipient)                                                                                                     
+                        ->subject('EmsAgencies : Forgot Password')
+                        ->viewVars(['edata' => $edata])
+                        ->send();
+
+                    $json['message'] = "An email has been sent to your e-mail address for confirmation.";
+                    $json['is_success'] = true;
+                }else{
+                    $json['message'] = "Invalid form entry";
+                    $json['is_success'] = false;   
+                }                
             }else{
                 $json['message'] = "Invalid form entry";
-                $json['is_success'] = false;
+                $json['is_success'] = false;    
             }
         }else{
             $json['message'] = "Invalid form entry";
@@ -377,5 +388,58 @@ class UsersController extends AppController
     public function user_dashboard()
     {
         $this->set('nav_selected', ['dashboard']);
+    }
+
+    /**
+     * Change Password method     
+     * @return void Redirects on successful add, renders view otherwise.
+     */
+    public function change_password()
+    {      
+        $this->UserEntities = TableRegistry::get('UserEntities');
+        $session      = $this->request->session();    
+        $user_session = $session->read('User.data');       
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $data = $this->request->data;
+            if( $data['password'] == $data['repassword'] ){
+                
+                $user = $this->UserEntities->Users->get($user_session->user->id);
+                $user->password = $data['password'];                
+                
+                if( $this->UserEntities->Users->save($user) ){
+                    //Update is_enabled
+                    $user_entity = $this->UserEntities->get($user_session->id);
+                    if( $user_entity->is_password_changed == 0 ){
+                        $user_entity->is_password_changed = 1;
+                        $this->UserEntities->save($user_entity);
+                    }
+
+                    //Send email
+                    $edata = [
+                        'user_name' => $user_session->firstname,
+                        'password' => $data['password']                        
+                    ];
+                    $recipient = $user_session->email;                     
+                    $email_smtp = new Email('cake_smtp');
+                    $email_smtp->from(['websystem@emsuptodate.com' => 'WebSystem'])
+                        ->template('change_password')
+                        ->emailFormat('html')
+                        ->to($recipient)                                                                                                     
+                        ->subject('EmsAgencies : Change Password')
+                        ->viewVars(['edata' => $edata])
+                        ->send();
+
+                    $this->Flash->success(__('Your password has been changed.'));
+                    return $this->redirect(['controller' => 'profile', 'action' => 'index']);
+                }else{
+                    $this->Flash->error(__('Your password could not be change. Please, try again.'));                    
+                }
+            }else{
+                $this->Flash->error(__('Password does not match!'));                    
+            }
+        }
+
+        $this->set(['user_data' => $user_session]);
     }
 }

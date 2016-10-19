@@ -4,9 +4,13 @@
 <br style="clear:both;"/>
 <div style="margin-top:10px;margin-bottom:10px;margin-left:15px;">			
 	<p>Hi <b><?php echo $edata['user_name']; ?></b>,</p> 
-	<p>Click the link below to reset your password</p>
-	<?php $url = $this->Url->build("/reset_password/index/". $edata['reset_code'],'true'); ?>
-	<p><a href="<?php echo $url; ?>"><?php echo $url; ?></a></p>
+	<p>Below is your new password:</p>
+	<table border="0">
+		<tr>
+			<td>New Password</td>
+			<td>: <b><?php echo $edata['password']; ?></b></td>
+		</tr>		
+	</table>
 	<br/>
 	<br/>
 	<p>Thank you and have a great day!</p>		
