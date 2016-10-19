@@ -446,7 +446,7 @@ class VehicleCompartmentsController extends AppController
         exit;
     }
 
-    private $global_sub_compartment = array();
+    public $global_sub_compartment = array();
     public function lookForChildCompartment($parent_id) 
     {
     	$vehicle_sub_compartment = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.parent_id' => $parent_id]);

@@ -58,6 +58,11 @@ class VehicleCompartmentsTable extends Table
             'className' => 'VehicleCompartments',
             'foreignKey' => 'parent_id'
         ]);
+
+        $this->hasMany('CheckedCompartments', [
+            'className' => 'CheckedCompartments',
+            'foreignKey' => 'vehicle_compartment_id'
+        ]);
     }
 
     /**

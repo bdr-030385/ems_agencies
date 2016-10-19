@@ -6,7 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Routing\Router;
-use App\Controller\SyncServiceController;
+use App\Controller\VehicleCompartmentsController;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 use Cake\Mailer\Email;
@@ -272,7 +272,31 @@ class VehiclesController extends AppController
     {   
         $vehicle = $this->Vehicles->get($id, []);        
         $this->VehicleCompartments = TableRegistry::get('VehicleCompartments');
-        $vehicle_compartments = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.vehicle_id' => $id, 'VehicleCompartments.parent_id' => 0]);
+        $vehicle_compartments = $this->VehicleCompartments->find('all')
+        	->where(['VehicleCompartments.vehicle_id' => $id, 'VehicleCompartments.parent_id' => 0])
+        	->contain(['CheckedCompartments']);
+
+
+        $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
+       	$compartment_items = array(); 
+       	$vehicleCompartmentsController = new VehicleCompartmentsController;
+        foreach($vehicle_compartments as $vsc) {
+
+        	//COLLECT AND STORE TO ARRAY ALL SUBCOMPARTMENTS
+        	$vehicleCompartmentsController->lookForChildCompartment($vsc->id);
+
+        	//GET COMPARTMENT ITEMS
+        	$compartment_items_array = $this->CompartmentItems->find('all')
+        		->where(['CompartmentItems.vehicle_compartment_id' => $vsc->id])
+        		->contain(['Items']);
+
+        	foreach($compartment_items_array as $ci) {
+        		$compartment_items[$vsc->id][$ci->item_id] = ['id' => $ci->id,'name' => $ci->item->name];
+        	}
+        }
+
+        //debug($compartment_items);
+
         $this->set(['vehicle' => $vehicle, 'vehicle_compartments' => $vehicle_compartments]);
     }
 }
