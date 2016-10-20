@@ -40,7 +40,7 @@
             <a href="javascript:void(0);" id="btn-forgot-password">I forgot my password</a><br>
             <a href="register.html" class="text-center">Register a new membership</a>
         </div>
-    </form>
+    <?= $this->Form->end() ?>
 
     <!-- <div class="social-auth-links text-center">
       <p>- OR -</p>

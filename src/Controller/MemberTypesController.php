@@ -22,7 +22,7 @@ class MemberTypesController extends AppController
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["member_types"];
+            $nav_selected = ["settings"];
         }       
 
         $this->set('nav_selected', $nav_selected);

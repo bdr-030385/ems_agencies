@@ -40,18 +40,28 @@
         <li id="groups_nav" title="Groups" class="<?= $nav_selected["groups"] ?>">
             <?= $this->Html->link('<i class="fa fa-street-view"></i><span>' . __("Groups") . "</span>",["controller" => get_customer_directory()."/groups", "action" => "index"],["escape" => false]) ?>
         </li>
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["member_types"] ?>">
-            <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Member Types") . "</span>",["controller" => "member_types", "action" => "index"],["escape" => false]) ?>
-        </li>
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["vehicle_types"] ?>">
-            <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Vehicle Types") . "</span>",["controller" => "vehicle_types", "action" => "index"],["escape" => false]) ?>
-        </li>
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["item_categories"] ?>">
-            <?= $this->Html->link('<i class="fa fa-list-alt"></i><span>' . __("Item Categories") . "</span>",["controller" => "item_categories", "action" => "index"],["escape" => false]) ?>
-        </li>        
-        <li id="groups_nav" title="Groups" class="<?= $nav_selected["account_types"] ?>">
-            <?= $this->Html->link('<i class="fa fa-gear"></i><span>' . __("Account Types") . "</span>",["controller" => "account_types", "action" => "index"],["escape" => false]) ?>
-        </li>        
+        <li id="groups_nav" title="Groups" class="treeview <?= $nav_selected["settings"] ?>">
+          <a href="#">
+            <i class="fa fa-gear"></i> <span>Settings</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+            <?= $this->Html->link('<i class="fa fa-circle-o"></i><span>' . __("Member Types") . "</span>",["controller" => "member_types", "action" => "index"],["escape" => false]) ?>
+            </li>
+            <li>
+                <?= $this->Html->link('<i class="fa fa-circle-o"></i><span>' . __("Vehicle Types") . "</span>",["controller" => "vehicle_types", "action" => "index"],["escape" => false]) ?>
+            </li>
+            <li>
+                <?= $this->Html->link('<i class="fa fa-circle-o"></i><span>' . __("Item Categories") . "</span>",["controller" => "item_categories", "action" => "index"],["escape" => false]) ?>
+            </li>        
+            <li>
+                <?= $this->Html->link('<i class="fa fa-circle-o"></i><span>' . __("Account Types") . "</span>",["controller" => "account_types", "action" => "index"],["escape" => false]) ?>
+            </li>  
+          </ul>
+        </li>              
       </ul>
     </section>    
 </aside>
