@@ -300,6 +300,7 @@ class VehicleCompartmentsController extends AppController
 
             $this->set([
                 'vehicle' => $vehicle, 
+                'agency_id' => $vehicle->agency_id,
                 'vehicle_compartment' => $vehicle_compartment,
                 'copyable_vehicles' => $copyable_vehicles,
                 'item_categories' => $item_categories
@@ -322,7 +323,12 @@ class VehicleCompartmentsController extends AppController
             $data = $this->request->data;
 
             $this->Items      = TableRegistry::get('Items');
-            $items            = $this->Items->find('all')->where(['Items.item_category_id' => $data['item_category_id']]);
+            if($data['item_category_id'] == 'all') {
+                $items            = $this->Items->find('all')->where(['Items.agency_id' => $data['agency_id']]); 
+            }else{ 
+                $items            = $this->Items->find('all')->where(['Items.item_category_id' => $data['item_category_id']]); 
+            }
+            
 
             $this->set([
                 'items' => $items
@@ -344,7 +350,8 @@ class VehicleCompartmentsController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->data;
 
-            $vehicle_sub_compartment = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.parent_id' => $data['compartment_parent_id']]);
+            $vehicle_sub_compartment = $this->VehicleCompartments->find('all')
+                ->where(['VehicleCompartments.id' => $data['compartment_parent_id']]);
 
             $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
            	$compartment_items = array(); 
