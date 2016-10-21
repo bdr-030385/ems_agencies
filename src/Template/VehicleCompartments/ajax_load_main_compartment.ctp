@@ -1,5 +1,6 @@
 <script>var base_url = '<?= $base_url; ?>';</script>
 <input type="hidden" id="main_compartment_id" value="<?= $vehicle_compartment->id; ?>" >
+<input type="hidden" id="agency_id" value="<?= $agency_id; ?>" >
 <div class="box-body">
     <div class="box box-primary">
         <div class="box-header">
@@ -60,6 +61,7 @@
                     <div class="form-group">
                         <label>Select Category</label>
                         <select id="item_category" class="form-control" style="width:20%; display:block">
+                            <option value="all">All</option>
                             <?php foreach($item_categories as $ic) { ?>
                                 <option value="<?= $ic->id;?>"><?= $ic->name; ?></option>
                             <?php } ?>
@@ -157,9 +159,9 @@
 <script>
 $(function(){
 
-    function loadItemsByCategory(item_category_id) {
+    function loadItemsByCategory(item_category_id,agency_id) {
         $('#item-list-container').html('<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>');
-        $.post(base_url+'vehicle_compartments/ajax_load_items_by_category',{item_category_id:item_category_id},
+        $.post(base_url+'vehicle_compartments/ajax_load_items_by_category',{item_category_id:item_category_id,agency_id:agency_id},
             function(o){
                 $('#item-list-container').html(o);
         });
@@ -167,9 +169,10 @@ $(function(){
     
     $('#item_category').change(function(){
         var item_category_id = $(this).val();
-        loadItemsByCategory(item_category_id);
+        var agency_id = $("#agency_id").val();
+        loadItemsByCategory(item_category_id,agency_id);
     });
-    loadItemsByCategory($('#item_category').val());
+    loadItemsByCategory($('#item_category').val(),$("#agency_id").val());
 
     function loadVehicleSubCompartments(compartment_parent_id) {
         $('#vehicle-sub-compartment-container').html('<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Loading...</div>');
