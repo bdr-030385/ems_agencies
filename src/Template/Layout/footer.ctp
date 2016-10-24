@@ -134,7 +134,17 @@ $(function(){
 
   $(".btn-show-check-subcompartment").click(function(){
     var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
-    $("#sub-compartment-"+vehicle_compartment_id).toggleClass("hidden","");
+    var parent_div_obj = $(this).parent('div.pull-right').parent('div.small-box');
+    if($("#sub-compartment-"+vehicle_compartment_id).hasClass('hidden')) {
+        $("#sub-compartment-"+vehicle_compartment_id).removeClass("hidden");
+        parent_div_obj.removeClass('bg-gray');
+        parent_div_obj.addClass('bg-aqua');
+    }else{
+        $("#sub-compartment-"+vehicle_compartment_id).addClass("hidden");
+        parent_div_obj.removeClass('bg-aqua');
+        parent_div_obj.addClass('bg-gray');
+    }
+    console.log();
   });
 
 });

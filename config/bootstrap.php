@@ -367,6 +367,34 @@ function loadChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartme
     }
 }
 
+function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartment_items, $level) {
+    $margin_left = $level * 10;
+    $level++;
+    if(!empty($child_subcompartments[$vc_id])) {
+        //debug($child_subcompartments[$vc_id]);
+        echo '<div id="sub-compartment-'.$vc_id.'" class="row hidden" style="width: 1123px; background-color:#efefef; padding:10px; display: table; margin-bottom: 20px; margin-left:15px;">';
+            foreach($child_subcompartments[$vc_id] as $key => $values) {
+                echo '<div class="col-lg-3 col-xs-6">';
+                    echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
+                        echo '<div class="pull-right"><button data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-info btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
+                                    <div class="clearfix"></div>';
+                        echo '<div class="inner text-center">';
+                            echo '<p>'.$values['name'].'</p>';
+                        echo '</div>';
+                        echo '<a href="#" class="small-box-footer">Sealed</a>';
+                    echo '</div>';
+                    /*if(!empty($compartment_items[$values['id']])) {
+                        foreach($compartment_items[$values['id']] as $item_id => $value) {
+                            echo '<div id="'.$value['id'].'" data-item-id="'.$item_id.'" class="external-event-2" >'.$value['name'].' <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'.$value['id'].'" data-div-obj-id="'.$value['id'].'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>';
+                        }
+                    }*/
+                echo '</div>';
+                loadCheckVehicleChildSubCompartmentsHtml($values['id'],$child_subcompartments,$compartment_items, $level);
+            }
+        echo '</div>';
+    }
+}
+
 
 
 

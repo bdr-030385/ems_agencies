@@ -273,14 +273,31 @@ class VehiclesController extends AppController
         $vehicle = $this->Vehicles->get($id, []);        
         $this->VehicleCompartments = TableRegistry::get('VehicleCompartments');
         $vehicle_compartments = $this->VehicleCompartments->find('all')
-        	->where(['VehicleCompartments.vehicle_id' => $id, 'VehicleCompartments.parent_id' => 0])
+        	->where(['VehicleCompartments.vehicle_id' => $id])
         	->contain(['CheckedCompartments']);
 
 
         $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
        	$compartment_items = array(); 
        	$vehicleCompartmentsController = new VehicleCompartmentsController;
+       	$compartments = array();
         foreach($vehicle_compartments as $vsc) {
+
+        	/*if($vsc->parent_id == 0) {
+        		$compartments[$vsc->id][] = array(
+        			'id' => $vsc->id,
+        			'parent_id' => $vsc->parent_id,
+        			'name' => $vsc->name
+        		);
+        	}else{
+        		$compartments[$vsc->parent_id][$vsc->id][] = array(
+        			'id' => $vsc->id,
+        			'parent_id' => $vsc->parent_id,
+        			'name' => $vsc->name
+        		);
+        	}*/
+        	
+
 
         	//COLLECT AND STORE TO ARRAY ALL SUBCOMPARTMENTS
         	$vehicleCompartmentsController->lookForChildCompartment($vsc->id);
@@ -295,8 +312,14 @@ class VehiclesController extends AppController
         	}
         }
 
-        //debug($compartment_items);
+        //debug($vehicle_compartments->toArray());
+        //debug($vehicleCompartmentsController->global_sub_compartment);
 
-        $this->set(['vehicle' => $vehicle, 'vehicle_compartments' => $vehicle_compartments]);
+        $this->set([
+        	'vehicle' => $vehicle, 
+        	'vehicle_compartments' => $vehicle_compartments, 
+        	'compartment_items' => $compartment_items,
+        	'child_subcompartments' => $vehicleCompartmentsController->global_sub_compartment
+        ]);
     }
 }

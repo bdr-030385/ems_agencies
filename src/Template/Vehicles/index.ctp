@@ -47,7 +47,8 @@
                                         <?= $this->Html->link('<i class="fa  fa-object-group"></i>', ['controller' => 'vehicle_compartments', 'action' => 'vehicle', $vehicle->id],['class' => 'btn btn-success', 'title' => 'Compartments', 'escape' => false]) ?>
                                     <?php } else { ?>
                                         <?= $this->Html->link('<i class="fa  fa-object-group"></i>', ['controller' => 'vehicle_compartments', 'action' => 'vehicle', $vehicle->id],['type' => 'button', 'class' => 'btn btn-success', 'title' => 'Compartments', 'escape' => false, 'disabled' => 'disabled', 'onclick' => 'return false;']) ?>
-                                    <?php } ?>                                    
+                                    <?php } ?>  
+                                    <?= $this->Html->link('<i class="fa fa-list-alt"></i>', ['action' => 'check', $vehicle->id],['class' => 'btn btn-success', 'title' => 'Rig Check', 'escape' => false]) ?>                                  
                                     <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$vehicle->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'title' => 'Delete', 'escape' => false]) ?>
                                     <div id="modal-<?=$vehicle->id?>" class="modal fade">
                                         <div class="modal-dialog">

@@ -459,7 +459,7 @@ class VehicleCompartmentsController extends AppController
     	$vehicle_sub_compartment = $this->VehicleCompartments->find('all')->where(['VehicleCompartments.parent_id' => $parent_id]);
     	if($vehicle_sub_compartment->count() > 0) {
     		foreach($vehicle_sub_compartment as $vsc) {
-	    		$this->global_sub_compartment[$vsc->parent_id][] = array(
+	    		$this->global_sub_compartment[$vsc->parent_id][$vsc->name] = array(
 	    			'parent_id' => $vsc->parent_id,
 	    			'id' => $vsc->id,
 	    			'name' => $vsc->name
