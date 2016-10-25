@@ -282,23 +282,7 @@ class VehiclesController extends AppController
        	$vehicleCompartmentsController = new VehicleCompartmentsController;
        	$compartments = array();
         foreach($vehicle_compartments as $vsc) {
-
-        	/*if($vsc->parent_id == 0) {
-        		$compartments[$vsc->id][] = array(
-        			'id' => $vsc->id,
-        			'parent_id' => $vsc->parent_id,
-        			'name' => $vsc->name
-        		);
-        	}else{
-        		$compartments[$vsc->parent_id][$vsc->id][] = array(
-        			'id' => $vsc->id,
-        			'parent_id' => $vsc->parent_id,
-        			'name' => $vsc->name
-        		);
-        	}*/
         	
-
-
         	//COLLECT AND STORE TO ARRAY ALL SUBCOMPARTMENTS
         	$vehicleCompartmentsController->lookForChildCompartment($vsc->id);
 
@@ -321,5 +305,31 @@ class VehiclesController extends AppController
         	'compartment_items' => $compartment_items,
         	'child_subcompartments' => $vehicleCompartmentsController->global_sub_compartment
         ]);
+    }
+
+    public function ajax_save_sealed_compartment()
+    {
+    	$this->viewBuilder()->layout(""); 
+
+    	$json['is_success'] = false;
+    	$json['message'] = "";
+
+    	if ($this->request->is(['patch', 'post', 'put'])) {
+    		$this->CheckedCompartments = TableRegistry::get('CheckedCompartments');
+
+    		$cp = $this->CheckedCompartments->find('all')->where(['CheckedCompartments.vehicle_compartment_id' => $this->request->data['vehicle_compartment_id']]);
+	    	if($cp->count() == 0) {
+	    		$checked_compartments = $this->CheckedCompartments->newEntity();
+	            $checked_compartments = $this->CheckedCompartments->patchEntity($checked_compartments, $this->request->data);
+	            if ($this->CheckedCompartments->save($checked_compartments)) {
+	                $json['is_success'] = true;      
+	            } 
+	    	}	
+	    		
+        }
+
+        echo json_encode($json);
+        exit;
+
     }
 }

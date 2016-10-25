@@ -144,7 +144,36 @@ $(function(){
         parent_div_obj.removeClass('bg-aqua');
         parent_div_obj.addClass('bg-gray');
     }
-    console.log();
+  });
+
+  $(".btn-seal-compartment").click(function(){
+      var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
+      var status = $(this).attr("data-status");
+      $("#vehicle_compartment_id").val(vehicle_compartment_id);
+      $("#status").val(status);
+      $('#modal-seal-compartment').modal('show');
+  });
+
+  $("#frm-seal-compartment").submit(function(e){
+      var url = base_url + "vehicles/ajax_save_sealed_compartment";
+      $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: url,               
+          data: $(this).serialize(), 
+          beforeSend: function() {            
+                       
+          },
+          success: function(o)
+           {
+              if( o.is_success ){
+                  location.reload();
+              }    
+
+              $('#modal-seal-compartment').modal('hide');        
+          }
+      }); 
+      e.preventDefault();
   });
 
 });

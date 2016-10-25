@@ -1,4 +1,4 @@
-
+<script>var base_url = '<?= $base_url; ?>';</script>
 <section class="content-header">
     <h1><?= __('Rig Check') . ": " . $vehicle->number_vehicle ?></h1>
     <ol class="breadcrumb">
@@ -25,28 +25,43 @@
                                     <div class="inner text-center">
                                         <p><?= $vc->name; ?></p>
                                     </div>
-                                    <?php //if(!empty($vc->checked_compartments)) { echo 111; } ?>
-                                    <a href="#" class="small-box-footer">Sealed</i></a>
+                                    <?php if($vc->allow_seal == 1) { ?>
+                                        <a href="javascript:void(0);" data-vehicle-compartment-id="<?= $vc->id; ?>" data-status="Good" class="small-box-footer btn-seal-compartment">Sealed</a>
+                                    <?php }else{  ?>
+                                        <a href="#" disabled="disabled">&nbsp;</a>
+                                    <?php } ?>
                                 </div>
                         
                             <?php } ?>
                         </div>
 
-                        <!-- <div id="sub-compartment-<?= $vc->id; ?>" class="row hidden" style="width: 1094px; background-color:#efefef; padding:10px; display: table; margin-bottom: 20px;"> -->
-                            <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, 1); ?>
-                            <!-- <div class="col-lg-3 col-xs-6">
-                                <div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">
-                                    <div class="inner text-center">
-                                        <p>aaaaa</p>
-                                    </div>
-                                    
-                                    <a href="#" class="small-box-footer">Sealed</a>
-                                </div>
-                            </div> -->
-                            
-                        <!-- </div> -->
+                        <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, 1); ?>
 
                     <?php } ?>
+
+                    <div id="modal-seal-compartment" class="modal fade">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Seal Confirmation</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p><?= __('Are you sure you want to seal the selected compartment?') ?></p>
+                            </div>
+                            <div class="modal-footer">                                        
+                                 <?php 
+                                    echo $this->Form->create(null,['id' => 'frm-seal-compartment']);
+                                    echo $this->Form->hidden('vehicle_compartment_id',['id' => 'vehicle_compartment_id', 'value' => ""]);
+                                    echo $this->Form->hidden('status',['id' => 'status', 'value' => ""]);
+                                    echo $this->Form->button(__('No'),['name' => 'cancel', 'value' => 'cancel', 'class' => 'btn btn-default', 'data-dismiss' => 'modal', 'escape' => false]);
+                                    echo $this->Form->button(__('Yes'),['name' => 'delete', 'value' => 'delete', 'class' => 'btn btn-primary ', 'escape' => false]);
+                                    echo $this->Form->end();
+                                ?>                                                                                
+                            </div>
+                          </div>
+                        </div>                              
+                    </div>
 
                 </div>            
             </div>

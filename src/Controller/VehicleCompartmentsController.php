@@ -462,7 +462,8 @@ class VehicleCompartmentsController extends AppController
 	    		$this->global_sub_compartment[$vsc->parent_id][$vsc->name] = array(
 	    			'parent_id' => $vsc->parent_id,
 	    			'id' => $vsc->id,
-	    			'name' => $vsc->name
+	    			'name' => $vsc->name,
+                    'allow_seal' => $vsc->allow_seal
 	    		);
 	    		$this->lookForChildCompartment($vsc->id);
 	    	}
