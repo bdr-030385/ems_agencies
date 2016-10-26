@@ -208,7 +208,8 @@ DispatcherFactory::add('ControllerFactory');
 
 /*Custom functions and constants*/
 
-
+const NOT_STARTED = "Not Started";
+const GOOD = "Good";
 
 /* ENCRYPTION */
 function encrypt($string, $salt = '') 
@@ -393,7 +394,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
             foreach($child_subcompartments[$vc_id] as $key => $values) {
                 echo '<div class="col-lg-3 col-xs-6">';
                     echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
-                        echo '<div class="pull-right"><button data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-info btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
+                        echo '<div class="pull-right"><button data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-primary btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
                                     <div class="clearfix"></div>';
                         echo '<div class="inner text-center">';
                             echo '<p>'.$values['name'].'</p>';
@@ -411,7 +412,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                         foreach($compartment_items[$values['id']] as $item_id => $value) {
                             echo '<div class="col-lg-3 col-xs-6">';
                                 echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
-                                    echo '<div class="pull-right"><button class="btn btn-info btn-xs " title="Note"><i class="fa fa-briefcase"></i></button></div>
+                                    echo '<div class="pull-right"><button class="btn btn-primary btn-xs " title="Note"><i class="fa fa-briefcase"></i></button></div>
                                                 <div class="clearfix"></div>';
                                     echo '<div class="inner text-center">';
                                         echo '<p>'.$value['name'].'</p>';
@@ -427,6 +428,16 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
             }
         echo '</div>';
     }
+}
+
+function getCompartmentStatusClass($status) 
+{
+    $class = array(
+        NOT_STARTED => 'bg-gray',
+        GOOD => 'bg-green'
+    );
+
+    return $class[$status];
 }
 
 

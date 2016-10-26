@@ -16,25 +16,26 @@
                     <?php $c = 0; ?>
                     <?php foreach($vehicle_compartments as $vc) { ?>
                         <?php $c++; ?>
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <?php if($vc->parent_id == 0) { ?>
-                                <div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">
-                                    <div class="pull-right"><button data-vehicle-compartment-id="<?= $vc->id; ?>" data-bg-color="#00c0ef" class="btn btn-info btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
-                                    <div class="clearfix"></div>
-                                    <div class="inner text-center">
-                                        <p><?= $vc->name; ?></p>
+                        <?php if($vc->parent_id == 0) { ?>
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                
+                                    <div class="small-box default-box <?php echo getCompartmentStatusClass($a_checked_compartments[$vc->id]); ?>" style="border: 2px solid #ccc;">
+                                        <div class="pull-right"><button data-vehicle-compartment-id="<?= $vc->id; ?>" data-bg-color="#00c0ef" class="btn btn-primary btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
+                                        <div class="clearfix"></div>
+                                        <div class="inner text-center">
+                                            <p><?= $vc->name; ?></p>
+                                        </div>
+                                        <?php if($vc->allow_seal == 1) { ?>
+                                            <a href="javascript:void(0);" data-vehicle-compartment-id="<?= $vc->id; ?>" data-status="Good" class="small-box-footer btn-seal-compartment">Sealed</a>
+                                        <?php }else{  ?>
+                                            <a href="#" disabled="disabled">&nbsp;</a>
+                                        <?php } ?>
                                     </div>
-                                    <?php if($vc->allow_seal == 1) { ?>
-                                        <a href="javascript:void(0);" data-vehicle-compartment-id="<?= $vc->id; ?>" data-status="Good" class="small-box-footer btn-seal-compartment">Sealed</a>
-                                    <?php }else{  ?>
-                                        <a href="#" disabled="disabled">&nbsp;</a>
-                                    <?php } ?>
-                                </div>
-                        
-                            <?php } ?>
-                        </div>
-
+                            
+                                
+                            </div>
+                        <?php } ?>
                         <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, 1); ?>
 
                     <?php } ?>

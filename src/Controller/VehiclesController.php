@@ -281,7 +281,13 @@ class VehiclesController extends AppController
        	$compartment_items = array(); 
        	$vehicleCompartmentsController = new VehicleCompartmentsController;
        	$compartments = array();
+       	$a_checked_compartments = array();
         foreach($vehicle_compartments as $vsc) {
+        	if(!empty($vsc->checked_compartments[0])) {
+        		$cc = $vsc->checked_compartments[0];
+        		$a_checked_compartments[$vsc->id] = $cc->status;
+        	}
+        	
         	
         	//COLLECT AND STORE TO ARRAY ALL SUBCOMPARTMENTS
         	$vehicleCompartmentsController->lookForChildCompartment($vsc->id);
@@ -298,11 +304,13 @@ class VehiclesController extends AppController
 
         //debug($vehicle_compartments->toArray());
         //debug($vehicleCompartmentsController->global_sub_compartment);
+        //debug($a_checked_compartments);
 
         $this->set([
         	'vehicle' => $vehicle, 
         	'vehicle_compartments' => $vehicle_compartments, 
         	'compartment_items' => $compartment_items,
+        	'a_checked_compartments' => $a_checked_compartments,
         	'child_subcompartments' => $vehicleCompartmentsController->global_sub_compartment
         ]);
     }
@@ -324,7 +332,13 @@ class VehiclesController extends AppController
 	            if ($this->CheckedCompartments->save($checked_compartments)) {
 	                $json['is_success'] = true;      
 	            } 
-	    	}	
+	    	}else{
+	    		$checked_compartments = $cp->first();
+	    		$checked_compartments = $this->CheckedCompartments->patchEntity($checked_compartments, $this->request->data);
+	            if ($this->CheckedCompartments->save($checked_compartments)) {
+	                $json['is_success'] = true;      
+	            } 
+	    	}
 	    		
         }
 

@@ -240,7 +240,17 @@ class VehicleCompartmentsController extends AppController
                 $this->request->data['sort'] = 1;
             }
             $vehicleCompartment = $this->VehicleCompartments->patchEntity($vehicleCompartment, $this->request->data);            
-            if ($this->VehicleCompartments->save($vehicleCompartment)) {
+            if ($result = $this->VehicleCompartments->save($vehicleCompartment)) {
+
+                $this->CheckedCompartments = TableRegistry::get('CheckedCompartments');
+                $checked_compartments = $this->CheckedCompartments->newEntity();
+                $cc_data['vehicle_compartment_id'] = $result->id;
+                $cc_data['status'] = NOT_STARTED;
+                $checked_compartments = $this->CheckedCompartments->patchEntity($checked_compartments, $cc_data);
+                if ($this->CheckedCompartments->save($checked_compartments)) {
+    
+                } 
+
                 $this->Flash->success(__('The vehicle compartment has been saved.'));
                 $action = $this->request->data['save'];
                 if( $action == 'save' ){
@@ -430,6 +440,15 @@ class VehicleCompartmentsController extends AppController
                 $vehicleCompartment = $this->VehicleCompartments->patchEntity($vehicleCompartment, $copied_compartment);            
                 if ($result = $this->VehicleCompartments->save($vehicleCompartment)) {
 
+                    $this->CheckedCompartments = TableRegistry::get('CheckedCompartments');
+                    $checked_compartments = $this->CheckedCompartments->newEntity();
+                    $cc_data['vehicle_compartment_id'] = $result->id;
+                    $cc_data['status'] = NOT_STARTED;
+                    $checked_compartments = $this->CheckedCompartments->patchEntity($checked_compartments, $cc_data);
+                    if ($this->CheckedCompartments->save($checked_compartments)) {
+        
+                    } 
+
                     $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
                     $copied_items = $this->CompartmentItems->find('all')->where(['CompartmentItems.vehicle_compartment_id' => $data['selected_compartment'] ]);
                     foreach($copied_items as $ci) {
@@ -487,7 +506,15 @@ class VehicleCompartmentsController extends AppController
         if ($this->request->is('post')) { 
         	$this->request->data['description'] = 'SubCompartment';
             $vehicleCompartment = $this->VehicleCompartments->patchEntity($vehicleCompartment, $this->request->data);            
-            if ($this->VehicleCompartments->save($vehicleCompartment)) {
+            if ($result = $this->VehicleCompartments->save($vehicleCompartment)) {
+                $this->CheckedCompartments = TableRegistry::get('CheckedCompartments');
+                $checked_compartments = $this->CheckedCompartments->newEntity();
+                $cc_data['vehicle_compartment_id'] = $result->id;
+                $cc_data['status'] = NOT_STARTED;
+                $checked_compartments = $this->CheckedCompartments->patchEntity($checked_compartments, $cc_data);
+                if ($this->CheckedCompartments->save($checked_compartments)) {
+    
+                } 
                 $json['is_success'] = true;
         		$json['message'] = "Sub Compartment has been added.";           
             } 
