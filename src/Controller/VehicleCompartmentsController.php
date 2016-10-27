@@ -551,7 +551,7 @@ class VehicleCompartmentsController extends AppController
 
                 $compartment_items = $this->CompartmentItems->patchEntity($compartment_items, $data);            
                 if ($result = $this->CompartmentItems->save($compartment_items)) {
-                    $json['is_success'] = true;
+                    $json['is_success'] = true;                    
                     $json['message'] = "Compartment Item has been added.";   
                     $json['compartment_item_id'] = $result->id;        
                 } 
@@ -578,13 +578,14 @@ class VehicleCompartmentsController extends AppController
         $data = $this->request->data;
 
         if ( $this->request->is('post') && $data['vehile_compartment_item_id'] > 0 ) { 
-            $compartmentItem = $this->CompartmentItems->get($data['vehile_compartment_item_id']);
+            $compartmentItem = $this->CompartmentItems->get($data['vehile_compartment_item_id']);            
             $vehicle_compartment_id = $compartmentItem->vehicle_compartment_id;
             $compartment = $this->VehicleCompartments->get($vehicle_compartment_id);
 
             if ($this->CompartmentItems->delete($compartmentItem)) {
                 $json['is_success'] = true;
                 $json['message']    = "Item deleted.";
+                $json['cid'] = $data['vehile_compartment_item_id'];
             }
             $json['vehicle_compartment_id'] = $compartment->parent_id;
         }

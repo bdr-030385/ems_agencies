@@ -1,4 +1,7 @@
 <script>var base_url = '<?= $base_url; ?>';</script>
+<style>
+.small-inner {margin-bottom: 0px;}
+</style>
 <section class="content-header">
     <h1><?= __('Rig Check') . ": " . $vehicle->number_vehicle ?></h1>
     <ol class="breadcrumb">
@@ -36,7 +39,11 @@
                                 
                             </div>
                         <?php } ?>
+                        <div class="row">
+                        <div class=" col-lg-8">
                         <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, 1); ?>
+                        </div>
+                        </div>
 
                     <?php } ?>
 

@@ -6,10 +6,17 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($vehicle_sub_compartment as $vsc) { ?>
+        <?php $level = 1;foreach($vehicle_sub_compartment as $vsc) { ?>
+            <?php 
+                if( $level == 1 ){
+                    $drop_class = "main-droppable";
+                }else{
+                    $drop_class = "droppable";
+                }
+            ?>
             <tr>
                 <td>
-                    <div data-compartment-id="<?= $vsc->id; ?>" class="droppable" style="border:1px solid #ccc;">
+                    <div data-compartment-id="<?= $vsc->id; ?>" class="<?php echo $drop_class; ?>" style="border:1px solid #ccc;">
                         <div style="background:#ccc none repeat scroll 0 0; padding:10px;"><?= $vsc->name; ?></div>
                         <?php if(!empty($compartment_items[$vsc->id])) { ?>
                             <?php foreach($compartment_items[$vsc->id] as $item_id => $value) { ?>
@@ -23,7 +30,7 @@
                     </div>
                 </td>
             </tr>
-        <?php } ?>
+        <?php $level++;} ?>
     </tbody>
 </table>
 
@@ -51,6 +58,7 @@
 </div>
 
 <script>
+var is_dragged = false;
 $(function(){
     $('#dt-vehicle-subcompartment-list').dataTable({
         "iDisplayLength":100,
@@ -84,8 +92,9 @@ $(function(){
                     $.post(base_url+'vehicle_compartments/ajax_load_main_compartment',{vehicle_compartment_id:vehicle_compartment_id},function(o){
                       $('#main-compartment-container').html(o);
                     });*/
-                    var oid = $(".btn-delete-action").attr("data-obj-id");
-                    $("#"+oid).hide(500);
+                    //var oid = $(".btn-delete-action").attr("data-obj-id");
+                    var oid = o.cid;
+                    $("#d-"+oid).hide(500);
                 }    
 
                 $('#modal-delete-compartment-item').modal('hide');        
@@ -99,7 +108,7 @@ $(function(){
             var target = $(this);
             var item_id = ui.draggable.attr("data-item-id");
             var compartment_id = target.attr("data-compartment-id");          
-
+            is_dragged = true;
             //save item 
             $.post(base_url+'vehicle_compartments/ajax_add_item_compartment',{compartment_id:compartment_id,item_id:item_id},function(o){
                 if(o.is_success) {
@@ -107,6 +116,7 @@ $(function(){
                         .css("position","")
                         .css('cursor',"inherit")
                         .removeClass('bg-gray')
+                        .attr('id', "d-" + o.compartment_item_id)
                         .removeClass('external-event')
                         .addClass('external-event-2')
                         .append('<span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'+o.compartment_item_id+'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span>'));
@@ -119,6 +129,39 @@ $(function(){
                     });
                 }
             },"json");
+            
+        }
+    });
+
+    $( ".main-droppable" ).droppable({
+        drop: function( event, ui ) {
+            var target = $(this);
+            var item_id = ui.draggable.attr("data-item-id");
+            var compartment_id = target.attr("data-compartment-id");          
+            if( !is_dragged ){
+                //save item 
+                $.post(base_url+'vehicle_compartments/ajax_add_item_compartment',{compartment_id:compartment_id,item_id:item_id},function(o){
+                    if(o.is_success) {
+                        target.append(ui.draggable.clone()
+                            .css("position","")
+                            .css('cursor',"inherit")
+                            .attr('id', "d-" + o.compartment_item_id)
+                            .removeClass('bg-gray')
+                            .removeClass('external-event')
+                            .addClass('external-event-2')
+                            .append('<span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'+o.compartment_item_id+'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span>'));
+
+                        $(".btn-delete-compartment-item").click(function(){
+                            var vehicle_compartment_item_id = $(this).attr("data-item-id");
+                            $("#vehile_compartment_item_id").val(vehicle_compartment_item_id);
+                            $(".btn-delete-action").attr("data-obj-id",$(this).attr("data-div-obj-id"));
+                            $('#modal-delete-compartment-item').modal('show');
+                        });
+                    }
+                },"json");
+            }else{
+                is_dragged = false;
+            }
             
         }
     });

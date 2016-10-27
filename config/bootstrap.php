@@ -359,7 +359,7 @@ function loadChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartme
                 echo '<div style="background:#ccc none repeat scroll 0 0; padding:10px;">'.$values['name'].' </div>';
                 if(!empty($compartment_items[$values['id']])) {
                     foreach($compartment_items[$values['id']] as $item_id => $value) {
-                        echo '<div id="'.$value['id'].'" data-item-id="'.$item_id.'" class="external-event-2" >'.$value['name'].' <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'.$value['id'].'" data-div-obj-id="'.$value['id'].'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>';
+                        echo '<div id="d-'.$value['id'].'" data-item-id="'.$item_id.'" class="external-event-2" >'.$value['name'].' <span class="pull-right"><a class="btn btn-xs btn-primary btn-delete-compartment-item" data-item-id="'.$value['id'].'" data-div-obj-id="'.$value['id'].'" href="javascript:void(0);"><i class="fa fa-trash"></i></a></span></div>';
                     }
                 }
             echo '</div>';
@@ -373,12 +373,12 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
     $level++;
     if(!empty($child_subcompartments[$vc_id])) {
         //debug($child_subcompartments[$vc_id]);
-        echo '<div id="sub-compartment-'.$vc_id.'" class="row hidden" style="width: 1123px; background-color:#efefef; padding:10px; display: table; margin-bottom: 20px; margin-left:15px;">';
+        echo '<div id="sub-compartment-'.$vc_id.'" class="row col-lg-3 col-xs-3 hidden" style="width: 100%; background-color:#efefef;padding-top:21px;display: table; margin-bottom: 20px; margin-left:5px;">';
             
             //ITEMS
             if(!empty($compartment_items[$vc_id])) {
                 foreach($compartment_items[$vc_id] as $item_id => $value) {
-                    echo '<div class="col-lg-3 col-xs-6">';
+                    echo '<div class="col-lg-3 col-xs-3">';
                         echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
                             echo '<div class="pull-right"><button class="btn btn-info btn-xs " title="Note"><i class="fa fa-briefcase"></i></button></div>
                                         <div class="clearfix"></div>';
@@ -392,7 +392,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
             }
 
             foreach($child_subcompartments[$vc_id] as $key => $values) {
-                echo '<div class="col-lg-3 col-xs-6">';
+                echo '<div class="col-lg-3 col-xs-3">';
                     echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
                         echo '<div class="pull-right"><button data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-primary btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
                                     <div class="clearfix"></div>';
@@ -408,10 +408,10 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
 
                     // ITEM
                     if(!empty($compartment_items[$values['id']])) {
-                        echo '<div id="sub-compartment-'.$values['id'].'" class="row hidden" style="width: 1123px; background-color:#efefef; padding:10px; display: table; margin-bottom: 20px; margin-left:15px;">';    
+                        echo '<div id="sub-compartment-'.$values['id'].'" class="row hidden" style="width: 440%; background-color:#b3b6bd; padding:10px 0px; display: table; margin-bottom: 20px; margin-left:15px;">';    
                         foreach($compartment_items[$values['id']] as $item_id => $value) {
-                            echo '<div class="col-lg-3 col-xs-6">';
-                                echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
+                            echo '<div class="col-lg-3 col-xs-3">';
+                                echo '<div class="small-box small-inner bg-gray default-box" style="border: 2px solid #ccc;">';
                                     echo '<div class="pull-right"><button class="btn btn-primary btn-xs " title="Note"><i class="fa fa-briefcase"></i></button></div>
                                                 <div class="clearfix"></div>';
                                     echo '<div class="inner text-center">';
