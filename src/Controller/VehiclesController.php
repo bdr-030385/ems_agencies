@@ -286,6 +286,8 @@ class VehiclesController extends AppController
         	if(!empty($vsc->checked_compartments[0])) {
         		$cc = $vsc->checked_compartments[0];
         		$a_checked_compartments[$vsc->id] = $cc->status;
+        	}else{
+        		$a_checked_compartments[$vsc->id] = NOT_STARTED;
         	}
         	
         	
@@ -298,7 +300,11 @@ class VehiclesController extends AppController
         		->contain(['Items']);
 
         	foreach($compartment_items_array as $ci) {
-        		$compartment_items[$vsc->id][$ci->item_id] = ['id' => $ci->id,'name' => $ci->item->name];
+        		$compartment_items[$vsc->id][$ci->item_id] = [
+        			'id' => $ci->id,
+        			'name' => $ci->item->name,
+        			'quantity' => $ci->item->quantity
+        		];
         	}
         }
 
@@ -345,5 +351,16 @@ class VehiclesController extends AppController
         echo json_encode($json);
         exit;
 
+    }
+
+    public function ajax_load_compartment_item_note_form()
+    {
+    	$this->viewBuilder()->layout("");
+    	if ($this->request->is(['post'])) {
+    		$this->Items = TableRegistry::get('Items');
+    		$item = $this->Items->get($this->request->data['item_id']);
+
+    		$this->set(['item' => $item]);
+    	}
     }
 }

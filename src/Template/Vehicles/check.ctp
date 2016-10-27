@@ -40,9 +40,9 @@
                             </div>
                         <?php } ?>
                         <div class="row">
-                        <div class=" col-lg-8">
-                        <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, 1); ?>
-                        </div>
+                            <div class=" col-lg-8">
+                                <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, $a_checked_compartments); ?>
+                            </div>
                         </div>
 
                     <?php } ?>
@@ -67,6 +67,21 @@
                                     echo $this->Form->end();
                                 ?>                                                                                
                             </div>
+                          </div>
+                        </div>                              
+                    </div>
+
+                    <div id="modal-compartment-item-note" class="modal fade">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Note</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div id="compartment-item-note-container"></div>
+                            </div>
+                            
                           </div>
                         </div>                              
                     </div>

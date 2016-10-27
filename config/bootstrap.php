@@ -210,6 +210,7 @@ DispatcherFactory::add('ControllerFactory');
 
 const NOT_STARTED = "Not Started";
 const GOOD = "Good";
+const MISSING = "Missing";
 
 /* ENCRYPTION */
 function encrypt($string, $salt = '') 
@@ -368,9 +369,8 @@ function loadChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartme
     }
 }
 
-function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartment_items, $level) {
-    $margin_left = $level * 10;
-    $level++;
+function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartment_items, $a_checked_compartments) {
+
     if(!empty($child_subcompartments[$vc_id])) {
         //debug($child_subcompartments[$vc_id]);
         echo '<div id="sub-compartment-'.$vc_id.'" class="row col-lg-3 col-xs-3 hidden" style="width: 100%; background-color:#efefef;padding-top:21px;display: table; margin-bottom: 20px; margin-left:5px;">';
@@ -379,8 +379,8 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
             if(!empty($compartment_items[$vc_id])) {
                 foreach($compartment_items[$vc_id] as $item_id => $value) {
                     echo '<div class="col-lg-3 col-xs-3">';
-                        echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
-                            echo '<div class="pull-right"><button class="btn btn-info btn-xs " title="Note"><i class="fa fa-briefcase"></i></button></div>
+                        echo '<div class="small-box default-box '.getCompartmentStatusClass($a_checked_compartments[$value['id']]).'" style="border: 2px solid #ccc;">';
+                            echo '<div class="pull-right"><button data-item-id="'.$item_id.'" class="btn btn-info btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
                                         <div class="clearfix"></div>';
                             echo '<div class="inner text-center">';
                                 echo '<p>'.$value['name'].'</p>';
@@ -393,7 +393,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
 
             foreach($child_subcompartments[$vc_id] as $key => $values) {
                 echo '<div class="col-lg-3 col-xs-3">';
-                    echo '<div class="small-box bg-gray default-box" style="border: 2px solid #ccc;">';
+                    echo '<div class="small-box default-box '.getCompartmentStatusClass($a_checked_compartments[$values['id']]).'"" style="border: 2px solid #ccc;">';
                         echo '<div class="pull-right"><button data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-primary btn-xs btn-show-check-subcompartment" title="Show Sub Compartment"><i class="fa  fa-object-group"></i></button></div>
                                     <div class="clearfix"></div>';
                         echo '<div class="inner text-center">';
@@ -412,7 +412,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                         foreach($compartment_items[$values['id']] as $item_id => $value) {
                             echo '<div class="col-lg-3 col-xs-3">';
                                 echo '<div class="small-box small-inner bg-gray default-box" style="border: 2px solid #ccc;">';
-                                    echo '<div class="pull-right"><button class="btn btn-primary btn-xs " title="Note"><i class="fa fa-briefcase"></i></button></div>
+                                    echo '<div class="pull-right"><button data-item-id="'.$item_id.'" class="btn btn-primary btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
                                                 <div class="clearfix"></div>';
                                     echo '<div class="inner text-center">';
                                         echo '<p>'.$value['name'].'</p>';
@@ -424,7 +424,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                         echo '</div>';
                     }
                 echo '</div>';
-                loadCheckVehicleChildSubCompartmentsHtml($values['id'],$child_subcompartments,$compartment_items, $level);
+                loadCheckVehicleChildSubCompartmentsHtml($values['id'],$child_subcompartments,$compartment_items, $a_checked_compartments);
             }
         echo '</div>';
     }
@@ -434,10 +434,11 @@ function getCompartmentStatusClass($status)
 {
     $class = array(
         NOT_STARTED => 'bg-gray',
-        GOOD => 'bg-green'
+        GOOD => 'bg-green',
+        MISSING => 'bg-red'
     );
 
-    return $class[$status];
+    return (isset($class[$status]) ? $class[$status] : "");
 }
 
 

@@ -176,6 +176,19 @@ $(function(){
       e.preventDefault();
   });
 
+  $(".btn-compartment-item-note").click(function(){
+      var item_id = $(this).attr("data-item-id");
+      loadItemDetails(item_id);
+      $('#modal-compartment-item-note').modal('show');
+  });
+
+  function loadItemDetails(item_id){
+    $('#compartment-item-note-container').html("<div class='text-center' style='padding:20px'><i class='fa fa-spin fa-spinner'></i> Loading...</div>");
+    $.post(base_url+'vehicles/ajax_load_compartment_item_note_form',{item_id:item_id},function(o){
+      $('#compartment-item-note-container').html(o);
+    });
+  }
+
 });
 
 
