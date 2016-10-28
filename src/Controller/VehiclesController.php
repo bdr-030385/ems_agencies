@@ -363,4 +363,22 @@ class VehiclesController extends AppController
     		$this->set(['item' => $item]);
     	}
     }
+
+    public function ajax_update_compartment_status_note()
+    {
+    	$json['is_success'] = false;
+    	$this->viewBuilder()->layout("");
+    	if ($this->request->is(['post'])) {
+    		$this->Items = TableRegistry::get('Items');
+    		$data = $this->request->data;
+
+    		$item = $this->Items->get($data['item_id']);
+    		$item = $this->Items->patchEntity($item, $data);
+    		if ($this->Items->save($item)) {
+                $json['is_success'] = true;      
+            } 
+    	}
+    	echo json_encode($json);
+    	exit;
+    }
 }
