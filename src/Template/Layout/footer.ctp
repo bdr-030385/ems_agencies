@@ -178,13 +178,14 @@ $(function(){
 
   $(".btn-compartment-item-note").click(function(){
       var item_id = $(this).attr("data-item-id");
-      loadItemDetails(item_id);
+      var vehicle_compartment_id = $(this).attr("data-vehicle-compartment-id");
+      loadItemDetails(item_id,vehicle_compartment_id);
       $('#modal-compartment-item-note').modal('show');
   });
 
-  function loadItemDetails(item_id){
+  function loadItemDetails(item_id, vehicle_compartment_id){
     $('#compartment-item-note-container').html("<div class='text-center' style='padding:20px'><i class='fa fa-spin fa-spinner'></i> Loading...</div>");
-    $.post(base_url+'vehicles/ajax_load_compartment_item_note_form',{item_id:item_id},function(o){
+    $.post(base_url+'vehicles/ajax_load_compartment_item_note_form',{item_id:item_id,vehicle_compartment_id:vehicle_compartment_id},function(o){
       $('#compartment-item-note-container').html(o);
     });
   }

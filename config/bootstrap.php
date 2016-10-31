@@ -380,7 +380,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                 foreach($compartment_items[$vc_id] as $item_id => $value) {
                     echo '<div class="col-lg-3 col-xs-3">';
                         echo '<div class="small-box default-box '.getCompartmentStatusClass($a_checked_compartments[$value['id']]).'" style="border: 2px solid #ccc;">';
-                            echo '<div class="pull-right"><button data-item-id="'.$item_id.'" class="btn btn-info btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
+                            echo '<div class="pull-right"><button data-item-id="'.$item_id.'" data-vehicle-compartment-id="'.$value['id'].'" class="btn btn-info btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
                                         <div class="clearfix"></div>';
                             echo '<div class="inner text-center">';
                                 echo '<p>'.$value['name'].'</p>';
@@ -412,7 +412,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                         foreach($compartment_items[$values['id']] as $item_id => $value) {
                             echo '<div class="col-lg-3 col-xs-3">';
                                 echo '<div class="small-box small-inner bg-gray default-box" style="border: 2px solid #ccc;">';
-                                    echo '<div class="pull-right"><button data-item-id="'.$item_id.'" class="btn btn-primary btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
+                                    echo '<div class="pull-right"><button data-item-id="'.$item_id.'" data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-primary btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
                                                 <div class="clearfix"></div>';
                                     echo '<div class="inner text-center">';
                                         echo '<p>'.$value['name'].'</p>';
@@ -438,7 +438,7 @@ function getCompartmentStatusClass($status)
         MISSING => 'bg-red'
     );
 
-    return (isset($class[$status]) ? $class[$status] : "");
+    return (isset($class[$status]) ? $class[$status] : NOT_STARTED);
 }
 
 

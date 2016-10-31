@@ -360,7 +360,38 @@ class VehiclesController extends AppController
     		$this->Items = TableRegistry::get('Items');
     		$item = $this->Items->get($this->request->data['item_id']);
 
-    		$this->set(['item' => $item]);
+            $this->ItemExpirations = TableRegistry::get('ItemExpirations');
+            $item_expirations = $this->ItemExpirations->find('all')->where(['ItemExpirations.item_id' => $this->request->data['item_id']]);
+
+            $this->CompartmentItems = TableRegistry::get('CompartmentItems');
+            $compartment_item = $this->CompartmentItems->find('all')
+                ->where(['CompartmentItems.item_id' => $this->request->data['item_id'], 'CompartmentItems.vehicle_compartment_id' => $this->request->data['vehicle_compartment_id']]);
+
+            $compartment_item = $compartment_item->first();
+
+            $item_status = NOT_STARTED;
+            $checked_items = array();
+            if(!empty($compartment_item)){
+                $this->CheckedItems = TableRegistry::get('CheckedItems');
+                $checked_items = $this->CheckedItems->find('all')->where(['CheckedItems.compartment_item_id' => $compartment_item->id])->first();
+                if(!empty($checked_items)) {
+                    $item_status = $checked_items->status;
+                }else{
+                    $checked_items = $this->CheckedItems->newEntity();
+                    $data['status'] = NOT_STARTED;
+                    $data['compartment_item_id'] = $compartment_item->id;
+                    $checked_items = $this->CheckedItems->patchEntity($checked_items, $data);
+                    $checked_items = $this->CheckedItems->save($checked_items);
+                }
+            }
+
+    		$this->set([
+                'item' => $item, 
+                'item_expirations' => $item_expirations,
+                'item_status' => $item_status,
+                'checked_item' => $checked_items
+                ]
+            );
     	}
     }
 
@@ -372,6 +403,11 @@ class VehiclesController extends AppController
     		$this->Items = TableRegistry::get('Items');
     		$data = $this->request->data;
 
+            $this->CheckedItems = TableRegistry::get('CheckedItems');
+            $checked_item = $this->CheckedItems->get($data['checked_item_id']);
+            $checked_item->status = $data['status'];
+            $this->CheckedItems->save($checked_item);
+
     		$item = $this->Items->get($data['item_id']);
     		$item = $this->Items->patchEntity($item, $data);
     		if ($this->Items->save($item)) {
@@ -380,5 +416,24 @@ class VehiclesController extends AppController
     	}
     	echo json_encode($json);
     	exit;
+    }
+
+    public function save_item_expiration_date()
+    {
+        $json['is_success'] = false;
+        $this->viewBuilder()->layout("");
+        if ($this->request->is(['post'])) {
+            $this->ItemExpirations = TableRegistry::get('ItemExpirations');
+            $data = $this->request->data;
+
+            $item_expiration = $this->ItemExpirations->newEntity();
+            $item_expiration = $this->ItemExpirations->patchEntity($item_expiration, $data);
+            if ($this->ItemExpirations->save($item_expiration)) {
+                $json['is_success'] = true;
+                $json['expiration_date'] = $data['expiration_date'];
+            } 
+        }
+        echo json_encode($json);
+        exit;
     }
 }
