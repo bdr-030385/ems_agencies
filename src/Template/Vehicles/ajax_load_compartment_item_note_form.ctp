@@ -24,7 +24,7 @@
             <div class='col-sm-12'>
                 <ul id="expiration-dates-list">
                     <?php foreach($item_expirations as $ie) { ?>
-                        <li><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-minus"></i></a> <?= date("Y-m-d", strtotime($ie->expiration_date)); ?></li>
+                        <li><a href="javascript:void(0);" class="btn btn-danger btn-xs btn-remove-item-expiration" data-item-expiration-id="<?= $ie->id; ?>" ><i class="fa fa-minus"></i></a> <?= date("Y-m-d", strtotime($ie->expiration_date)); ?></li>
                     <?php } ?>
                 </ul>
                 <ul>
@@ -52,7 +52,7 @@
             <div class='col-sm-12 form-label'>&nbsp;</div>
             <div class='col-sm-12'>
                 <button class="btn btn-primary btn-sm btn-save-item-note" type="submit">Save</button> &nbsp;
-                <button class="btn btn-default btn-sm" type="button">Close</button>
+                <button class="btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true" type="button">Close</button>
             </div>
         </div>
     </fieldset>
@@ -105,6 +105,17 @@ $(function(){
                 }
             },"json");
         }
+    });
+
+    $('.btn-remove-item-expiration').click(function(){
+        var obj = $(this);
+        var item_expiration_id = obj.attr("data-item-expiration-id");
+        $.post(base_url + 'vehicles/delete_item_expiration_date',{item_expiration_id:item_expiration_id},function(o){
+            if(o.is_success) {
+                obj.parent().hide(500);
+            }
+        },"json");
+        
     });
 });
 </script>

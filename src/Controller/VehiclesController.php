@@ -278,10 +278,12 @@ class VehiclesController extends AppController
 
 
         $this->CompartmentItems      = TableRegistry::get('CompartmentItems');
+        $this->CheckedItems      = TableRegistry::get('CheckedItems');
        	$compartment_items = array(); 
        	$vehicleCompartmentsController = new VehicleCompartmentsController;
        	$compartments = array();
        	$a_checked_compartments = array();
+        $a_checked_items = array();
         foreach($vehicle_compartments as $vsc) {
         	if(!empty($vsc->checked_compartments[0])) {
         		$cc = $vsc->checked_compartments[0];
@@ -305,18 +307,29 @@ class VehiclesController extends AppController
         			'name' => $ci->item->name,
         			'quantity' => $ci->item->quantity
         		];
+
+                $checked_items = $this->CheckedItems->find('all')->where(['CheckedItems.compartment_item_id' => $ci->id])->first();
+                if(!empty($checked_items)) {
+                    $a_checked_items[$ci->id] = $checked_items->status;
+                }else{
+                    $a_checked_items[$ci->id] = NOT_STARTED;
+                }
+                
         	}
         }
 
         //debug($vehicle_compartments->toArray());
         //debug($vehicleCompartmentsController->global_sub_compartment);
         //debug($a_checked_compartments);
+        //debug($compartment_items);
+        //debug($a_checked_items);
 
         $this->set([
         	'vehicle' => $vehicle, 
         	'vehicle_compartments' => $vehicle_compartments, 
         	'compartment_items' => $compartment_items,
         	'a_checked_compartments' => $a_checked_compartments,
+            'a_checked_items' => $a_checked_items,
         	'child_subcompartments' => $vehicleCompartmentsController->global_sub_compartment
         ]);
     }
@@ -436,4 +449,20 @@ class VehiclesController extends AppController
         echo json_encode($json);
         exit;
     }
+
+    public function delete_item_expiration_date()
+    {
+        $json['is_success'] = false;
+        $this->viewBuilder()->layout("");
+        if ($this->request->is(['post'])) {
+            $this->ItemExpirations = TableRegistry::get('ItemExpirations');
+            $item_expiration = $this->ItemExpirations->get($this->request->data['item_expiration_id']);
+            if ($this->ItemExpirations->delete($item_expiration)) {
+                $json['is_success'] = true;
+            }
+        }
+        echo json_encode($json);
+        exit;
+    }
+
 }

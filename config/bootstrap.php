@@ -369,7 +369,7 @@ function loadChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartme
     }
 }
 
-function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartment_items, $a_checked_compartments) {
+function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments, $compartment_items, $a_checked_compartments, $a_checked_items) {
 
     if(!empty($child_subcompartments[$vc_id])) {
         //debug($child_subcompartments[$vc_id]);
@@ -379,7 +379,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
             if(!empty($compartment_items[$vc_id])) {
                 foreach($compartment_items[$vc_id] as $item_id => $value) {
                     echo '<div class="col-lg-3 col-xs-3">';
-                        echo '<div class="small-box default-box '.getCompartmentStatusClass($a_checked_compartments[$value['id']]).'" style="border: 2px solid #ccc;">';
+                        echo '<div class="small-box default-box '.getCompartmentStatusClass($a_checked_items[$value['id']]).'" style="border: 2px solid #ccc;">';
                             echo '<div class="pull-right"><button data-item-id="'.$item_id.'" data-vehicle-compartment-id="'.$value['id'].'" class="btn btn-info btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
                                         <div class="clearfix"></div>';
                             echo '<div class="inner text-center">';
@@ -411,7 +411,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                         echo '<div id="sub-compartment-'.$values['id'].'" class="row hidden" style="width: 440%; background-color:#b3b6bd; padding:10px 0px; display: table; margin-bottom: 20px; margin-left:15px;">';    
                         foreach($compartment_items[$values['id']] as $item_id => $value) {
                             echo '<div class="col-lg-3 col-xs-3">';
-                                echo '<div class="small-box small-inner bg-gray default-box" style="border: 2px solid #ccc;">';
+                                echo '<div class="small-box small-inner default-box '.getCompartmentStatusClass($a_checked_items[$value['id']]).'" style="border: 2px solid #ccc;">';
                                     echo '<div class="pull-right"><button data-item-id="'.$item_id.'" data-vehicle-compartment-id="'.$values['id'].'" class="btn btn-primary btn-xs btn-compartment-item-note" title="Note"><i class="fa fa-briefcase"></i></button></div>
                                                 <div class="clearfix"></div>';
                                     echo '<div class="inner text-center">';
@@ -424,7 +424,7 @@ function loadCheckVehicleChildSubCompartmentsHtml($vc_id, $child_subcompartments
                         echo '</div>';
                     }
                 echo '</div>';
-                loadCheckVehicleChildSubCompartmentsHtml($values['id'],$child_subcompartments,$compartment_items, $a_checked_compartments);
+                loadCheckVehicleChildSubCompartmentsHtml($values['id'],$child_subcompartments,$compartment_items, $a_checked_compartments, $a_checked_items);
             }
         echo '</div>';
     }

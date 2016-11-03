@@ -41,7 +41,7 @@
                         <?php } ?>
                         <div class="row">
                             <div class=" col-lg-8">
-                                <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, $a_checked_compartments); ?>
+                                <?php loadCheckVehicleChildSubCompartmentsHtml($vc->id,$child_subcompartments,$compartment_items, $a_checked_compartments, $a_checked_items); ?>
                             </div>
                         </div>
 
