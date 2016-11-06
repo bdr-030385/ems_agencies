@@ -1,88 +1,78 @@
+<div class="page-content">
+    <div class="container">
+        <div class="page-content-inner">
+                                                        
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                        <div class="portlet box green">
+                            <div class="portlet-title">
+                                <div class="caption"><i class="fa fa-globe"></i>Agencies</div>
+                                <div class="tools"> </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_3" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="all">Agency name</th>
+                                            <th class="min-phone-l">Contact info</th>
+                                            <th class="min-tablet">Address</th>
+                                            <th class="min-phone-l">Action</th>
 
-<section class="content-header">
-    <h1><?= __('Agencies') ?></h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('Agencies') ?></li>
-    </ol>
-</section>
+                                            <th class="desktop">Billing</th>
 
-<section class="content">
-    <!-- Main Row -->
-    <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <div class="box-header">
-                    <?= $this->Html->link(__('Add New Agency'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
-                    <h3 class="box-title text-black" ></h3>
-                </div>
-                <div class="box-body">
-                    <table id="dt-users-list" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                                <th><?= $this->Paginator->sort('id') ?></th>
-                                                <th><?= $this->Paginator->sort('account_type_id') ?></th>
-                                                <th><?= $this->Paginator->sort('member_type_id') ?></th>
-                                                <th><?= $this->Paginator->sort('name') ?></th>
-                                                <th><?= $this->Paginator->sort('emt_number') ?></th>
-                                                <th><?= $this->Paginator->sort('status') ?></th>
-                                                <th><?= $this->Paginator->sort('start_date') ?></th>
-                                                <th class="actions"><?= __('Actions') ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($agencies as $agency): ?>
-                            <tr>
-                                                <td><?= $this->Number->format($agency->id) ?></td>
-                                                <td><?= $agency->has('account_type') ? $this->Html->link($agency->account_type->name, ['controller' => 'AccountTypes', 'action' => 'view', $agency->account_type->id]) : '' ?></td>
-                                                <td><?= $agency->has('member_type') ? $this->Html->link($agency->member_type->name, ['controller' => 'MemberTypes', 'action' => 'view', $agency->member_type->id]) : '' ?></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($agencies as $agency): ?>
+                                            <tr>
                                                 <td><?= h($agency->name) ?></td>
-                                                <td><?= h($agency->emt_number) ?></td>
-                                                <td><?= h($agency->status) ?></td>
-                                                <td><?= h($agency->start_date) ?></td>
-                                                <td class="actions">
-                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $agency->id],['class' => 'btn btn-info', 'title' => 'View', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'title' => 'Edit', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-users"></i>', ['action' => 'add_users', $agency->id],['class' => 'btn btn-success', 'title' => 'Add Users', 'escape' => false]) ?>
-                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$agency->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'title' => 'Delete', 'escape' => false]) ?>
-                                    <div id="modal-<?=$agency->id?>" class="modal fade">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                <h4 class="modal-title">Delete Confirmation</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p><?= __('Are you sure you want to delete selected entry?') ?></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
-                                                <?= $this->Form->postLink(
-                                                        'Yes',
-                                                        ['action' => 'delete', $agency->id],
-                                                        ['class' => 'btn btn-danger', 'escape' => false]
-                                                    )
-                                                ?>
-                                            </div>
-                                          </div>
-                                        </div>                              
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    </div>
-                    <div class="paginator" style="text-align:center;">
-                        <ul class="pagination">
-                        <?= $this->Paginator->prev('«') ?>
-                            <?= $this->Paginator->numbers() ?>
-                            <?= $this->Paginator->next('»') ?>
-                        </ul>
-                        <p class="hidden"><?= $this->Paginator->counter() ?></p>
-                    </div>
+                                                <td></td>
+                                                <td><?= h($agency->address_street1) ?></td>
+                                                <td>
+                                                   <?= $this->Html->link('Edit', ['action' => 'edit', $agency->id],['class' => 'btn blue', 'title' => 'Edit', 'escape' => false]) ?>
+                                                    <a href="" class="btn blue">New Account</a>
+                                                </td>
+                                                <td></td>
+                                                <!-- <td class="actions">
+                                                    <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $agency->id],['class' => 'btn btn-info', 'title' => 'View', 'escape' => false]) ?>
+                                                    <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $agency->id],['class' => 'btn btn-success', 'title' => 'Edit', 'escape' => false]) ?>
+                                                    <?= $this->Html->link('<i class="fa fa-users"></i>', ['action' => 'add_users', $agency->id],['class' => 'btn btn-success', 'title' => 'Add Users', 'escape' => false]) ?>
+                                                    <?= $this->Html->link('<i class="fa fa-trash"></i>', '#modal-'.$agency->id,['data-toggle' => 'modal', 'class' => 'btn btn-danger', 'title' => 'Delete', 'escape' => false]) ?>
+                                                    <div id="modal-<?=$agency->id?>" class="modal fade">
+                                                        <div class="modal-dialog">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title">Delete Confirmation</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p><?= __('Are you sure you want to delete selected entry?') ?></p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
+                                                                <?= $this->Form->postLink(
+                                                                        'Yes',
+                                                                        ['action' => 'delete', $agency->id],
+                                                                        ['class' => 'btn btn-danger', 'escape' => false]
+                                                                    )
+                                                                ?>
+                                                            </div>
+                                                          </div>
+                                                        </div>                              
+                                                    </div>
+                                                </td> -->
+                                            </tr>
+                                        <?php endforeach; ?>        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
                 </div>
+                               
             </div>
-        </section>
+        </div>
     </div>
-</section>
+</div>
+
