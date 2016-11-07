@@ -1,16 +1,28 @@
-
-<section class="content-header">
-    <h1><?= __('User Profile') ?></h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('User Profile') ?></li>
-    </ol>
-</section>
-
-<section class="content">
-    <!-- Main Row -->
-    <div class="row">            
-        <div class="col-md-2">
+<div class="cd-tabs">
+  <style type="text/css">
+    label
+    {
+      padding: 10px;
+      padding-left: 0px;
+      padding-top: 0px;
+      }
+  </style>
+<ul class="cd-tabs-content" style="width: 100%;float: left;">
+    <li data-content="tab1" class="selected">
+  <!-- second partition -->
+  <div class="page-title" align="center">
+    <h1 style="font-size: 30px; color: #000"> My Profile </h1>
+   
+    <br>
+    <br>
+   
+  </div>
+  <div class="col-md-12" style="color: #000">
+  <!-- form here -->
+  <div class="portlet light " style="width:100%; float:left;">
+    <div class="portlet-title">
+      <div class="portlet-body form">
+        <div class="col-md-3">
             <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
@@ -31,7 +43,7 @@
           </div>
           <!-- /.box -->
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9">
 
           <!-- Personal Info Box -->
           <div class="box box-primary">
@@ -122,6 +134,13 @@
                 <?= $this->Form->end() ?>
               </div>
             </div>                              
-        </div>       
+        </div>  
+      </div>
     </div>
-</section>
+    <!-- Form Here -->
+  </div>
+  <!-- second partition ==-->
+  </div>
+</li>
+</ul>
+</div>

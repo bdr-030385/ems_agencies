@@ -28,6 +28,7 @@ class ProfileController extends AppController
         parent::initialize();
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
+        $this->viewBuilder()->layout("Ems/default"); 
         if ($this->request->action == "dashboard") {
             $nav_selected = [""];
         } else {
@@ -62,8 +63,8 @@ class ProfileController extends AppController
             ->where(['UserEntities.id' => $user_data->id])
             ->first()
         ;
-
-        $this->set(compact('userEntity'));
+        $load_form_css = true;
+        $this->set(compact('userEntity','load_form_css'));
     }
 
     /**
@@ -137,7 +138,8 @@ class ProfileController extends AppController
         $agencies = $this->UserEntities->Agencies->find('list', ['limit' => 200]); 
         $groups   = $this->UserEntities->Users->Groups->find('list');       
         $gender   = array("Male" => "Male", "Female" => "Female");
-        $this->set(compact('userEntity', 'agencies', 'groups', 'gender', 'dataCustomFields'));
+        $load_form_css = true;
+        $this->set(compact('userEntity', 'agencies', 'groups', 'gender', 'dataCustomFields','load_form_css'));
         $this->set('_serialize', ['userEntity']);
     }
 

@@ -26,7 +26,7 @@ class VehiclesController extends AppController
     public function initialize()
     {
         parent::initialize();
-        
+        $this->viewBuilder()->layout("Ems/default"); 
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         if ($this->request->action == "dashboard") {
@@ -82,8 +82,8 @@ class VehiclesController extends AppController
 
         $vehicle = $this->Vehicles->get($id, [
             'contain' => ['Agencies', 'VehicleTypes', 'Colors', 'VehicleFiles']
-        ]);
-        $this->set('vehicle', $vehicle);
+        ]);        
+        $this->set(['vehicle' => $vehicle, 'load_form_css' => true]);
         $this->set('_serialize', ['vehicle','group_id']);
     }
 
@@ -112,7 +112,8 @@ class VehiclesController extends AppController
         $agencies = $this->Vehicles->Agencies->find('list', ['limit' => 200]);
         $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
         $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'agencies', 'vehicleTypes', 'colors'));
+        $load_form_css = true;
+        $this->set(compact('vehicle', 'agencies', 'vehicleTypes', 'colors', 'load_form_css'));
         $this->set('_serialize', ['vehicle']);
     }
 
@@ -145,7 +146,8 @@ class VehiclesController extends AppController
         $agencies = $this->Vehicles->Agencies->find('list', ['limit' => 200]);
         $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
         $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'agencies', 'vehicleTypes', 'colors'));
+        $load_form_css = true;
+        $this->set(compact('vehicle', 'agencies', 'vehicleTypes', 'colors','load_form_css'));
         $this->set('_serialize', ['vehicle']);
     }
 

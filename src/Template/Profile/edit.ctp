@@ -1,26 +1,37 @@
-<section class="content-header">
-    <h1><?= __('Edit Profile') ?></h1>
-    <ol class="breadcrumb">
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-user'></i>" . __('Profile'), ['controller' => 'agencies', 'action' => 'index'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Edit') ?></li>
-    </ol>
-</section>
-
-<section class="content">
-    <!-- Main Row -->
-    <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <div class="box-header">
-
-                </div>
-                <div class="box-body">
-                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>                    
-                    <fieldset>                         
-                        <div class="callout callout-info">
-                            <h4 style="margin-left:20px;">User Information</h4> 
-                        </div>
+<div class="cd-tabs">
+  <style type="text/css">
+    label
+    {
+      padding: 10px;
+      padding-left: 0px;
+      padding-top: 0px;
+      }
+    .callout-info{
+        background-color: #69CFD0;
+        color:#ffffff;
+        padding: 10px;
+        margin-bottom: 20px;
+        margin-top:20px;
+    }
+  </style>
+<ul class="cd-tabs-content" style="width: 100%;float: left;">
+    <li data-content="tab1" class="selected">
+  <!-- second partition -->
+  <div class="page-title" align="center">
+    <h1 style="font-size: 30px; color: #000"> Edit Profile</h1>
+   
+    <br>
+    <br>
+   
+  </div>
+  <div class="col-md-12" style="color: #000">
+  <!-- form here -->
+  <div class="portlet light " style="width:100%; float:left;">
+    <div class="portlet-title">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>                    
+                    <fieldset>                                                 
                         <?php
                                     echo "
                                     <div class='form-group'>
@@ -197,8 +208,13 @@
                         </div>
                     </div>
                     <?= $this->Form->end() ?>
-                </div>
-            </div>
-        </section>
+        <!-- END FORM-->
+      </div>
     </div>
-</section>
+    <!-- Form Here -->
+  </div>
+  <!-- second partition ==-->
+  </div>
+</li>
+</ul>
+</div>

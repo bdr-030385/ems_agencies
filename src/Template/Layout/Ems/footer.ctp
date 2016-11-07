@@ -90,6 +90,9 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 
 <script type="text/javascript">
+$(function(){
+  $(".dt-buttons").append("<a class='dt-button buttons-pdf buttons-html5 btn default' href='<?php echo $this->Url->Build(['action' => 'add']); ?>'>Add New</a>");
+});
 $(window).scroll(function(){
     if ($(window).scrollTop() >= 100) {
        $('nav').addClass('fixed-header');

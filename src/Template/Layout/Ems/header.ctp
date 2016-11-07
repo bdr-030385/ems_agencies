@@ -19,6 +19,7 @@
     echo $this->Html->css('ems/assets/global/plugins/simple-line-icons/simple-line-icons.min.css');
     echo $this->Html->css('ems/assets/global/plugins/bootstrap/css/bootstrap.min.css');
     echo $this->Html->css('ems/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css');
+    echo $this->Html->css('ems/assets/global/plugins/simple-line-icons/simple-line-icons.min.css');
 ?>
 <!-- END GLOBAL MANDATORY STYLES -->
 
@@ -39,6 +40,10 @@
     echo $this->Html->css('ems/assets/layouts/layout3/css/layout.min.css');
     echo $this->Html->css('ems/assets/layouts/layout3/css/themes/default.min.css');
     echo $this->Html->css('ems/assets/layouts/layout3/css/custom.min.css');
+    if( isset($load_form_css) ){
+      echo $this->Html->css('ems/assets/layouts/layout3/css/tab.css');
+    }
+
 ?>
 <!-- END THEME LAYOUT STYLES -->
 <!-- <link rel="shortcut icon" href="favicon.ico" /> -->

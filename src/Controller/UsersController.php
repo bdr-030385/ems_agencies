@@ -28,7 +28,8 @@ class UsersController extends AppController
     {
         parent::initialize();
         // Add the selected sidebar-menu 'active' class
-        // Valid value can be found in NavigationSelectorHelper       
+        // Valid value can be found in NavigationSelectorHelper  
+        $this->viewBuilder()->layout("Ems/default");      
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
@@ -440,6 +441,7 @@ class UsersController extends AppController
             }
         }
 
-        $this->set(['user_data' => $user_session]);
+        $load_form_css = true;
+        $this->set(['user_data' => $user_session, 'load_form_css' => $load_form_css]);
     }
 }
