@@ -29,7 +29,29 @@
                                         <td><?= h($agency->address_street1) ?></td>
                                         <td>
                                            <?= $this->Html->link('Edit', ['action' => 'edit', $agency->id],['class' => 'btn blue', 'title' => 'Edit', 'escape' => false]) ?>
-                                            <a href="" class="btn blue">New Account</a>
+                                           <?= $this->Html->link('Delete', '#modal-'.$agency->id,['data-toggle' => 'modal', 'class' => 'btn red', 'title' => 'Delete', 'escape' => false]) ?>
+                                           <div id="modal-<?=$agency->id?>" class="modal fade">
+                                                <div class="modal-dialog">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><?= __('Are you sure you want to delete selected entry?') ?></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">No</button>
+                                                        <?= $this->Form->postLink(
+                                                                'Yes',
+                                                                ['action' => 'delete', $agency->id],
+                                                                ['class' => 'btn btn-danger', 'escape' => false]
+                                                            )
+                                                        ?>
+                                                    </div>
+                                                  </div>
+                                                </div>                              
+                                            </div>
                                         </td>
                                         <td></td>
                                         <!-- <td class="actions">
