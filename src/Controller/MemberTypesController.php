@@ -17,6 +17,7 @@ class MemberTypesController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->viewBuilder()->layout("Ems/default");
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         if ($this->request->action == "dashboard") {
@@ -78,7 +79,8 @@ class MemberTypesController extends AppController
                 $this->Flash->error(__('The member type could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('memberType'));
+        $load_form_css = true;
+        $this->set(compact('memberType','load_form_css'));
         $this->set('_serialize', ['memberType']);
     }
 
@@ -108,7 +110,8 @@ class MemberTypesController extends AppController
                 $this->Flash->error(__('The member type could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('memberType'));
+        $load_form_css = true;
+        $this->set(compact('memberType','load_form_css'));
         $this->set('_serialize', ['memberType']);
     }
 

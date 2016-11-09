@@ -26,6 +26,7 @@ class ItemCategoriesController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->viewBuilder()->layout("Ems/default"); 
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         if ($this->request->action == "dashboard") {
@@ -99,7 +100,8 @@ class ItemCategoriesController extends AppController
             }
         }
         $agencies = $this->ItemCategories->Agencies->find('list', ['limit' => 200]);
-        $this->set(compact('itemCategory', 'agencies'));
+        $load_form_css = true;
+        $this->set(compact('itemCategory', 'agencies', 'load_form_css'));
         $this->set('_serialize', ['itemCategory']);
     }
 
@@ -130,7 +132,8 @@ class ItemCategoriesController extends AppController
             }
         }
         $agencies = $this->ItemCategories->Agencies->find('list', ['limit' => 200]);
-        $this->set(compact('itemCategory', 'agencies'));
+        $load_form_css = true;
+        $this->set(compact('itemCategory', 'agencies', 'load_form_css'));
         $this->set('_serialize', ['itemCategory']);
     }
 

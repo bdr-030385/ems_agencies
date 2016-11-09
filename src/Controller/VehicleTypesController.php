@@ -18,6 +18,7 @@ class VehicleTypesController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->viewBuilder()->layout("Ems/default");
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         if ($this->request->action == "dashboard") {
@@ -79,7 +80,8 @@ class VehicleTypesController extends AppController
                 $this->Flash->error(__('The vehicle type could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('vehicleType'));
+        $load_form_css = true;
+        $this->set(compact('vehicleType', 'load_form_css'));
         $this->set('_serialize', ['vehicleType']);
     }
 
@@ -109,7 +111,8 @@ class VehicleTypesController extends AppController
                 $this->Flash->error(__('The vehicle type could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('vehicleType'));
+        $load_form_css = true;
+        $this->set(compact('vehicleType','load_form_css'));
         $this->set('_serialize', ['vehicleType']);
     }
 

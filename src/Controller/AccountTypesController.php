@@ -17,6 +17,7 @@ class AccountTypesController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->viewBuilder()->layout("Ems/default");
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         if ($this->request->action == "dashboard") {
@@ -78,7 +79,8 @@ class AccountTypesController extends AppController
                 $this->Flash->error(__('The account type could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('accountType'));
+        $load_form_css = true;
+        $this->set(compact('accountType','load_form_css'));
         $this->set('_serialize', ['accountType']);
     }
 
@@ -108,7 +110,8 @@ class AccountTypesController extends AppController
                 $this->Flash->error(__('The account type could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('accountType'));
+        $load_form_css = true;
+        $this->set(compact('accountType','load_form_css'));
         $this->set('_serialize', ['accountType']);
     }
 

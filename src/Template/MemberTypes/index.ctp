@@ -1,34 +1,26 @@
-
-<section class="content-header">
-    <h1><?= __('Member Types') ?></h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('Member Types') ?></li>
-    </ol>
-</section>
-
-<section class="content">
-    <!-- Main Row -->
+<div class="page-content-inner">
+                                                
     <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <div class="box-header">
-                    <?= $this->Html->link(__('Add New Member Type'), ['action' => 'add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
-                    <h3 class="box-title text-black" ></h3>
-                </div>
-                <div class="box-body">
-                    <table id="dt-users-list" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-user"></i>Member Types</div>
+                        <div class="tools"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_3" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
                                                 <th><?= $this->Paginator->sort('id') ?></th>
                                                 <th><?= $this->Paginator->sort('name') ?></th>
                                                 <th><?= $this->Paginator->sort('created') ?></th>
                                                 <th><?= $this->Paginator->sort('modified') ?></th>
                                                 <th class="actions"><?= __('Actions') ?></th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($memberTypes as $memberType): ?>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($memberTypes as $memberType): ?>
                             <tr>
                                                 <td><?= $this->Number->format($memberType->id) ?></td>
                                                 <td><?= h($memberType->name) ?></td>
@@ -58,20 +50,15 @@
                                     </div>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    </div>
-                    <div class="paginator" style="text-align:center;">
-                        <ul class="pagination">
-                        <?= $this->Paginator->prev('«') ?>
-                            <?= $this->Paginator->numbers() ?>
-                            <?= $this->Paginator->next('»') ?>
-                        </ul>
-                        <p class="hidden"><?= $this->Paginator->counter() ?></p>
+                            <?php endforeach; ?>    
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </section>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+                       
     </div>
-</section>
+</div>
+
+
