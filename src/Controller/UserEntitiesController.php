@@ -26,6 +26,7 @@ class UserEntitiesController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->viewBuilder()->layout("Ems/default");
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         if ($this->request->action == "dashboard") {

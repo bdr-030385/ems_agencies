@@ -1,12 +1,15 @@
 <div class="cd-tabs">
-  <style type="text/css">
-    label
-    {
-      padding: 10px;
-      padding-left: 0px;
-      padding-top: 0px;
-      }
-  </style>
+
+    <nav>
+        <div style="width:72.7%; margin-left:15%" align="center">
+            <ul class="cd-tabs-navigation">
+              <li><a data-content="tab1"  class="selected" href="#0">Agency</a></li>
+              <li><a data-content="tab2" href="#0">Import Data</a></li>
+              <li><a data-content="tab3" href="#0">Product Activation</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
 <ul class="cd-tabs-content" style="width: 100%;float: left;">
     <li data-content="tab1" class="selected">
   <!-- second partition -->

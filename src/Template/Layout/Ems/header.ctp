@@ -41,6 +41,7 @@
     echo $this->Html->css('ems/assets/layouts/layout3/css/themes/default.min.css');
     echo $this->Html->css('ems/assets/layouts/layout3/css/custom.min.css');
     if( isset($load_form_css) ){
+      echo $this->Html->css('ems/assets/layouts/layout3/css/reset.css');
       echo $this->Html->css('ems/assets/layouts/layout3/css/tab.css');
     }
 
