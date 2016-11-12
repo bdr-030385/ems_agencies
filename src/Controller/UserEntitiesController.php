@@ -86,6 +86,8 @@ class UserEntitiesController extends AppController
         $userEntity = $this->UserEntities->get($id, [
             'contain' => ['Agencies', 'Users', 'UserCustomFields']
         ]);
+        $load_form_css = true;
+        $this->set(['load_form_css' => $load_form_css]);
         $this->set('userEntity', $userEntity);
         $this->set('_serialize', ['userEntity']);
     }
@@ -258,6 +260,7 @@ class UserEntitiesController extends AppController
             'condition' => ['UserEntities.agency_id' => $user_data->agency_id]
         ];
 
+        $this->set(['action' => 'agency_add']);
         $this->set('userEntities', $this->paginate($this->UserEntities));
         $this->set('_serialize', ['userEntities']);
     }
@@ -330,7 +333,8 @@ class UserEntitiesController extends AppController
         $groups   = $this->UserEntities->Users->Groups->find('list');        
         $users    = $this->UserEntities->Users->find('list');
         $gender   = array("Male", "Female");
-        $this->set(compact('userEntity','users','gender','groups'));
+        $load_form_css = true;
+        $this->set(compact('userEntity','users','gender','groups','load_form_css'));
         $this->set('_serialize', ['userEntity']);
     }
 
@@ -394,7 +398,8 @@ class UserEntitiesController extends AppController
 
         $groups   = $this->UserEntities->Users->Groups->find('list');       
         $gender   = array("Male", "Female");
-        $this->set(compact('userEntity', 'groups', 'gender', 'dataCustomFields'));
+        $load_form_css = true;
+        $this->set(compact('userEntity', 'groups', 'gender', 'dataCustomFields','load_form_css'));
         $this->set('_serialize', ['userEntity']);
     }
 

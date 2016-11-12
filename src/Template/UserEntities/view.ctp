@@ -1,21 +1,30 @@
-
-<section class="content-header">
-    <h1>
-        <?= __("View User Entity") ?>
-        <!-- <small>Control panel</small> -->
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">View User Entity</li>
-    </ol>
-</section>
-
-<section class="content">   
-    <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <table class="table table-striped table-bordered table-hover">
+<div class="cd-tabs">
+  <style type="text/css">
+    label
+    {
+      padding: 10px;
+      padding-left: 0px;
+      padding-top: 0px;
+      }
+  </style>
+<ul class="cd-tabs-content" style="width: 100%;float: left;">
+    <li data-content="tab1" class="selected">
+  <!-- second partition -->
+  <div class="page-title" align="center">
+    <h1 style="font-size: 30px; color: #000"> View User </h1>
+   
+    <br>
+    <br>
+   
+  </div>
+  <div class="col-md-12" style="color: #000">
+  <!-- form here -->
+  <div class="portlet light " style="width:100%; float:left;">
+    <div class="portlet-title">
+      <div class="portlet-body form">
+        <table class="table table-striped table-bordered table-hover">
                 <tbody>
+                    <tbody>
                     <tr>
                         <th><?= __('Agency') ?></th>
                         <td><?= $userEntity->has('agency') ? $this->Html->link($userEntity->agency->name, ['controller' => 'Agencies', 'action' => 'view', $userEntity->agency->id]) : '' ?></td>
@@ -113,6 +122,7 @@
                         <td><?= h($userEntity->modified) ?></td>
                     </tr>
                 </tbody>
+                </tbody>
                 </table>
 
                 <div class="form-group" style="margin-top: 80px;">
@@ -158,7 +168,12 @@
                     </table>
                 <?php endif; ?>
                 </div>
-            </div>
-        </section>
+      </div>
     </div>
-</section>
+    <!-- Form Here -->
+  </div>
+  <!-- second partition ==-->
+  </div>
+</li>
+</ul>
+</div>

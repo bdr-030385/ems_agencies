@@ -1,4 +1,4 @@
-<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["agencies"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'index']); ?>"> Home <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["agencies"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'user_entities', 'action' => 'agency_users']); ?>"> Home <span class="arrow"></span> </a> </li>
 <li class="menu-dropdown classic-menu-dropdown "> <a href="javascript:;"> Personal Info <span class="arrow"></span> </a>
   <ul class="dropdown-menu pull-left">
     <li class=" "> <a href="#" class="nav-link  "> Personal Info </a> </li>
