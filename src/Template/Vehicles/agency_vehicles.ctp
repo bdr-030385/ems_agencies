@@ -1,36 +1,28 @@
-
-<section class="content-header">
-    <h1><?= __('Vehicles') ?></h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?= __('Vehicles') ?></li>
-    </ol>
-</section>
-
-<section class="content">
-    <!-- Main Row -->
+<div class="page-content-inner">
+                                                
     <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <div class="box-header">
-                    <?= $this->Html->link(__('Add New Vehicle'), ['action' => 'agency_add'], ['class' => 'btn btn-primary btn-sm', 'escape' => false]) ?>
-                    <h3 class="box-title text-black" ></h3>
-                </div>
-                <div class="box-body">
-                    <table id="dt-users-list" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                                <th><?= $this->Paginator->sort('id') ?></th>                                                
-                                                <th><?= $this->Paginator->sort('vehicle_type_id') ?></th>
-                                                <th><?= $this->Paginator->sort('color_id') ?></th>
-                                                <th><?= $this->Paginator->sort('number_vehicle', __('Vehicle ID')) ?></th>
-                                                <th><?= $this->Paginator->sort('vehicle_year') ?></th>
-                                                <th><?= $this->Paginator->sort('make') ?></th>
-                                                <th class="actions"><?= __('Actions') ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($vehicles as $vehicle): ?>
+        <div class="col-md-12">
+            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet box green">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="fa fa-car"></i>Vehicles</div>
+                        <div class="tools"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_3" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th><?= $this->Paginator->sort('id') ?></th>                                                
+                                    <th><?= $this->Paginator->sort('vehicle_type_id') ?></th>
+                                    <th><?= $this->Paginator->sort('color_id') ?></th>
+                                    <th><?= $this->Paginator->sort('number_vehicle', __('Vehicle ID')) ?></th>
+                                    <th><?= $this->Paginator->sort('vehicle_year') ?></th>
+                                    <th><?= $this->Paginator->sort('make') ?></th>
+                                    <th class="actions"><?= __('Actions') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($vehicles as $vehicle): ?>
                             <tr>
                                                 <td><?= $this->Number->format($vehicle->id) ?></td>                                                
                                                 <td><?= $vehicle->has('vehicle_type') ? $this->Html->link($vehicle->vehicle_type->name, ['controller' => 'VehicleTypes', 'action' => 'view', $vehicle->vehicle_type->id]) : '' ?></td>
@@ -71,20 +63,15 @@
                                     </div>                                    
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    </div>
-                    <div class="paginator" style="text-align:center;">
-                        <ul class="pagination">
-                        <?= $this->Paginator->prev('«') ?>
-                            <?= $this->Paginator->numbers() ?>
-                            <?= $this->Paginator->next('»') ?>
-                        </ul>
-                        <p class="hidden"><?= $this->Paginator->counter() ?></p>
+                            <?php endforeach; ?> 
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </section>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+                       
     </div>
-</section>
+</div>
+
+

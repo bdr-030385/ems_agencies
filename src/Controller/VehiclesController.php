@@ -184,6 +184,7 @@ class VehiclesController extends AppController
             'contain' => ['Agencies', 'VehicleTypes', 'Colors'],
             'condition' => ['Vehicles.agency_id' => $user_data->agency_id]
         ];
+        $this->set(['action' => 'agency_add']);
         $this->set('vehicles', $this->paginate($this->Vehicles));
         $this->set('_serialize', ['vehicles']);
     }
@@ -216,7 +217,8 @@ class VehiclesController extends AppController
         }        
         $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
         $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'vehicleTypes', 'colors'));
+        $load_form_css = true;
+        $this->set(compact('vehicle', 'vehicleTypes', 'colors','load_form_css'));
         $this->set('_serialize', ['vehicle']);
     }
 
@@ -248,7 +250,8 @@ class VehiclesController extends AppController
         }        
         $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
         $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'vehicleTypes', 'colors'));
+        $load_form_css = true;
+        $this->set(compact('vehicle', 'vehicleTypes', 'colors','load_form_css'));
         $this->set('_serialize', ['vehicle']);
     }
 

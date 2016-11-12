@@ -19,7 +19,7 @@
     </li>
   </ul>
 </li>
-<li class="menu-dropdown mega-menu-dropdown  mega-menu-full <?= $nav_selected["vehicles"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'vehicles', 'action' => 'index']); ?>"> Vehicle Maintenance <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown mega-menu-dropdown  mega-menu-full <?= $nav_selected["vehicles"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'vehicles', 'action' => 'agency_vehicles']); ?>"> Vehicle Maintenance <span class="arrow"></span> </a> </li>
 <li class="menu-dropdown mega-menu-dropdown  mega-menu-full"> <a href="javascript:;"> Reports <span class="arrow"></span> </a> </li>
 <li class="menu-dropdown classic-menu-dropdown "> <a href="javascript:;"> Settings <span class="arrow"></span> </a>
   <ul class="dropdown-menu pull-left">
