@@ -87,6 +87,7 @@ class AgenciesController extends AppController
         $accountTypes = $this->Agencies->AccountTypes->find('list', ['limit' => 200]);
         $memberTypes = $this->Agencies->MemberTypes->find('list', ['limit' => 200]);
         $load_form_css = true;
+        $this->set(['page_title' => 'Create Account']);
         $this->set(compact('agency', 'accountTypes', 'memberTypes','load_form_css'));
         $this->set('_serialize', ['agency']);
     }
@@ -212,5 +213,10 @@ class AgenciesController extends AppController
             $this->Flash->error(__('The agency could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function setup()
+    {
+        
     }
 }

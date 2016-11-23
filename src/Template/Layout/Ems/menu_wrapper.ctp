@@ -72,10 +72,11 @@
             <ul class="nav navbar-nav">
             	<?php if($hdr_user_data->user->group_id == 1) { ?>
             		<?php include('nav_super_admin.ctp'); ?>
-            	<?php }else{ ?>
+            	<?php }elseif($hdr_user_data->user->group_id == 2){ ?>
             		<?php include('nav_agency_admin.ctp'); ?>
-            	<?php } ?>
-              
+            	<?php }else{ ?>
+                <?php include('nav_member.ctp'); ?>
+              <?php } ?>
             </ul>
           </div>
         </div>

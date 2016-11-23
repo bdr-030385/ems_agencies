@@ -10,6 +10,19 @@
   <div class="page-content-wrapper">
 	  <!-- BEGIN CONTENT BODY -->
 	  <!-- BEGIN PAGE HEAD-->
+    <?php if(!empty($page_title)) { ?>
+    <div class="page-head">
+      <div class="container">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title" style="text-align:center; width:100%;">
+          <h1 style="text-align:center;"><?= $page_title; ?></h1>
+        </div>
+        <!-- END PAGE TITLE -->
+        <!-- BEGIN PAGE TOOLBAR -->
+        <!-- END PAGE TOOLBAR -->
+      </div>
+    </div>
+    <?php } ?>
 	  
 	  <!-- END PAGE HEAD-->
 	  <!-- BEGIN PAGE CONTENT BODY -->    

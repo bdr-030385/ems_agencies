@@ -86,6 +86,7 @@
   echo $this->Html->script('ems/assets/layouts/layout3/scripts/layout.min.js');
   echo $this->Html->script('ems/assets/layouts/layout3/scripts/demo.min.js');
   echo $this->Html->script('ems/assets/layouts/global/scripts/quick-sidebar.min.js');
+  echo $this->Html->script('validator.min.js');   
 ?>
 <!-- END THEME LAYOUT SCRIPTS -->
 

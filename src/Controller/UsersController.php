@@ -235,9 +235,11 @@ class UsersController extends AppController
                     $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload/".$user_data->agency_id;
                     if( $user_data->user->group_id == 1){                        
                         return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
-                    }else{                        
-                        return $this->redirect(['controller' => 'user_entities', 'action' => 'agency_users']);
-                    } 
+                    }elseif( $user_data->user->group_id == 2){                        
+                        return $this->redirect(['controller' => 'agencies', 'action' => 'setup']);
+                    }elseif( $user_data->user->group_id == 3){                        
+                        return $this->redirect(['controller' => 'agencies', 'action' => 'setup']);
+                    }
                 }else{
                     //Redirect to error page
                 }                

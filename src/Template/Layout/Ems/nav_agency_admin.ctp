@@ -1,5 +1,21 @@
-<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["agencies"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'index']); ?>"> Home <span class="arrow"></span> </a> </li>
-<li class="menu-dropdown classic-menu-dropdown "> <a href="javascript:;"> Personal Info <span class="arrow"></span> </a>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["agencies"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Agency Setup <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Member List <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Agency Contact List <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Vehicle Maintenance <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Agency Vehicles<span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Vendor <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Reports <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Settings <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown "> <a href="javascript:;"> Administrator <span class="arrow"></span> </a>
+  <ul class="dropdown-menu pull-left">
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Front Page Setup </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> eMail/Text   </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Item Information </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Compartment Setup </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Vehicle Maintanance Log </a> </li>
+  </ul>
+</li> 
+<!-- <li class="menu-dropdown classic-menu-dropdown "> <a href="javascript:;"> Personal Info <span class="arrow"></span> </a>
   <ul class="dropdown-menu pull-left">
     <li class=" "> <a href="#" class="nav-link  "> Personal Info </a> </li>
     <li class=" "> <a href="#" class="nav-link  "> Changes </a> </li>
@@ -29,4 +45,4 @@
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'account_types', 'action' => 'index']); ?>" class="nav-link  "> Account Types </a> </li>
   </ul>
 </li>              
-<li class="menu-dropdown mega-menu-dropdown  mega-menu-full"> <a href="javascript:;"> Administrator <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown mega-menu-dropdown  mega-menu-full"> <a href="javascript:;"> Administrator <span class="arrow"></span> </a> </li> -->
