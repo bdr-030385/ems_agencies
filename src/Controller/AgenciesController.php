@@ -84,8 +84,8 @@ class AgenciesController extends AppController
                 $this->Flash->error(__('The agency could not be saved. Please, try again.'));
             }
         }
-        $accountTypes = $this->Agencies->AccountTypes->find('list', ['limit' => 200]);
-        $memberTypes = $this->Agencies->MemberTypes->find('list', ['limit' => 200]);
+        $accountTypes = $this->Agencies->AccountTypes->find('list', ['limit' => 200])->toArray();
+        $memberTypes = $this->Agencies->MemberTypes->find('list', ['limit' => 200])->toArray();
         $load_form_css = true;
         $this->set(['page_title' => 'Create Account']);
         $this->set(compact('agency', 'accountTypes', 'memberTypes','load_form_css'));

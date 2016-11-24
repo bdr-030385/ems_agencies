@@ -86,13 +86,14 @@
   echo $this->Html->script('ems/assets/layouts/layout3/scripts/layout.min.js');
   echo $this->Html->script('ems/assets/layouts/layout3/scripts/demo.min.js');
   echo $this->Html->script('ems/assets/layouts/global/scripts/quick-sidebar.min.js');
+  echo $this->Html->script('ems/assets/pages/scripts/components-date-time-pickers.min.js');
   echo $this->Html->script('validator.min.js');   
 ?>
 <!-- END THEME LAYOUT SCRIPTS -->
 
 <script type="text/javascript">
 $(function(){
-  $(".dt-buttons").append("<a class='dt-button buttons-pdf buttons-html5 btn default' href='<?php echo $this->Url->Build(['action' => 'add']); ?>'>Add New</a>");
+  $(".dt-buttons").append("<a class='dt-button buttons-pdf buttons-html5 btn default' href='<?php echo (isset($action) ? $this->Url->Build(['action' => $action]) : $this->Url->Build(['action' => 'add']) ); ?>'>Add New</a>");
 });
 $(window).scroll(function(){
     if ($(window).scrollTop() >= 100) {
