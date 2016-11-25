@@ -1,17 +1,25 @@
 
-<section class="content-header">
-    <h1>
-        <?= __("View Vehicle Type") ?>
-        <!-- <small>Control panel</small> -->
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="<?php echo $base_url; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">View Vehicle Type</li>
-    </ol>
-</section>
+<div class="cd-tabs">
+<style>
+.fixed-header {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; 
+}
+nav { 
+  background: #444d58;
+  postion:fixed;
+  z-index:10;
+}
 
-<section class="content"> 
-    <div class="row">
+    </style>
+
+  <!-- second partition -->
+  <div class="col-md-12" style="color: #000">
+  <!-- form here -->
+  <div class="portlet light " style="width:100%; float:left;">
+    <div class="portlet-title">
+      <div class="portlet-body form">
         <section class="col-lg-12 ">
             <div class="box " >  
                 <table class="table table-striped table-bordered table-hover">
@@ -96,5 +104,11 @@
                 </div>
             </div>
         </section>
+      </div>
     </div>
-</section>
+    <!-- Form Here -->
+  </div>
+  <!-- second partition ==-->
+  </div>
+
+</div>

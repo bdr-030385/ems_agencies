@@ -53,6 +53,7 @@ class AccountTypesController extends AppController
         $accountType = $this->AccountTypes->get($id, [
             'contain' => ['Agencies']
         ]);
+        $this->set(['page_title' => 'View Account Type']);
         $this->set('accountType', $accountType);
         $this->set('_serialize', ['accountType']);
     }
@@ -80,6 +81,7 @@ class AccountTypesController extends AppController
             }
         }
         $load_form_css = true;
+        $this->set(['page_title' => 'Add New']);
         $this->set(compact('accountType','load_form_css'));
         $this->set('_serialize', ['accountType']);
     }
@@ -111,6 +113,7 @@ class AccountTypesController extends AppController
             }
         }
         $load_form_css = true;
+        $this->set(['page_title' => 'Edit Account Type']);
         $this->set(compact('accountType','load_form_css'));
         $this->set('_serialize', ['accountType']);
     }

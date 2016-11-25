@@ -54,6 +54,7 @@ class VehicleTypesController extends AppController
         $vehicleType = $this->VehicleTypes->get($id, [
             'contain' => ['Vehicles']
         ]);
+        $this->set(['page_title' => 'View Vehicle Type']);
         $this->set('vehicleType', $vehicleType);
         $this->set('_serialize', ['vehicleType']);
     }
@@ -81,6 +82,7 @@ class VehicleTypesController extends AppController
             }
         }
         $load_form_css = true;
+        $this->set(['page_title' => 'Add New']);
         $this->set(compact('vehicleType', 'load_form_css'));
         $this->set('_serialize', ['vehicleType']);
     }
@@ -112,6 +114,7 @@ class VehicleTypesController extends AppController
             }
         }
         $load_form_css = true;
+        $this->set(['page_title' => 'Edit Vehicle Type']);
         $this->set(compact('vehicleType','load_form_css'));
         $this->set('_serialize', ['vehicleType']);
     }

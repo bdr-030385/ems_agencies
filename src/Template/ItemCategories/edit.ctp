@@ -1,22 +1,20 @@
+
 <div class="cd-tabs">
-  <style type="text/css">
-    label
-    {
-      padding: 10px;
-      padding-left: 0px;
-      padding-top: 0px;
-      }
-  </style>
-<ul class="cd-tabs-content" style="width: 100%;float: left;">
-    <li data-content="tab1" class="selected">
+<style>
+.fixed-header {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; 
+}
+nav { 
+  background: #444d58;
+  postion:fixed;
+  z-index:10;
+}
+
+    </style>
+
   <!-- second partition -->
-  <div class="page-title" align="center">
-    <h1 style="font-size: 30px; color: #000"> Edit Item Category </h1>
-   
-    <br>
-    <br>
-   
-  </div>
   <div class="col-md-12" style="color: #000">
   <!-- form here -->
   <div class="portlet light " style="width:100%; float:left;">
@@ -24,33 +22,46 @@
       <div class="portlet-body form">
         <!-- BEGIN FORM-->
         <?= $this->Form->create($itemCategory,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
-        <fieldset>        
-            <?php
-                                                echo "
-                        <div class='form-group'>
-                            <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency') . "</label>
-                            <div class='col-sm-6'>";
-                             echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
-                        echo " </div></div>";    
-                                                echo "
-                        <div class='form-group'>
-                            <label for='name' class='col-sm-2 control-label'>" . __('Name') . "</label>
-                            <div class='col-sm-6'>";
-                            echo $this->Form->input('name', ['class' => 'form-control', 'id' => 'name', 'label' => false]);                
-                        echo " </div></div>";    
-                        
-                                    ?>
-        </fieldset>
-        <div class="form-group" style="margin-top: 80px;">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="action-fixed-bottom">
-                    <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                    <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
-                    <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
+            <div class="form-body">                
+                <div class="col-md-12">                    
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Agency</label>
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </span>
+                                <select name="agency_id" id="agency_id" required="required" class="form-control input-circle-right">
+                                   <option value=""> --- </option>
+                                   <?php foreach($agencies as $key => $value) { ?>
+                                        <option <?php echo( $itemCategory->agency_id == $key ? 'selected="selected"' : '' ); ?> value="<?= $key; ?>"><?= $value; ?></option>
+                                   <?php } ?>
+                               </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Item Category</label>
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-medicine" aria-hidden="true"></i>
+                                </span>
+                                <input name="name" id="name" value="<?php echo $itemCategory->name; ?>" type="text" class="form-control input-circle-right" placeholder="Name" required="required"> 
+                            </div>
+                        </div>
+                    </div>                               
+                </div>
+                <div class="col-md-12" align="center">
+                    <div class="form-actions">
+                        <button type="submit" class="btn blue" name="save" value="save">Submit</button>
+                        <?= $this->Html->link(__('Cancel'), ['action' => 'index'],['class' => 'btn default', 'escape' => false]) ?>                        
+                    </div>
                 </div>
             </div>
-        </div>
-        <?= $this->Form->end() ?>
+        <?= $this->Form->end() ?>            
+
         <!-- END FORM-->
       </div>
     </div>
@@ -58,6 +69,5 @@
   </div>
   <!-- second partition ==-->
   </div>
-</li>
-</ul>
+
 </div>

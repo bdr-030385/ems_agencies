@@ -53,6 +53,7 @@ class MemberTypesController extends AppController
         $memberType = $this->MemberTypes->get($id, [
             'contain' => ['Agencies']
         ]);
+        $this->set(['page_title' => 'View Member Type']);
         $this->set('memberType', $memberType);
         $this->set('_serialize', ['memberType']);
     }
@@ -80,6 +81,7 @@ class MemberTypesController extends AppController
             }
         }
         $load_form_css = true;
+        $this->set(['page_title' => 'Add New']);
         $this->set(compact('memberType','load_form_css'));
         $this->set('_serialize', ['memberType']);
     }
@@ -111,6 +113,7 @@ class MemberTypesController extends AppController
             }
         }
         $load_form_css = true;
+        $this->set(['page_title' => 'Edit Member Type']);
         $this->set(compact('memberType','load_form_css'));
         $this->set('_serialize', ['memberType']);
     }
