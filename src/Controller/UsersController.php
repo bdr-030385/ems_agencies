@@ -31,7 +31,7 @@ class UsersController extends AppController
         // Valid value can be found in NavigationSelectorHelper  
         $this->viewBuilder()->layout("Ems/default");      
         if ($this->request->action == "dashboard") {
-            $nav_selected = ["dashboard"];
+            $nav_selected = ["home"];
         } else {
             $nav_selected = ["users"];
         }       
@@ -96,8 +96,16 @@ class UsersController extends AppController
     {
         if( $this->global_user_data->user->group_id == 1 ){
             //$this->viewBuilder()->layout("Users\dashboard"); 
-            return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
+            //return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
         }
+
+        $session    = $this->request->session();
+        $user_data  = $session->read('User.data'); 
+
+        $title = "<h1 style='text-align:left !important; width:100%;'>Dashboard
+                    <small>Welcome - {$user_data->firstname} {$user_data->lastname}</small>
+                </h1>";
+        $this->set(['page_title' => $title]);
     }
 
     /**
@@ -234,11 +242,11 @@ class UsersController extends AppController
                     $_SESSION['KCEDITOR']['disabled'] = false;
                     $_SESSION['KCEDITOR']['uploadURL'] = Router::url('/')."webroot/upload/".$user_data->agency_id;
                     if( $user_data->user->group_id == 1){                        
-                        return $this->redirect(['controller' => 'agencies', 'action' => 'index']);
+                        return $this->redirect(['controller' => 'users', 'action' => 'dashboard']);
                     }elseif( $user_data->user->group_id == 2){                        
-                        return $this->redirect(['controller' => 'agencies', 'action' => 'setup']);
+                        return $this->redirect(['controller' => 'users', 'action' => 'dashboard']);
                     }elseif( $user_data->user->group_id == 3){                        
-                        return $this->redirect(['controller' => 'agencies', 'action' => 'setup']);
+                        return $this->redirect(['controller' => 'users', 'action' => 'dashboard']);
                     }
                 }else{
                     //Redirect to error page

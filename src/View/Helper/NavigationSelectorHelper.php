@@ -50,7 +50,9 @@ class NavigationSelectorHelper extends Helper
             "settings" => "",
             "vehicle_compartments" => "",
             "contacts" => "",
-            "vehicle_maintenance" => ""
+            "vehicle_maintenance" => "",
+            "home" => "",
+            "equipment_checks" => ""
         );
         $navigation[$selected] = "active";
 
