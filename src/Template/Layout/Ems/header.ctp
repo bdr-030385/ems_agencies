@@ -35,8 +35,10 @@
 ?>
 <!-- END THEME GLOBAL STYLES -->
 
+
 <!-- BEGIN THEME LAYOUT STYLES -->
 <?php
+    echo $this->Html->css('ems/assets/apps/css/inbox.min.css');
     echo $this->Html->css('ems/assets/layouts/layout3/css/layout.min.css');
     echo $this->Html->css('ems/assets/layouts/layout3/css/themes/default.min.css');
     echo $this->Html->css('ems/assets/layouts/layout3/css/custom.min.css');

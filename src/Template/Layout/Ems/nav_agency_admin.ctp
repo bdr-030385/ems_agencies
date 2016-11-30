@@ -14,7 +14,7 @@
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Member List   </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'contacts', 'action' => 'index']); ?>" class="nav-link  "> Contact List </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'vehicles', 'action' => 'agency_vehicles']); ?>" class="nav-link  "> Agency Vehicles </a> </li>
-    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> eMail/Text </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'messages', 'action' => 'index']); ?>" class="nav-link  "> eMail/Text </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Front Page Setup </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Front Page Setup </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Changes & Uploads </a> </li>

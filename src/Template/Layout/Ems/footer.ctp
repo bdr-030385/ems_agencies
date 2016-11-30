@@ -84,6 +84,7 @@
 
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <?php 
+  echo $this->Html->script('ems/assets/apps/scripts/inbox.js');
   echo $this->Html->script('ems/assets/layouts/layout3/scripts/layout.min.js');
   echo $this->Html->script('ems/assets/layouts/layout3/scripts/demo.min.js');
   echo $this->Html->script('ems/assets/layouts/global/scripts/quick-sidebar.min.js');
