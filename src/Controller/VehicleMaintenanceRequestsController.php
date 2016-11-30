@@ -22,6 +22,21 @@ class VehicleMaintenanceRequestsController extends AppController
         // Add the selected sidebar-menu 'active' class
         // Valid value can be found in NavigationSelectorHelper       
         $nav_selected = ["vehicle_maintenance"];
+
+        $session = $this->request->session();    
+        $user_data = $session->read('User.data');          
+        if( isset($user_data) ){
+            if( $user_data->user->group_id == 1 ){ //Super Admin
+                $this->Auth->allow();
+            }elseif( $user_data->user->group_id == 2 ){ //Administrator
+                $this->Auth->deny();
+                $this->Auth->allow(['administrator']);
+            }elseif( $user_data->user->group_id == 3 ){ //Member                
+                $this->Auth->deny();
+                $this->Auth->allow(['member_request']);
+            }
+        }
+
         $this->set('nav_selected', $nav_selected);  
     }
 
@@ -128,5 +143,16 @@ class VehicleMaintenanceRequestsController extends AppController
             $this->Flash->error(__('The vehicle maintenance request could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Member : Request Add method
+     *
+     * @return void
+     */
+    public function member_request()
+    {
+        $nav_selected = ["vehicle_maintenance_requests"];
+        $this->set(['page_title' => 'SUBMIT VEHICLE MAINTENANCE REQUEST', 'nav_selected' => $nav_selected]);
     }
 }

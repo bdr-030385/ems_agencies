@@ -43,10 +43,10 @@ class UsersController extends AppController
                 $this->Auth->allow();
             }elseif( $user_data->user->group_id == 2 ){ //Administrator
                 $this->Auth->deny();
-                $this->Auth->allow(['user_dashboard','change_password']);
+                $this->Auth->allow(['user_dashboard','change_password','personal_info']);
             }elseif( $user_data->user->group_id == 3 ){ //Member                
                 $this->Auth->deny();
-                $this->Auth->allow(['user_dashboard','change_password']);
+                $this->Auth->allow(['user_dashboard','change_password','personal_info']);
             }
         }
 
@@ -453,5 +453,16 @@ class UsersController extends AppController
 
         $load_form_css = true;
         $this->set(['user_data' => $user_session, 'load_form_css' => $load_form_css]);
+    }
+
+    /**
+     * Personal Info method
+     *
+     * @return void
+     */
+    public function personal_info()
+    {        
+        $nav_selected = ["personal_info"];
+        $this->set(['page_title' => 'User Information','nav_selected' => $nav_selected]);
     }
 }

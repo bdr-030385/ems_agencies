@@ -66,6 +66,7 @@
   echo $this->Html->script('ems/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js');
   echo $this->Html->script('ems/assets/global/plugins/jquery.blockui.min.js');
   echo $this->Html->script('ems/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js');
+  echo $this->Html->script('ems/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js');
 ?>
 <!-- END CORE PLUGINS -->
 <?php
