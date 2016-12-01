@@ -55,7 +55,8 @@ class NavigationSelectorHelper extends Helper
             "equipment_checks" => "",
             "vehicle_maintenance_requests" => "",
             "fuel_logs" => "",
-            "personal_info" => ""
+            "personal_info" => "",
+            "administrator" => ""
         );
         $navigation[$selected] = "active";
 

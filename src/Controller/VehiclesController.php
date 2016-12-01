@@ -218,6 +218,7 @@ class VehiclesController extends AppController
         $vehicleTypes = $this->Vehicles->VehicleTypes->find('list', ['limit' => 200]);
         $colors = $this->Vehicles->Colors->find('list', ['limit' => 200]);
         $load_form_css = true;
+        $this->set(['page_title' => 'Vehicles Information']);
         $this->set(compact('vehicle', 'vehicleTypes', 'colors','load_form_css'));
         $this->set('_serialize', ['vehicle']);
     }
@@ -470,7 +471,4 @@ class VehiclesController extends AppController
         echo json_encode($json);
         exit;
     }
-
-    public 
-
 }

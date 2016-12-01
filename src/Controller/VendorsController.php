@@ -57,6 +57,7 @@ class VendorsController extends AppController
             //$this->redirect(['controller' => 'customer', 'action' => 'register']);
         }
 
+        $this->viewBuilder()->layout("Ems/default"); 
         $this->Auth->allow(['load_vendor_by_agency_id']);
     }
 
@@ -113,6 +114,7 @@ class VendorsController extends AppController
             }
         }
         $agencies = $this->Vendors->Agencies->find('list', ['limit' => 200]);
+        $this->set(['page_title' => 'Vendor']);
         $this->set(compact('vendor', 'agencies'));
         $this->set('_serialize', ['vendor']);
     }
@@ -226,6 +228,7 @@ class VendorsController extends AppController
                 $this->Flash->error(__('The vendor could not be saved. Please, try again.'));
             }
         }        
+        $this->set(['page_title' => 'Vendor']);
         $this->set(compact('vendor'));
         $this->set('_serialize', ['vendor']);
     }

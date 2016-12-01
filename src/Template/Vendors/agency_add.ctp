@@ -1,141 +1,145 @@
-<section class="content-header">
-    <h1><?= __('Add Vendor') ?></h1>
-    <ol class="breadcrumb">
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-truck'></i>" . __('Vendors'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Add') ?></li>
-    </ol>
-</section>
 
-<section class="content">
-    <!-- Main Row -->
-    <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <div class="box-header">
+<div class="cd-tabs">
+<style>
+.fixed-header {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; 
+}
+nav { 
+  background: #444d58;
+  postion:fixed;
+  z-index:10;
+}
 
-                </div>
-                <div class="box-body">
-                    <?= $this->Form->create($vendor,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
-                    <fieldset>   
-                        <div class="callout callout-info">
-                            <h4 style="margin-left:20px;">Vendor Details</h4> 
-                        </div>     
-                        <?php
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='vendor_name' class='col-sm-2 control-label'>" . __('Vendor Name') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('vendor_name', ['class' => 'form-control', 'id' => 'vendor_name', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='phone_number' class='col-sm-2 control-label'>" . __('Phone Number') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('phone_number', ['class' => 'form-control', 'id' => 'phone_number', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='address' class='col-sm-2 control-label'>" . __('Address') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('address', ['class' => 'form-control', 'id' => 'address', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='city' class='col-sm-2 control-label'>" . __('City') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('city', ['type' => 'text', 'class' => 'form-control', 'id' => 'city', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='state' class='col-sm-2 control-label'>" . __('State') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('state', ['class' => 'form-control', 'id' => 'state', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='zip' class='col-sm-2 control-label'>" . __('Zip') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('zip', ['class' => 'form-control', 'id' => 'zip', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='email' class='col-sm-2 control-label'>" . __('Email') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('email', ['class' => 'form-control', 'id' => 'email', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='website' class='col-sm-2 control-label'>" . __('Website') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('website', ['class' => 'form-control', 'id' => 'website', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                    ?>
-                                    <div class="callout callout-info">
-                                        <h4 style="margin-left:20px;">Contact Person</h4> 
-                                    </div>
-                                    <?php
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='contact_person' class='col-sm-2 control-label'>" . __('Name') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('contact_person', ['class' => 'form-control', 'id' => 'contact_person', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='contact_person_phone' class='col-sm-2 control-label'>" . __('Phone') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('contact_person_phone', ['class' => 'form-control', 'id' => 'contact_person_phone', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='contact_person_email' class='col-sm-2 control-label'>" . __('Email') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('contact_person_email', ['class' => 'form-control', 'id' => 'contact_person_email', 'label' => false]);                
-                                    echo " </div></div>";
-                                    ?>
-                                    <div class="callout callout-info">
-                                        <h4 style="margin-left:20px;">Other Info</h4> 
-                                    </div>
-                                    <?php 
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='tearms' class='col-sm-2 control-label'>" . __('Tearms') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('tearms', ['class' => 'form-control', 'id' => 'tearms', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='note' class='col-sm-2 control-label'>" . __('Note') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('note', ['class' => 'form-control', 'id' => 'note', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                ?>
-                    </fieldset>
-                    <div class="form-group" style="margin-top: 80px;">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="action-fixed-bottom">
-                                <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue adding'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
-                                <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'agency_vendors'],['class' => 'btn btn-warning', 'escape' => false]) ?>
+    </style>
+
+  <!-- second partition -->
+  <div class="col-md-12" style="color: #000">
+  <!-- form here -->
+  <div class="portlet light " style="width:100%; float:left;">
+    <div class="portlet-title">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => '']) ?>
+            <div class="form-body">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-user" aria-hidden="true"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Account Number with Vendor">
                             </div>
                         </div>
                     </div>
-                    <?= $this->Form->end() ?>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-user" aria-hidden="true"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-map" aria-hidden="true"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>City</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-globe" aria-hidden="true"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="City">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>State</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-globe"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="State">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Zip</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-file-archive-o"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Zip">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-phone"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Phone">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Fax</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-fax"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Fax">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-envelope"></i>  </span>
+                                <input type="email" class="form-control input-circle-right" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-users"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Contact Person">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Website</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-map"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder=" vendor's website">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Prefered Method of Ordering</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-fax" aria-hidden="true"></i> </span>
+                                <select class="form-control input-circle-right">
+                                    <option>Email</option>
+                                    <option>Fax</option>
+                                    <option>Notes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" align="center">
+                    <div class="form-actions">
+                        <button type="submit" class="btn blue">Submit</button>
+                        <a href="<?= $base_url; ?>agencies" type="button" class="btn default">Cancel</a>    
+                    </div>
                 </div>
             </div>
-        </section>
+        <?= $this->Form->end() ?>  
+        <!-- END FORM--> 
+      </div>
     </div>
-</section>
+    <!-- Form Here -->
+  </div>
+  <!-- second partition ==-->
+  </div>
+
+</div>
+
