@@ -27,11 +27,12 @@ class VehicleCompartmentsController extends AppController
     {
         parent::initialize();
         // Add the selected sidebar-menu 'active' class
-        // Valid value can be found in NavigationSelectorHelper       
+        // Valid value can be found in NavigationSelectorHelper    
+        $this->viewBuilder()->layout("Ems/default");    
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["vehicle_compartments"];
+            $nav_selected = ["administrator"];
         }       
 
         $session = $this->request->session();    
@@ -59,11 +60,13 @@ class VehicleCompartmentsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
+        /*$this->paginate = [
             'contain' => ['ParentVehicleCompartments', 'Vehicles']
         ];
         $this->set('vehicleCompartments', $this->paginate($this->VehicleCompartments));
-        $this->set('_serialize', ['vehicleCompartments']);
+        $this->set('_serialize', ['vehicleCompartments']);*/
+        $this->set(['page_title' => 'Vehicle Compartment']);
+
     }
 
     /**

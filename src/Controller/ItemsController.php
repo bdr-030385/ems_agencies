@@ -28,11 +28,12 @@ class ItemsController extends AppController
         parent::initialize();
         $this->viewBuilder()->layout("Ems/default"); 
         // Add the selected sidebar-menu 'active' class
-        // Valid value can be found in NavigationSelectorHelper       
+        // Valid value can be found in NavigationSelectorHelper   
+        $this->viewBuilder()->layout("Ems/default");     
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["items"];
+            $nav_selected = ["administrator"];
         }       
         $this->set('nav_selected', $nav_selected);
 
@@ -200,5 +201,10 @@ class ItemsController extends AppController
             }            
         }
         return $this->redirect(['action' => 'index']);    
+    }
+
+    public function info()
+    {
+    	$this->set(['page_title' => 'Item Information']);
     }
 }

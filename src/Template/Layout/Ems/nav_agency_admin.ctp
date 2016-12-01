@@ -20,10 +20,10 @@
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Changes & Uploads </a> </li>
     <li class="divider"></li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'vendors', 'action' => 'agency_vendors']); ?>" class="nav-link  "> Vendor List </a> </li>
-    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Item List </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'items', 'action' => 'info']); ?>" class="nav-link  "> Item List </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Purchasing </a> </li>
     <li class="divider"></li>
-    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Compartment Setup </a> </li>
+    <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'vehicle_compartments', 'action' => 'index']); ?>" class="nav-link  "> Compartment Setup </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'vehicle_maintenance_logs', 'action' => 'admin_request']); ?>" class="nav-link  "> Vehicle Maintenance Log </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Reports </a> </li>
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>" class="nav-link  "> Settings </a> </li>
