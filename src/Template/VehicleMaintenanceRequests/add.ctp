@@ -21,186 +21,88 @@ nav {
     <div class="portlet-title">
       <div class="portlet-body form">
         <!-- BEGIN FORM-->
-                                    <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => '']) ?>
-                                        <div class="form-body">
-                                            <div class="col-md-12">
-                                                <div class="well"> <i class="fa fa-user-plus"></i> Basic Information </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Year</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-user" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="Year">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Make</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-map" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="Make">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Model</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-info" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="Model">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>VIN</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-vimeo" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="VIN">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Vehicle ID</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-phone" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="Vehicle ID">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Date Purchased</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-calendar" aria-hidden="true"></i>  </span>
-                                                            <input type="date" class="form-control date-picker input-circle-right" placeholder="Date Purchased">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Price</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-paypal" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="Purchase Price">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Vendor</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-mobile" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control input-circle-right" placeholder="Vendor">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>&nbsp;</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-group" aria-hidden="true"></i> </span>
-                                                            <select class="form-control input-circle-right">
-                                                                <option>Gas</option>
-                                                                <option>Diesel</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>&nbsp;</label>
-                                                        <div class="input-group">
-                                                            <label class="mt-checkbox mt-checkbox-outline" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;">
-                                                                <input type="checkbox">
-                                                                DEF <span></span> </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--<div class="col-md-12">
-                            <div class="well"> <i class="fa fa-plus-square"></i> Import Data </div>
-                          </div>
+        <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => '']) ?>
+            <input type="hidden" name="agency_id" value="<?= $hdr_user_data->agency_id; ?>">
+            <input type="hidden" name="user_entity_id" value="<?= $hdr_user_data->id; ?>">
+            <div class="form-body">
+                <div class="col-md-12">
+                    <!-- <div class="well"> <i class="fa fa-user-plus"></i> New Contact Information </div> -->
+                </div>
+                <div class="col-md-12">
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Complaint happened when</label>  
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-group" aria-hidden="true"></i>
+                                </span>
+                                <select name="complaint" class="form-control input-circle-right">
+                                    <option value="Driving / Parked Engine On" > Driving / Parked Engine On </option>
+                                    <option value="Parked Engine Off" > Parked Engine Off</option>
+                                    <option value="Always" > Always </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>If happened while driving</label>
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </span>
+                                <input name="complaint_description" id="complaint_description" type="text" class="form-control input-circle-right" placeholder="If happened while driving" > 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </span>
+                                <input name="description" id="description"  type="text" class="form-control input-circle-right" placeholder="Description">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Note</label>
+                            <div class="input-group">
+                                <span class="input-group-addon input-circle-left">
+                                    <i class="fa fa-street-view" aria-hidden="true"></i>
+                                </span>
+                            <input name="note" id="note" type="text" class="form-control input-circle-right" placeholder="Note"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Date and Timestamp</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> </span>
+                                </label>
+                                <div class="input-group date form_datetime" style="color: #000">
+                                    <input type="text" size="16" readonly class="form-control" placeholder="Date and Timestamp">
+                                    <span class="input-group-btn">
+                                    <button class="btn default date-set" type="button"> <i class="fa fa-calendar"></i> </button>
+                                    </span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12" align="center">
+                    <div class="form-actions">
+                        <button type="submit" class="btn blue">Submit</button>
+                        <a href="<?= $base_url; ?>agencies" type="button" class="btn default">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        <?= $this->Form->end() ?>            
 
-                          <div class="col-md-6">
-                                                  <div class="form-group">
-                                                       
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input-circle-left" style="width: 200px; text-align: left">
-                                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                                                Import Employee List
-                                                            </span>
-                                                            <input type="file" class="form-control input-circle-right" placeholder="Zip"> </div>
-                                                    </div>
-                                               </div>
-                                              
-                                               <div class="col-md-6">
-                                                  <div class="form-group">
-                                                       
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input-circle-left" style="width: 200px; text-align: left">
-                                                                <i class="fa fa-truck" aria-hidden="true"></i>
-                                                                 Import Vehicles
-                                                            </span>
-                                                            <input type="file" class="form-control input-circle-right" placeholder="Emergency Contact Name"> </div>
-                                                    </div>
-                                               </div>
-                                               
-                                               <div class="col-md-6">
-                                                  <div class="form-group">
-                                                       
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input-circle-left" style="width: 200px; text-align: left">
-                                                                <i class="fa fa-map-signs" aria-hidden="true"></i>
-                                                                 Import Vendors
-                                                            </span>
-                                                            <input type="file" class="form-control input-circle-right" placeholder="Emergency Contact Phone"> </div>
-                                                    </div>
-                                               </div>
-                                               
-                                               <div class="col-md-6">
-                                                  <div class="form-group">
-                                                       
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input-circle-left" style="width: 200px; text-align: left">
-                                                                <i class="fa fa-photo" aria-hidden="true"></i>
-                                                                Import Agency Logo
-                                                            </span>
-                                                            <input type="file" class="form-control input-circle-right" placeholder="Emergency Contact Email"> </div>
-                                                    </div>
-                                               </div>-->
-                                                <div class="col-md-12">
-                                                    <div class="well"> <i class="fa fa-gg-circle"></i> Vehicles </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Registration</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-registered" aria-hidden="true"></i>  </span>
-                                                            <input type="text" class="form-control date-picker input-circle-right" placeholder="Registration">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Insurance</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-money"></i>  </span>
-                                                            <input type="text" class="form-control date-picker input-circle-right" placeholder="Insurance ">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Inspection</label>
-                                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-money"></i>  </span>
-                                                            <input type="text" class="form-control date-picker input-circle-right" placeholder="Inspection.
- ">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12" align="center">
-                                                <div class="form-actions">
-                                                    <button type="submit" class="btn blue">Submit</button>
-                                                    <a href="<?= $base_url; ?>agencies" type="button" class="btn default">Cancel</a>                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?= $this->Form->end() ?>  
-                                    <!-- END FORM--> 
+        <!-- END FORM-->
       </div>
     </div>
     <!-- Form Here -->

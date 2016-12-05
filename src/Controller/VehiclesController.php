@@ -32,7 +32,7 @@ class VehiclesController extends AppController
         if ($this->request->action == "dashboard") {
             $nav_selected = ["dashboard"];
         } else {
-            $nav_selected = ["vehicles"];
+            $nav_selected = ["administrator"];
         }       
 
         $session = $this->request->session();    
