@@ -46,7 +46,7 @@ class UsersController extends AppController
                 $this->Auth->allow(['user_dashboard','change_password','personal_info']);
             }elseif( $user_data->user->group_id == 3 ){ //Member                
                 $this->Auth->deny();
-                $this->Auth->allow(['user_dashboard','change_password','personal_info']);
+                $this->Auth->allow(['user_dashboard','change_password','member_info']);
             }
         }
 
@@ -464,5 +464,16 @@ class UsersController extends AppController
     {        
         $nav_selected = ["personal_info"];
         $this->set(['page_title' => 'User Information','nav_selected' => $nav_selected]);
+    }
+
+    /**
+     * Member Info method
+     *
+     * @return void
+     */
+    public function member_info()
+    {        
+        $nav_selected = ["My Profile"];
+        $this->set(['page_title' => 'My Profile','nav_selected' => $nav_selected]);
     }
 }
