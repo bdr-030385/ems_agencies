@@ -463,7 +463,7 @@ class UsersController extends AppController
     public function personal_info()
     {        
         $nav_selected = ["personal_info"];
-        $this->set(['page_title' => 'User Information','nav_selected' => $nav_selected]);
+        $this->set(['page_title' => 'My Profile','nav_selected' => $nav_selected]);
     }
 
     /**
