@@ -5,7 +5,7 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
                 <div class="portlet box green">
                     <div class="portlet-title">
-                        <div class="caption"><i class="fa fa-globe"></i>Items</div>
+                        <div class="caption"><i class="fa fa-globe"></i>Item List</div>
                         <div class="tools"> </div>
                     </div>
                     <div class="portlet-body">
@@ -16,8 +16,8 @@
                                     <th><?= $this->Paginator->sort('name') ?></th>
                                     <th><?= $this->Paginator->sort('item_category_id') ?></th>
                                     <th><?= $this->Paginator->sort('quantity', __('Quantity on Hand')) ?></th>
-                                    <th><?= $this->Paginator->sort('reordering_point') ?></th>
-                                    <th><?= $this->Paginator->sort('reordering_point_category') ?></th>
+                                    <th><?= $this->Paginator->sort('preferred_vendor') ?></th>
+                                    <th><?= $this->Paginator->sort('last_time_ordered') ?></th>
                                     <th class="actions"><?= __('Actions') ?></th>
 
                                 </tr>
@@ -29,8 +29,8 @@
                                     <td><?= h($item->name) ?></td>
                                     <td><?= $item->has('item_category') ? $this->Html->link($item->item_category->name, ['controller' => 'ItemCategories', 'action' => 'view', $item->item_category->id]) : '' ?></td>
                                     <td><?= $this->Number->format($item->quantity) ?></td>
-                                    <td><?= $this->Number->format($item->reordering_point) ?></td>
-                                    <td><?= h($item->reordering_point_category) ?></td>
+                                    <td></td>
+                                    <td></td>
                                     <td class="actions">
                                         <?= $this->Html->link('<i class="fa fa-sitemap"></i>', '#addVendorItemModal-'.$item->id,['data-toggle' => 'modal', 'class' => 'btn btn-info btn-load-vendor', 'data-agency-id' => $item->agency_id, 'escape' => false, 'title' => 'Add Vendor to Item']) ?>
                                         <?php include('add_vendor_items.ctp'); ?>

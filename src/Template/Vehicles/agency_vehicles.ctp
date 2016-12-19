@@ -12,12 +12,13 @@
                         <table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="sample_3" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th><?= $this->Paginator->sort('id') ?></th>                                                
+                                    <th> <?= $this->Paginator->sort('id') ?></th>                                                
                                     <th><?= $this->Paginator->sort('vehicle_type_id') ?></th>
                                     <th><?= $this->Paginator->sort('color_id') ?></th>
-                                    <th><?= $this->Paginator->sort('number_vehicle', __('Vehicle ID')) ?></th>
+                                    <!-- <th><?= $this->Paginator->sort('number_vehicle', __('Vehicle ID')) ?></th> -->
                                     <th><?= $this->Paginator->sort('vehicle_year') ?></th>
                                     <th><?= $this->Paginator->sort('make') ?></th>
+                                    <th><?= $this->Paginator->sort('model') ?></th>
                                     <th class="actions"><?= __('Actions') ?></th>
                                 </tr>
                             </thead>
@@ -26,10 +27,11 @@
                             <tr>
                                                 <td><?= $this->Number->format($vehicle->id) ?></td>                                                
                                                 <td><?= $vehicle->has('vehicle_type') ? $this->Html->link($vehicle->vehicle_type->name, ['controller' => 'VehicleTypes', 'action' => 'view', $vehicle->vehicle_type->id]) : '' ?></td>
-                                                <td><?= $vehicle->has('color') ? $this->Html->link($vehicle->color->name, ['controller' => 'Colors', 'action' => 'view', $vehicle->color->id]) : '' ?></td>
-                                                <td><?= $vehicle->number_vehicle ?></td>
+                                                <td><?= $vehicle->has('color') ? $this->Html->link($vehicle->color->name, ['controller' => 'Colors', 'action' => 'view', $vehicle->color->id]) : '' ?></td> 
+                                                <!-- <td><?= $vehicle->number_vehicle ?></td> -->
                                                 <td><?= h($vehicle->vehicle_year) ?></td>
                                                 <td><?= h($vehicle->make) ?></td>
+                                                <td><?= h($vehicle->model) ?></td>
                                                 <td class="actions">
                                     <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vehicle->id],['class' => 'btn btn-info','title' => 'View', 'escape' => false]) ?>
                                     <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'agency_edit', $vehicle->id],['class' => 'btn btn-success', 'title' => 'Edit', 'escape' => false]) ?>

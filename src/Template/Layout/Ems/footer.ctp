@@ -2,7 +2,7 @@
 
 <!-- BEGIN FOOTER -->
 <!-- BEGIN PRE-FOOTER -->
-<div class="page-prefooter">
+<div class="page-prefooter" style="display:none;">
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
@@ -47,7 +47,7 @@
 <!-- BEGIN INNER FOOTER -->
 <div class="page-footer">
   <div class="container"> 2016 &copy; All right reserved.
-                <a href="#">Company Name</a>
+                <a href="#">EMS</a>
             </div>
 </div>
 <div class="scroll-to-top"> <i class="icon-arrow-up"></i> </div>

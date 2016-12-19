@@ -9,13 +9,13 @@
                     <!-- BEGIN FORM-->
                     <form role="form">
                         <div class="form-body">
-                            <div class="col-md-12">
-                                <div class="well"> <i class="fa fa-user-plus"></i> Item Information </div>
-                            </div>
+                            <!-- <div class="col-md-12">
+                                <div class="well"> <i class="fa fa-user-plus"></i> Add New Item </div>
+                            </div> -->
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Item Name</label>
                                         <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-file-text-o" aria-hidden="true"></i>  </span>
                                             <input type="text" class="form-control input-circle-right" placeholder="Item Name">
                                         </div>
@@ -96,9 +96,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Experation</label>
-                                        <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-calendar-o" aria-hidden="true"></i>  </span>
-                                            <input type="text" class="form-control date-picker input-circle-right" placeholder="Experation Date">
+                                        <label>Expiration</label>
+                                        <div class="input-group"> 
+                                            <input type="checkbox" class="form-control" placeholder="Experation Date">
                                         </div>
                                     </div>
                                 </div>
@@ -154,8 +154,14 @@
                             <div class="col-md-12" align="center">
                                 <div class="form-actions">
                                     <button type="submit" class="btn blue">Add Vendor To This Item</button>
+                                </div>
+                            </div>
+                            <div class="col-md-12" align="center">
+                                <div class="form-actions">
+                                    <button type="submit" class="btn blue">Save</button>
+                                    <button type="submit" class="btn blue">Save & New</button>
                                     <button type="button" class="btn default">Cancel</button>
-                                    <button type="submit" class="btn blue">Save & Close</button>
+                                    
                                 </div>
                             </div>
                         </div>

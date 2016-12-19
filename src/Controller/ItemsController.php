@@ -119,7 +119,7 @@ class ItemsController extends AppController
         $vendors = $data;
         $reorder_category = get_reorder_category();
         $load_form_css = true;
-        $this->set(['page_title' => 'Item Information']);
+        $this->set(['page_title' => 'Add New Item']);
         $this->set(compact('item', 'agencies', 'itemCategories', 'vendors', 'reorder_category','load_form_css'));
         $this->set('_serialize', ['item']);
     }
