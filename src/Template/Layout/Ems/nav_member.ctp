@@ -5,7 +5,7 @@
     <li class=" "> <a href="<?php echo $this->Url->Build(['controller' => 'equipment_checks', 'action' => 'my_checks']); ?>" class="nav-link  "> New Checks   </a> </li>
   </ul>
 </li>
-<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["users"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'agencies', 'action' => 'setup']); ?>"> Phonebook <span class="arrow"></span> </a> </li>
+<li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["phonebook"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'phonebook', 'action' => 'index']); ?>"> Phonebook <span class="arrow"></span> </a> </li>
 <li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["fuel_logs"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'fuel_logs', 'action' => 'member']); ?>"> Fuel Log <span class="arrow"></span> </a> </li>
 <li class="menu-dropdown classic-menu-dropdown <?= $nav_selected["vehicle_maintenance_requests"] ?>"> <a href="<?php echo $this->Url->Build(['controller' => 'vehicle_maintenance_requests', 'action' => 'member_request']); ?>"> Vehicle Maintenance<span class="arrow"></span> </a> </li>
 
