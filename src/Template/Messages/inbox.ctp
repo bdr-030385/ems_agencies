@@ -10,7 +10,7 @@
                     <a class="btn btn-sm blue btn-outline dropdown-toggle sbold" href="javascript:;" data-toggle="dropdown"> Actions
                         <i class="fa fa-angle-down"></i>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu"> 
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-pencil"></i> Mark as Read </a>

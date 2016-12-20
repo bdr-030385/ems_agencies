@@ -99,7 +99,7 @@ class VendorsController extends AppController
     public function add()
     {
         $vendor = $this->Vendors->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post')) { 
             $vendor = $this->Vendors->patchEntity($vendor, $this->request->data);
             if ($this->Vendors->save($vendor)) {
                 $this->Flash->success(__('The vendor has been saved.'));

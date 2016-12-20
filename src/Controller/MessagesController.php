@@ -45,7 +45,7 @@ class MessagesController extends AppController
     public function index()
     {
         $page_title = "<h1 style='text-align:left;'>Inbox
-                                <small>user inbox</small>
+                                <small>User inbox</small>
                             </h1>";
         $this->set(['page_title' => $page_title]);
     }
