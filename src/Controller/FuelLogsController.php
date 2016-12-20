@@ -156,6 +156,6 @@ class FuelLogsController extends AppController
      */
     public function member()
     {        
-        $this->set(['page_title' => 'SUBMIT FUEL-LOG RECORD ']);
+        $this->set(['page_title' => 'SUBMIT RECORD']);
     }
 }

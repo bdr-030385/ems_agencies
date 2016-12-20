@@ -25,13 +25,10 @@ nav {
             <input type="hidden" name="agency_id" value="<?= $hdr_user_data->agency_id; ?>">
             <input type="hidden" name="user_entity_id" value="<?= $hdr_user_data->id; ?>">
             <div class="form-body">
-                <div class="col-md-12">
-                            <div class="well"> <i class="fa fa-user-plus"></i> Add Fuel Log Information </div>
-                          </div>
                                                    <div class="col-md-12">
                            <div class="col-md-6">
                                                     <div class="form-group">
-                                                      <label>Agency Vehicles</label>
+                                                      <label>Select Vehicles</label>
                                                         <div class="input-group">
                                                             <span class="input-group-addon input-circle-left">
                                                                 <i class="fa fa-truck" aria-hidden="true"></i> 
@@ -47,7 +44,7 @@ nav {
                           </div>
                           <div class="col-md-6">
                                                     <div class="form-group">
-                                                      <label>Mileage</label>
+                                                      <label>Odometer Reading</label>
                                                         <div class="input-group">
                                                             <span class="input-group-addon input-circle-left">
                                                                 <i class="fa fa-street-view" aria-hidden="true"></i> 
@@ -106,25 +103,6 @@ nav {
                                                     </div>
                           </div>
                           
-                        
-                          <div class="col-md-6">
-                         <div class="form-group">
-                         <label>Date and Timestamp</label>
-                                                        <div class="input-group">
-                                                        <span class="input-group-addon input-circle-left">
-                                                                <i class="fa fa-calendar" aria-hidden="true"></i> 
-                                                            </span></label>
-                                                            <div class="input-group date form_datetime" style="color: #000; width:458px;">
-                                                                <input type="text" size="16" readonly class="form-control">
-                                                                <span class="input-group-btn">
-                                                                    <button class="btn default date-set" type="button">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                          </div>
                        
                          
 
@@ -156,9 +134,6 @@ nav {
       </div>
     </div>
     <!-- Form Here -->
-    <center >
-        Submitted by Rubin Breuer, Unit S-6
-    </center>
   </div>
   <!-- second partition ==-->
   </div>

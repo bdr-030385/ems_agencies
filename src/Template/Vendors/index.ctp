@@ -15,9 +15,8 @@
                                     <th class="all">Agency name</th>
                                     <th class="min-phone-l">Vendor Name</th>
                                     <th class="min-tablet">Phone Number</th>
-                                    <th class="min-phone-l">Address</th>
-                                    <th class="min-phone-l">State</th>
-                                    <th class="min-phone-l">Zip</th>
+                                    <th class="min-phone-l">Email</th>
+                                    <th class="min-phone-l">Website</th>
                                     <th class="min-phone-l">Action</th>
                                 </tr>
                             </thead>
@@ -25,11 +24,10 @@
                                 <?php foreach ($vendors as $vendor){ ?>
                                     <tr>
                                         <td><?php echo $vendor->agency->name; ?></td>
-                                        <td>$vendor->vendor_name</td>
+                                        <td><?php echo $vendor->vendor_name; ?></td>
                                         <td><?= h($vendor->phone_number) ?></td>
-                                        <td><?= h($vendor->address) ?></td>
-                                        <td><?= h($vendor->state) ?></td>
-                                        <td><?= h($vendor->zip) ?></td>
+                                        <td><?= h($vendor->email) ?></td>
+                                        <td><?= h($vendor->website) ?></td>
                                         <td>
                                             <?= $this->Html->link('<i class="fa fa-eye"></i>', ['action' => 'view', $vendor->id],['class' => 'btn btn-info','escape' => false]) ?>
                                             <?= $this->Html->link('<i class="fa fa-pencil"></i>', ['action' => 'edit', $vendor->id],['class' => 'btn btn-success', 'escape' => false]) ?>
