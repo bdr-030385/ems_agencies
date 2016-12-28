@@ -22,6 +22,8 @@ nav {
       <div class="portlet-body form">
         <!-- BEGIN FORM-->
           <?= $this->Form->create(null,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => '']) ?>
+            <input type="hidden" name="agency_id" value="<?= $hdr_user_data->agency_id; ?>">
+            <input type="hidden" name="color_id" value="3">
             <div class="form-body">
               <div class="col-md-12">
                 <div class="well"> <i class="fa fa-user-plus"></i> Basic Information </div>
@@ -31,7 +33,7 @@ nav {
                   <div class="form-group">
                     <label>Year</label>
                     <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-user" aria-hidden="true"></i>  </span>
-                      <input type="text" class="form-control input-circle-right" placeholder="Year">
+                      <input name="vehicle_year" type="number" min="1" class="form-control input-circle-right" placeholder="Year">
                     </div>
                   </div>
                 </div>
@@ -39,7 +41,7 @@ nav {
                   <div class="form-group">
                     <label>Make</label>
                     <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-map" aria-hidden="true"></i>  </span>
-                      <input type="text" class="form-control input-circle-right" placeholder="Make">
+                      <input name="make" type="text" class="form-control input-circle-right" placeholder="Make">
                     </div>
                   </div>
                 </div>
@@ -47,7 +49,7 @@ nav {
                   <div class="form-group">
                     <label>Model</label>
                     <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-info" aria-hidden="true"></i>  </span>
-                      <input type="text" class="form-control input-circle-right" placeholder="Model">
+                      <input name="model" type="text" class="form-control input-circle-right" placeholder="Model">
                     </div>
                   </div>
                 </div>
@@ -55,15 +57,20 @@ nav {
                   <div class="form-group">
                     <label>VIN</label>
                     <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-vimeo" aria-hidden="true"></i>  </span>
-                      <input type="text" class="form-control input-circle-right" placeholder="VIN">
+                      <input name="vin" type="text" class="form-control input-circle-right" placeholder="VIN">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Vehicle ID</label>
-                    <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-phone" aria-hidden="true"></i>  </span>
-                      <input type="text" class="form-control input-circle-right" placeholder="Vehicle ID">
+                    <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-car" aria-hidden="true"></i>  </span>
+                      <select name="vehicle_type_id" class="form-control input-circle-right" required="required">
+                         <option value=""> Vehicle ID</option>
+                         <?php foreach($vehicleTypes as $id => $value) { ?>
+                              <option value="<?= $id; ?>"><?= $value; ?></option>
+                         <?php } ?>
+                     </select>
                     </div>
                   </div>
                 </div>

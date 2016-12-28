@@ -205,12 +205,13 @@ class VehiclesController extends AppController
             $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data);
             if ($this->Vehicles->save($vehicle)) {
                 $this->Flash->success(__('The vehicle has been saved.'));
-                $action = $this->request->data['save'];
+                return $this->redirect(['action' => 'agency_vehicles']);
+                /*$action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'agency_vehicles']);
                 }else{
                     return $this->redirect(['action' => 'agency_add']);
-                }                    
+                }     */               
             } else {
                 $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
             }

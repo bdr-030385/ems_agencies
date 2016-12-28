@@ -72,9 +72,9 @@ class VehiclesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator            
+        /*$validator            
             ->requirePresence('number_vehicle', 'create')
-            ->notEmpty('number_vehicle');
+            ->notEmpty('number_vehicle');*/
 
         /*$validator
             ->requirePresence('vehicle_year', 'create')
@@ -123,7 +123,7 @@ class VehiclesTable extends Table
     {
         $rules->add($rules->existsIn(['agency_id'], 'Agencies'));
         $rules->add($rules->existsIn(['vehicle_type_id'], 'VehicleTypes'));
-        $rules->add($rules->existsIn(['color_id'], 'Colors'));
+        //$rules->add($rules->existsIn(['color_id'], 'Colors'));
 
         return $rules;
     }
