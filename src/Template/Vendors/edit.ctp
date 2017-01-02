@@ -1,135 +1,144 @@
-<section class="content-header">
-    <h1><?= __('Edit Vendor') ?></h1>
-    <ol class="breadcrumb">
-        <li><?= $this->Html->link("<i class='fa fa-dashboard'></i>" . __("Home"), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li><?= $this->Html->link("<i class='fa fa-truck'></i>" . __('Vendors'), ['controller' => 'users', 'action' => 'dashboard'],['escape' => false]) ?></li>
-        <li class="active"><?= __('Edit') ?></li>
-    </ol>
-</section>
 
-<section class="content">
-    <!-- Main Row -->
-    <div class="row">
-        <section class="col-lg-12 ">
-            <div class="box " >
-                <div class="box-header">
+<div class="cd-tabs">
+<style>
+.fixed-header {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; 
+}
+nav { 
+  background: #444d58;
+  postion:fixed;
+  z-index:10;
+}
 
-                </div>
-                <div class="box-body">
-                    <?= $this->Form->create($vendor,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => 'form-horizontal']) ?>
-                    <fieldset>        
-                        <?php
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='agency_id' class='col-sm-2 control-label'>" . __('Agency') . "</label>
-                                        <div class='col-sm-6'>";
-                                         echo $this->Form->input('agency_id', ['class' => 'form-control', 'id' => 'agency_id', 'label' => false, 'options' => $agencies]);                 
-                                    echo " </div></div>";    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='vendor_name' class='col-sm-2 control-label'>" . __('Vendor Name') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('vendor_name', ['class' => 'form-control', 'id' => 'vendor_name', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='phone_number' class='col-sm-2 control-label'>" . __('Phone Number') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('phone_number', ['class' => 'form-control', 'id' => 'phone_number', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='address' class='col-sm-2 control-label'>" . __('Address') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('address', ['class' => 'form-control', 'id' => 'address', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='city' class='col-sm-2 control-label'>" . __('City') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('city', ['class' => 'form-control', 'id' => 'city', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='state' class='col-sm-2 control-label'>" . __('State') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('state', ['class' => 'form-control', 'id' => 'state', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='zip' class='col-sm-2 control-label'>" . __('Zip') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('zip', ['class' => 'form-control', 'id' => 'zip', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='email' class='col-sm-2 control-label'>" . __('Email') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('email', ['class' => 'form-control', 'id' => 'email', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='website' class='col-sm-2 control-label'>" . __('Website') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('website', ['class' => 'form-control', 'id' => 'website', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='contact_person' class='col-sm-2 control-label'>" . __('Contact Person') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('contact_person', ['class' => 'form-control', 'id' => 'contact_person', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='contact_person_phone' class='col-sm-2 control-label'>" . __('Contact Person Phone') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('contact_person_phone', ['class' => 'form-control', 'id' => 'contact_person_phone', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='contact_person_email' class='col-sm-2 control-label'>" . __('Contact Person Email') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('contact_person_email', ['class' => 'form-control', 'id' => 'contact_person_email', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='tearms' class='col-sm-2 control-label'>" . __('Tearms') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('tearms', ['class' => 'form-control', 'id' => 'tearms', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                            echo "
-                                    <div class='form-group'>
-                                        <label for='note' class='col-sm-2 control-label'>" . __('Note') . "</label>
-                                        <div class='col-sm-6'>";
-                                        echo $this->Form->input('note', ['class' => 'form-control', 'id' => 'note', 'label' => false]);                
-                                    echo " </div></div>";    
-                                    
-                                                ?>
-                    </fieldset>
-                    <div class="form-group" style="margin-top: 80px;">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="action-fixed-bottom">
-                                <?= $this->Form->button('<i class="fa fa-save"></i> ' . __('Save'),['name' => 'save', 'value' => 'save', 'class' => 'btn btn-success', 'escape' => false]) ?>
-                                <?= $this->Form->button('<i class="fa fa-edit"></i> ' . __('Save and Continue editing'),['name' => 'save', 'value' => 'edit', 'class' => 'btn btn-info', 'escape' => false]) ?>
-                                <?= $this->Html->link('<i class="fa fa-angle-left"> </i> ' . __('Back To list'), ['action' => 'index'],['class' => 'btn btn-warning', 'escape' => false]) ?>
+    </style>
+
+  <!-- second partition -->
+  <div class="col-md-12" style="color: #000">
+  <!-- form here -->
+  <div class="portlet light " style="width:100%; float:left;">
+    <div class="portlet-title">
+      <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <?= $this->Form->create($vendor,['id' => 'frm-default-add', 'data-toggle' => 'validator', 'role' => 'form','class' => '']) ?>
+            <div class="form-body">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-user" aria-hidden="true"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Account Number with Vendor">
                             </div>
                         </div>
                     </div>
-                    <?= $this->Form->end() ?>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-user" aria-hidden="true"></i>  </span>
+                                <?php echo $this->Form->input('vendor_name', [ 'placeholder' => 'Name', 'class' => 'form-control input-circle-right', 'id' => 'vendor_name', 'label' => false, 'required' => 'required']); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-map" aria-hidden="true"></i>  </span>
+                                <?php echo $this->Form->input('address', ["placeholder" => "Address", 'class' => 'form-control input-circle-right', 'id' => 'address', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>City</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-globe" aria-hidden="true"></i>  </span>
+                                <?php echo $this->Form->input('city', ["type" => "text", "placeholder" => "City", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>State</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-globe"></i>  </span>
+                                <?php echo $this->Form->input('state', ["placeholder" => "State", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Zip</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-file-archive-o"></i>  </span>
+                                <?php echo $this->Form->input('zip', ["placeholder" => "Zip", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-phone"></i>  </span>
+                                <?php echo $this->Form->input('phone_number', ["placeholder" => "Phone", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Fax</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-fax"></i>  </span>
+                                <input type="text" class="form-control input-circle-right" placeholder="Fax">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-envelope"></i>  </span>
+                                <?php echo $this->Form->input('contact_person_email', ["placeholder" => "Email", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-users"></i>  </span>
+                                <?php echo $this->Form->input('contact_person', ["placeholder" => "Contact Person", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Website</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-map"></i>  </span>
+                                <?php echo $this->Form->input('website', ["type" => "text", "placeholder" => "Vendor's website", 'class' => 'form-control input-circle-right', 'id' => '', 'label' => false]); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Prefered Method of Ordering</label>
+                            <div class="input-group"> <span class="input-group-addon input-circle-left"> <i class="fa fa-fax" aria-hidden="true"></i> </span>
+                                <select class="form-control input-circle-right">
+                                    <option>Email</option>
+                                    <option>Fax</option>
+                                    <option>Notes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" align="center">
+                    <div class="form-actions">
+                        <button type="submit" class="btn blue">Submit</button>
+                        <button type="button" class="btn default">Cancel</button>
+                    </div>
                 </div>
             </div>
-        </section>
+        <?= $this->Form->end() ?>  
+        <!-- END FORM--> 
+      </div>
     </div>
-</section>
+    <!-- Form Here -->
+  </div>
+  <!-- second partition ==-->
+  </div>
+
+</div>

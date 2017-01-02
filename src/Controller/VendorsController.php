@@ -103,12 +103,13 @@ class VendorsController extends AppController
             $vendor = $this->Vendors->patchEntity($vendor, $this->request->data);
             if ($this->Vendors->save($vendor)) {
                 $this->Flash->success(__('The vendor has been saved.'));
-                $action = $this->request->data['save'];
+                return $this->redirect(['action' => 'index']);
+                /*$action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'index']);
                 }else{
                     return $this->redirect(['action' => 'add']);
-                }                    
+                }    */                
             } else {
                 $this->Flash->error(__('The vendor could not be saved. Please, try again.'));
             }
@@ -135,12 +136,13 @@ class VendorsController extends AppController
             $vendor = $this->Vendors->patchEntity($vendor, $this->request->data);
             if ($this->Vendors->save($vendor)) {
                 $this->Flash->success(__('The vendor has been saved.'));
-                $action = $this->request->data['save'];
+                return $this->redirect(['action' => 'index']);
+                /*$action = $this->request->data['save'];
                 if( $action == 'save' ){
                     return $this->redirect(['action' => 'index']);
                 }else{
                     return $this->redirect(['action' => 'edit', $id]);
-                }         
+                } */        
             } else {
                 $this->Flash->error(__('The vendor could not be saved. Please, try again.'));
             }
